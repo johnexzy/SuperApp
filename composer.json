@@ -1,0 +1,11 @@
+{
+  "require": {
+    "vlucas/phpdotenv": "^2.4",
+    "intervention/image": "^2.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Src\\": "src/"
+    }
+  }
+}
