@@ -39,7 +39,7 @@ class MusicGateWay extends MakeImage{
                                 (:image_url, :image_key)
                 ";
                 try {
-                        $post_key = md5($input['music_key'].rand(123, 2345621));
+                        $_key = md5($input['music_key'].rand(123, 2345621));
                         $statement = $this->db->prepare($statement);
                         $statementImage = $this->db->prepare($statementImage);
                         $statement->execute(array(
@@ -47,12 +47,11 @@ class MusicGateWay extends MakeImage{
                                 'music_image' => $this->makeImg($input['music_image'][0]),
                                 'music_details' => $input['music_details'],
                                 'artist' => $input['artist'],
-                                'music_key' => $input['post_category'],
+                                'music_key' => $_key,
                                 'uploaded_by' => $input['author'],
-                                'post_short_url' => str_replace(".", "-", str_replace(" ", "-", $input['post_title']."-".rand(12345, 23456219090)))
                                 
                         ));
-                        foreach ($input['post_images'] as $image) {
+                        foreach ($input['music_image'] as $image) {
                                 
                                 $statementImage->execute(array(
                                         'image_url' => $ddd->makeImg($image),
