@@ -56,12 +56,31 @@ class MusicController extends MusicGateWay{
     
     private function addNewSongFromRequest() {
         $input = (array) $_POST;
-        $input += ["song" => $_FILES['music_file']];
+        $input += ["song" => reArrayFiles($_FILES['music_file'])];
         
         $result = $this->insert($input);
         $response['status_code_header'] = 'HTTP/1.1 201 Created';
        $response['body'] = json_encode($result);
         return $response;
+    }
+    function reArrayFiles($file_post) {
+
+        $file_arr = array();
+        $file_count = count($file_post['name']);
+        $file_keys = array_keys($file_post);
+    
+        for ($i=0; $i<$file_count; $i++) {
+            foreach ($file_keys as $key) {
+                $file_arr[$i][$key] = $file_post[$key][$i];
+            }
+        }
+    
+        return $file_arr;
+        
+        /**
+         * 
+         * @credit to : https://www.php.net/manual/en/features.file-upload.multiple.php#53240
+         */
     }
     private function notFoundResponse()
     {

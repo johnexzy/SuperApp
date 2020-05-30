@@ -24,19 +24,17 @@ class MusicGateWay extends MakeImage{
         
         public function insert(Array $input)
         {
-            
-                
                 $statement = "
                         INSERT INTO News
-                                (music_name, music_image, music_details, artist, music_key, uploaded_by)
+                                (music_name, music_details, artist, music_key, uploaded_by)
                         VALUES
-                                (:music_name, :music_image, :music_details, :artist, :music_key, :uploaded_by)
+                                (:music_name, :music_details, :artist, :music_key, :uploaded_by)
                 ";
                 $statementImage = "
                         INSERT INTO images
-                                (image_url, image_key)
+                                (song_url, song_key)
                         VALUES
-                                (:image_url, :image_key)
+                                (:song_url, :song_key)
                 ";
                 try {
                         $_key = md5($input['music_key'].rand(123, 2345621));
@@ -44,7 +42,6 @@ class MusicGateWay extends MakeImage{
                         $statementImage = $this->db->prepare($statementImage);
                         $statement->execute(array(
                                 'music_name' => $input['music_name'],
-                                'music_image' => $this->makeImg($input['music_image'][0]),
                                 'music_details' => $input['music_details'],
                                 'artist' => $input['artist'],
                                 'music_key' => $_key,
@@ -52,10 +49,9 @@ class MusicGateWay extends MakeImage{
                                 
                         ));
                         foreach ($input['music_image'] as $image) {
-                                
                                 $statementImage->execute(array(
-                                        'image_url' => $ddd->makeImg($image),
-                                        'image_key' => $post_key
+                                        'image_url' => $this->makeImg($image),
+                                        'image_key' => $_key
                                 ));
                         }
                         return $statement->rowCount();
