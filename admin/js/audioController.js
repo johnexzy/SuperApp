@@ -41,6 +41,11 @@
                     $(".image-list").append(
                         "<li tabindex='0' class='el-upload-list__item is-ready'>" +
                         "<img src='" + f.target.result + "' alt='' class='el-upload-list__item-thumbnail'>" +
+                        "<span class='el-upload-list__item-actions'>"+
+                            "<span class='el-upload-list__item-delete'>"+
+                            "<i class='mdi mdi-delete'></i>"+
+                            "</span>"+
+                        "</span>"+
                         "</li>"
                     )
                     // alert(formData.postImages);

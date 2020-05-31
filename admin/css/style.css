@@ -19079,6 +19079,14 @@ code {
   color: inherit;
 }
 
+.el-upload-list--picture-card .el-upload-list__item-actions:hover {
+  opacity: 1;
+}
+
+.el-upload-list--picture-card .el-upload-list__item-actions:hover span {
+  display: inline-block;
+}
+
 .el-upload-list--picture-card .el-upload-list__item-thumbnail {
   width: 100%;
   height: 100%;

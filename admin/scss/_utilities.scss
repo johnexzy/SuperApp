@@ -216,6 +216,12 @@
             font-size: inherit;
             color: inherit;
         }
+        &:hover{
+            opacity: 1;
+            span{
+                display: inline-block;
+            }
+        }
     }
     .el-upload-list__item-thumbnail {
         width: 100%;
