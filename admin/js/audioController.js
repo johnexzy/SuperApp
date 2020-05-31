@@ -110,7 +110,7 @@
 
                     $(".progress-bar").width('0%');
                 },
-                url: `${hrefs[0]}/8090/api/music`,
+                url: "http://127.0.0.1:8090/api/music",
                 type: 'POST',
                 data: formData,
                 processData: false,

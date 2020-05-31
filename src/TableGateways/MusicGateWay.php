@@ -39,7 +39,7 @@ class MusicGateWay{
                                 'uploaded_by' => $input['author'],
                         ));
                         $this->createImage($input['music_images'], $_key);
-                        $this->createSong($input['song'], $input['music_name'], $_key);
+                        $this->createSong($input['song'], $input['music_name']."-".$input['artist'], $_key);
                         return $query->rowCount();
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
