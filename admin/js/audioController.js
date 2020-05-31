@@ -51,6 +51,10 @@
             // alert($(this).val())
         });
         $('.audio-upload').on('change', function (e) {
+            // alert((window.location).substr(0, (window.location).indexOf('8090')))
+            let hrefs = new String(window.location);
+            hrefs = hrefs.split('8090')
+            // console.log(hrefs)
             const selectedAudio = e.target.files[0];
             musicFile.Audio = selectedAudio
             alert(selectedAudio);
@@ -93,7 +97,7 @@
                     let xhr = new window.XMLHttpRequest();
                     xhr.upload.addEventListener("progress", function (ext) {
                         if (ext.lengthComputable) {
-                            let perCentComplete = ((ext.loaded / ext.total) * 100);
+                            let perCentComplete = ((ext.loaded / ext.total) * 100).toFixed();
                             $(".progress-bar").width(perCentComplete + '%');
                             $(".progress-bar").html(perCentComplete + '%');
                         }
@@ -105,7 +109,7 @@
 
                     $(".progress-bar").width('0%');
                 },
-                url: 'http://127.0.0.1:8090/api/music',
+                url: `${hrefs[0]}/8090/api/music`,
                 type: 'POST',
                 data: formData,
                 processData: false,
