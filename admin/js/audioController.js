@@ -73,7 +73,8 @@
             // alert($(this).val())
         });
         $('#handleSubmit').on('click', function () {
-
+            let hrefs = new String(window.location);
+            hrefs = hrefs.split('8090')
             let music_name = $('#music_title').val();
             let music_details = $('#about_music').val();
             let artist = $('#artist').val();
