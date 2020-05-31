@@ -18,7 +18,7 @@ class MakeFile {
             $fileExt = $ext[\count($ext) - 1];
             $extensions = array('mp3', 'wav', 'ogg', 'opus', 'flac', 'm4a', 'm4b');
             if (in_array($fileExt, $extensions)) {
-                $path = $name.mt_rand(0, 400).".$fileExt";
+                $path = str_replace(" ", "-", $name).mt_rand(0, 400).".$fileExt";
                 if (!move_uploaded_file($audio['tmp_name'], "../uploads/audios/$path")) {
                     exit;
                 }

@@ -4,3 +4,5 @@ composer.lock
 /nbproject/private/
 /node_modules
 /admin/node_modules/
+uploads/audios/**
+uploads/images/**
