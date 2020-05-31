@@ -57,7 +57,7 @@
             // console.log(hrefs)
             const selectedAudio = e.target.files[0];
             musicFile.Audio = selectedAudio
-            alert(selectedAudio);
+            // alert(selectedAudio); [Object] [Object]
             const reader = new FileReader();
             reader.onload = f => {
                 musicFile.Image.push(f.target.result);
