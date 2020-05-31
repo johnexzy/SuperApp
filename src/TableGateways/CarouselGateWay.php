@@ -1,7 +1,7 @@
 <?php
 namespace Src\TableGateways;
 
-use Src\Logic\MakeImage;
+use Src\Logic\MakeFile;
 use Src\TableGateWays\CommentsGateway;
 
 
@@ -119,7 +119,7 @@ class CarouselGateway
         }
         public function insert(Array $input)
         {
-                $ddd = new MakeImage();
+                $ddd = new MakeFile();
                 $statement = "
                         INSERT INTO carousel
                                 (carousel_title, carousel_body, carousel_image, carousel_key, author, carousel_short_url)

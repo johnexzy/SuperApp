@@ -29,11 +29,12 @@ class MusicController extends MusicGateWay{
     
     private $db;
     private $requestMethod;
-
-    public function __construct($db, $requestMethod) {
+    public $input;
+    public function __construct($db, $requestMethod, Array $input) {
         parent::__construct($db);
         $this->db = $db;
         $this->requestMethod = $requestMethod;
+        $this->input = $input;
     }
 
     public function processRequest()
@@ -55,25 +56,24 @@ class MusicController extends MusicGateWay{
 
     
     private function addNewSongFromRequest() {
-        $input = (array) $_POST;
-        $input += ["song" => reArrayFiles($_FILES['music_file'])];
-        
-        $result = $this->insert($input);
+        $result = $this->insert($this->input);
         $response['status_code_header'] = 'HTTP/1.1 201 Created';
        $response['body'] = json_encode($result);
         return $response;
     }
-    function reArrayFiles($file_post) {
+    public static function reArrayFiles($file_post) {
 
         $file_arr = array();
-        $file_count = count($file_post['name']);
+        // $file_count = count($file_post['name']);
         $file_keys = array_keys($file_post);
     
-        for ($i=0; $i<$file_count; $i++) {
+        // for ($i=0; $i<$file_count; $i++) {
             foreach ($file_keys as $key) {
-                $file_arr[$i][$key] = $file_post[$key][$i];
+                // $file_arr[$i][$key] = $file_post[$key][$i];
+                $file_arr[$key] = $file_post[$key];
+
             }
-        }
+        // }
     
         return $file_arr;
         

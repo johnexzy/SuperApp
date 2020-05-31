@@ -1,7 +1,7 @@
 <?php
 namespace Src\TableGateways;
 
-use Src\Logic\MakeImage;
+use Src\Logic\MakeFile;
 use Src\TableGateWays\CommentsGateway;
 
 
@@ -123,7 +123,7 @@ class NewsGateway extends CommentsGateway
         }
         public function insert(Array $input)
         {
-                $ddd = new MakeImage();
+                $ddd = new MakeFile();
                 $statement = "
                         INSERT INTO News
                                 (post_title, post_body, post_images, post_key, post_category, author, post_short_url)

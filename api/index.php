@@ -1,19 +1,13 @@
 <?php
-// if (isset($_SERVER['HTTP_ORIGIN'])) {
-//     if($_SERVER['HTTP_ORIGIN'] == "http://127.0.0.1:8080"){
-    
-//         header("Access-Control-Allow-Origin: http://127.0.0.1:8080");
-//         header("Content-Type: application/json");
-//     }
-// }
 
 header("Access-Control-Allow-Origin: *");
+
 header("Access-Control-Allow-Credentials: true");
-header("Content-Type: application/json; charset=UTF-8;");
 header("Access-Control-Allow-Methods: OPTIONS, GET, POST, PUT, DELETE");
 header("Access-Control-Allow-Headers: Origin, Access-Control-Allow-Origin, Content-Type, Access-Control-Allow-Methods, X-Requested-With");
 
 require '../bootstrap.php';
+use Src\Controller\MusicController;
 use Src\Controller\CommentsController;
 use Src\Controller\PersonController;
 use Src\Controller\NewsController;
@@ -26,6 +20,23 @@ $uri = explode('/', $uri);
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 //all of the end points starts with person
 //everything else results in a 404
+
+
+if($uri[2] == 'music'){
+    header("Content-Type: multipart/form-data;");
+    $input = null;
+    if ($requestMethod == 'POST') {
+        
+        $input = (array) $_POST;
+        $input += ["song" => MusicController::reArrayFiles($_FILES['music_file'])];
+    }
+    $controller = new MusicController($dbConnection, $requestMethod, $input);
+    $controller->processRequest();
+}
+else header("Content-Type: application/json; charset=UTF-8;");
+
+
+
 if ($uri[2] == 'news') {
     $id = null;
     $cat = null;
@@ -116,6 +127,7 @@ elseif($uri[2] == 'carousel'){
     $controller = new CarouselController($dbConnection, $requestMethod, $short_url, $id);
     $controller->processRequest();
 }
+
 else{
     header("HTTP/1.1 404 Not Found");
     exit();

@@ -1,0 +1,211 @@
+/* Utilities */
+
+.grid-margin {
+    margin-bottom: $card-spacing-y;
+}
+
+.grid-margin-sm-0 {
+    @media (min-width: 576px) {
+        margin-bottom: 0;
+    }
+}
+
+.grid-margin-md-0 {
+    @media (min-width: 768px) {
+        margin-bottom: 0;
+    }
+}
+
+.grid-margin-lg-0 {
+    @media (min-width: 992px) {
+        margin-bottom: 0;
+    }
+}
+
+.grid-margin-xl-0 {
+    @media (min-width: 1200px) {
+        margin-bottom: 0;
+    }
+}
+
+.img-lg {
+    width: 92px;
+    height: 92px;
+}
+
+.img-sm {
+    width: 43px;
+    height: 43px;
+}
+
+.img-xs {
+    width: 37px;
+    height: 37px;
+}
+
+.img-ss {
+    width: 26px;
+    height: 26px;
+}
+
+.stretch-card {
+    @include display-flex;
+    @include align-items(stretch);
+    @include justify-content(stretch);
+    >.card {
+        width: 100%;
+        min-width: 100%;
+    }
+}
+
+.border-right-sm {
+    @media (min-width: 576px) {
+        border-right: $border-width solid $border-color;
+    }
+}
+
+.border-right-md {
+    @media (min-width: 768px) {
+        border-right: $border-width solid $border-color;
+    }
+}
+
+.border-right-lg {
+    @media (min-width: 992px) {
+        border-right: $border-width solid $border-color;
+    }
+}
+
+.border-left-sm {
+    @media (min-width: 576px) {
+        border-left: $border-width solid $border-color;
+    }
+}
+
+.border-left-md {
+    @media (min-width: 768px) {
+        border-left: $border-width solid $border-color;
+    }
+}
+
+.border-left-lg {
+    @media (min-width: 992px) {
+        border-left: $border-width solid $border-color;
+    }
+}
+
+.text-gray {
+    color: #8c8c8c;
+}
+
+.text-black {
+    color: $black;
+}
+
+.text-small {
+    font-size: 12px;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+        .border#{$infix}-top {
+            border-top: $border-width solid $border-color;
+        }
+        .border#{$infix}-right {
+            border-right: $border-width solid $border-color;
+        }
+        .border#{$infix}-bottom {
+            border-bottom: $border-width solid $border-color;
+        }
+        .border#{$infix}-left {
+            border-left: $border-width solid $border-color;
+        }
+        .border#{$infix}-top-0 {
+            border-top: 0;
+        }
+        .border#{$infix}-right-0 {
+            border-right: 0;
+        }
+        .border#{$infix}-bottom-0 {
+            border-bottom: 0;
+        }
+        .border#{$infix}-left-0 {
+            border-left: 0;
+        }
+        .border#{$infix}-x {
+            border-left: $border-width solid $border-color;
+            border-right: $border-width solid $border-color;
+        }
+        .border#{$infix}-y {
+            border-top: $border-width solid $border-color;
+            border-bottom: $border-width solid $border-color;
+        }
+    }
+}
+
+.hover-cursor {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.el-upload {
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    outline: 0;
+}
+
+.el-upload--picture-card {
+    background-color: #fbfdff;
+    border: 1px dashed #c0ccda;
+    border-radius: 6px;
+    box-sizing: border-box;
+    width: 148px;
+    height: 148px;
+    line-height: 146px;
+    vertical-align: top;
+    i {
+        font-size: 28px;
+        color: #8c939d;
+    }
+    &:hover {
+        border-color: rgba(0, 0, 255, 0.425);
+    }
+}
+
+.el-upload-list--picture-card {
+    margin: 0;
+    display: inline;
+    vertical-align: top;
+    .el-upload-list__item {
+        overflow: hidden;
+        background-color: #fff;
+        border: 1px solid #c0ccda;
+        border-radius: 6px;
+        box-sizing: border-box;
+        width: 148px;
+        height: 148px;
+        margin: 0 8px 8px 0;
+        display: inline-block;
+        font-size: 14px;
+        color: #606266;
+        line-height: 1.8;
+        transition: all .5s cubic-bezier(.55, 0, .1, 1);
+    }
+    .el-upload-list__item-thumbnail {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.el-upload-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}

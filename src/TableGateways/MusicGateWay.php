@@ -13,7 +13,7 @@ namespace Src\TableGateWays;
  *
  * @author ObaJohn
  */
-use Src\Logic\MakeImage;
+use Src\Logic\MakeFile;
 class MusicGateWay{
     private $db = null;
     public function __construct($db)
@@ -24,12 +24,12 @@ class MusicGateWay{
         
         public function insert(Array $input)
         {
-                $statement = "INSERT INTO News
+                $statement = "INSERT INTO music
                                 (music_name, music_details, artist, music_key, uploaded_by)
                         VALUES
                                 (:music_name, :music_details, :artist, :music_key, :uploaded_by)";
                 try {
-                        $_key = md5($input['music_key'].rand(123, 2345621));
+                        $_key = md5($input['music_name'].rand(123, 2345621));
                         $query = $this->db->prepare($statement);
                         $query->execute(array(
                                 'music_name' => $input['music_name'],
@@ -39,52 +39,52 @@ class MusicGateWay{
                                 'uploaded_by' => $input['author'],
                         ));
                         $this->createImage($input['music_images'], $_key);
+                        $this->createSong($input['song'], $input['music_name'], $_key);
                         return $query->rowCount();
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
                 }
         }
         public function createImage(Array $images, string $key) {
-                $statementImage = "
+                $statement = "
                         INSERT INTO images
                                 (image_url, image_key)
                         VALUES
-                                (:image_url, :image_key)
+                                (:image_url, :image_key)     
                 ";
                 try {
                         
-                        $queryImage = $this->db->prepare($statementImage);
+                        $query = $this->db->prepare($statement);
                         foreach ($images as $image) {
-                                $queryImage->execute(array(
-                                        'image_url' => MakeImage::makeImg($image),
+                                $query->execute(array(
+                                        'image_url' => MakeFile::makeImg($image),
                                         'image_key' => $key
                                 ));
                         }
                         
-                        return $queryImage->rowCount();
+                        return $query->rowCount();
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
                 }
             
         }
-        public function createSong(Array $songs, string $key) {
-                $statementSong = "
+        public function createSong(Array $song, $name, string $key) {
+                $statement = "
                         INSERT INTO songs
-                                (image_url, image_key)
+                                (song_url, song_bytes, song_key )
                         VALUES
-                                (:image_url, :image_key)
+                                (:song_url, :song_bytes, :song_key )
                 ";
                 try {
                         
-                        $queryImage = $this->db->prepare($statementImage);
-                        foreach ($images as $image) {
-                                $queryImage->execute(array(
-                                        'image_url' => MakeImage::makeImg($image),
-                                        'image_key' => $key
-                                ));
-                        }
+                        $query = $this->db->prepare($statement);
+                        $query->execute(array(
+                                'song_url' => MakeFile::makesong($song, $name),
+                                'song_bytes' => $song['size'],
+                                'song_key' => $key
+                        ));
                         
-                        return $queryImage->rowCount();
+                        return $query->rowCount();
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
                 }
