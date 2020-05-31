@@ -19059,11 +19059,9 @@ code {
 }
 
 .el-upload-list--picture-card .el-upload-list__item-actions {
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
-  left: 0;
-  top: 0;
   cursor: default;
   text-align: center;
   color: #fff;
