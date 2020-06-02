@@ -68,7 +68,9 @@
         $(".audio-active").html(
             "<li tabindex='0' class='el-upload-list__item is-ready'>" +
             "<div class='el-upload-list__item-thumbnail'>"+
-            "<i class='mdi mdi-48px mdi-music-note-plus' style='text-align:center'></i>"+
+            "<div class='el-upload-item_song'>"+
+            "<i class='mdi mdi-48px mdi-music-note-plus'></i>"+
+            "</div>"+
             "<audio src='" + f.target.result + "' class='el-upload-list__item-song' controls></audio>" +
             "</div>"+
             "</li>"
