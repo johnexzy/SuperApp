@@ -19106,9 +19106,20 @@ code {
   height: 100%;
 }
 
-.el-upload-list--picture-card .el-upload-list__item-song {
+.el-upload-list--picture-card .el-upload-item_song {
+  background-color: #fbfdff;
+  border: 1px dashed #c0ccda;
+  border-radius: 6px;
+  box-sizing: border-box;
   width: 100%;
   height: 40%;
+  line-height: 146px;
+  vertical-align: top;
+}
+
+.el-upload-list--picture-card .el-upload-list__item-song {
+  width: 100%;
+  height: 10%;
 }
 
 .el-upload-list {
