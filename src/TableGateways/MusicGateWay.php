@@ -14,11 +14,12 @@ namespace Src\TableGateWays;
  * @author ObaJohn
  */
 use Src\Logic\MakeFile;
-use Src\TableGateways\SongGateway;
-class MusicGateWay extends SongGateway{
+use Src\TableGateWays\SongGateway;
+class MusicGateWay extends SongGateway {
     private $db = null;
     public function __construct($db)
         {       
+                parent::__construct($db);
                 $this->db = $db;
                 
         }
@@ -52,7 +53,7 @@ class MusicGateWay extends SongGateway{
                         SELECT
                                 *
                         FROM
-                                Music
+                                music
                         ORDER 
                             BY id DESC;
                 ";
@@ -61,8 +62,10 @@ class MusicGateWay extends SongGateway{
                         $result = array();
                         $statement = $this->db->query($statement);
                         while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
-                                $comm = $this->findAllWithKey($res["post_key"]);
+                                // $comm = $this->findAllWithKey($res["post_key"]);
+                                $songs = $this->getAllWithKey($res["music_key"]);
                                 $images = $this->getPostImages($res["post_key"]);
+                                $res += ["audio" => $songs];
                                 $res["post_images"] = $images;
                                 $res += ["comments" => $comm];
                                 $result[] = $res;
