@@ -66,7 +66,7 @@
       reader.onload = f => {
         musicFile.Image.push(f.target.result);
         $(".audio-active").html(
-            "<li tabindex='0' class='el-upload-list__item is-ready'>" +
+            "<li class='el-upload-list__item is-ready'>" +
             "<div class='el-upload-list__item-thumbnail'>"+
             "<div class='el-upload el-upload-item_song'>"+
             "<i class='mdi mdi-48px mdi-headphones'></i>"+
