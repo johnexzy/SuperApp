@@ -13,9 +13,8 @@ namespace Src\TableGateWays;
  *
  * @author ObaJohn
  */
-use Src\Logic\MakeFile;
 use Src\TableGateWays\SongGateway;
-use Src\TableGateways\ImageGateway;
+use Src\TableGateWays\ImageGateway;
 class MusicGateWay extends SongGateway {
     private $db = null;
     private $imageInherited = null;
@@ -23,7 +22,7 @@ class MusicGateWay extends SongGateway {
         {       
                 parent::__construct($db);
                 $this->db = $db;
-                $imageInherited = new ImageGateway($db);
+                $this->imageInherited = new ImageGateway($db);
         }
         
         public function insert(Array $input)
@@ -42,7 +41,7 @@ class MusicGateWay extends SongGateway {
                                 'music_key' => $_key,
                                 'uploaded_by' => $input['author'],
                         ));
-                        $this->createImage($input['music_images'], $_key);
+                        $this->imageInherited->createImage($input['music_images'], $_key);
                         $this->createSong($input['song'], $input['music_name']."-".$input['artist'], $_key);
                         return $query->rowCount();
                 } catch (\PDOException $e) {
@@ -78,28 +77,7 @@ class MusicGateWay extends SongGateway {
                 }
         }
         
-        public function createSong(Array $song, $name, string $key) {
-                $statement = "
-                        INSERT INTO songs
-                                (song_url, song_bytes, song_key )
-                        VALUES
-                                (:song_url, :song_bytes, :song_key )
-                ";
-                try {
-                        
-                        $query = $this->db->prepare($statement);
-                        $query->execute(array(
-                                'song_url' => MakeFile::makesong($song, $name),
-                                'song_bytes' => $song['size'],
-                                'song_key' => $key
-                        ));
-                        
-                        return $query->rowCount();
-                } catch (\PDOException $e) {
-                        exit($e->getMessage());
-                }
-            
-        }
+        
         public function update($uid, Array $input)
         {       $statement = "
                         UPDATE `News` 
