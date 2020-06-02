@@ -1,7 +1,7 @@
 <?php
 
 header("Access-Control-Allow-Origin: *");
-
+header("Content-Type: application/json; charset=UTF-8;");
 header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Methods: OPTIONS, GET, POST, PUT, DELETE");
 header("Access-Control-Allow-Headers: Origin, Access-Control-Allow-Origin, Content-Type, Access-Control-Allow-Methods, X-Requested-With");
@@ -23,21 +23,20 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 
 
 if($uri[2] == 'music'){
-    header("Content-Type: multipart/form-data;");
+    
     $input = null;
     if ($requestMethod == 'POST') {
-        
+        header("Content-Type: multipart/form-data;");
         $input = (array) $_POST;
         $input += ["song" => MusicController::reArrayFiles($_FILES['music_file'])];
     }
     $controller = new MusicController($dbConnection, $requestMethod, $input);
     $controller->processRequest();
 }
-else header("Content-Type: application/json; charset=UTF-8;");
 
 
 
-if ($uri[2] == 'news') {
+elseif ($uri[2] == 'news') {
     $id = null;
     $cat = null;
     $short_url = null;

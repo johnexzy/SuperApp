@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright 2020 hp.
+ * Copyright 2020 ObaJohn.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ class SongGateway {
         {
                 $statement = "
                         SELECT
-                                *
+                                song_url, song_bytes
                         FROM
                                 songs
                         WHERE song_key = ?;

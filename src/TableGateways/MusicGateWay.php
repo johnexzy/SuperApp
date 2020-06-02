@@ -28,9 +28,9 @@ class MusicGateWay extends SongGateway {
         public function insert(Array $input)
         {
                 $statement = "INSERT INTO music
-                                (music_name, music_details, artist, music_key, uploaded_by)
+                                (music_name, music_details, artist, music_key, short_url, uploaded_by)
                         VALUES
-                                (:music_name, :music_details, :artist, :music_key, :uploaded_by)";
+                                (:music_name, :music_details, :artist, :music_key, :short_url, :uploaded_by)";
                 try {
                         $_key = md5($input['music_name'].rand(123, 2345621));
                         $query = $this->db->prepare($statement);
@@ -40,6 +40,8 @@ class MusicGateWay extends SongGateway {
                                 'artist' => $input['artist'],
                                 'music_key' => $_key,
                                 'uploaded_by' => $input['author'],
+                                'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['music_name']."-".mt_rand()))
+
                         ));
                         $this->imageInherited->createImage($input['music_images'], $_key);
                         $this->createSong($input['song'], $input['music_name']."-".$input['artist'], $_key);
@@ -66,7 +68,7 @@ class MusicGateWay extends SongGateway {
                                 // $comm = $this->findAllWithKey($res["post_key"]);
                                 $songs = $this->getAllWithKey($res["music_key"]);
                                 $images = $this->imageInherited->getPostImages($res["music_key"]);
-                                $res += ["audio" => $songs];
+                                $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
                                 $res += ["images" => $images];
                                 // $res += ["comments" => $comm];
                                 $result[] = $res;

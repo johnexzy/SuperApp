@@ -30,7 +30,7 @@ class MusicController extends MusicGateWay{
     private $db;
     private $requestMethod;
     public $input;
-    public function __construct($db, $requestMethod, Array $input) {
+    public function __construct($db, $requestMethod, Array $input = null) {
         parent::__construct($db);
         $this->db = $db;
         $this->requestMethod = $requestMethod;
@@ -46,6 +46,7 @@ class MusicController extends MusicGateWay{
                 break;
             case 'GET' :
                 $response = $this->getAllSongs();
+                break;
             default:
                 $response = $this->notFoundResponse();
                 break;
@@ -60,12 +61,15 @@ class MusicController extends MusicGateWay{
     private function addNewSongFromRequest() {
         $result = $this->insert($this->input);
         $response['status_code_header'] = 'HTTP/1.1 201 Created';
-       $response['body'] = json_encode($result);
+       $response['body'] = \json_encode($result);
         return $response;
     }
     private function getAllSongs()
     {
-        # code...
+        $result = $this->getAll();
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = json_encode($result);
+        return $response;
     }
     public static function reArrayFiles($file_post) {
 
