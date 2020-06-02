@@ -65,10 +65,10 @@ class MusicGateWay extends SongGateway {
                         while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
                                 // $comm = $this->findAllWithKey($res["post_key"]);
                                 $songs = $this->getAllWithKey($res["music_key"]);
-                                $images = $this->getPostImages($res["post_key"]);
+                                $images = $this->imageInherited->getPostImages($res["music_key"]);
                                 $res += ["audio" => $songs];
-                                $res["post_images"] = $images;
-                                $res += ["comments" => $comm];
+                                $res += ["images" => $images];
+                                // $res += ["comments" => $comm];
                                 $result[] = $res;
                         }
                         return $result;
