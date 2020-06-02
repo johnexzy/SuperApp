@@ -67,7 +67,10 @@
         musicFile.Image.push(f.target.result);
         $(".audio-active").html(
             "<li tabindex='0' class='el-upload-list__item is-ready'>" +
-            "<audio src='" + f.target.result + "' class='el-upload-list__item-thumbnail' controls></audio>" +
+            "<div class='el-upload-list__item-thumbnail'>"+
+            "<i class='mdi mdi-48px mdi-music-note-plus' style='text-align:center'></i>"+
+            "<audio src='" + f.target.result + "' class='el-upload-list__item-song' controls></audio>" +
+            "</div>"+
             "</li>"
           )
           // alert(formData.postImages);
