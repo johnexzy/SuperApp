@@ -23,7 +23,5 @@ namespace Src\TableGateWays;
  */
 class SongGateway {
     //put your code here
-    public static function create(){
-        
-    }
+    
 }

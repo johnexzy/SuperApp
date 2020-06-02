@@ -14,7 +14,8 @@ namespace Src\TableGateWays;
  * @author ObaJohn
  */
 use Src\Logic\MakeFile;
-class MusicGateWay{
+use Src\TableGateways\SongGateway;
+class MusicGateWay extends SongGateway{
     private $db = null;
     public function __construct($db)
         {       
@@ -41,6 +42,32 @@ class MusicGateWay{
                         $this->createImage($input['music_images'], $_key);
                         $this->createSong($input['song'], $input['music_name']."-".$input['artist'], $_key);
                         return $query->rowCount();
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+        }
+        public function getAll()
+        {
+                $statement = "
+                        SELECT
+                                *
+                        FROM
+                                Music
+                        ORDER 
+                            BY id DESC;
+                ";
+                
+                try {   
+                        $result = array();
+                        $statement = $this->db->query($statement);
+                        while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
+                                $comm = $this->findAllWithKey($res["post_key"]);
+                                $images = $this->getPostImages($res["post_key"]);
+                                $res["post_images"] = $images;
+                                $res += ["comments" => $comm];
+                                $result[] = $res;
+                        }
+                        return $result;
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
                 }

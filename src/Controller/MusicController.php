@@ -63,6 +63,10 @@ class MusicController extends MusicGateWay{
        $response['body'] = json_encode($result);
         return $response;
     }
+    private function getAllSongs()
+    {
+        # code...
+    }
     public static function reArrayFiles($file_post) {
 
         $file_arr = array();
