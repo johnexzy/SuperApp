@@ -21,6 +21,7 @@ namespace Src\TableGateWays;
  *
  * @author ObaJohn
  */
+use Src\Logic\MakeFile;
 class SongGateway {
     //put your code here
     private $db = null;
@@ -45,6 +46,28 @@ class SongGateway {
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
                 }
+        }
+        public function createSong(Array $song, $name, string $key) {
+                $statement = "
+                        INSERT INTO songs
+                                (song_url, song_bytes, song_key )
+                        VALUES
+                                (:song_url, :song_bytes, :song_key )
+                ";
+                try {
+                        
+                        $query = $this->db->prepare($statement);
+                        $query->execute(array(
+                                'song_url' => MakeFile::makesong($song, $name),
+                                'song_bytes' => $song['size'],
+                                'song_key' => $key
+                        ));
+                        
+                        return $query->rowCount();
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+            
         }
         
 }
