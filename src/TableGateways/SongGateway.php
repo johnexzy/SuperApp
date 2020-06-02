@@ -23,5 +23,28 @@ namespace Src\TableGateWays;
  */
 class SongGateway {
     //put your code here
-    
+    private $db = null;
+    public function __construct($db) {
+        
+        $this->db = $db;
+    }
+    public function getAllWithKey($key)
+        {
+                $statement = "
+                        SELECT
+                                *
+                        FROM
+                                songs
+                        WHERE song_key = ?;
+                ";
+                try {
+                        $statement = $this->db->prepare($statement);
+                        $statement->execute(array($key));
+                        $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+                        return $result;
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+        }
+        
 }
