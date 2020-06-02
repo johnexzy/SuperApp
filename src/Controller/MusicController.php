@@ -44,6 +44,8 @@ class MusicController extends MusicGateWay{
             case 'POST':
                 $response = $this->addNewSongFromRequest();
                 break;
+            case 'GET' :
+                $response = $this->getAllSongs();
             default:
                 $response = $this->notFoundResponse();
                 break;
