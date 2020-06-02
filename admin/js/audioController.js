@@ -149,10 +149,7 @@
           $('#music_title').val() == "";
           $('#music_title').val() == "";
 
-          
-          $('#postTitle').val("")
-          $('#postBody').val("")
-          $(".el-upload-list--picture-card").html("");
+          $(".del-thumbnail").click();
           $('body,html').animate({
             scrollTop: -1
           }, 1000);
