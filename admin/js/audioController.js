@@ -24,7 +24,7 @@
 
         let musicFile = {
             Image: [],
-            Audio: ''
+            Audio: null
         };
         $('.openfile').on("click", function () {
             $(this).parent().find('.file-upload-default').trigger('click')
@@ -38,14 +38,11 @@
                 const reader = new FileReader();
                 reader.onload = f => {
                     musicFile.Image.push(f.target.result);
+                    $(".del-thumbnail").show();
                     $(".image-list").append(
                         "<li tabindex='0' class='el-upload-list__item is-ready'>" +
                         "<img src='" + f.target.result + "' alt='' class='el-upload-list__item-thumbnail'>" +
-                        "<span class='el-upload-list__item-actions'>"+
-                            "<span class='el-upload-list__item-delete'>"+
-                            "<i class='mdi mdi-delete'></i>"+
-                            "</span>"+
-                        "</span>"+
+                        
                         "</li>"
                     )
                     // alert(formData.postImages);
@@ -54,7 +51,9 @@
 
             }
             // alert($(this).val())
+           
         });
+        
         $('.audio-upload').on('change', function (e) {
             // alert((window.location).substr(0, (window.location).indexOf('8090')))
             let hrefs = new String(window.location);
@@ -74,9 +73,15 @@
                 // alert(formData.postImages);
             }
             reader.readAsDataURL(selectedAudio);
+            
 
             // alert($(this).val())
         });
+        $(".del-thumbnail").on("click", function(){
+            $(".image-list").html("");
+            musicFile.Image = [];
+            $(this).hide();
+        })
         $('#handleSubmit').on('click', function () {
             let hrefs = new String(window.location);
             hrefs = hrefs.split('8090')
@@ -84,7 +89,18 @@
             let music_details = $('#about_music').val();
             let artist = $('#artist').val();
             let uploaded_by = $('#author').val();
-
+            let fields = [music_name, music_details, artist, uploaded_by]
+            //check for empty fields
+            if (musicFile.Image.length < 1 ||  musicFile.Audio == null) {
+                return alert("no image or Audio selected")
+            }
+            
+            for (let field = 0; field < fields.length; field++) {
+                if (fields[field] == '') {
+                    return alert("All fields are required")
+                }
+                
+            }
             $(this).text("Posting...")
 
             let formData = new FormData();

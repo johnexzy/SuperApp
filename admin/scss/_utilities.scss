@@ -160,7 +160,18 @@
     cursor: pointer;
     outline: 0;
 }
-
+.display-none{
+    display: none;
+}
+.item-delete{
+    margin-top: 60px;
+    color: $red;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: $white-smoke;
+}
 .el-upload--picture-card {
     background-color: #fbfdff;
     border: 1px dashed #c0ccda;
@@ -226,6 +237,10 @@
     .el-upload-list__item-thumbnail {
         width: 100%;
         height: 100%;
+    }
+    .el-upload-list__item-song{
+        width: 100%;
+        height: 40%;
     }
 }
 

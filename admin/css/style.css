@@ -19016,6 +19016,20 @@ code {
   outline: 0;
 }
 
+.display-none {
+  display: none;
+}
+
+.item-delete {
+  margin-top: 60px;
+  color: #f96868;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #f2f7f8;
+}
+
 .el-upload--picture-card {
   background-color: #fbfdff;
   border: 1px dashed #c0ccda;
