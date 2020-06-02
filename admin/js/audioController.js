@@ -142,7 +142,21 @@
         processData: false,
         contentType: false,
         success: function(data) {
-          alert(data)
+          $(".status-msg").show()
+          //reset All State to default
+          $("#handleSubmit").html('<i class="mdi mdi-upload btn-icon-prepend"></i>Upload</button>')
+          $('#music_title').val() == "";
+          $('#music_title').val() == "";
+          $('#music_title').val() == "";
+
+          
+          $('#postTitle').val("")
+          $('#postBody').val("")
+          $(".el-upload-list--picture-card").html("");
+          $('body,html').animate({
+            scrollTop: -1
+          }, 1000);
+          $(".status-msg").slideUp(4000)
         },
         error: function(err) {
           alert(err);
