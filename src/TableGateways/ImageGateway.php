@@ -23,6 +23,7 @@ namespace Src\TableGateWays;
  *
  * @author hp
  */
+use Src\Logic\MakeFile;
 class ImageGateway {
     //put your code here
     private  $db = null;

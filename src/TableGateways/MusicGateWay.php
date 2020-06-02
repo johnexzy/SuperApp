@@ -15,13 +15,15 @@ namespace Src\TableGateWays;
  */
 use Src\Logic\MakeFile;
 use Src\TableGateWays\SongGateway;
+use Src\TableGateways\ImageGateway;
 class MusicGateWay extends SongGateway {
     private $db = null;
+    private $imageInherited = null;
     public function __construct($db)
         {       
                 parent::__construct($db);
                 $this->db = $db;
-                
+                $imageInherited = new ImageGateway($db);
         }
         
         public function insert(Array $input)
