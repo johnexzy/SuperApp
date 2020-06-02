@@ -19107,9 +19107,6 @@ code {
 }
 
 .el-upload-list--picture-card .el-upload-item_song {
-  background-color: #fbfdff;
-  border: 1px dashed #c0ccda;
-  border-radius: 6px;
   box-sizing: border-box;
   width: 148px;
   height: 50px;
@@ -19118,7 +19115,7 @@ code {
 
 .el-upload-list--picture-card .el-upload-list__item-song {
   width: 100%;
-  height: 10%;
+  height: 50%;
 }
 
 .el-upload-list {
