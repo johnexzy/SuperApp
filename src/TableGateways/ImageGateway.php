@@ -30,7 +30,7 @@ class ImageGateway {
         
         $this->db = $db;
     }
-    public function getPostImages(String $postKey)
+        public function getPostImages(String $postKey)
         {
                 $statement = "
                         SELECT
@@ -48,5 +48,28 @@ class ImageGateway {
                         exit($e->getMessage());
                 }
         }
-        
+        public function createImage(Array $images, string $key) {
+                $statement = "
+                        INSERT INTO images
+                                (image_url, image_key)
+                        VALUES
+                                (:image_url, :image_key)     
+                ";
+                try {
+                        
+                        $query = $this->db->prepare($statement);
+                        foreach ($images as $image) {
+                                $query->execute(array(
+                                        'image_url' => MakeFile::makeImg($image),
+                                        'image_key' => $key
+                                ));
+                        }
+                        
+                        return $query->rowCount();
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+                
+        }
+
 }
