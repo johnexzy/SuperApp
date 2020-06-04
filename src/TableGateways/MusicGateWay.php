@@ -50,17 +50,24 @@ class MusicGateWay extends SongGateway {
                         exit($e->getMessage());
                 }
         }
-        public function getAll()
+        public function getAll($lim = null)
         {
-                $statement = "
+                $statement = ($lim == null) ? "
                         SELECT
                                 *
                         FROM
                                 music
                         ORDER 
                             BY id DESC;
+                " : "
+                        SELECT
+                                *
+                        FROM
+                                music
+                        ORDER 
+                            BY id DESC LIMIT $lim
+                        ;
                 ";
-                
                 try {   
                         $result = array();
                         $statement = $this->db->query($statement);
@@ -78,6 +85,34 @@ class MusicGateWay extends SongGateway {
                         exit($e->getMessage());
                 }
         }
+        public function getByUrl($short_url)
+        {
+                $statement = "
+                        SELECT
+                                *
+                        FROM
+                                music
+                        WHERE short_url = ?;
+                ";
+                
+                try {   
+                        $result = null;
+                        $statement = $this->db->prepare($statement);
+                        $statement->execute(array($short_url));
+                        $res = $statement->fetch(\PDO::FETCH_ASSOC);
+                                // $comm = $this->findAllWithKey($res["post_key"]);
+                        $songs = $this->getAllWithKey($res["music_key"]);
+                        $images = $this->imageInherited->getPostImages($res["music_key"]);
+                        $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
+                        $res += ["images" => $images];
+                        // $res += ["comments" => $comm];
+                        $result = $res;
+                        return $result;
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+        }
+        
         
         
         public function update($uid, Array $input)

@@ -25,12 +25,25 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 if($uri[2] == 'music'){
     
     $input = null;
+    $limit = null;
+    $short_url = null;
     if ($requestMethod == 'POST') {
         header("Content-Type: multipart/form-data;");
         $input = (array) $_POST;
         $input += ["song" => MusicController::reArrayFiles($_FILES['music_file'])];
     }
-    $controller = new MusicController($dbConnection, $requestMethod, $input);
+    else{
+        if (isset($uri[3]) && $requestMethod == "GET") {
+            if ($uri[3] == "limit" && isset($uri[4])) {
+                $limit = (int) $uri[4];
+            }
+            if ($uri[3] == "url" && isset($uri[4])) {
+                $short_url = (strlen($uri[4]) > 6) ? strip_tags($uri[4]) : null;
+                
+            }
+        }
+    }
+    $controller = new MusicController($dbConnection, $requestMethod, $input, $limit, $short_url);
     $controller->processRequest();
 }
 

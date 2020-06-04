@@ -30,11 +30,15 @@ class MusicController extends MusicGateWay{
     private $db;
     private $requestMethod;
     public $input;
-    public function __construct($db, $requestMethod, Array $input = null) {
+    private $limit;
+    private $short_url;
+    public function __construct($db, $requestMethod, Array $input = null, $limit = null, $short_url = null) {
         parent::__construct($db);
         $this->db = $db;
         $this->requestMethod = $requestMethod;
         $this->input = $input;
+        $this->limit = $limit;
+        $this->short_url = $short_url;
     }
 
     public function processRequest()
@@ -45,7 +49,12 @@ class MusicController extends MusicGateWay{
                 $response = $this->addNewSongFromRequest();
                 break;
             case 'GET' :
-                $response = $this->getAllSongs();
+                if ($this->short_url !== null) {
+                    $response = $this->getSongByUrl();
+                }
+                else {
+                    $response = $this->getAllSongs();
+                };
                 break;
             default:
                 $response = $this->notFoundResponse();
@@ -64,9 +73,13 @@ class MusicController extends MusicGateWay{
        $response['body'] = \json_encode($result);
         return $response;
     }
+    private function getSongByUrl(Type $var = null)
+    {
+        # code...
+    }
     private function getAllSongs()
     {
-        $result = $this->getAll();
+        $result = $this->getAll($this->limit);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = json_encode($result);
         return $response;
