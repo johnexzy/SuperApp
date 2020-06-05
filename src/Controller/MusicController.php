@@ -32,13 +32,15 @@ class MusicController extends MusicGateWay{
     public $input;
     private $limit;
     private $short_url;
-    public function __construct($db, $requestMethod, Array $input = null, $limit = null, $short_url = null) {
+    private $id = null;
+    public function __construct($db, $requestMethod, Array $input = null, $id = null, $limit = null, $short_url = null) {
         parent::__construct($db);
         $this->db = $db;
         $this->requestMethod = $requestMethod;
         $this->input = $input;
         $this->limit = $limit;
         $this->short_url = $short_url;
+        $this->id = $id;
     }
 
     public function processRequest()
@@ -50,11 +52,16 @@ class MusicController extends MusicGateWay{
                 break;
             case 'GET' :
                 if ($this->short_url !== null) {
-                    $response = $this->getSongByUrl();
+                    $response = $this->getSongByUrl($this->short_url);
                 }
                 else {
-                    $response = $this->getAllSongs();
+                    $response = $this->getAllSongs($this->limit);
                 };
+                break;
+            case 'DELETE':
+                if ($this->id) {
+                    $response = $this->deleteMusic($this->id);
+                }
                 break;
             default:
                 $response = $this->notFoundResponse();
@@ -73,13 +80,26 @@ class MusicController extends MusicGateWay{
        $response['body'] = \json_encode($result);
         return $response;
     }
-    private function getSongByUrl(Type $var = null)
+    private function getSongByUrl($short_url)
     {
-        # code...
+        $result = $this->getByUrl($short_url);
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = json_encode($result);
+        return $response;
     }
-    private function getAllSongs()
+    private function getAllSongs($limit)
     {
-        $result = $this->getAll($this->limit);
+        $result = $this->getAll($limit);
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = json_encode($result);
+        return $response;
+    }
+    private function deleteMusic($id) {
+        $result = $this->find($id);
+        if(!$result){
+            return $this->notFoundResponse();
+        }
+        $result = $this->delete($id);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = json_encode($result);
         return $response;

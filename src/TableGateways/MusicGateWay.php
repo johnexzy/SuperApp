@@ -114,7 +114,33 @@ class MusicGateWay extends SongGateway {
         }
         
         
-        
+        public function find($id)
+        {
+                
+                $statement = "
+                        SELECT
+                                *
+                        FROM
+                                music
+                        WHERE id = ?;
+                ";
+                try {   
+                        $result = null;
+                        $statement = $this->db->prepare($statement);
+                        $statement->execute(array($id));
+                        $res = $statement->fetch(\PDO::FETCH_ASSOC);
+                                // $comm = $this->findAllWithKey($res["post_key"]);
+                        $songs = $this->getAllWithKey($res["music_key"]);
+                        $images = $this->imageInherited->getPostImages($res["music_key"]);
+                        $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
+                        $res += ["images" => $images];
+                        // $res += ["comments" => $comm];
+                        $result = $res;
+                        return $result;
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+        }
         public function update($uid, Array $input)
         {       $statement = "
                         UPDATE `News` 
@@ -139,7 +165,7 @@ class MusicGateWay extends SongGateway {
         }
         public function delete($id)
         {
-                $statement = "DELETE FROM `news` WHERE `news`.`id` = :id";
+                $statement = "DELETE FROM `music` WHERE `music`.`id` = :id";
 
                 try {
                         $statement=$this->db->prepare($statement);
