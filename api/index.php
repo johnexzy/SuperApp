@@ -12,7 +12,7 @@ use Src\Controller\CommentsController;
 use Src\Controller\PersonController;
 use Src\Controller\NewsController;
 use Src\Controller\CarouselController;
-
+use Src\Controller\AlbumController;
 
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -110,7 +110,7 @@ if ($uri[2] == 'v1') {
                 # code...
                 break;
         }
-        $controller = new MusicController($dbConnection, $requestMethod, $input, $id, $limit, $short_url);
+        $controller = new AlbumController($dbConnection, $requestMethod, $input, $id, $limit, $short_url);
         $controller->processRequest();
     }
 
