@@ -68,13 +68,13 @@
       $('#handleSubmit').on('click', function () {
         let hrefs = new String(window.location);
         hrefs = hrefs.split('8090')
-        let music_name = $('#music_title').val();
-        let music_details = $('#about_music').val();
+        let album_name = $('#album_title').val();
+        let album_details = $('#about_album').val();
         let artist = $('#artist').val();
         let uploaded_by = $('#author').val();
-        let fields = [music_name, music_details, artist, uploaded_by]
+        let fields = [album_name, album_details, artist, uploaded_by]
         //check for empty fields
-        if (musicFile.Image.length < 1 || musicFile.Audio == null) {
+        if (musicFile.Image.length < 1 || musicFile.Audio.length < 1) {
           return alert("no image or Audio selected")
         }
   
@@ -88,13 +88,16 @@
   
         let formData = new FormData();
   
-        formData.append('music_name', music_name)
-        formData.append('music_details', music_details)
+        formData.append('album_name', album_name)
+        formData.append('album_details', album_details)
         formData.append('artist', artist)
         $.each(musicFile.Image, function (key, image) {
-          formData.append(`music_images[${key}]`, image)
+          formData.append(`album_images[${key}]`, image)
         })
-        formData.append('music_file', musicFile.Audio)
+        $.each(musicFile.Audio, function(key, audio){
+            formData.append(`album_files[${key}]`, audio)
+        })
+        
         formData.append('author', uploaded_by)
   
         $.ajax({
@@ -114,7 +117,7 @@
   
             $(".progress-bar").width('0%');
           },
-          url: "http://127.0.0.1:8090/api/music",
+          url: "http://127.0.0.1:8090/api/album",
           type: 'POST',
           data: formData,
           processData: false,
@@ -125,9 +128,9 @@
           $(".status-msg").show()
           //reset All State to default
           $("#handleSubmit").html('<i class="mdi mdi-upload btn-icon-prepend"></i>Upload</button>')
-          $('#music_title').val() == "";
-          $('#music_title').val() == "";
-          $('#music_title').val() == "";
+          $('#album_title').val() == "";
+          $('#album_title').val() == "";
+          $('#album_title').val() == "";
   
           $(".del-thumbnail").click();
           $('body,html').animate({
@@ -140,9 +143,9 @@
             $(".status-msg").show()
           //reset All State to default
           $("#handleSubmit").html('<i class="mdi mdi-upload btn-icon-prepend"></i>Upload</button>')
-          $('#music_title').val() == "";
-          $('#music_title').val() == "";
-          $('#music_title').val() == "";
+          $('#album_title').val() == "";
+          $('#album_title').val() == "";
+          $('#album_title').val() == "";
   
           $(".del-thumbnail").click();
           $('body,html').animate({
