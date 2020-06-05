@@ -17,18 +17,22 @@ $statement = <<<EOS
             ON DELETE SET NULL
     ) ENGINE=INNODB;
 
-    INSERT INTO person
-        (id, firstname, lastname, firstparent_id, secondparent_id)
-    VALUES
-        (1, 'Krasimir', 'Hristozov', null, null),
-        (2, 'Maria', 'Hristozova', null, null),
-        (3, 'Masha', 'Hristozova', 1, 2),
-        (4, 'Jane', 'Smith', null, null),
-        (5, 'John', 'Smith', null, null),
-        (6, 'Richard', 'Smith', 4, 5),
-        (7, 'Donna', 'Smith', 4, 5),
-        (8, 'Josh', 'Harrelson', null, null),
-        (9, 'Anna', 'Harrelson', 7, 8);
+    
+    CREATE TABLE IF NOT EXISTS album (
+        id INT NOT NULL AUTO_INCREMENT,
+        year INT NOT NULL,
+        album_name TEXT NOT NULL,
+        album_details TEXT NOT NULL,
+        artist TEXT NOT NULL,
+        album_key TEXT NOT NULL,
+        short_url TEXT NOT NULL,
+        uploaded_by TEXT NOT NULL,
+        created_at TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+        updated_at TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+        
+        
+        PRIMARY KEY (id)
+    ) ENGINE=INNODB;
 EOS;
 
 try {
