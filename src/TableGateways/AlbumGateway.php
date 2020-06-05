@@ -57,14 +57,14 @@ class AlbumGateWay extends SongGateway {
                         SELECT
                                 *
                         FROM
-                                music
+                                album
                         ORDER 
                             BY id DESC;
                 " : "
                         SELECT
                                 *
                         FROM
-                                music
+                                album
                         ORDER 
                             BY id DESC LIMIT $lim
                         ;
@@ -74,9 +74,9 @@ class AlbumGateWay extends SongGateway {
                         $statement = $this->db->query($statement);
                         while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
                                 // $comm = $this->findAllWithKey($res["post_key"]);
-                                $songs = $this->getAllWithKey($res["music_key"]);
-                                $images = $this->imageInherited->getPostImages($res["music_key"]);
-                                $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
+                                $songs = $this->getAllWithKey($res["album_key"]);
+                                $images = $this->imageInherited->getPostImages($res["album_key"]);
+                                $res += ["audio" => $songs]; 
                                 $res += ["images" => $images];
                                 // $res += ["comments" => $comm];
                                 $result[] = $res;
@@ -92,7 +92,7 @@ class AlbumGateWay extends SongGateway {
                         SELECT
                                 *
                         FROM
-                                music
+                                album
                         WHERE short_url = ?;
                 ";
                 
@@ -102,9 +102,9 @@ class AlbumGateWay extends SongGateway {
                         $statement->execute(array($short_url));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
                                 // $comm = $this->findAllWithKey($res["post_key"]);
-                        $songs = $this->getAllWithKey($res["music_key"]);
-                        $images = $this->imageInherited->getPostImages($res["music_key"]);
-                        $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
+                        $songs = $this->getAllWithKey($res["album_key"]);
+                        $images = $this->imageInherited->getPostImages($res["album_key"]);
+                        $res += ["audio" => $songs]; 
                         $res += ["images" => $images];
                         // $res += ["comments" => $comm];
                         $result = $res;
@@ -122,7 +122,7 @@ class AlbumGateWay extends SongGateway {
                         SELECT
                                 *
                         FROM
-                                music
+                                album
                         WHERE id = ?;
                 ";
                 try {   
@@ -131,9 +131,9 @@ class AlbumGateWay extends SongGateway {
                         $statement->execute(array($id));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
                                 // $comm = $this->findAllWithKey($res["post_key"]);
-                        $songs = $this->getAllWithKey($res["music_key"]);
-                        $images = $this->imageInherited->getPostImages($res["music_key"]);
-                        $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
+                        $songs = $this->getAllWithKey($res["album_key"]);
+                        $images = $this->imageInherited->getPostImages($res["album_key"]);
+                        $res += ["audio" => $songs]; 
                         $res += ["images" => $images];
                         // $res += ["comments" => $comm];
                         $result = $res;
@@ -166,7 +166,7 @@ class AlbumGateWay extends SongGateway {
         }
         public function delete($id)
         {
-                $statement = "DELETE FROM `music` WHERE `music`.`id` = :id";
+                $statement = "DELETE FROM `album` WHERE `album`.`id` = :id";
 
                 try {
                         $statement=$this->db->prepare($statement);
