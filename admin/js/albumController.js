@@ -2,82 +2,60 @@
     'use strict';
   
     $(function () {
-      //   $("#music_title").on("input", function() {
-      //     $(this).css({
-      //       borderColor: ($(this).val() == "") ? "red" : "#f3f3f3"
-      //     })
-  
-      //     $(this).val() == "" ? $(this).parent().find("#titleCap").show() : $(this).parent().find("#titleCap").hide()
-      //   })
-      //   $("#about_music").on("input", function() {
-      //     $(this).css({
-      //       borderColor: ($(this).val() == "") ? "red" : "#f3f3f3"
-      //     })
-      //     $(this).val() == "" ? $(this).parent().find("#aboutCap").show() : $(this).parent().find("#aboutCap").hide()
-      //   })
-      //   $("#artist").on("input", function() {
-      //     $(this).css({
-      //       borderColor: ($(this).val() == "") ? "red" : "#f3f3f3"
-      //     })
-      //     $(this).val() == "" ? $(this).parent().find("#artistCap").show() : $(this).parent().find("#artistCap").hide()
-      //   })
-  
+
       let musicFile = {
         Image: [],
-        Audio: null
+        Audio: []
       };
       $('.openfile').on("click", function () {
         $(this).parent().find('.file-upload-default').trigger('click')
       })
       $('.image-upload').on('change', function (e) {
+          $.each(e.target.files, function(key, images){
+            const selectedImg = images;
   
-        for (let i = 0; i < e.target.files.length; i++) {
-          const selectedImg = e.target.files[i];
-  
-          // const selectedImg = elem
-          const reader = new FileReader();
-          reader.onload = f => {
-            musicFile.Image.push(f.target.result);
-            $(".del-thumbnail").show();
-            $(".image-list").append(
-              "<li tabindex='0' class='el-upload-list__item is-ready'>" +
-              "<img src='" + f.target.result + "' alt='' class='el-upload-list__item-thumbnail'>" +
-  
-              "</li>"
-            )
-            // alert(formData.postImages);
-          }
-          reader.readAsDataURL(selectedImg);
-  
-        }
-        // alert($(this).val())
-  
+            // const selectedImg = elem
+            const reader = new FileReader();
+            reader.onload = f => {
+              musicFile.Image.push(f.target.result);
+              $(".del-thumbnail").show();
+              $(".image-list").append(
+                "<li tabindex='0' class='el-upload-list__item is-ready'>" +
+                "<img src='" + f.target.result + "' alt='' class='el-upload-list__item-thumbnail'>" +
+    
+                "</li>"
+              )
+              // alert(formData.postImages);
+            }
+            reader.readAsDataURL(selectedImg);
+          })
       });
   
       $('.audio-upload').on('change', function (e) {
-        // alert((window.location).substr(0, (window.location).indexOf('8090')))
-        let hrefs = new String(window.location);
-        hrefs = hrefs.split('8090');
         // console.log(hrefs)
-        const selectedAudio = e.target.files[0];
-        musicFile.Audio = selectedAudio;
-        // alert(selectedAudio); [Object] [Object]
-        const reader = new FileReader();
-        reader.onload = f => {
-          musicFile.Image.push(f.target.result);
-          $(".audio-active").html(
-            "<li class='el-upload-list__item is-ready'>" +
-            "<div class='el-upload-list__item-thumbnail'>" +
-            "<div class='el-upload el-upload-item_song'>" +
-            "<i class='mdi mdi-48px mdi-headphones'></i>" +
-            "</div>" +
-            "<audio src='" + f.target.result + "' class='el-upload-list__item-song' controls></audio>" +
-            "</div>" +
-            "</li>"
-          )
-          // alert(formData.postImages);
-        }
-        reader.readAsDataURL(selectedAudio);
+        $.each(e.target.files, function(key, file){
+            const selectedAudio = file
+            musicFile.Audio.push(selectedAudio);
+            // alert(selectedAudio); [Object] [Object]
+            const reader = new FileReader();
+            reader.onload = f => {
+            musicFile.Image.push(f.target.result);
+            $(".audio-active").append(
+                "<li class='el-upload-list__item is-ready'>" +
+                "<div class='el-upload-list__item-thumbnail'>" +
+                "<div class='el-upload el-upload-item_song'>" +
+                "<i class='mdi mdi-48px mdi-headphones'></i>" +
+                "</div>" +
+                "<audio src='" + f.target.result + "' class='el-upload-list__item-song' controls></audio>" +
+                "</div>" +
+                "</li>"
+            )
+            // alert(formData.postImages);
+            }
+            reader.readAsDataURL(selectedAudio);
+
+        })
+        
   
   
         // alert($(this).val())
