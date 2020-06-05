@@ -65,6 +65,56 @@ if ($uri[2] == 'v1') {
         $controller->processRequest();
     }
 
+    if($uri[3] == 'album'){
+        
+        $input = null;
+        $limit = null;
+        $short_url = null;
+        $id = null;
+        switch ($requestMethod) {
+            case 'POST':
+                header("Content-Type: multipart/form-data;");
+                $input = (array) $_POST;
+                /**
+                 * An album consist of two or more audio files by from one artist
+                 * We're going to process these audio files and reArray each individual files.
+                 */
+                $song = []; //for all reArrayed audio files
+                foreach ($_FILES['music_files'] as $key => $music) {
+                    array_push($song, MusicController::reArrayFiles($music));
+                }
+                $input += ["songs" => $song];
+                break;
+            case 'GET':
+                if (isset($uri[4])) {
+                    if ($uri[4] == "limit" && isset($uri[5])) {
+                        $limit = (int) $uri[5];
+                    }
+                    if ($uri[4] == "url" && isset($uri[5])) {
+                        $short_url = (strlen($uri[5]) > 6) ? strip_tags($uri[5]) : null;
+                        
+                    }
+                }
+                break;
+            case 'PUT':
+
+                break;
+            case 'DELETE' :
+                if (isset($uri[4])) {
+                    if ($uri[4] == "delete" && isset($uri[5])) {
+                        $id = (int) $uri[5];
+                    }
+                }
+                break;
+            default:
+                # code...
+                break;
+        }
+        $controller = new MusicController($dbConnection, $requestMethod, $input, $id, $limit, $short_url);
+        $controller->processRequest();
+    }
+
+
 
     elseif ($uri[3] == 'news') {
         $id = null;

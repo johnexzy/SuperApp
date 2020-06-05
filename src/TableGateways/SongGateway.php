@@ -69,5 +69,29 @@ class SongGateway {
                 }
             
         }
-        
+        public function createAlbumSong(Array $songs, $name, string $key) {
+                $statement = "
+                        INSERT INTO songs
+                                (song_url, song_bytes, song_key )
+                        VALUES
+                                (:song_url, :song_bytes, :song_key )
+                ";
+                try {
+                        
+                        $query = $this->db->prepare($statement);
+                        foreach ($songs as $key => $song) {
+                          $query->execute(array(
+                                'song_url' => MakeFile::makesong($song, $name),
+                                'song_bytes' => $song['size'],
+                                'song_key' => $key
+                                ));      
+                        }
+                        
+                        
+                        return $query->rowCount();
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+            
+        }
 }
