@@ -72,6 +72,7 @@
         let album_details = $('#about_album').val();
         let artist = $('#artist').val();
         let uploaded_by = $('#author').val();
+        let year = $('#album_year').val()
         let fields = [album_name, album_details, artist, uploaded_by]
         //check for empty fields
         if (musicFile.Image.length < 1 || musicFile.Audio.length < 1) {
@@ -91,6 +92,7 @@
         formData.append('album_name', album_name)
         formData.append('album_details', album_details)
         formData.append('artist', artist)
+        formData.append('year', year)
         $.each(musicFile.Image, function (key, image) {
           formData.append(`album_images[${key}]`, image)
         })
@@ -117,29 +119,18 @@
   
             $(".progress-bar").width('0%');
           },
-          url: "http://127.0.0.1:8090/api/album",
+          url: "http://127.0.0.1:8090/api/v1/album",
           type: 'POST',
           data: formData,
           processData: false,
           contentType: false
   
         })
-        .done(function () {
-          $(".status-msg").show()
-          //reset All State to default
-          $("#handleSubmit").html('<i class="mdi mdi-upload btn-icon-prepend"></i>Upload</button>')
-          $('#album_title').val() == "";
-          $('#album_title').val() == "";
-          $('#album_title').val() == "";
-  
-          $(".del-thumbnail").click();
-          $('body,html').animate({
-            scrollTop: -1
-          }, 1000);
-          $(".status-msg").slideUp(4000)
+        .done(function (err) {
+            alert(err)
         })
         .fail(function(err){
-            console.log(err)
+            alert(err)
             $(".status-msg").show()
           //reset All State to default
           $("#handleSubmit").html('<i class="mdi mdi-upload btn-icon-prepend"></i>Upload</button>')

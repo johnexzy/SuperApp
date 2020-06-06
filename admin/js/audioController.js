@@ -30,26 +30,24 @@
       $(this).parent().find('.file-upload-default').trigger('click')
     })
     $('.image-upload').on('change', function (e) {
-
-      for (let i = 0; i < e.target.files.length; i++) {
-        const selectedImg = e.target.files[i];
+        $.each(e.target.files, function(file){
+          const selectedImg = file;
 
         // const selectedImg = elem
-        const reader = new FileReader();
-        reader.onload = f => {
-          musicFile.Image.push(f.target.result);
-          $(".del-thumbnail").show();
-          $(".image-list").append(
-            "<li tabindex='0' class='el-upload-list__item is-ready'>" +
-            "<img src='" + f.target.result + "' alt='' class='el-upload-list__item-thumbnail'>" +
+          const reader = new FileReader();
+          reader.onload = f => {
+            musicFile.Image.push(f.target.result);
+            $(".del-thumbnail").show();
+            $(".image-list").append(
+              "<li tabindex='0' class='el-upload-list__item is-ready'>" +
+              "<img src='" + f.target.result + "' alt='' class='el-upload-list__item-thumbnail'>" +
 
-            "</li>"
-          )
-          // alert(formData.postImages);
-        }
-        reader.readAsDataURL(selectedImg);
-
-      }
+              "</li>"
+            )
+            // alert(formData.postImages);
+          }
+          reader.readAsDataURL(selectedImg);
+        })
       // alert($(this).val())
 
     });
@@ -136,26 +134,15 @@
 
           $(".progress-bar").width('0%');
         },
-        url: "http://127.0.0.1:8090/api/music",
+        url: "http://127.0.0.1:8090/api/v1/music",
         type: 'POST',
         data: formData,
         processData: false,
         contentType: false
 
       })
-      .done(function () {
-        $(".status-msg").show()
-        //reset All State to default
-        $("#handleSubmit").html('<i class="mdi mdi-upload btn-icon-prepend"></i>Upload</button>')
-        $('#music_title').val() == "";
-        $('#music_title').val() == "";
-        $('#music_title').val() == "";
-
-        $(".del-thumbnail").click();
-        $('body,html').animate({
-          scrollTop: -1
-        }, 1000);
-        $(".status-msg").slideUp(4000)
+      .done(function (err) {
+        alert(err)
       })
       .fail(function(err){
           console.log(err)
