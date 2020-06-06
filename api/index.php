@@ -80,7 +80,7 @@ if ($uri[2] == 'v1') {
                  * We're going to process these audio files and reArray each individual files.
                  */
                 $song = []; //for all reArrayed audio files
-                foreach ($_FILES['album_files'] as $key => $music) {
+                foreach ($_FILES['album_files'] as $music) {
                     array_push($song, MusicController::reArrayFiles($music));
                 }
                 $input += ["songs" => $song];

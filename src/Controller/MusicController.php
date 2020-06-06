@@ -107,8 +107,20 @@ class MusicController extends MusicGateWay{
     public static function reArrayFiles($file_post) {
 
         $file_arr = array();
-        // $file_count = count($file_post['name']);
-        $file_keys = array_keys($file_post);
+        if(count($file_post['name'])){
+            $file_count = count($file_post['name']);
+            $file_keys = array_keys($file_post);
+            
+            for ($i=0; $i<$file_count; $i++) {
+                foreach ($file_keys as $key) {
+                    $file_arr[$i][$key] = $file_post[$key][$i];
+                    // $file_arr[$key] = $file_post[$key];
+
+                }
+            }
+        }
+        else{
+            $file_keys = array_keys($file_post);
     
         // for ($i=0; $i<$file_count; $i++) {
             foreach ($file_keys as $key) {
@@ -116,7 +128,8 @@ class MusicController extends MusicGateWay{
                 $file_arr[$key] = $file_post[$key];
 
             }
-        // }
+        }
+        
     
         return $file_arr;
         

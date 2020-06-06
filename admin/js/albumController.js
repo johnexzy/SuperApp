@@ -8,8 +8,8 @@
         Audio: []
       };
       $('.openfile').on("click", function () {
-        $(this).parent().find('.file-upload-default').trigger('click')
-      })
+        $(this).parent().find('.file-upload-default').trigger('click');
+      });
       $('.image-upload').on('change', function (e) {
           $.each(e.target.files, function(key, images){
             const selectedImg = images;
@@ -24,22 +24,23 @@
                 "<img src='" + f.target.result + "' alt='' class='el-upload-list__item-thumbnail'>" +
     
                 "</li>"
-              )
+              );
               // alert(formData.postImages);
-            }
+            };
             reader.readAsDataURL(selectedImg);
-          })
+          });
       });
   
       $('.audio-upload').on('change', function (e) {
         // console.log(hrefs)
         $.each(e.target.files, function(key, file){
-            const selectedAudio = file
+            const selectedAudio = file;
             musicFile.Audio.push(selectedAudio);
             // alert(selectedAudio); [Object] [Object]
             const reader = new FileReader();
             reader.onload = f => {
             musicFile.Image.push(f.target.result);
+            $(".del-song").show();
             $(".audio-active").append(
                 "<li class='el-upload-list__item is-ready'>" +
                 "<div class='el-upload-list__item-thumbnail'>" +
@@ -49,12 +50,12 @@
                 "<audio src='" + f.target.result + "' class='el-upload-list__item-song' controls></audio>" +
                 "</div>" +
                 "</li>"
-            )
+            );
             // alert(formData.postImages);
-            }
+            };
             reader.readAsDataURL(selectedAudio);
 
-        })
+        });
         
   
   
@@ -64,43 +65,49 @@
         $(".image-list").html("");
         musicFile.Image = [];
         $(this).hide();
-      })
+      });
+      $(".del-song").on("click", function(){
+          $(".audio-active").html("");
+          musicFile.Audio = [];
+          $(this).hide();
+      });
+      
       $('#handleSubmit').on('click', function () {
         let hrefs = new String(window.location);
-        hrefs = hrefs.split('8090')
+        hrefs = hrefs.split('8090');
         let album_name = $('#album_title').val();
         let album_details = $('#about_album').val();
         let artist = $('#artist').val();
         let uploaded_by = $('#author').val();
-        let year = $('#album_year').val()
-        let fields = [album_name, album_details, artist, uploaded_by]
+        let year = $('#album_year').val();
+        let fields = [album_name, album_details, artist, uploaded_by];
         //check for empty fields
         if (musicFile.Image.length < 1 || musicFile.Audio.length < 1) {
-          return alert("no image or Audio selected")
+          return alert("no image or Audio selected");
         }
   
         for (let field = 0; field < fields.length; field++) {
-          if (fields[field] == '') {
-            return alert("All fields are required")
+          if (fields[field] === '') {
+            return alert("All fields are required");
           }
   
         }
-        $(this).text("Posting...")
+        $(this).text("Posting...");
   
         let formData = new FormData();
   
-        formData.append('album_name', album_name)
-        formData.append('album_details', album_details)
-        formData.append('artist', artist)
-        formData.append('year', year)
+        formData.append('album_name', album_name);
+        formData.append('album_details', album_details);
+        formData.append('artist', artist);
+        formData.append('year', year);
         $.each(musicFile.Image, function (key, image) {
-          formData.append(`album_images[${key}]`, image)
-        })
+          formData.append(`album_images[${key}]`, image);
+        });
         $.each(musicFile.Audio, function(key, audio){
-            formData.append(`album_files[${key}]`, audio)
-        })
+            formData.append(`album_files[${key}]`, audio);
+        });
         
-        formData.append('author', uploaded_by)
+        formData.append('author', uploaded_by);
   
         $.ajax({
           xhr: function () {
@@ -111,7 +118,7 @@
                 $(".progress-bar").width(perCentComplete + '%');
                 $(".progress-bar").html(perCentComplete + '%');
               }
-            }, false)
+            }, false);
             return xhr;
           },
           beforeSend: function () {
@@ -127,24 +134,30 @@
   
         })
         .done(function (err) {
-            alert(err)
+            alert(err);
         })
         .fail(function(err){
-            alert(err)
-            $(".status-msg").show()
+            alert(err);
+            $(".status-msg").show();
           //reset All State to default
-          $("#handleSubmit").html('<i class="mdi mdi-upload btn-icon-prepend"></i>Upload</button>')
-          $('#album_title').val() == "";
-          $('#album_title').val() == "";
-          $('#album_title').val() == "";
+          $("#handleSubmit").html('<i class="mdi mdi-upload btn-icon-prepend"></i>Upload</button>');
+          $('#album_title').val("");
+          $('#album_name').val("");
+          $('#album_year').val("");
+          $('#about_album').val("");
+          $('#artist').val("");
+
+
   
           $(".del-thumbnail").click();
+          $(".del-song").click();
+
           $('body,html').animate({
             scrollTop: -1
           }, 1000);
-          $(".status-msg").slideUp(4000)
-        })
-      })
+          $(".status-msg").slideUp(4000);
+        });
+      });
   
     });
   })(jQuery);
