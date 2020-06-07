@@ -79,11 +79,7 @@ if ($uri[2] == 'v1') {
                  * An album consist of two or more audio files by from one artist
                  * We're going to process these audio files and reArray each individual files.
                  */
-                $song = []; //for all reArrayed audio files
-                foreach ($_FILES['album_files'] as $music) {
-                    array_push($song, MusicController::reArrayFiles($music));
-                }
-                $input += ["songs" => $song];
+                $input += ["songs" => MusicController::reArrayFiles($_FILES['album_files'])];
                 break;
             case 'GET':
                 if (isset($uri[4])) {

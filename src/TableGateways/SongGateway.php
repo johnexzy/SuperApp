@@ -69,7 +69,7 @@ class SongGateway {
                 }
             
         }
-        public function createAlbumSong(Array $songs, $name, string $key) {
+        public function createAlbumSong(Array $songs, $name, string $_key) {
                 $statement = "
                         INSERT INTO songs
                                 (song_url, song_bytes, song_key )
@@ -83,7 +83,7 @@ class SongGateway {
                           $query->execute(array(
                                 'song_url' => MakeFile::makesong($song, $name),
                                 'song_bytes' => $song['size'],
-                                'song_key' => $key
+                                'song_key' => $_key
                                 ));      
                         }
                         

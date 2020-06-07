@@ -45,7 +45,7 @@ class AlbumGateWay extends SongGateway {
 
                         ));
                         $this->imageInherited->createImage($input['album_images'], $_key);
-                        $this->createSong($input['songs'], $input['album_name']."-".$input['artist'], $_key);
+                        $this->createAlbumSong($input['songs'], $input['album_name']."-".$input['artist'], $_key);
                         return $query->rowCount();
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
