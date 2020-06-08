@@ -14,6 +14,7 @@ namespace Src\TableGateWays;
  * @author ObaJohn
  */
 use Src\TableGateWays\SongGateway;
+use Src\TableGateWays\CommentGateway;
 use Src\TableGateWays\ImageGateway;
 class MusicGateWay extends SongGateway {
     private $db = null;
@@ -72,12 +73,12 @@ class MusicGateWay extends SongGateway {
                         $result = array();
                         $statement = $this->db->query($statement);
                         while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
-                                // $comm = $this->findAllWithKey($res["post_key"]);
+                                $comm = $this->findAllWithKey($res["music_key"]);
                                 $songs = $this->getAllWithKey($res["music_key"]);
                                 $images = $this->imageInherited->getPostImages($res["music_key"]);
                                 $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
                                 $res += ["images" => $images];
-                                // $res += ["comments" => $comm];
+                                $res += ["comments" => $comm];
                                 $result[] = $res;
                         }
                         return $result;
@@ -100,12 +101,12 @@ class MusicGateWay extends SongGateway {
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array($short_url));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
-                                // $comm = $this->findAllWithKey($res["post_key"]);
+                                $comm = $this->findAllWithKey($res["music_key"]);
                         $songs = $this->getAllWithKey($res["music_key"]);
                         $images = $this->imageInherited->getPostImages($res["music_key"]);
                         $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
                         $res += ["images" => $images];
-                        // $res += ["comments" => $comm];
+                        $res += ["comments" => $comm];
                         $result = $res;
                         return $result;
                 } catch (\PDOException $e) {
@@ -129,40 +130,40 @@ class MusicGateWay extends SongGateway {
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array($id));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
-                                // $comm = $this->findAllWithKey($res["post_key"]);
+                        $comm = $this->findAllWithKey($res["music_key"]);
                         $songs = $this->getAllWithKey($res["music_key"]);
                         $images = $this->imageInherited->getPostImages($res["music_key"]);
                         $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
                         $res += ["images" => $images];
-                        // $res += ["comments" => $comm];
+                        $res += ["comments" => $comm];
                         $result = $res;
                         return $result;
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
                 }
         }
-        public function update($uid, Array $input)
-        {       $statement = "
-                        UPDATE `News` 
-                        SET 
-                                `post_title` = :post_title, 
-                                `post_body` = :post_body,
-                                `updated_at` = CURRENT_TIMESTAMP
-                        WHERE `News`.`id` = :id;
-                ";
+        // public function update($uid, Array $input)
+        // {       $statement = "
+        //                 UPDATE `Music` 
+        //                 SET 
+        //                         `post_title` = :post_title, 
+        //                         `post_body` = :post_body,
+        //                         `updated_at` = CURRENT_TIMESTAMP
+        //                 WHERE `Music`.`id` = :id;
+        //         ";
                 
-                try {
-                        $statement = $this->db->prepare($statement);
-                        $statement->execute(array(
-                                'id' => (int) $uid,
-                                'post_title' => $input['post_title'],
-                                'post_body' => $input['post_body']
-                        ));
-                        return $statement->rowCount();
-                } catch (\PDOException $e) {
-                        exit($e->getMessage());
-                }
-        }
+        //         try {
+        //                 $statement = $this->db->prepare($statement);
+        //                 $statement->execute(array(
+        //                         'id' => (int) $uid,
+        //                         'post_title' => $input['post_title'],
+        //                         'post_body' => $input['post_body']
+        //                 ));
+        //                 return $statement->rowCount();
+        //         } catch (\PDOException $e) {
+        //                 exit($e->getMessage());
+        //         }
+        // }
         public function delete($id)
         {
                 $statement = "DELETE FROM `music` WHERE `music`.`id` = :id";
