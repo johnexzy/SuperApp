@@ -14,16 +14,18 @@ namespace Src\TableGateWays;
  * @author ObaJohn
  */
 use Src\TableGateWays\SongGateway;
-use Src\TableGateWays\CommentGateway;
+use Src\TableGateWays\CommentsGateway;
 use Src\TableGateWays\ImageGateway;
 class MusicGateWay extends SongGateway {
     private $db = null;
     private $imageInherited = null;
+    private $comment = null;
     public function __construct($db)
         {       
                 parent::__construct($db);
                 $this->db = $db;
                 $this->imageInherited = new ImageGateway($db);
+                $this->comment = new CommentsGateway($db);
         }
         
         public function insert(Array $input)
@@ -73,7 +75,7 @@ class MusicGateWay extends SongGateway {
                         $result = array();
                         $statement = $this->db->query($statement);
                         while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
-                                $comm = $this->findAllWithKey($res["music_key"]);
+                                $comm = $this->comment->findAllWithKey($res["music_key"]);
                                 $songs = $this->getAllWithKey($res["music_key"]);
                                 $images = $this->imageInherited->getPostImages($res["music_key"]);
                                 $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
@@ -101,7 +103,7 @@ class MusicGateWay extends SongGateway {
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array($short_url));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
-                                $comm = $this->findAllWithKey($res["music_key"]);
+                        $comm = $this->comment->findAllWithKey($res["music_key"]);
                         $songs = $this->getAllWithKey($res["music_key"]);
                         $images = $this->imageInherited->getPostImages($res["music_key"]);
                         $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
@@ -130,7 +132,7 @@ class MusicGateWay extends SongGateway {
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array($id));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
-                        $comm = $this->findAllWithKey($res["music_key"]);
+                        $comm = $this->comment->findAllWithKey($res["music_key"]);
                         $songs = $this->getAllWithKey($res["music_key"]);
                         $images = $this->imageInherited->getPostImages($res["music_key"]);
                         $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase

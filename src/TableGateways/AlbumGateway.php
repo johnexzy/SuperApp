@@ -13,16 +13,19 @@ namespace Src\TableGateWays;
  *
  * @author ObaJohn
  */
+use Src\TableGateways\CommentsGateway;
 use Src\TableGateWays\SongGateway;
 use Src\TableGateWays\ImageGateway;
 class AlbumGateWay extends SongGateway {
     private $db = null;
     private $imageInherited = null;
+    private $comment = null;
     public function __construct($db)
         {       
                 parent::__construct($db);
                 $this->db = $db;
                 $this->imageInherited = new ImageGateway($db);
+                $this->comment = new CommentsGateway($db);
         }
         
         public function insert(Array $input)
@@ -73,7 +76,7 @@ class AlbumGateWay extends SongGateway {
                         $result = array();
                         $statement = $this->db->query($statement);
                         while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
-                                $comm = $this->findAllWithKey($res["album_key"]);
+                                $comm = $this->comment->findAllWithKey($res["album_key"]);
                                 $songs = $this->getAllWithKey($res["album_key"]);
                                 $images = $this->imageInherited->getPostImages($res["album_key"]);
                                 $res += ["audio" => $songs]; 
@@ -101,7 +104,7 @@ class AlbumGateWay extends SongGateway {
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array($short_url));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
-                        $comm = $this->findAllWithKey($res["album_key"]);
+                        $comm = $this->comment->findAllWithKey($res["album_key"]);
                         $songs = $this->getAllWithKey($res["album_key"]);
                         $images = $this->imageInherited->getPostImages($res["album_key"]);
                         $res += ["audio" => $songs]; 
@@ -130,7 +133,7 @@ class AlbumGateWay extends SongGateway {
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array($id));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
-                        $comm = $this->findAllWithKey($res["album_key"]);
+                        $comm = $this->comment->findAllWithKey($res["album_key"]);
                         $songs = $this->getAllWithKey($res["album_key"]);
                         $images = $this->imageInherited->getPostImages($res["album_key"]);
                         $res += ["audio" => $songs]; 
