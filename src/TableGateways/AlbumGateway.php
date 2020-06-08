@@ -73,12 +73,12 @@ class AlbumGateWay extends SongGateway {
                         $result = array();
                         $statement = $this->db->query($statement);
                         while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
-                                // $comm = $this->findAllWithKey($res["post_key"]);
+                                $comm = $this->findAllWithKey($res["album_key"]);
                                 $songs = $this->getAllWithKey($res["album_key"]);
                                 $images = $this->imageInherited->getPostImages($res["album_key"]);
                                 $res += ["audio" => $songs]; 
                                 $res += ["images" => $images];
-                                // $res += ["comments" => $comm];
+                                $res += ["comments" => $comm];
                                 $result[] = $res;
                         }
                         return $result;
@@ -101,12 +101,12 @@ class AlbumGateWay extends SongGateway {
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array($short_url));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
-                                // $comm = $this->findAllWithKey($res["post_key"]);
+                        $comm = $this->findAllWithKey($res["album_key"]);
                         $songs = $this->getAllWithKey($res["album_key"]);
                         $images = $this->imageInherited->getPostImages($res["album_key"]);
                         $res += ["audio" => $songs]; 
                         $res += ["images" => $images];
-                        // $res += ["comments" => $comm];
+                        $res += ["comments" => $comm];
                         $result = $res;
                         return $result;
                 } catch (\PDOException $e) {
@@ -130,12 +130,12 @@ class AlbumGateWay extends SongGateway {
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array($id));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
-                                // $comm = $this->findAllWithKey($res["post_key"]);
+                        $comm = $this->findAllWithKey($res["album_key"]);
                         $songs = $this->getAllWithKey($res["album_key"]);
                         $images = $this->imageInherited->getPostImages($res["album_key"]);
                         $res += ["audio" => $songs]; 
                         $res += ["images" => $images];
-                        // $res += ["comments" => $comm];
+                        $res += ["comments" => $comm];
                         $result = $res;
                         return $result;
                 } catch (\PDOException $e) {
