@@ -14,8 +14,7 @@ class MakeFile {
     public static function makesong(Array $audio, $name) {
         
             // $fileInfo = new \finfo(FILEINFO_MIME_TYPE);
-            $ext = \explode(".", $audio['name']);
-            $fileExt = $ext[\count($ext) - 1];
+            $fileExt = pathinfo($audio['name'], PATHINFO_EXTENSION);
             $extensions = array('mp3', 'wav', 'ogg', 'opus', 'flac', 'm4a', 'm4b');
             if (in_array($fileExt, $extensions)) {
                 $path = str_replace(" ", "-", $name).mt_rand(0, 400).".$fileExt";
@@ -24,21 +23,5 @@ class MakeFile {
                 }
                 return "uploads/audios/$path";
             }
-            // $ext = array_search($fileInfo->file($audio['tmp_name']),
-            //     array(
-            //         'mp3' => 'audio/mpeg',
-            //         'wav' => 'audio/wav',
-            //         'ogg' => 'audio/ogg',
-            //         'opus' => 'audio/ogg',
-            //         'flac' => 'audio/flac',
-            //         'm4a' => 'audio/mp4',
-            //         'm4b' => 'audio/mp4',
-            //     ),
-            //     true);
-            
-            
-                
-            
-            
-        }
+    }
 }
