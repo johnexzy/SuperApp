@@ -202,11 +202,6 @@ if ($uri[2] == 'v1') {
         $controller = new CarouselController($dbConnection, $requestMethod, $short_url, $id);
         $controller->processRequest();
     }
-
-    else{
-        header("HTTP/1.1 404 Not Found");
-        exit();
-    }
 }
 else{
     header("HTTP/1.1 404 Not Found");

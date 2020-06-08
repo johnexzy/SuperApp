@@ -133,12 +133,8 @@
           contentType: false
   
         })
-        .done(function (err) {
-            alert(err);
-        })
-        .fail(function(err){
-            alert(err);
-            $(".status-msg").show();
+        .done(function () {
+          $(".status-msg").show();
           //reset All State to default
           $("#handleSubmit").html('<i class="mdi mdi-upload btn-icon-prepend"></i>Upload</button>');
           $('#album_title').val("");
@@ -156,6 +152,11 @@
             scrollTop: -1
           }, 1000);
           $(".status-msg").slideUp(4000);
+        })
+        .fail(function(err){
+            console.log(err);
+            alert("Sorry, something went wrong");
+            
         });
       });
   
