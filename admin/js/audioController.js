@@ -141,12 +141,8 @@
         contentType: false
 
       })
-      .done(function (err) {
-        alert(err)
-      })
-      .fail(function(err){
-          console.log(err)
-          $(".status-msg").show()
+      .done(function () {
+        $(".status-msg").show()
         //reset All State to default
         $("#handleSubmit").html('<i class="mdi mdi-upload btn-icon-prepend"></i>Upload</button>')
         $('#music_title').val() == "";
@@ -158,6 +154,11 @@
           scrollTop: -1
         }, 1000);
         $(".status-msg").slideUp(4000)
+      })
+      .fail(function(err){
+        alert("Sorry, Something went wrong \nif problem persist contact developer")
+          console.log(err)
+          
       })
     })
 
