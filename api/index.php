@@ -43,14 +43,14 @@ if ($uri[2] == 'v1') {
                         $limit = (int) $uri[5];
                     }
                     elseif($uri[4] == "popular" && isset($uri[5])){
-
+                        $popular = (int) $uri[5];
                     }
                     elseif ($uri[4] == "url" && isset($uri[5])) {
                         $short_url = (strlen($uri[5]) > 6) ? strip_tags($uri[5]) : null;
                         
                     }
                     else{
-                        
+
                     }
                 }
                 break;
@@ -68,7 +68,7 @@ if ($uri[2] == 'v1') {
                 # code...
                 break;
         }
-        $controller = new MusicController($dbConnection, $requestMethod, $input, $id, $limit, $short_url);
+        $controller = new MusicController($dbConnection, $requestMethod, $input, $id, $limit, $popular, $short_url);
         $controller->processRequest();
     }
 
@@ -78,6 +78,7 @@ if ($uri[2] == 'v1') {
         $limit = null;
         $short_url = null;
         $id = null;
+        $popular = null;
         switch ($requestMethod) {
             case 'POST':
                 header("Content-Type: multipart/form-data;");
@@ -93,9 +94,15 @@ if ($uri[2] == 'v1') {
                     if ($uri[4] == "limit" && isset($uri[5])) {
                         $limit = (int) $uri[5];
                     }
-                    if ($uri[4] == "url" && isset($uri[5])) {
+                    elseif($uri[4] == "popular" && isset($uri[5])){
+                        $popular = (int) $uri[5];
+                    }
+                    elseif ($uri[4] == "url" && isset($uri[5])) {
                         $short_url = (strlen($uri[5]) > 6) ? strip_tags($uri[5]) : null;
                         
+                    }
+                    else{
+
                     }
                 }
                 break;
@@ -113,7 +120,7 @@ if ($uri[2] == 'v1') {
                 # code...
                 break;
         }
-        $controller = new AlbumController($dbConnection, $requestMethod, $input, $id, $limit, $short_url);
+        $controller = new AlbumController($dbConnection, $requestMethod, $input, $id, $limit, $popular, $short_url);
         $controller->processRequest();
     }
 

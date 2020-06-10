@@ -88,6 +88,34 @@ class MusicGateWay extends SongGateway {
                         exit($e->getMessage());
                 }
         }
+        public function getPopular($popularInt)
+        {
+                $statement = "
+                        SELECT
+                                *
+                        FROM
+                                music
+                        WHERE popular > 0
+                        ORDER 
+                            BY id DESC LIMIT $popularInt;
+                ";
+                try {   
+                        $result = array();
+                        $statement = $this->db->query($statement);
+                        while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
+                                $comm = $this->comment->findAllWithKey($res["music_key"]);
+                                $songs = $this->getAllWithKey($res["music_key"]);
+                                $images = $this->imageInherited->getPostImages($res["music_key"]);
+                                $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
+                                $res += ["images" => $images];
+                                $res += ["comments" => $comm];
+                                $result[] = $res;
+                        }
+                        return $result;
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+        }
         public function getByUrl($short_url)
         {
                 $statement = "

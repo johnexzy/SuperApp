@@ -32,13 +32,15 @@ class AlbumController extends AlbumGateWay{
     public $input;
     private $limit;
     private $short_url;
+    private $popular;
     private $id = null;
-    public function __construct($db, $requestMethod, Array $input = null, $id = null, $limit = null, $short_url = null) {
+    public function __construct($db, $requestMethod, Array $input = null, $id = null, $limit = null, $popular = null, $short_url = null) {
         parent::__construct($db);
         $this->db = $db;
         $this->requestMethod = $requestMethod;
         $this->input = $input;
         $this->limit = $limit;
+        $this->popular = $popular;
         $this->short_url = $short_url;
         $this->id = $id;
     }
@@ -53,6 +55,9 @@ class AlbumController extends AlbumGateWay{
             case 'GET' :
                 if ($this->short_url !== null) {
                     $response = $this->getAlbumByUrl($this->short_url);
+                }
+                elseif ($this->popular) {
+                    $response = $this->getAlbumByPopular($this->popular);
                 }
                 else {
                     $response = $this->getAllAlbums($this->limit);
@@ -90,6 +95,13 @@ class AlbumController extends AlbumGateWay{
     private function getAllAlbums($limit)
     {
         $result = $this->getAll($limit);
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = json_encode($result);
+        return $response;
+    }
+    private function getAlbumByPopular($popularInt)
+    {
+        $result = $this->getPopular($popularInt);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = json_encode($result);
         return $response;

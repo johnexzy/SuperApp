@@ -89,6 +89,35 @@ class AlbumGateWay extends SongGateway {
                         exit($e->getMessage());
                 }
         }
+        public function getPopular($popularInt)
+        {
+                $statement = "
+                        SELECT
+                                *
+                        FROM
+                                album
+                        WHERE popular = 1
+                        ORDER 
+                            BY id DESC LIMIT $popularInt;
+                ";
+                
+                try {   
+                        $result = array();
+                        $statement = $this->db->query($statement);
+                        while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
+                                $comm = $this->comment->findAllWithKey($res["album_key"]);
+                                $songs = $this->getAllWithKey($res["album_key"]);
+                                $images = $this->imageInherited->getPostImages($res["album_key"]);
+                                $res += ["audio" => $songs]; 
+                                $res += ["images" => $images];
+                                $res += ["comments" => $comm];
+                                $result[] = $res;
+                        }
+                        return $result;
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+        }
         public function getByUrl($short_url)
         {
                 $statement = "
