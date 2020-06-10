@@ -30,6 +30,7 @@ if ($uri[2] == 'v1') {
         $limit = null;
         $short_url = null;
         $id = null;
+        $popular = null;
         switch ($requestMethod) {
             case 'POST':
                 header("Content-Type: multipart/form-data;");
@@ -41,8 +42,14 @@ if ($uri[2] == 'v1') {
                     if ($uri[4] == "limit" && isset($uri[5])) {
                         $limit = (int) $uri[5];
                     }
-                    if ($uri[4] == "url" && isset($uri[5])) {
+                    elseif($uri[4] == "popular" && isset($uri[5])){
+
+                    }
+                    elseif ($uri[4] == "url" && isset($uri[5])) {
                         $short_url = (strlen($uri[5]) > 6) ? strip_tags($uri[5]) : null;
+                        
+                    }
+                    else{
                         
                     }
                 }

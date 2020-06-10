@@ -3,7 +3,10 @@ namespace Src\Logic;
 class MakeFile {
 
     public static function makeimg(String $base64img){
-        $path = date('YmdHis',time()).mt_rand().'.jpg';
+        $start = \strpos($base64img, "/") +1;
+        $end = \strpos($base64img, ";");
+        $ext = \substr($base64img, $start, $end-$start);
+        $path = date('YmdHis',time()).mt_rand().".$ext";
         $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64img));
         if(file_put_contents("../uploads/images/$path", $data)){
             return "uploads/images/$path";
