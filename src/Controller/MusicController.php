@@ -28,7 +28,7 @@ use Src\TableGateWays\MusicGateWay;
 class MusicController extends MusicGateWay{
     
     private $db, $requestMethod, $input, $limit, $popular, $short_url, $id;
-    
+
     public function __construct($db, $requestMethod, Array $input = null, $id = null, $limit = null, $popular = null, $short_url = null) {
         parent::__construct($db);
         $this->db = $db;
@@ -50,6 +50,9 @@ class MusicController extends MusicGateWay{
             case 'GET' :
                 if ($this->short_url !== null) {
                     $response = $this->getSongByUrl($this->short_url);
+                }
+                elseif ($this->popular) {
+                    $response = $this->getSongByPopular($this->popular);
                 }
                 else {
                     $response = $this->getAllSongs($this->limit);
@@ -87,6 +90,13 @@ class MusicController extends MusicGateWay{
     private function getAllSongs($limit)
     {
         $result = $this->getAll($limit);
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = json_encode($result);
+        return $response;
+    }
+    private function getSongByPopular($popularInt)
+    {
+        $result = $this->getPopular($popularInt);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = json_encode($result);
         return $response;
