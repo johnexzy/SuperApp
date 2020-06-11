@@ -20,7 +20,7 @@ class MusicGateWay extends SongGateway {
     private $db = null;
     private $imageInherited = null;
     private $comment = null;
-    const LIMIT_PER_PAGE = 5;
+    const LIMIT_PER_PAGE = 8;
     public function __construct($db)
         {       
                 parent::__construct($db);
@@ -121,12 +121,12 @@ class MusicGateWay extends SongGateway {
                         $result = ["data" => $data];
                         $result += ["links" => [
                                 "first" => "pages/1",
-                                "last" => "page/$totalPages",
-                                "prev" =>(($pageNo - 1) > 0) ? $pageNo - 1 : null,
-                                "next" => ($pageNo == $totalPages) ? null : $pageNo + 1
+                                "last" => "pages/$totalPages",
+                                "prev" =>(($pageNo - 1) > 0) ? "pages/".($pageNo - 1) : null,
+                                "next" => ($pageNo == $totalPages) ? null : "pages/".($pageNo + 1)
                         ]];
                         $result += ["meta" => [
-                                "current_page" => $pageNo,
+                                "current_page" => (int) $pageNo,
                                 "total_pages" => $totalPages
                         ]];
                         return $result;
@@ -254,7 +254,7 @@ class MusicGateWay extends SongGateway {
                 try {
                         $statement = $db->query($statement);
                         $result = $statement->fetchAll(\PDO::FETCH_COLUMN);
-                        $result = count($result);
+                        return $result = count($result);
                 } catch (\PDOException $th) {
                         exit($th->getMessage());
                 }
