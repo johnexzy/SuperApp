@@ -20,6 +20,7 @@ class MusicGateWay extends SongGateway {
     private $db = null;
     private $imageInherited = null;
     private $comment = null;
+    const LIMIT_PER_PAGE = 5;
     public function __construct($db)
         {       
                 parent::__construct($db);
@@ -88,6 +89,55 @@ class MusicGateWay extends SongGateway {
                         exit($e->getMessage());
                 }
         }
+        /**
+         * get song by pages
+         * 
+         */
+        public function getPages($pageNo)
+        {
+                $limit = self::LIMIT_PER_PAGE;
+                $startFrom = ($pageNo - 1) * $limit;
+                $totalRecord = self::getTotalRecord($this->db);
+                $totalPages = \ceil($totalRecord / $limit);
+                $statement = "
+                        SELECT
+                                *
+                        FROM
+                                music
+                        ORDER BY id 
+                            DESC LIMIT $startFrom, $limit;";
+                try {   
+                        $data = array();
+                        $statement = $this->db->query($statement);
+                        while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
+                                $comm = $this->comment->findAllWithKey($res["music_key"]);
+                                $songs = $this->getAllWithKey($res["music_key"]);
+                                $images = $this->imageInherited->getPostImages($res["music_key"]);
+                                $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
+                                $res += ["images" => $images];
+                                $res += ["comments" => $comm];
+                                $data[] = $res;
+                        }
+                        $result = ["data" => $data];
+                        $result += ["links" => [
+                                "first" => "pages/1",
+                                "last" => "page/$totalPages",
+                                "prev" =>(($pageNo - 1) > 0) ? $pageNo - 1 : null,
+                                "next" => ($pageNo == $totalPages) ? null : $pageNo + 1
+                        ]];
+                        $result += ["meta" => [
+                                "current_page" => $pageNo,
+                                "total_pages" => $totalPages
+                        ]];
+                        return $result;
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+        }
+
+        /**
+         * get popular songs
+         */
         public function getPopular($popularInt)
         {
                 $statement = "
@@ -194,6 +244,21 @@ class MusicGateWay extends SongGateway {
         //                 exit($e->getMessage());
         //         }
         // }
+        /**
+         * return total records as integer
+         * @return int
+         */
+        private static function getTotalRecord($db)
+        {
+                $statement = "SELECT COUNT(*) FROM music";
+                try {
+                        $statement = $db->query($statement);
+                        $result = $statement->fetchAll();
+                        $result = count($result);
+                } catch (\PDOException $th) {
+                        exit($th->getMessage());
+                }
+        }
         public function delete($id)
         {
                 $statement = "DELETE FROM `music` WHERE `music`.`id` = :id";
