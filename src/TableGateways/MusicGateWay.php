@@ -250,10 +250,10 @@ class MusicGateWay extends SongGateway {
          */
         private static function getTotalRecord($db)
         {
-                $statement = "SELECT COUNT(*) FROM music";
+                $statement = "SELECT music.id FROM music";
                 try {
                         $statement = $db->query($statement);
-                        $result = $statement->fetchAll();
+                        $result = $statement->fetchAll(\PDO::FETCH_COLUMN);
                         $result = count($result);
                 } catch (\PDOException $th) {
                         exit($th->getMessage());
