@@ -31,6 +31,7 @@ if ($uri[2] == 'v1') {
         $short_url = null;
         $id = null;
         $popular = null;
+        $pn = null;
         switch ($requestMethod) {
             case 'POST':
                 header("Content-Type: multipart/form-data;");
@@ -48,6 +49,9 @@ if ($uri[2] == 'v1') {
                     elseif ($uri[4] == "url" && isset($uri[5])) {
                         $short_url = (strlen($uri[5]) > 6) ? strip_tags($uri[5]) : null;
                         
+                    }
+                    elseif($uri[4] == "pages" && isset($uri[5])){
+                        $pn = $uri[5];
                     }
                     else{
 
@@ -68,7 +72,7 @@ if ($uri[2] == 'v1') {
                 # code...
                 break;
         }
-        $controller = new MusicController($dbConnection, $requestMethod, $input, $id, $limit, $popular, $short_url);
+        $controller = new MusicController($dbConnection, $requestMethod, $input, $id, $limit, $popular, $pn, $short_url);
         $controller->processRequest();
     }
 

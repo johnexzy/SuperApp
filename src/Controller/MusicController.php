@@ -27,15 +27,16 @@ use Src\TableGateWays\MusicGateWay;
 
 class MusicController extends MusicGateWay{
     
-    private $db, $requestMethod, $input, $limit, $popular, $short_url, $id;
+    private $db, $requestMethod, $input, $limit, $popular, $pageNo, $short_url, $id;
 
-    public function __construct($db, $requestMethod, Array $input = null, $id = null, $limit = null, $popular = null, $short_url = null) {
+    public function __construct($db, $requestMethod, Array $input = null, $id = null, $limit = null, $popular = null, $pageNo = 1, $short_url = null) {
         parent::__construct($db);
         $this->db = $db;
         $this->requestMethod = $requestMethod;
         $this->input = $input;
         $this->limit = $limit;
         $this->popular = $popular;
+        $this->pageNo = $pageNo;
         $this->short_url = $short_url;
         $this->id = $id;
     }
@@ -53,6 +54,9 @@ class MusicController extends MusicGateWay{
                 }
                 elseif ($this->popular) {
                     $response = $this->getSongByPopular($this->popular);
+                }
+                elseif ($this->pageNo) {
+                    $response = $this->getSongByPage($this->pageNo);
                 }
                 else {
                     $response = $this->getAllSongs($this->limit);
@@ -90,6 +94,13 @@ class MusicController extends MusicGateWay{
     private function getAllSongs($limit)
     {
         $result = $this->getAll($limit);
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = json_encode($result);
+        return $response;
+    }
+    private function getSongByPage($pageNo)
+    {
+        $result = $this->getPages($pageNo);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = json_encode($result);
         return $response;
