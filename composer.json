@@ -1,7 +1,6 @@
 {
   "require": {
-    "vlucas/phpdotenv": "^2.4",
-    "intervention/image": "^2.5"
+    "vlucas/phpdotenv": "^2.4"
   },
   "autoload": {
     "psr-4": {
