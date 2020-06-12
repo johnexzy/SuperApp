@@ -240,7 +240,7 @@ class AlbumGateWay extends SongGateway {
         }
         private static function getTotalRecord($db)
         {
-                $statement = "SELECT album.id FROM music";
+                $statement = "SELECT album.id FROM album";
                 try {
                         $statement = $db->query($statement);
                         $result = $statement->fetchAll(\PDO::FETCH_COLUMN);
