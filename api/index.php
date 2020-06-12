@@ -9,9 +9,9 @@ header("Access-Control-Allow-Headers: Origin, Access-Control-Allow-Origin, Conte
 require '../bootstrap.php';
 use Src\Controller\MusicController;
 use Src\Controller\CommentsController;
-use Src\Controller\PersonController;
-use Src\Controller\NewsController;
-use Src\Controller\CarouselController;
+// use Src\Controller\PersonController;
+// use Src\Controller\NewsController;
+// use Src\Controller\CarouselController;
 use Src\Controller\AlbumController;
 
 
@@ -51,7 +51,7 @@ if ($uri[2] == 'v1') {
                         
                     }
                     elseif($uri[4] == "pages" && isset($uri[5])){
-                        $pn = $uri[5];
+                        $pn = (int) $uri[5];
                     }
                     else{
 
@@ -106,7 +106,7 @@ if ($uri[2] == 'v1') {
                         $short_url = (strlen($uri[5]) > 6) ? strip_tags($uri[5]) : null;   
                     }
                     elseif($uri[4] == "pages" && isset($uri[5])){
-                        $pn = $uri[5];
+                        $pn = (int) $uri[5];
                     }
                     else{
 
@@ -131,58 +131,6 @@ if ($uri[2] == 'v1') {
         $controller->processRequest();
     }
 
-
-
-    elseif ($uri[3] == 'news') {
-        $id = null;
-        $cat = null;
-        $short_url = null;
-        if (isset($uri[4])) {
-            if ($requestMethod == "GET") {
-                $cat = (intval($uri[4]) == 0) ? (String) $uri[4] : null;
-                
-                $id = ($cat == null) ? (int) $uri[4] : null;
-                //check if uri[3] is actually $cat or a short_url
-                //short_url ends with integer > 12345
-                $check = explode('-', $cat);
-                if ($cat) {
-                    if((int) $check[count($check) - 1] >= 12345){
-                        $short_url = $cat;
-                        $cat = null;
-                    }
-                }
-                
-                //echo $short_url;
-            }
-            elseif ($requestMethod == "PUT") {
-                $id = (int) $uri[4];
-            }
-            elseif ($requestMethod == "DELETE") {
-                $id = (int) $uri[4];
-            }
-        }
-
-        
-
-        // pass the request method and user ID to the NewsController and process the HTTP request:
-        $controller = new NewsController($dbConnection, $requestMethod, $cat, $id, $short_url);
-        $controller->processRequest();
-    }
-    elseif ($uri[3] == 'person') {
-        
-        //the user ID is, of course optional and must be integer
-        $userId = null;
-        if (isset($uri[4])) {
-            $userId = (int) $uri[4];
-        }
-        
-
-        // pass the request method and user ID to the PersonController and process the HTTP request:
-        $controller = new PersonController($dbConnection, $requestMethod, $userId);
-        $controller->processRequest();
-        //pass the request Method and user ID to PersonController and process the HTTP request
-
-    }
     elseif ($uri[3] == 'comment') {
         $comId = null;
         $key = null;
@@ -203,26 +151,7 @@ if ($uri[2] == 'v1') {
         $controller->processRequest();
     }
 
-    elseif($uri[3] == 'carousel'){
-        $id = null;
-        $short_url = null;
-        if (isset($uri[4])) {
-            if ($requestMethod == "GET") {
-                $short_url = (intval($uri[4]) == 0) ? (String) $uri[4] : null;
-                $id = ($short_url == null) ? (int) $uri[4] : null;
-            }
-            elseif ($requestMethod == "PUT") {
-                $id = (int) $uri[4];
-            }
-            elseif ($requestMethod == "DELETE") {
-                $id = (int) $uri[4];
-            }
-        }
-        
-        // pass the request method and user ID to the CarouselController and process the HTTP request:
-        $controller = new CarouselController($dbConnection, $requestMethod, $short_url, $id);
-        $controller->processRequest();
-    }
+
 }
 else{
     header("HTTP/1.1 404 Not Found");
