@@ -25,22 +25,22 @@ namespace Src\Controller;
  */
 use Src\TableGateWays\AlbumGateWay;
 
+/**
+ * Manages All Request Directed to Album.
+ * Interact with the Album Gatway and processes all outputs
+ */
 class AlbumController extends AlbumGateWay{
     
-    private $db;
-    private $requestMethod;
-    public $input;
-    private $limit;
-    private $short_url;
-    private $popular;
+    private $db, $requestMethod, $input, $limit, $pageNo, $short_url,  $popular;
     private $id = null;
-    public function __construct($db, $requestMethod, Array $input = null, $id = null, $limit = null, $popular = null, $short_url = null) {
+    public function __construct($db, $requestMethod, Array $input = null, int $id = null, int $limit = null,  int $popular = null, int $pageNo = 1, String $short_url = null) {
         parent::__construct($db);
         $this->db = $db;
         $this->requestMethod = $requestMethod;
         $this->input = $input;
         $this->limit = $limit;
         $this->popular = $popular;
+        $this->pageNo = $pageNo;
         $this->short_url = $short_url;
         $this->id = $id;
     }
@@ -58,6 +58,9 @@ class AlbumController extends AlbumGateWay{
                 }
                 elseif ($this->popular) {
                     $response = $this->getAlbumByPopular($this->popular);
+                }
+                elseif ($this->pageNo) {
+                    $response = $this->getAlbumByPage($this->pageNo);
                 }
                 else {
                     $response = $this->getAllAlbums($this->limit);
@@ -88,6 +91,13 @@ class AlbumController extends AlbumGateWay{
     private function getAlbumByUrl($short_url)
     {
         $result = $this->getByUrl($short_url);
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = json_encode($result);
+        return $response;
+    }
+    private function getAlbumByPage($pageNo)
+    {
+        $result = $this->getPages($pageNo);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = json_encode($result);
         return $response;
