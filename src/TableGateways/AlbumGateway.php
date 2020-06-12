@@ -20,7 +20,7 @@ class AlbumGateWay extends SongGateway {
     private $db = null;
     private $imageInherited = null;
     private $comment = null;
-    const LIMIT_PER_PAGE = 2;
+    const LIMIT_PER_PAGE = 3;
     public function __construct($db)
         {       
                 parent::__construct($db);

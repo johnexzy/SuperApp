@@ -29,7 +29,7 @@ class MusicController extends MusicGateWay{
     
     private $db, $requestMethod, $input, $limit, $popular, $pageNo, $short_url, $id;
 
-    public function __construct($db, $requestMethod, Array $input = null, $id = null, $limit = null, $popular = null, $pageNo = 1, $short_url = null) {
+    public function __construct($db, $requestMethod, Array $input = null, int $id = null, int $limit = null, int $popular = null, int $pageNo = null, String $short_url = null) {
         parent::__construct($db);
         $this->db = $db;
         $this->requestMethod = $requestMethod;

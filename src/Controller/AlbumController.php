@@ -33,7 +33,7 @@ class AlbumController extends AlbumGateWay{
     
     private $db, $requestMethod, $input, $limit, $pageNo, $short_url,  $popular;
     private $id = null;
-    public function __construct($db, $requestMethod, Array $input = null, int $id = null, int $limit = null,  int $popular = null, int $pageNo = 1, String $short_url = null) {
+    public function __construct($db, $requestMethod, Array $input = null, int $id = null, int $limit = null,  int $popular = null, int $pageNo = null, String $short_url = null) {
         parent::__construct($db);
         $this->db = $db;
         $this->requestMethod = $requestMethod;

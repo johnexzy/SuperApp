@@ -31,7 +31,7 @@ if ($uri[2] == 'v1') {
         $short_url = null;
         $id = null;
         $popular = null;
-        $pn = 1;
+        $pn = null;
         switch ($requestMethod) {
             case 'POST':
                 header("Content-Type: multipart/form-data;");
@@ -83,7 +83,7 @@ if ($uri[2] == 'v1') {
         $short_url = null;
         $id = null;
         $popular = null;
-        $pn = 1;
+        $pn = null;
         switch ($requestMethod) {
             case 'POST':
                 header("Content-Type: multipart/form-data;");
