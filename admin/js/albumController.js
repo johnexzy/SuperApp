@@ -13,11 +13,11 @@
       $('.image-upload').on('change', function (e) {
           $.each(e.target.files, function(key, images){
             const selectedImg = images;
-  
+            musicFile.Image.push(selectedImg);
             // const selectedImg = elem
             const reader = new FileReader();
             reader.onload = f => {
-              musicFile.Image.push(f.target.result);
+              
               $(".del-thumbnail").show();
               $(".image-list").append(
                 "<li tabindex='0' class='el-upload-list__item is-ready'>" +

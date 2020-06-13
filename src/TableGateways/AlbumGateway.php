@@ -48,7 +48,7 @@ class AlbumGateWay extends SongGateway {
                                 'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['album_name']."-".mt_rand()))
 
                         ));
-                        $this->imageInherited->createImage($input['album_images'], $_key);
+                        $this->imageInherited->createImage($input['images'], $_key);
                         $this->createAlbumSong($input['songs'], $input['album_name']."-".$input['artist'], $_key);
                         return $query->rowCount();
                 } catch (\PDOException $e) {

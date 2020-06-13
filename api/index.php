@@ -36,7 +36,9 @@ if ($uri[2] == 'v1') {
             case 'POST':
                 header("Content-Type: multipart/form-data;");
                 $input = (array) $_POST;
+                $input += ["images" => MusicController::reArrayFiles($_FILES['music_images'])];
                 $input += ["song" => MusicController::reArrayFiles($_FILES['music_file'])];
+
                 break;
             case 'GET':
                 if (isset($uri[4])) {
@@ -93,6 +95,7 @@ if ($uri[2] == 'v1') {
                  * We're going to process these audio files and reArray each individual files.
                  */
                 $input += ["songs" => MusicController::reArrayFiles($_FILES['album_files'])];
+                $input += ["images" => MusicController::reArrayFiles($_FILES['album_images'])];
                 break;
             case 'GET':
                 if (isset($uri[4])) {

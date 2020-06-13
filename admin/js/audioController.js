@@ -30,24 +30,24 @@
       $(this).parent().find('.file-upload-default').trigger('click')
     })
     $('.image-upload').on('change', function (e) {
-        $.each(e.target.files, function(file){
-          const selectedImg = file;
-
+      $.each(e.target.files, function(key, images){
+        const selectedImg = images;
+        musicFile.Image.push(selectedImg);
         // const selectedImg = elem
-          const reader = new FileReader();
-          reader.onload = f => {
-            musicFile.Image.push(f.target.result);
-            $(".del-thumbnail").show();
-            $(".image-list").append(
-              "<li tabindex='0' class='el-upload-list__item is-ready'>" +
-              "<img src='" + f.target.result + "' alt='' class='el-upload-list__item-thumbnail'>" +
+        const reader = new FileReader();
+        reader.onload = f => {
+          
+          $(".del-thumbnail").show();
+          $(".image-list").append(
+            "<li tabindex='0' class='el-upload-list__item is-ready'>" +
+            "<img src='" + f.target.result + "' alt='' class='el-upload-list__item-thumbnail'>" +
 
-              "</li>"
-            )
-            // alert(formData.postImages);
-          }
-          reader.readAsDataURL(selectedImg);
-        })
+            "</li>"
+          );
+          // alert(formData.postImages);
+        };
+        reader.readAsDataURL(selectedImg);
+      });
       // alert($(this).val())
 
     });
@@ -86,8 +86,6 @@
       $(this).hide();
     })
     $('#handleSubmit').on('click', function () {
-      let hrefs = new String(window.location);
-      hrefs = hrefs.split('8090')
       let music_name = $('#music_title').val();
       let music_details = $('#about_music').val();
       let artist = $('#artist').val();

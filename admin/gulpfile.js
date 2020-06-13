@@ -31,7 +31,7 @@ gulp.task('sass', function () {
 gulp.task('serve', gulp.series('sass', function() {
 
     browserSync.init({
-        port: 3100,
+        port: 3400,
         server: "./",
         ghostMode: false,
         notify: false

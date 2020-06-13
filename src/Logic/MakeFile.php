@@ -2,15 +2,29 @@
 namespace Src\Logic;
 class MakeFile {
 
-    public static function makeimg(String $base64img){
-        $start = \strpos($base64img, "/") +1;
-        $end = \strpos($base64img, ";");
-        $ext = \substr($base64img, $start, $end-$start);
-        $path = date('YmdHis',time()).mt_rand().".$ext";
-        $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64img));
-        if(file_put_contents("../uploads/images/$path", $data)){
-            return "uploads/images/$path";
-        }
+    // public static function makeimg(String $base64img){
+    //     $start = \strpos($base64img, "/") +1;
+    //     $end = \strpos($base64img, ";");
+    //     $ext = \substr($base64img, $start, $end-$start);
+    //     $path = date('YmdHis',time()).mt_rand().".$ext";
+    //     $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64img));
+    //     if(file_put_contents("../uploads/images/$path", $data)){
+    //         return "uploads/images/$path";
+    //     }
+    
+    
+    // }
+    public static function makeimg(Array $image){
+            $fileExt = pathinfo($image['name'], PATHINFO_EXTENSION);
+            $extensions = array('png', 'jpg', 'jpeg', 'webm', 'ico', 'gif');
+            if (in_array($fileExt, $extensions)) {
+                
+                $path = date('YmdHis',time()).mt_rand().".$fileExt";
+                if (!move_uploaded_file($image['tmp_name'], "../uploads/images/$path")) {
+                    exit;
+                }
+                return "uploads/images/$path";
+            }
     
     
     }
