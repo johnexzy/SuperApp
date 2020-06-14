@@ -9,6 +9,7 @@
       };
       $('.openfile').on("click", function () {
         $(this).parent().find('.file-upload-default').trigger('click');
+        alert($("#popular").val())
       });
       $('.image-upload').on('change', function (e) {
           $.each(e.target.files, function(key, images){
@@ -32,6 +33,7 @@
       });
   
       $('.audio-upload').on('change', function (e) {
+        
         // console.log(hrefs)
         $.each(e.target.files, function(key, file){
             const selectedAudio = file;
