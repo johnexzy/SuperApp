@@ -23,13 +23,15 @@ class MakeFile {
                 if (!move_uploaded_file($image['tmp_name'], "../uploads/images/$path")) {
                     exit;
                 }
-                return "uploads/images/$path";
+                return "http://".$_SERVER['SERVER_ADDR'].":".$_SERVER['SERVER_PORT']."/uploads/images/$path";
             }
     
     
     }
     public static function makesong(Array $audio, $name) {
-        
+        if (!isset($audio['name'])) {
+            
+        }
             // $fileInfo = new \finfo(FILEINFO_MIME_TYPE);
             $fileExt = pathinfo($audio['name'], PATHINFO_EXTENSION);
             $extensions = array('mp3', 'wav', 'ogg', 'opus', 'flac', 'm4a', 'm4b');
@@ -38,7 +40,7 @@ class MakeFile {
                 if (!move_uploaded_file($audio['tmp_name'], "../uploads/audios/$path")) {
                     exit;
                 }
-                return "uploads/audios/$path";
+                return "http://".$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/uploads/audios/$path";
             }
     }
 }
