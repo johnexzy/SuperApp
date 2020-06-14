@@ -9,7 +9,7 @@
       };
       $('.openfile').on("click", function () {
         $(this).parent().find('.file-upload-default').trigger('click');
-        alert($("#popular").val())
+        
       });
       $('.image-upload').on('change', function (e) {
           $.each(e.target.files, function(key, images){
@@ -80,6 +80,7 @@
         let album_details = $('#about_album').val();
         let artist = $('#artist').val();
         let uploaded_by = $('#author').val();
+        let popular = $('#popular').prop("checked") === true ? 1 : 0
         let year = $('#album_year').val();
         let fields = [album_name, album_details, artist, uploaded_by];
         //check for empty fields
@@ -100,6 +101,7 @@
         formData.append('album_name', album_name);
         formData.append('album_details', album_details);
         formData.append('artist', artist);
+        formData.append('popular', popular)
         formData.append('year', year);
         $.each(musicFile.Image, function (key, image) {
           formData.append(`album_images[${key}]`, image);

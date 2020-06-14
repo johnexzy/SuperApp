@@ -32,9 +32,9 @@ class MusicGateWay extends SongGateway {
         public function insert(Array $input)
         {
                 $statement = "INSERT INTO music
-                                (music_name, music_details, artist, music_key, short_url, uploaded_by)
+                                (music_name, music_details, artist, music_key, short_url, popular, uploaded_by)
                         VALUES
-                                (:music_name, :music_details, :artist, :music_key, :short_url, :uploaded_by)";
+                                (:music_name, :music_details, :artist, :music_key, :short_url, :popular, :uploaded_by)";
                 try {
                         $_key = md5($input['music_name'].rand(123, 2345621));
                         $query = $this->db->prepare($statement);
@@ -44,6 +44,7 @@ class MusicGateWay extends SongGateway {
                                 'artist' => $input['artist'],
                                 'music_key' => $_key,
                                 'uploaded_by' => $input['author'],
+                                'popular' => $input['popular'],
                                 'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['music_name']."-".mt_rand()))
 
                         ));

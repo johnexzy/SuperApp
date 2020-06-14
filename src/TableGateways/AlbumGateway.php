@@ -32,9 +32,9 @@ class AlbumGateWay extends SongGateway {
         public function insert(Array $input)
         {
                 $statement = "INSERT INTO album
-                                (album_name, album_details, artist, album_key, short_url, uploaded_by, year)
+                                (album_name, album_details, artist, album_key, short_url, uploaded_by, year, popular)
                         VALUES
-                                (:album_name, :album_details, :artist, :album_key, :short_url, :uploaded_by, :year)";
+                                (:album_name, :album_details, :artist, :album_key, :short_url, :uploaded_by, :year, :popular)";
                 try {
                         $_key = md5($input['album_name'].mt_rand());
                         $query = $this->db->prepare($statement);
@@ -45,6 +45,7 @@ class AlbumGateWay extends SongGateway {
                                 'album_key' => $_key,
                                 'uploaded_by' => $input['author'],
                                 'year' => $input['year'],
+                                'popular' => $input['popular'],
                                 'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['album_name']."-".mt_rand()))
 
                         ));
