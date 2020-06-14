@@ -239,26 +239,53 @@
                     <div class="row">
                         <div class="col-12 grid-margin stretch-card">
                             <div class="card">
-                                <div class="card-header">New Music</div>
+                                <div class="card-header">New Video</div>
                                 <div class="card-body">
-                                   <div class="alert alert-success status-msg" style="display: none;">Post Created Successfully</div>
+                                   <div class="alert alert-success status-msg" style="display: none;">Video Added Successfully</div>
                                    <form class="forms-sample">
                                     <div class="form-group">
                                         <label for="postTitle">Title</label>
                                         <font size="0.6" id="titleCap" style="display: block; display: none; text-align: right; float: right;">
                                             Required</font>
-                                        <input type="text" class="form-control" id="music_title" placeholder="Song Title">
+                                        <input type="text" class="form-control" id="music_title" placeholder="Video Title">
                                     </div>
                                     <div class="form-group">
-                                        <label for="postTitle">Artist</label>
-                                        <font size="0.6" id="artistCap" style="display: block; display: none; text-align: right; float: right;">
-                                            Required</font>
-                                        <input type="text" class="form-control" id="artist" placeholder="Artist">
+                                        <label for="postTitle">Category</label>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="HollyWood">
+                                                HollyWood
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="NollyWood">
+                                                NollyWood
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="BollyWood">
+                                                BollyWood
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="Others">
+                                                Others
+                                            </label>
+                                        </div>
+                                            <!-- <input type="radio" class="form-check-primary" name="category" id="" value="NollyWood"><label for="">NollyWood</label>|
+                                            <input type="radio" name="category" id="" value="HollyWood">HollyWood|
+                                            <input type="radio" name="category" id="" value="BollyWood">BollyWood
+                                            <input type="radio" name="category" id="" value="Others"> -->
+
+                                        
+                                        
                                     </div>
 
-
                                     <div class="form-group">
-                                        <label for="postBody">About this Song</label>
+                                        <label for="postBody">About Video</label>
                                         <font size="0.6" id="AboutCap" style="display: block; display: none; text-align: right; float: right;">
                                             Required</font>
                                         <textarea class="form-control" id="about_music" rows="16"></textarea>
@@ -287,9 +314,9 @@
                                         </ul>
                                         
                                         
-                                        <input type="file" name="audio" class="file-upload-default audio-upload" accept="audio/*">
+                                        <input type="file" name="video" class="file-upload-default audio-upload" accept="video/*">
                                         <div class="el-upload el-upload--picture-card openfile">
-                                            <i class="mdi mdi-48px mdi-music-note-plus"></i>
+                                            <i class="mdi mdi-48px mdi-video"></i>
                                         </div>
                                     </div>
                                     
