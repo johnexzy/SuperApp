@@ -125,7 +125,7 @@ class MusicController extends MusicGateWay{
     public static function reArrayFiles($file_post) {
 
         $file_arr = array();
-        if(count($file_post['name'])){
+        if(is_countable($file_post['name'])){
             $file_count = count($file_post['name']);
             $file_keys = array_keys($file_post);
             
@@ -133,7 +133,6 @@ class MusicController extends MusicGateWay{
                 foreach ($file_keys as $key) {
                     $file_arr[$i][$key] = $file_post[$key][$i];
                     // $file_arr[$key] = $file_post[$key];
-
                 }
             }
         }

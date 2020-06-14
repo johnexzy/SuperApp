@@ -53,16 +53,11 @@
     });
 
     $('.audio-upload').on('change', function (e) {
-      // alert((window.location).substr(0, (window.location).indexOf('8090')))
-      let hrefs = new String(window.location);
-      hrefs = hrefs.split('8090');
-      // console.log(hrefs)
       const selectedAudio = e.target.files[0];
       musicFile.Audio = selectedAudio;
       // alert(selectedAudio); [Object] [Object]
       const reader = new FileReader();
       reader.onload = f => {
-        musicFile.Image.push(f.target.result);
         $(".audio-active").html(
           "<li class='el-upload-list__item is-ready'>" +
           "<div class='el-upload-list__item-thumbnail'>" +
@@ -92,7 +87,7 @@
       let uploaded_by = $('#author').val();
       let fields = [music_name, music_details, artist, uploaded_by]
       //check for empty fields
-      if (musicFile.Image.length < 1 || musicFile.Audio == null) {
+      if (musicFile.Image.length < 1 || musicFile.Audio === null) {
         return alert("no image or Audio selected")
       }
 

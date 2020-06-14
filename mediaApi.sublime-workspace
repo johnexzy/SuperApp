@@ -1,0 +1,215 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ma",
+				"margin-bottom"
+			],
+			[
+				"fl",
+				"float"
+			],
+			[
+				"co",
+				"conRow"
+			],
+			[
+				"re",
+				"result"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/xampp/htdocs/www/movies4u"
+	],
+	"file_history":
+	[
+		"/C/xampp/mysql/data/test/entertainment.MYD",
+		"/C/xampp/mysql/data/test/news.frm",
+		"/C/xampp/mysql/data/test/news.ibd",
+		"/C/xampp/mysql/data/test/birthday.MYD",
+		"/C/xampp/mysql/data/test/te.ibd",
+		"/C/xampp/mysql/datad/mysql.pid",
+		"/C/xampp/mysql/datad/ibdata1",
+		"/C/xampp/mysql/data/multi-master.info",
+		"/C/xampp/mysql/data/ib_logfile0",
+		"/C/xampp/mysql/data/aria_log_control",
+		"/C/xampp/mysql/data/DESKTOP-SP7RKUT.err",
+		"/C/xamp/mysqlold/data/richard/db.opt",
+		"/C/Program Files/MiKTeX 2.9/pdftex/config/pdftex.cfg",
+		"/C/xampp/htdocs/www/version/css/text.css",
+		"/C/xampp/htdocs/www/version/index.php",
+		"/C/Users/hp/Documents/docs/Alarm C.html",
+		"/C/Users/hp/Desktop/Script/demo/carousel-min-max.html",
+		"/C/Users/hp/Desktop/Script/demo/basic-slider-with-custom-direction-nav.html",
+		"/C/Users/hp/Desktop/Script/demo/index.html",
+		"/C/Users/hp/Desktop/Script/demo/dynamic-carousel-min-max.html",
+		"/C/Users/hp/Desktop/Script/demo/video-wistia.html",
+		"/C/Users/hp/Desktop/Script/demo/index-rtl.html",
+		"/C/Users/hp/Desktop/Script/demo/video.html",
+		"/C/Users/hp/Desktop/Script/demo/thumbnail-slider.html",
+		"/C/Users/hp/Desktop/Script/demo/basic-slider-with-caption.html",
+		"/C/Users/hp/Desktop/Script/demo/basic-carousel-rtl.html",
+		"/C/Users/hp/Desktop/Script/demo/asnavfor-rtl.html",
+		"/C/Users/hp/Desktop/Script/demo/basic-carousel.html",
+		"/C/Users/hp/Desktop/Script/demo/thumbnail-controlnav.html",
+		"/C/Users/hp/Documents/new.html",
+		"/C/Users/hp/AppData/Local/Microsoft/Windows/INetCache/IE/W5XBHCVW/attack[1].js"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "mediaApi.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 216.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

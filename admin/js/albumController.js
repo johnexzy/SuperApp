@@ -39,7 +39,6 @@
             // alert(selectedAudio); [Object] [Object]
             const reader = new FileReader();
             reader.onload = f => {
-            musicFile.Image.push(f.target.result);
             $(".del-song").show();
             $(".audio-active").append(
                 "<li class='el-upload-list__item is-ready'>" +
