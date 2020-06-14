@@ -28,6 +28,11 @@ class MakeFile {
     
     
     }
+
+    /**
+     * Saves Uploaded Files and return file name
+     * @return String
+     */
     public static function makesong(Array $audio, $name) {
         
             // $fileInfo = new \finfo(FILEINFO_MIME_TYPE);
