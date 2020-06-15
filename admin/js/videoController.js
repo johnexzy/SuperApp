@@ -5,11 +5,11 @@
 
       let musicFile = {
         Image: [],
-        Audio: null
+        Video: null
       };
       $('.openfile').on("click", function () {
         $(this).parent().find('.file-upload-default').trigger('click')
-        // alert(document.getElementsByName("Category").value)
+        // alert($('input[name=Category]:checked').val())
       })
       $('.image-upload').on('change', function (e) {
         $.each(e.target.files, function(key, images){
@@ -21,41 +21,33 @@
             
             $(".del-thumbnail").show();
             $(".image-list").append(
-              "<li tabindex='0' class='el-upload-list__item is-ready'>" +
-              "<img src='" + f.target.result + "' alt='' class='el-upload-list__item-thumbnail'>" +
-  
-              "</li>"
+              `<li tabindex='0' class='el-upload-list__item is-ready'>
+              <img src='${f.target.result}' alt='' class='el-upload-list__item-thumbnail'>
+              </li>`
             );
-            // alert(formData.postImages);
           };
           reader.readAsDataURL(selectedImg);
         });
-        // alert($(this).val())
-  
       });
   
       $('.audio-upload').on('change', function (e) {
         const selectedAudio = e.target.files[0];
         musicFile.Audio = selectedAudio;
-        // alert(selectedAudio); [Object] [Object]
         const reader = new FileReader();
         reader.onload = f => {
           $(".audio-active").html(
-            "<li class='el-upload-list__item is-ready'>" +
-            "<div class='el-upload-list__item-thumbnail'>" +
-            "<div class='el-upload el-upload-item_song'>" +
-            "<i class='mdi mdi-48px mdi-headphones'></i>" +
-            "</div>" +
-            "<audio src='" + f.target.result + "' class='el-upload-list__item-song' controls></audio>" +
-            "</div>" +
-            "</li>"
+            `<li class='el-upload-list__item is-ready'>
+            <div class='el-upload-list__item-thumbnail'>
+            <div class='el-upload el-upload-item_song'>
+            <i class='mdi mdi-48px mdi-headphones'></i>
+            </div>
+            <audio src='${f.target.result}' class='el-upload-list__item-song' controls></audio>
+            </div>
+            </li>`
           )
-          // alert(formData.postImages);
         }
         reader.readAsDataURL(selectedAudio);
-  
-  
-        // alert($(this).val())
+
       });
       $(".del-thumbnail").on("click", function () {
         $(".image-list").html("");
@@ -63,8 +55,11 @@
         $(this).hide();
       })
       $('#handleSubmit').on('click', function () {
-        let music_name = $('#music_title').val();
-        let music_details = $('#about_music').val();
+        video_title
+        about_video
+        video-upload
+        let video_name = $('#video_title').val();
+        let video_details = $('#about_video').val();
         let artist = $('#artist').val();
         let uploaded_by = $('#author').val();
         let popular = $('#popular').prop("checked") === true ? 1 : 0
