@@ -3,7 +3,7 @@
   
     $(function () {
 
-      let musicFile = {
+      let videoFile = {
         Image: [],
         Video: null
       };
@@ -14,7 +14,7 @@
       $('.image-upload').on('change', function (e) {
         $.each(e.target.files, function(key, images){
           const selectedImg = images;
-          musicFile.Image.push(selectedImg);
+          videoFile.Image.push(selectedImg);
           // const selectedImg = elem
           const reader = new FileReader();
           reader.onload = f => {
@@ -30,42 +30,36 @@
         });
       });
   
-      $('.audio-upload').on('change', function (e) {
-        const selectedAudio = e.target.files[0];
-        musicFile.Audio = selectedAudio;
-        const reader = new FileReader();
-        reader.onload = f => {
-          $(".audio-active").html(
+      $('.video-upload').on('change', function (e) {
+        let selectedVideo = e.target.files[0];
+        videoFile.Video = selectedVideo;
+        // console.log(selectedVideo)
+          $(".video-active").html(
             `<li class='el-upload-list__item is-ready'>
             <div class='el-upload-list__item-thumbnail'>
-            <div class='el-upload el-upload-item_song'>
-            <i class='mdi mdi-48px mdi-headphones'></i>
-            </div>
-            <audio src='${f.target.result}' class='el-upload-list__item-song' controls></audio>
+                name: ${(selectedVideo.name).bold()}
+                <br>
+                size: ${(selectedVideo.size/(1024 * 1024)).toFixed(1).bold()}mb
             </div>
             </li>`
           )
-        }
-        reader.readAsDataURL(selectedAudio);
 
       });
       $(".del-thumbnail").on("click", function () {
         $(".image-list").html("");
-        musicFile.Image = [];
+        videoFile.Image = [];
         $(this).hide();
       })
       $('#handleSubmit').on('click', function () {
-        video_title
-        about_video
-        video-upload
+        
         let video_name = $('#video_title').val();
         let video_details = $('#about_video').val();
         let artist = $('#artist').val();
         let uploaded_by = $('#author').val();
         let popular = $('#popular').prop("checked") === true ? 1 : 0
-        let fields = [music_name, music_details, artist, uploaded_by]
+        let fields = [video_name, video_details, artist, uploaded_by]
         //check for empty fields
-        if (musicFile.Image.length < 1 || musicFile.Audio === null) {
+        if (videoFile.Image.length < 1 || videoFile.Video === null) {
           return alert("no image or Audio selected")
         }
   
