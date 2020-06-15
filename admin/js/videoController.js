@@ -56,6 +56,7 @@
         let video_details = $('#about_video').val();
         let artist = $('#artist').val();
         let uploaded_by = $('#author').val();
+        let category= $('input[name=Category]:checked').val();
         let popular = $('#popular').prop("checked") === true ? 1 : 0
         let fields = [video_name, video_details, artist, uploaded_by]
         //check for empty fields
@@ -69,18 +70,18 @@
           }
   
         }
-        $(this).text("Posting...")
+        $(this).text("Uploading...")
   
         let formData = new FormData();
   
-        formData.append('music_name', music_name)
-        formData.append('music_details', music_details)
-        formData.append('artist', artist)
+        formData.append('video_name', video_name)
+        formData.append('video_details', video_details)
+        formData.append('category', category)
         formData.append('popular', popular)
-        $.each(musicFile.Image, function (key, image) {
-          formData.append(`music_images[${key}]`, image)
+        $.each(videoFile.Image, function (key, image) {
+          formData.append(`video_images[${key}]`, image)
         })
-        formData.append('music_file', musicFile.Audio)
+        formData.append('video_file', videoFile.Video)
         formData.append('author', uploaded_by)
   
         $.ajax({
