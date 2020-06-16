@@ -61,9 +61,9 @@ class VideoGateway {
         }
         /**
          * Peforms Create Operation for video
-         * @param Array video
-         * @param String name
-         * @param String key
+         * @param Array $video
+         * @param String $name
+         * @param String $key
          * 
          * @return String
          * 
