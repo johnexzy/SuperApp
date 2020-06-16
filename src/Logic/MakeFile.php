@@ -69,4 +69,40 @@ class MakeFile {
             return "uploads/videos/$path";
         }
     }
+    /**
+     * Rearranges the file Array to ease working.
+     * @return Array
+     */
+    public static function reArrayFiles($file_post) {
+
+        $file_arr = array();
+        if(is_countable($file_post['name'])){
+            $file_count = count($file_post['name']);
+            $file_keys = array_keys($file_post);
+            
+            for ($i=0; $i<$file_count; $i++) {
+                foreach ($file_keys as $key) {
+                    $file_arr[$i][$key] = $file_post[$key][$i];
+                    // $file_arr[$key] = $file_post[$key];
+                }
+            }
+        }
+        else{
+            $file_keys = array_keys($file_post);
+    
+        // for ($i=0; $i<$file_count; $i++) {
+            foreach ($file_keys as $key) {
+                // $file_arr[$i][$key] = $file_post[$key][$i];
+                $file_arr[$key] = $file_post[$key];
+
+            }
+        }
+        
+    
+        return $file_arr;
+        
+        /**
+         * @credit to : https://www.php.net/manual/en/features.file-upload.multiple.php#53240
+         */
+    }
 }
