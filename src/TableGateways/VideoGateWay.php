@@ -26,7 +26,7 @@ use Src\Logic\MakeFile;
  * Handles all video requests and db_operations, CRUD
  * 
  */
-class VideoGatewy {
+class VideoGateway {
     //put your code here
     private $db = null;
     public function __construct($db) {
