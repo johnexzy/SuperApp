@@ -13,10 +13,10 @@ namespace Src\TableGateWays;
  *
  * @author ObaJohn
  */
-use Src\TableGateWays\SongGateway;
+use Src\TableGateWays\VideoGateway;
 use Src\TableGateWays\CommentsGateway;
 use Src\TableGateWays\ImageGateway;
-class MusicGateWay extends SongGateway {
+class MusicGateWay extends VideoGatway {
     private $db = null;
     private $imageInherited = null;
     private $comment = null;
@@ -36,20 +36,20 @@ class MusicGateWay extends SongGateway {
                         VALUES
                                 (:video_name, :video_details, :video_key,  :category, :short_url, :uploaded_by, :popular)";
                 try {
-                        $_key = md5($input['music_name'].rand(123, 2345621));
+                        $_key = md5($input['video_name'].rand(123, 2345621));
                         $query = $this->db->prepare($statement);
                         $query->execute(array(
-                                'music_name' => $input['music_name'],
-                                'music_details' => $input['music_details'],
-                                'artist' => $input['artist'],
-                                'music_key' => $_key,
+                                'video_name' => $input['video_name'],
+                                'video_details' => $input['video_details'],
+                                'category' => $input['category'],
+                                'video_key' => $_key,
                                 'uploaded_by' => $input['author'],
                                 'popular' => $input['popular'],
-                                'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['music_name']."-".mt_rand()))
+                                'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['video_name']."-".mt_rand()))
 
                         ));
                         $this->imageInherited->createImage($input['images'], $_key);
-                        $this->createSong($input['song'], $input['music_name']."-".$input['artist'], $_key);
+                        $this->createSong($input['song'], $input['video_name']."-".$input['artist'], $_key);
                         return $query->rowCount();
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
