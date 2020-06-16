@@ -51,6 +51,15 @@ class VideoGateway {
                         exit($e->getMessage());
                 }
         }
+        /**
+         * Peforms Create Operation for video
+         * @param Array video
+         * @param String name
+         * @param String key
+         * 
+         * @return String
+         * 
+         */
         public function createvideo(Array $video, $name, string $key) {
                 $statement = "
                         INSERT INTO videos

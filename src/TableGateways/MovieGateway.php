@@ -1,22 +1,15 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace Src\TableGateWays;
 
 /**
  * Description of MusicGateWay
- *
  * @author ObaJohn
  */
 use Src\TableGateWays\VideoGateway;
 use Src\TableGateWays\CommentsGateway;
 use Src\TableGateWays\ImageGateway;
-class MovieGateway extends VideoGatway {
+class MovieGateway extends VideoGateway {
     private $db = null;
     private $imageInherited = null;
     private $comment = null;
