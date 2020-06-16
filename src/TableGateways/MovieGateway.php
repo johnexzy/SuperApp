@@ -29,7 +29,7 @@ class MovieGateway extends VideoGateway {
                         VALUES
                                 (:video_name, :video_details, :video_key,  :category, :short_url, :uploaded_by, :popular)";
                 try {
-                        $_key = md5($input['video_name'].rand(123, 2345621));
+                        $_key = md5($input['video_name'].mt_rand());
                         $query = $this->db->prepare($statement);
                         $query->execute(array(
                                 'video_name' => $input['video_name'],
@@ -42,7 +42,7 @@ class MovieGateway extends VideoGateway {
 
                         ));
                         $this->imageInherited->createImage($input['images'], $_key);
-                        $this->createvideo($input['song'], $input['video_name']."-".$input['artist'], $_key);
+                        $this->createvideo($input['video'], $input['video_name']."-". mt_rand(0, 200), $_key);
                         return $query->rowCount();
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
