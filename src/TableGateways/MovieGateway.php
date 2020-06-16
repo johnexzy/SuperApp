@@ -188,7 +188,9 @@ class MovieGateway extends VideoGateway {
                 }
         }
         
-        
+        /**
+         * this method checks availability of data by id
+         */
         public function find($id)
         {
                 
@@ -200,16 +202,34 @@ class MovieGateway extends VideoGateway {
                         WHERE id = ?;
                 ";
                 try {   
-                        $result = null;
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array($id));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
-                        $comm = $this->comment->findAllWithKey($res["video_key"]);
-                        $videos = $this->getAllWithKey($res["video_key"]);
-                        $images = $this->imageInherited->getPostImages($res["video_key"]);
-                        $res += ["videos" => $videos]; //pnly one file is needed. just incase
-                        $res += ["images" => $images];
-                        $res += ["comments" => $comm];
+                        $result = $res;
+                        return $result;
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+        }
+
+         
+        /**
+         * this method checks availability of data by short_url
+         */
+        public function findByUrl($short_url)
+        {
+                
+                $statement = "
+                        SELECT
+                                *
+                        FROM
+                                movies
+                        WHERE movies.short_url = ?;
+                ";
+                try {   
+                        $statement = $this->db->prepare($statement);
+                        $statement->execute(array($short_url));
+                        $res = $statement->fetch(\PDO::FETCH_ASSOC);
                         $result = $res;
                         return $result;
                 } catch (\PDOException $e) {
