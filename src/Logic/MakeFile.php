@@ -86,20 +86,15 @@ class MakeFile {
                     // $file_arr[$key] = $file_post[$key];
                 }
             }
+            return $file_arr;
         }
         else{
             $file_keys = array_keys($file_post);
-    
-        // for ($i=0; $i<$file_count; $i++) {
             foreach ($file_keys as $key) {
-                // $file_arr[$i][$key] = $file_post[$key][$i];
                 $file_arr[$key] = $file_post[$key];
-
             }
+            return $file_arr;
         }
-        
-    
-        return $file_arr;
         
         /**
          * @credit to : https://www.php.net/manual/en/features.file-upload.multiple.php#53240
