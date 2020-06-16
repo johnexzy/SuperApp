@@ -148,7 +148,7 @@ if ($uri[2] == 'v1') {
                 header("Content-Type: multipart/form-data;");
                 $input = (array) $_POST;
                 $input += ["images" => MakeFile::reArrayFiles($_FILES['video_images'])];
-                $input += ["song" => MakeFile::reArrayFiles($_FILES['video_file'])];
+                $input += ["video" => MakeFile::reArrayFiles($_FILES['video_file'])];
 
                 break;
             case 'GET':
