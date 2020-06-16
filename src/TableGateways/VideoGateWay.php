@@ -60,7 +60,7 @@ class VideoGateway {
                 }
         }
         /**
-         * Peforms Create Operation for video
+         * Performs Create Operation for video
          * @param Array $video
          * @param String $name
          * @param String $key
