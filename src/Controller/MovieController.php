@@ -64,7 +64,7 @@ class MovieController extends MovieGateWay{
                 break;
             case 'DELETE':
                 if ($this->id) {
-                    $response = $this->deleteMusic($this->id);
+                    $response = $this->deleteVideo($this->id);
                 }
                 break;
             default:
@@ -114,7 +114,7 @@ class MovieController extends MovieGateWay{
         $response['body'] = json_encode($result);
         return $response;
     }
-    private function deleteMusic($id) {
+    private function deleteVideo($id) {
         $result = $this->find($id);
         if(!$result){
             return $this->notFoundResponse();
@@ -124,38 +124,7 @@ class MovieController extends MovieGateWay{
         $response['body'] = json_encode($result);
         return $response;
     }
-    public static function reArrayFiles($file_post) {
-
-        $file_arr = array();
-        if(is_countable($file_post['name'])){
-            $file_count = count($file_post['name']);
-            $file_keys = array_keys($file_post);
-            
-            for ($i=0; $i<$file_count; $i++) {
-                foreach ($file_keys as $key) {
-                    $file_arr[$i][$key] = $file_post[$key][$i];
-                    // $file_arr[$key] = $file_post[$key];
-                }
-            }
-        }
-        else{
-            $file_keys = array_keys($file_post);
     
-        // for ($i=0; $i<$file_count; $i++) {
-            foreach ($file_keys as $key) {
-                // $file_arr[$i][$key] = $file_post[$key][$i];
-                $file_arr[$key] = $file_post[$key];
-
-            }
-        }
-        
-    
-        return $file_arr;
-        
-        /**
-         * @credit to : https://www.php.net/manual/en/features.file-upload.multiple.php#53240
-         */
-    }
     private function notFoundResponse()
     {
         $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
