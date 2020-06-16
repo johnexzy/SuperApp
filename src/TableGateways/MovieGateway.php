@@ -97,17 +97,17 @@ class MovieGateway extends VideoGateway {
                         SELECT
                                 *
                         FROM
-                                music
+                                movies
                         ORDER BY id 
                             DESC LIMIT $startFrom, $limit;";
                 try {   
                         $data = array();
                         $statement = $this->db->query($statement);
                         while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
-                                $comm = $this->comment->findAllWithKey($res["music_key"]);
-                                $songs = $this->getAllWithKey($res["music_key"]);
-                                $images = $this->imageInherited->getPostImages($res["music_key"]);
-                                $res += ["audio" => $songs]; //pnly one file is needed. just incase
+                                $comm = $this->comment->findAllWithKey($res["video_key"]);
+                                $videos = $this->getAllWithKey($res["video_key"]);
+                                $images = $this->imageInherited->getPostImages($res["video_key"]);
+                                $res += ["videos" => $videos]; //pnly one file is needed. just incase
                                 $res += ["images" => $images];
                                 $res += ["comments" => $comm];
                                 $data[] = $res;
@@ -138,7 +138,7 @@ class MovieGateway extends VideoGateway {
                         SELECT
                                 *
                         FROM
-                                music
+                                movies
                         WHERE popular > 0
                         ORDER 
                             BY id DESC LIMIT $popularInt;
@@ -147,10 +147,10 @@ class MovieGateway extends VideoGateway {
                         $result = array();
                         $statement = $this->db->query($statement);
                         while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
-                                $comm = $this->comment->findAllWithKey($res["music_key"]);
-                                $songs = $this->getAllWithKey($res["music_key"]);
-                                $images = $this->imageInherited->getPostImages($res["music_key"]);
-                                $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
+                                $comm = $this->comment->findAllWithKey($res["video_key"]);
+                                $videos = $this->getAllWithKey($res["video_key"]);
+                                $images = $this->imageInherited->getPostImages($res["video_key"]);
+                                $res += ["$videos" => $videos[0]]; //pnly one file is needed. just incase
                                 $res += ["images" => $images];
                                 $res += ["comments" => $comm];
                                 $result[] = $res;
@@ -166,7 +166,7 @@ class MovieGateway extends VideoGateway {
                         SELECT
                                 *
                         FROM
-                                music
+                                movies
                         WHERE short_url = ?;
                 ";
                 
@@ -175,10 +175,10 @@ class MovieGateway extends VideoGateway {
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array($short_url));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
-                        $comm = $this->comment->findAllWithKey($res["music_key"]);
-                        $songs = $this->getAllWithKey($res["music_key"]);
-                        $images = $this->imageInherited->getPostImages($res["music_key"]);
-                        $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
+                        $comm = $this->comment->findAllWithKey($res["video_key"]);
+                        $videos = $this->getAllWithKey($res["video_key"]);
+                        $images = $this->imageInherited->getPostImages($res["video_key"]);
+                        $res += ["videos" => $videos[0]]; //pnly one file is needed. just incase
                         $res += ["images" => $images];
                         $res += ["comments" => $comm];
                         $result = $res;
@@ -196,7 +196,7 @@ class MovieGateway extends VideoGateway {
                         SELECT
                                 *
                         FROM
-                                music
+                                movies
                         WHERE id = ?;
                 ";
                 try {   
@@ -204,10 +204,10 @@ class MovieGateway extends VideoGateway {
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array($id));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
-                        $comm = $this->comment->findAllWithKey($res["music_key"]);
-                        $songs = $this->getAllWithKey($res["music_key"]);
-                        $images = $this->imageInherited->getPostImages($res["music_key"]);
-                        $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
+                        $comm = $this->comment->findAllWithKey($res["video_key"]);
+                        $videos = $this->getAllWithKey($res["video_key"]);
+                        $images = $this->imageInherited->getPostImages($res["video_key"]);
+                        $res += ["videos" => $videos[0]]; //pnly one file is needed. just incase
                         $res += ["images" => $images];
                         $res += ["comments" => $comm];
                         $result = $res;
@@ -244,7 +244,7 @@ class MovieGateway extends VideoGateway {
          */
         private static function getTotalRecord($db)
         {
-                $statement = "SELECT music.id FROM music";
+                $statement = "SELECT movies.id FROM movies";
                 try {
                         $statement = $db->query($statement);
                         $result = $statement->fetchAll(\PDO::FETCH_COLUMN);
@@ -255,7 +255,7 @@ class MovieGateway extends VideoGateway {
         }
         public function delete($id)
         {
-                $statement = "DELETE FROM `music` WHERE `music`.`id` = :id";
+                $statement = "DELETE FROM `movies` WHERE `movies`.`id` = :id";
 
                 try {
                         $statement=$this->db->prepare($statement);
