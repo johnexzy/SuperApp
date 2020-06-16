@@ -101,7 +101,7 @@
   
             $(".progress-bar").width('0%');
           },
-          url: "http://127.0.0.1:8090/api/v1/music",
+          url: "http://127.0.0.1:8090/api/v1/videos",
           type: 'POST',
           data: formData,
           processData: false,
@@ -112,9 +112,9 @@
           $(".status-msg").show()
           //reset All State to default
           $("#handleSubmit").html('<i class="mdi mdi-upload btn-icon-prepend"></i>Upload</button>')
-          $('#music_title').val() == "";
-          $('#music_title').val() == "";
-          $('#music_title').val() == "";
+        //   $('#music_title').val() == "";
+        //   $('#music_title').val() == "";
+        //   $('#music_title').val() == "";
   
           $(".del-thumbnail").click();
           $('body,html').animate({
