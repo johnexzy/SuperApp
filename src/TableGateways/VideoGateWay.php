@@ -33,6 +33,14 @@ class VideoGateway {
         
         $this->db = $db;
     }
+
+     /**
+     * Peforms Create Operation for video
+     * @param String key
+     * 
+     * @return Array
+     * 
+     */
     public function getAllWithKey($key)
         {
                 $statement = "
