@@ -40,7 +40,9 @@ class MovieController extends MovieGateWay{
         $this->short_url = $short_url;
         $this->id = $id;
     }
-
+    /**
+     * processes all requests targetted to this controller.
+     */
     public function processRequest()
     {
         switch ($this->requestMethod) {

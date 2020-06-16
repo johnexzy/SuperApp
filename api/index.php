@@ -9,7 +9,8 @@ header("Access-Control-Allow-Headers: Origin, Access-Control-Allow-Origin, Conte
 require '../bootstrap.php';
 use Src\Controller\MusicController;
 use Src\Controller\CommentsController;
-// use Src\Controller\PersonController;
+use Src\Logic\MakeFile;
+use Src\Controller\MovieController;
 // use Src\Controller\NewsController;
 // use Src\Controller\CarouselController;
 use Src\Controller\AlbumController;
@@ -36,8 +37,8 @@ if ($uri[2] == 'v1') {
             case 'POST':
                 header("Content-Type: multipart/form-data;");
                 $input = (array) $_POST;
-                $input += ["images" => MusicController::reArrayFiles($_FILES['music_images'])];
-                $input += ["song" => MusicController::reArrayFiles($_FILES['music_file'])];
+                $input += ["images" => MakeFile::reArrayFiles($_FILES['music_images'])];
+                $input += ["song" => MakeFile::reArrayFiles($_FILES['music_file'])];
 
                 break;
             case 'GET':
@@ -94,8 +95,8 @@ if ($uri[2] == 'v1') {
                  * An album consist of two or more audio files by from one artist
                  * We're going to process these audio files and reArray each individual files.
                  */
-                $input += ["songs" => MusicController::reArrayFiles($_FILES['album_files'])];
-                $input += ["images" => MusicController::reArrayFiles($_FILES['album_images'])];
+                $input += ["songs" => MakeFile::reArrayFiles($_FILES['album_files'])];
+                $input += ["images" => MakeFile::reArrayFiles($_FILES['album_images'])];
                 break;
             case 'GET':
                 if (isset($uri[4])) {
@@ -131,6 +132,60 @@ if ($uri[2] == 'v1') {
                 break;
         }
         $controller = new AlbumController($dbConnection, $requestMethod, $input, $id, $limit, $popular, $pn, $short_url);
+        $controller->processRequest();
+    }
+
+    if($uri[3] == 'videos'){
+        
+        $input = null;
+        $limit = null;
+        $short_url = null;
+        $id = null;
+        $popular = null;
+        $pn = null;
+        switch ($requestMethod) {
+            case 'POST':
+                header("Content-Type: multipart/form-data;");
+                $input = (array) $_POST;
+                $input += ["images" => MakeFile::reArrayFiles($_FILES['video_images'])];
+                $input += ["song" => MakeFile::reArrayFiles($_FILES['video_file'])];
+
+                break;
+            case 'GET':
+                if (isset($uri[4])) {
+                    if ($uri[4] == "limit" && isset($uri[5])) {
+                        $limit = (int) $uri[5];
+                    }
+                    elseif($uri[4] == "popular" && isset($uri[5])){
+                        $popular = (int) $uri[5];
+                    }
+                    elseif ($uri[4] == "url" && isset($uri[5])) {
+                        $short_url = (strlen($uri[5]) > 6) ? strip_tags($uri[5]) : null;
+                        
+                    }
+                    elseif($uri[4] == "pages" && isset($uri[5])){
+                        $pn = (int) $uri[5];
+                    }
+                    else{
+
+                    }
+                }
+                break;
+            case 'PUT':
+
+                break;
+            case 'DELETE' :
+                if (isset($uri[4])) {
+                    if ($uri[4] == "delete" && isset($uri[5])) {
+                        $id = (int) $uri[5];
+                    }
+                }
+                break;
+            default:
+                # code...
+                break;
+        }
+        $controller = new MovieController($dbConnection, $requestMethod, $input, $id, $limit, $popular, $pn, $short_url);
         $controller->processRequest();
     }
 
