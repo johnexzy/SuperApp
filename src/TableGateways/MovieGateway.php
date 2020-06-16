@@ -16,7 +16,7 @@ namespace Src\TableGateWays;
 use Src\TableGateWays\VideoGateway;
 use Src\TableGateWays\CommentsGateway;
 use Src\TableGateWays\ImageGateway;
-class MusicGateWay extends VideoGatway {
+class MovieGateway extends VideoGatway {
     private $db = null;
     private $imageInherited = null;
     private $comment = null;
@@ -49,7 +49,7 @@ class MusicGateWay extends VideoGatway {
 
                         ));
                         $this->imageInherited->createImage($input['images'], $_key);
-                        $this->createSong($input['song'], $input['video_name']."-".$input['artist'], $_key);
+                        $this->createvideo($input['song'], $input['video_name']."-".$input['artist'], $_key);
                         return $query->rowCount();
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
