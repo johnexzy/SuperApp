@@ -87,7 +87,9 @@
         $.ajax({
           xhr: function () {
             let xhr = new window.XMLHttpRequest();
+            
             xhr.upload.addEventListener("progress", function (ext) {
+            
               if (ext.lengthComputable) {
                 let perCentComplete = ((ext.loaded / ext.total) * 100).toFixed();
                 $(".progress-bar").width(perCentComplete + '%');
