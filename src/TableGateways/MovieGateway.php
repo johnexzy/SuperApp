@@ -150,7 +150,7 @@ class MovieGateway extends VideoGateway {
                                 $comm = $this->comment->findAllWithKey($res["video_key"]);
                                 $videos = $this->getAllWithKey($res["video_key"]);
                                 $images = $this->imageInherited->getPostImages($res["video_key"]);
-                                $res += ["$videos" => $videos]; //pnly one file is needed. just incase
+                                $res += ["videos" => $videos]; //pnly one file is needed. just incase
                                 $res += ["images" => $images];
                                 $res += ["comments" => $comm];
                                 $result[] = $res;
