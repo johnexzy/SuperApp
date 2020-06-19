@@ -79,7 +79,7 @@ if ($uri[2] == 'v1') {
         $controller->processRequest();
     }
 
-    if($uri[3] == 'album'){
+    elseif($uri[3] == 'album'){
         
         $input = null;
         $limit = null;
@@ -135,7 +135,7 @@ if ($uri[2] == 'v1') {
         $controller->processRequest();
     }
 
-    if($uri[3] == 'videos'){
+    elseif($uri[3] == 'videos'){
         
         $input = null;
         $limit = null;
@@ -192,20 +192,29 @@ if ($uri[2] == 'v1') {
     elseif ($uri[3] == 'comment') {
         $comId = null;
         $key = null;
-        if (isset($uri[4])) {
+        if (isset($uri[4]) && $uri[4] == "key") {
             if ($requestMethod == "GET") {
-                $key = (String) $uri[4];
+                $key = (String) $uri[5];
                 
             }
             if ($requestMethod == "PUT") {
                 $comId = (int) $uri[4];
             }
         }
+        else{
+            //inother to avoid cors, post comments will use get methods instead
+            $input = array(
+                "name" => $_GET["name"],
+                "comment_key" => $_GET["comment_key"],
+                "comment" => $_GET["comment"]
+            );
+            $input = json_encode($input);
+        }
 
         
 
         // pass the request method and user ID to the CommentController and process the HTTP request:
-        $controller = new CommentsController($dbConnection, $requestMethod, $key, $comId);
+        $controller = new CommentsController($dbConnection, $requestMethod, $key, $comId, $input);
         $controller->processRequest();
     }
 
