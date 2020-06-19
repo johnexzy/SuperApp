@@ -204,9 +204,9 @@ if ($uri[2] == 'v1') {
         else{
             //inother to avoid cors, post comments will use get methods instead
             $input = array(
-                "name" => $_GET["name"],
-                "comment_key" => $_GET["comment_key"],
-                "comment" => $_GET["comment"]
+                "name" => !isset($_GET["name"]) ? "Anonymous" : strip_tags($_GET["name"]),
+                "comment_key" => strip_tags($_GET["comment_key"]),
+                "comment" => strip_tags($_GET["comment"])
             );
             $input = json_encode($input);
         }
