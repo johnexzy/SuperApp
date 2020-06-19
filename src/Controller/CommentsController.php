@@ -4,28 +4,29 @@ namespace Src\Controller;
 
 use Src\TableGateWays\CommentsGateway;
 
-class CommentsController  
+class CommentsController extends CommentsGateway
 {
     private $db;
     private $requestMethod;
     private $comId;
     private $key;
-    private $commentsGateway;
+    protected $input;
 
-    public function __construct($db, $requestMethod, $key, $comId) {
+    public function __construct($db, $requestMethod, $key = null, $comId, $input) {
+        parent::__construct($db);
         $this->db = $db;
         $this->requestMethod = $requestMethod;
         $this->key = $key;
         $this->comId = $comId;
-
-        $this->commentsGateway = new CommentsGateway($db);
+        $this->input = $input;
     }
 
     public function processRequest()
     {
         switch ($this->requestMethod) {
             case 'GET':
-                $response = $this->getKeyedComments($this->key);
+                $response = ($this->key)? $this->getKeyedComments($this->key)
+                : $this->addCommentFromGet($this->input);
                 break;
             case 'POST':
                 $response = $this->addCommentFromRequest();
@@ -48,7 +49,7 @@ class CommentsController
 
     private function getKeyedComments($key)
     {
-        $result = $this->commentsGateway->findAllWithKey($key);
+        $result = $this->findAllWithKey($key);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = json_encode($result);
         return $response;
@@ -58,13 +59,23 @@ class CommentsController
         if(!$this->validateInput($input)){
             return $this->unprocessableEntityResponse();
         }
-        $result = $this->commentsGateway->insert($input);
+        $result = $this->insert($input);
+        $response['status_code_header'] = 'HTTP/1.1 201 Created';
+        $response['body'] = json_encode($result);
+        return $response;
+    }
+    private function addCommentFromGet($input) {
+        $input = (array) json_decode($input, TRUE);
+        if(!$this->validateInput($input)){
+            return $this->unprocessableEntityResponse();
+        }
+        $result = $this->insert($input);
         $response['status_code_header'] = 'HTTP/1.1 201 Created';
         $response['body'] = json_encode($result);
         return $response;
     }
     private function updateCommentFromRequest($id) {
-        $result = $this->commentsGateway->find($id);
+        $result = $this->find($id);
         if(!$result){
             return $this->notFoundResponse();
         }
@@ -72,17 +83,17 @@ class CommentsController
         if(!$this->validateUpdateInput($input)){
             return $this->unprocessableEntityResponse();
         }
-        $result = $this->commentsGateway->update($id, $input);
+        $result = $this->update($id, $input);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = $result;
         return $response;
     }
     private function deleteComment($id) {
-        $result = $this->commentsGateway->find($id);
+        $result = $this->find($id);
         if(!$result){
             return $this->notFoundResponse();
         }
-        $this->commentsGateway->delete($id);
+        $this->delete($id);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = NULL;
         return $response;
