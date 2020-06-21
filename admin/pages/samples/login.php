@@ -4,7 +4,13 @@
     $pass = strip_tags($_POST['password']);
     $pass = strlen($pass) < 5 ? '' : $pass;
     if ($pass == '' || $email == '') {
-      
+      $msg = "Incorrect user details";
+      exit;
+    }
+    $res = json_decode(file_get_contents('http://127.0.0.1:8090/api/v1/user/$email/$pass'));
+    if ($res == 1) {
+        //starts the session and log in user.
+        
     }
   }
 
