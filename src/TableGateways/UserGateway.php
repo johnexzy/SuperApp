@@ -13,6 +13,8 @@ class UserGateway{
         $statement = <<<EOS
         SELECT * FROM  user WHERE name = '$username';
     EOS;
-    
+        $statement = $this->db->prepare($statement);
+        $statement->execute();
+
     }
 }
