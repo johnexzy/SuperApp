@@ -1,4 +1,5 @@
 <?php
+  session_start();
   if (isset($_POST['login'])) {
     $email = strip_tags($_POST['email']);
     $pass = strip_tags($_POST['password']);
@@ -11,6 +12,7 @@
     if ($res == 1) {
         //starts the session and log in user.
         $_SESSION["user"] = 1;
+        header("Location: home.php");
 
     }
   }

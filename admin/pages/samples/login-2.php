@@ -63,7 +63,7 @@
                   <a href="#" class="auth-link text-black">Forgot password?</a>
                 </div>
                 <div class="my-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.php">LOGIN</a>
+                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../home.php">LOGIN</a>
                 </div>
                 <div class="mb-2 d-flex">
                   <button type="button" class="btn btn-facebook auth-form-btn flex-grow mr-1">
