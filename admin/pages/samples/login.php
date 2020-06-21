@@ -1,3 +1,16 @@
+<?php
+  if (isset($_POST['login'])) {
+    $email = strip_tags($_POST['email']);
+    $pass = strip_tags($_POST['password']);
+    $pass = strlen($pass) < 5 ? '' : $pass;
+    if ($pass == '' || $email == '') {
+      
+    }
+  }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,15 +42,15 @@
                 <h3>Leccel.net</h3> 
               </div>
               <h6 class="font-weight-light">Sign in to continue.</h6>
-              <form class="pt-3">
+              <form class="pt-3" method="POST" action="">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                  <input type="email" class="form-control form-control-lg" name="email" placeholder="Username">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" name="password" placeholder="Password">
                 </div>
                 <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.php">SIGN IN</a>
+                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" name="login">SIGN IN</button>
                 </div>
                 
               </form>
