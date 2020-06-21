@@ -15,6 +15,6 @@ class UserGateway{
     EOS;
         $statement = $this->db->prepare($statement);
         $statement->execute();
-
+        $row = $statement->rowCount();
     }
 }
