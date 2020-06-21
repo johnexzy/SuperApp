@@ -23,12 +23,12 @@
 
 <body>
     <div class="container-scroller">
-        <!-- partial:partials/_navbar.html -->
+        <!-- partial:partials/_navbar.php -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="navbar-brand-wrapper d-flex justify-content-center">
                 <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-                    <a class="navbar-brand brand-logo" href="index.html"><img src="images/logo.svg" alt="logo" /></a>
-                    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo" /></a>
+                    <a class="navbar-brand brand-logo" href="index.php"><img src="images/logo.svg" alt="logo" /></a>
+                    <a class="navbar-brand brand-logo-mini" href="index.php"><img src="images/logo-mini.svg" alt="logo" /></a>
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-sort-variant"></span>
           </button>
@@ -144,7 +144,7 @@
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                             <img src="images/faces/face5.jpg" alt="profile" />
-                            <span class="nav-profile-name">Louis Barnett</span>
+                            <span class="nav-profile-name">Leccel</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                             <a class="dropdown-item">
@@ -163,11 +163,11 @@
         </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
-            <!-- partial:partials/_sidebar.html -->
+            <!-- partial:partials/_sidebar.php -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="index.php">
                             <i class="mdi mdi-home menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
@@ -180,31 +180,31 @@
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.php">Buttons</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.php">Typography</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/forms/basic_elements.html">
+                        <a class="nav-link" href="pages/forms/basic_elements.php">
                             <i class="mdi mdi-view-headline menu-icon"></i>
                             <span class="menu-title">Form elements</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/charts/chartjs.html">
+                        <a class="nav-link" href="pages/charts/chartjs.php">
                             <i class="mdi mdi-chart-pie menu-icon"></i>
                             <span class="menu-title">Charts</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/tables/basic-table.html">
+                        <a class="nav-link" href="pages/tables/basic-table.php">
                             <i class="mdi mdi-grid-large menu-icon"></i>
                             <span class="menu-title">Tables</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/icons/mdi.html">
+                        <a class="nav-link" href="pages/icons/mdi.php">
                             <i class="mdi mdi-emoticon menu-icon"></i>
                             <span class="menu-title">Icons</span>
                         </a>
@@ -217,16 +217,16 @@
                         </a>
                         <div class="collapse" id="auth">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.php"> Login </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.php"> Login 2 </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.php"> Register </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.php"> Register 2 </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.php"> Lockscreen </a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="documentation/documentation.html">
+                        <a class="nav-link" href="documentation/documentation.php">
                             <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                             <span class="menu-title">Documentation</span>
                         </a>
@@ -239,74 +239,87 @@
                     <div class="row">
                         <div class="col-12 grid-margin stretch-card">
                             <div class="card">
-                                <div class="card-header">New Post</div>
+                                <div class="card-header">New album</div>
                                 <div class="card-body">
-                                    <div class="alert alert-success status-msg" style="display: none;">Post Successfully Created
+                                   <div class="alert alert-success status-msg" style="display: none;">Post Created Successfully</div>
+                                   <form class="forms-sample">
+                                    <div class="form-group">
+                                        <label for="postTitle">Title</label>
+                                        <font size="0.6" id="titleCap" style="display: block; display: none; text-align: right; float: right;">
+                                            Required</font>
+                                        <input type="text" class="form-control" id="album_title" placeholder="Song Title">
                                     </div>
-                                    <form class="forms-sample">
-                                        <div class="form-group">
-                                            <label for="postTitle">Title</label>
-                                            <font size="0.6" id="titleCap" style="display: block; display: none; text-align: right; float: right;">
-                                                Required</font>
-                                            <input type="text" class="form-control" id="postTitle" placeholder="Post Title">
+                                    <div class="form-group">
+                                        <label for="postTitle">Artist</label>
+                                        <font size="0.6" id="artistCap" style="display: block; display: none; text-align: right; float: right;">
+                                            Required</font>
+                                        <input type="text" class="form-control" id="artist" placeholder="Artist">
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="postBody">About this Song</label>
+                                        <font size="0.6" id="AboutCap" style="display: block; display: none; text-align: right; float: right;">
+                                            Required</font>
+                                        <textarea class="form-control" id="about_album" rows="16"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="postBody">YEAR OF RELEASE</label>
+                                        <font size="0.6" id="yearCap" style="display: block; display: none; text-align: right; float: right;">
+                                            Required</font>
+                                        <input type="number" class="form-control" id="album_year" placeholder="2020">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="postTitle">Uploaded by</label>
+                                        
+                                        <input type="text" class="form-control" id="author" value="Leccel" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <ul class="el-upload-list el-upload-list--picture-card image-list">
+
+                                        </ul>
+                                        <div class="del-thumbnail item-delete" style="display: none;">
+                                            <i class="mdi mdi-24px mdi-delete"></i>
                                         </div>
-
-
-                                        <div class="form-group">
-                                            <label for="Category">Category</label>
-                                            <select class="form-control" id="Category">
-                                                <option>TECH</option>
-                                                <option selected>NEWS</option>
-                                                <option>SPORTS</option>
-                                                <option>POLITICS</option>
-                                                <option>WORLD</option>
-                                                <option>ENTERTAINMENT</option>
-                                            </select>
+                                        <input type="file" name="img[]" class="file-upload-default image-upload" accept="image/*" multiple>
+                                        <div class="el-upload el-upload--picture-card openfile">
+                                            <i class="mdi mdi-48px mdi-image-plus"></i>
                                         </div>
-
-
-                                        <div class="form-group">
-                                            <label for="postBody">Textarea</label>
-                                            <font size="0.6" id="titleCap" style="display: block; display: none; text-align: right; float: right;">
-                                                Required</font>
-                                            <textarea class="form-control" id="postBody" rows="16"></textarea>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <ul class="el-upload-list el-upload-list--picture-card audio-active">
+                                            
+                                        </ul>
+                                        <div class="del-song item-delete" style="display: none;">
+                                            <i class="mdi mdi-24px mdi-delete"></i>
                                         </div>
-                                        <div class="form-group">
-                                            <ul class="el-upload-list el-upload-list--picture-card">
-
-                                            </ul>
-                                            <input type="file" name="img[]" class="file-upload-default" multiple>
-                                            <div class="el-upload el-upload--picture-card openfile">
-                                                <i class="mdi mdi-48px mdi-plus"></i>
-                                            </div>
+                                        
+                                        <input type="file" name="audio[]" class="file-upload-default audio-upload" accept="audio/*" multiple>
+                                        <div class="el-upload el-upload--picture-card openfile">
+                                            <i class="mdi mdi-48px mdi-music-note-plus"></i>
                                         </div>
-
-                                        <!-- <div class="form-group">
-                                            <label>File upload</label>
-                                            <input type="file" name="img[]" class="file-upload-default">
-                                            <div class="input-group col-xs-12">
-                                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                                <span class="input-group-append">
-                                                    <button class="file-upload-browse btn btn-primary"
-                                                        type="button">Upload</button>
-                                                </span>
-                                            </div>
-                                        </div> -->
-                                    </form>
-
-
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="popular" class="form-check-success" id="popular"> Add to popular?
+                                    </div>
+                                   
+                                </form>
                                 </div>
                                 <div class="card-footer">
                                     <button type="button" class="btn btn-primary btn-icon-text" id="handleSubmit"><i
-                                                class="mdi mdi-file-check btn-icon-prepend"></i>
-                                            Submit</button>
+                                                class="mdi mdi-upload btn-icon-prepend"></i>
+                                            Upload</button>
                                     <button class="btn btn-light">Cancel</button>
+                                </div>
+                                <div class="progress" style="height: 40px; font-weight: 800; font-size: 18px;">
+                                    <div class="progress-bar" ></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- partial:partials/_footer.html -->
+                <!-- partial:partials/_footer.php -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
                         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
@@ -327,7 +340,7 @@
     <script src="js/template.js"></script>
     <!-- endinject -->
     <!-- Inject:js for this page -->
-    <script src="js/file-upload.js"></script>
+    <script src="js/albumController.js"></script>
     <!-- endinject:js for this page -->
 </body>
 
