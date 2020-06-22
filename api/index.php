@@ -26,7 +26,7 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 
 if ($uri[2] == 'v1') {
     
-    if ($uri[3] == 'user') {
+    if ($uri[3] == 'user' && count($uri) == 6) {
         
     }
     elseif($uri[3] == 'music'){
