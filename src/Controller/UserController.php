@@ -23,4 +23,8 @@ class UserController extends UserGateway
     {
         
     }
+    private function LoginControlller($username, $password)
+    {
+        
+    }
 }
