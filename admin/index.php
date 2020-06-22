@@ -1,5 +1,11 @@
 <?php
-  session_start();
+require '../bootstrap.php';
+use Src\TableGateways\UserGateway;
+
+session_start();
+  if (isset($_SESSION['user'])) {
+    header("Location: home.php");
+  }
   if (isset($_POST['login'])) {
     $username = stripslashes(strip_tags($_POST['username']));
     $pass = stripslashes(strip_tags($_POST['password']));
@@ -9,15 +15,18 @@
       $msg = "Incorrect user details";
       exit;
     }
-    $res = [];
-    $res = json_decode(file_get_contents("http://127.0.0.1:3000/api/v1/user/$username/$pass"));
+    
+    $req = new UserGateway($dbConnection);
+    $res = $req->Login($username, $pass);
     if ($res["status"] == 1) {
         //starts the session and log in user.
         $_SESSION["user"] = 1;
         header("Location: home.php");
 
     }
-    echo "john";
+    else{
+      $msg = "Wrong Username or Password";
+    }
   }
 
 ?>
@@ -53,6 +62,9 @@
               <div class="brand-logo mb-5">
                 <h3>Leccel.net</h3> 
               </div>
+              <?php if (isset($msg)) {
+                echo $msg;
+              }?>
               <h6 class="font-weight-light">Sign in to continue.</h6>
               <form class="pt-3" method="POST" action="">
                 <div class="form-group">
