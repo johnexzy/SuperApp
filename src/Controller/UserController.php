@@ -10,10 +10,10 @@ use Src\TableGateways\UserGateway;
 
 class UserController extends UserGateway
 {
-    protected $username, $password, $db;
-    public function __construct($username, $password, $db) {
+    protected $email, $password, $db;
+    public function __construct($email, $password, $db) {
         parent::__construct($db);
-        $this->username = $username;
+        $this->$email = $email;
         $this->password = $password;
     }
     /**
