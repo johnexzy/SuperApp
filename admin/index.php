@@ -3,6 +3,8 @@ require '../bootstrap.php';
 use Src\TableGateways\UserGateway;
 
 session_start();
+
+
   if (isset($_SESSION['user'])) {
     header("Location: home.php");
   }
