@@ -10,10 +10,10 @@ class UserGateway{
         $this->db = $db;
     }
 
-    public function Login($username, $password)
+    public function Login($email, $password)
     {
         $statement = <<<EOS
-        SELECT * FROM  user WHERE name = '$username';
+        SELECT * FROM  user WHERE email = '$email';
     EOS;
         $statement = $this->db->prepare($statement);
         $statement->execute();
