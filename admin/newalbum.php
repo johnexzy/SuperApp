@@ -8,7 +8,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Majestic Admin</title>
+    <title>Leccel Admin</title>
     <!-- plugins:css -->
 
     <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
@@ -153,7 +153,7 @@
                             <a class="dropdown-item">
                                 <i class="mdi mdi-settings text-primary"></i> Settings
                             </a>
-                            <a class="dropdown-item">
+                            <a class="dropdown-item" href="/admin/logout.php">
                                 <i class="mdi mdi-logout text-primary"></i> Logout
                             </a>
                         </div>
