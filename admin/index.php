@@ -14,21 +14,28 @@ session_start();
     
     $pass = (strlen($pass) < 3) ? '' : $pass;
     if ($pass == '' || $username == '') {
-      $msg = "Incorrect user details";
-      exit;
-    }
-    
-    $req = new UserGateway($dbConnection);
-    $res = $req->Login($username, $pass);
-    if ($res["status"] == 1) {
-        //starts the session and log in user.
-        $_SESSION["user"] = 1;
-        header("Location: home.php");
-
+      $msg = "<div class='alert alert-danger'>
+                <p class='text-danger'>
+                  <i class='mdi mdi-information'></i> Incorrect User Details
+                </p>
+              </div>";
     }
     else{
-      $msg = "Wrong Username or Password";
-    }
+      $req = new UserGateway($dbConnection);
+      $res = $req->Login($username, $pass);
+      if ($res["status"] == 1) {
+          //starts the session and log in user.
+          $_SESSION["user"] = "Leccel";
+          header("Location: home.php");
+      }
+      else{
+        $msg = "<div class='alert alert-danger'>
+                  <p class='text-danger'>
+                    <i class='mdi mdi-information'></i> Wrong Username or Password
+                  </p>
+                </div>";
+      }
+    }    
   }
 
 ?>
