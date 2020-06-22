@@ -15,7 +15,7 @@ use Src\Controller\MovieController;
 // use Src\Controller\NewsController;
 // use Src\Controller\CarouselController;
 use Src\Controller\AlbumController;
-
+use Src\Controller\UserController;
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = explode('/', $uri);
@@ -27,7 +27,11 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 if ($uri[2] == 'v1') {
     
     if ($uri[3] == 'user' && count($uri) == 6) {
-        
+        $email = strip_tags($uri[4]);
+        $password = strip_tags($uri[5]);
+
+        $controller = new UserController($email, $password, $dbConnection);
+        $controller->proccessRequest();
     }
     elseif($uri[3] == 'music'){
         
