@@ -27,10 +27,10 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 if ($uri[2] == 'v1') {
     
     if ($uri[3] == 'user' && count($uri) == 6) {
-        $email = strip_tags($uri[4]);
+        $username = strip_tags($uri[4]);
         $password = strip_tags($uri[5]);
 
-        $controller = new UserController($email, $password, $dbConnection);
+        $controller = new UserController($username, $password, $dbConnection);
         $controller->proccessRequest();
     }
     elseif($uri[3] == 'music'){
