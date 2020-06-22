@@ -10,10 +10,10 @@ use Src\TableGateways\UserGateway;
 
 class UserController extends UserGateway
 {
-    protected $email, $password, $db;
-    public function __construct($email, $password, $db) {
+    protected $username, $password, $db;
+    public function __construct($username, $password, $db) {
         parent::__construct($db);
-        $this->$email = $email;
+        $this->$username = $username;
         $this->password = $password;
     }
     /**
@@ -22,13 +22,13 @@ class UserController extends UserGateway
      */
     public function proccessRequest()
     {
-        $response = $this->LoginControlller($this->email, $this->password);
+        $response = $this->LoginControlller($this->username, $this->password);
         header($response['status_code_header']);
         if ($response['body']) {
             echo $response['body'];
         }
     }
-    private function LoginControlller($email, $password)
+    private function LoginControlller($username, $password)
     {
         $result = $this->Login($email, $password);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
