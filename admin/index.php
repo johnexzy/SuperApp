@@ -1,8 +1,9 @@
 <?php
   session_start();
   if (isset($_POST['login'])) {
-    $email = strip_tags($_POST['email']);
-    $pass = strip_tags($_POST['password']);
+    $email = stripslashes(strip_tags($_POST['email']));
+    $pass = stripslashes(strip_tags($_POST['password']));
+    
     $pass = strlen($pass) < 5 ? '' : $pass;
     if ($pass == '' || $email == '') {
       $msg = "Incorrect user details";
