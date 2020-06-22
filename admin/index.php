@@ -4,7 +4,7 @@ use Src\TableGateways\UserGateway;
 
 session_start();
 
-
+  // unset($_SESSION['user']);
   if (isset($_SESSION['user'])) {
     header("Location: home.php");
   }
