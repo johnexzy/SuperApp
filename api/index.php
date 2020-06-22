@@ -29,7 +29,7 @@ if ($uri[2] == 'v1') {
     if ($uri[3] == 'user' && count($uri) == 6) {
         $username = strip_tags($uri[4]);
         $password = strip_tags($uri[5]);
-
+        
         $controller = new UserController($username, $password, $dbConnection);
         $controller->proccessRequest();
     }

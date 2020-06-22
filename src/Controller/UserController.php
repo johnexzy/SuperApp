@@ -13,7 +13,7 @@ class UserController extends UserGateway
     protected $username, $password, $db;
     public function __construct($username, $password, $db) {
         parent::__construct($db);
-        $this->$username = $username;
+        $this->username = $username;
         $this->password = $password;
     }
     /**
@@ -30,7 +30,7 @@ class UserController extends UserGateway
     }
     private function LoginControlller($username, $password)
     {
-        $result = $this->Login($username, $password);
+        $result = $this->Login($this->username, $password);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = \json_encode($result);
         return $response;

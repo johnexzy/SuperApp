@@ -1,15 +1,15 @@
 <?php
   session_start();
   if (isset($_POST['login'])) {
-    $email = stripslashes(strip_tags($_POST['email']));
+    $username = stripslashes(strip_tags($_POST['username']));
     $pass = stripslashes(strip_tags($_POST['password']));
     
     $pass = strlen($pass) < 5 ? '' : $pass;
-    if ($pass == '' || $email == '') {
+    if ($pass == '' || $username == '') {
       $msg = "Incorrect user details";
       exit;
     }
-    $res = json_decode(file_get_contents('http://127.0.0.1:8090/api/v1/user/$email/$pass'));
+    $res = json_decode(file_get_contents("http://127.0.0.1:8090/api/v1/user/$username/$pass"));
     if ($res == 1) {
         //starts the session and log in user.
         $_SESSION["user"] = 1;
@@ -54,10 +54,10 @@
               <h6 class="font-weight-light">Sign in to continue.</h6>
               <form class="pt-3" method="POST" action="">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" name="email" placeholder="Username">
+                  <input type="text" class="form-control form-control-lg" name="username" placeholder="Username" required>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" name="password" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" name="password" placeholder="Password" required>
                 </div>
                 <div class="mt-3">
                   <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" name="login">SIGN IN</button>

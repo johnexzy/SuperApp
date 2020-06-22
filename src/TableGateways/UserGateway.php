@@ -13,7 +13,7 @@ class UserGateway{
     public function Login($username, $password)
     {
         $statement = <<<EOS
-        SELECT * FROM  user WHERE email = '$username';
+        SELECT * FROM  user WHERE name = '$username';
     EOS;
         $statement = $this->db->prepare($statement);
         $statement->execute();
