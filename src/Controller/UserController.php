@@ -23,10 +23,18 @@ class UserController extends UserGateway
      */
     public function proccessRequest()
     {
-        
+        $response = $this->LoginControlller($this->username, $this->password);
+        header($response['status_code_header']);
+        if ($response['body']) {
+            echo $response['body'];
+        }
     }
     private function LoginControlller($username, $password)
     {
+        $result = $this->Login($username, $password);
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = \json_encode($result);
+        return $response;
         
     }
 }
