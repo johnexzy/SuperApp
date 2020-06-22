@@ -10,10 +10,12 @@ use Src\TableGateways\UserGateway;
 
 class UserController extends UserGateway
 {
-    protected $username, $password;
-    public function __construct($username, $password) {
+    protected $username, $password, $db;
+    public function __construct($username, $password, $db) {
+        parent::__construct($db);
         $this->username = $username;
         $this->password = $password;
+        $this->db = $db;
     }
     /**
      * Handles the incoming Auth Request, Interact with the Gateway and process output
