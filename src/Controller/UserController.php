@@ -30,7 +30,7 @@ class UserController extends UserGateway
     }
     private function LoginControlller($username, $password)
     {
-        $result = $this->Login($email, $password);
+        $result = $this->Login($username, $password);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = \json_encode($result);
         return $response;
