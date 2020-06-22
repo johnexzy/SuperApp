@@ -4,18 +4,20 @@
     $username = stripslashes(strip_tags($_POST['username']));
     $pass = stripslashes(strip_tags($_POST['password']));
     
-    $pass = strlen($pass) < 5 ? '' : $pass;
+    $pass = (strlen($pass) < 3) ? '' : $pass;
     if ($pass == '' || $username == '') {
       $msg = "Incorrect user details";
       exit;
     }
-    $res = json_decode(file_get_contents("http://127.0.0.1:8090/api/v1/user/$username/$pass"));
-    if ($res == 1) {
+    $res = [];
+    $res = json_decode(file_get_contents("http://127.0.0.1:3000/api/v1/user/$username/$pass"));
+    if ($res["status"] == 1) {
         //starts the session and log in user.
         $_SESSION["user"] = 1;
         header("Location: home.php");
 
     }
+    echo "john";
   }
 
 ?>
