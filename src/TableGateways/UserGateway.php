@@ -1,6 +1,8 @@
 <?php
 namespace Src\TableGateways;
 
+use PDO;
+
 class UserGateway{
     protected $db;
 
@@ -15,6 +17,12 @@ class UserGateway{
     EOS;
         $statement = $this->db->prepare($statement);
         $statement->execute();
-        $row = $statement->rowCount();
+        $result = $statement->fetch(\PDO::FETCH_ASSOC);
+        if (password_verify($password, $result["password"])) {
+            return array("status" => 1, "err" => 0);
+        }
+        else{
+            return array("status" => 0, "err" => 1);
+        }
     }
 }
