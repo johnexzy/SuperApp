@@ -184,6 +184,7 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="newsong.php"><i class="mdi mdi-music menu-icon"></i> Music </a></li>
                 <li class="nav-item"> <a class="nav-link" href="newalbum.php"> <i class="mdi mdi-album menu-icon"></i> Album</a></li>
+                <li class="nav-item"> <a class="nav-link" href="newvideo.php"> <i class="mdi mdi-video menu-icon"></i> Video</a></li>
               </ul>
             </div>
           </li>
