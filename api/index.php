@@ -7,6 +7,7 @@ header("Access-Control-Allow-Methods: OPTIONS, GET, POST, PUT, DELETE");
 header("Access-Control-Allow-Headers: Origin, Access-Control-Allow-Origin, Content-Type, Access-Control-Allow-Methods, X-Requested-With");
 
 require '../bootstrap.php';
+
 use Src\Controller\MusicController;
 use Src\Controller\CommentsController;
 use Src\Logic\MakeFile;
@@ -24,8 +25,11 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 
 
 if ($uri[2] == 'v1') {
+    
+    if ($uri[3] == 'user') {
         
-    if($uri[3] == 'music'){
+    }
+    elseif($uri[3] == 'music'){
         
         $input = null;
         $limit = null;
