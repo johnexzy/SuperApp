@@ -15,4 +15,12 @@ class UserController extends UserGateway
         $this->username = $username;
         $this->password = $password;
     }
+    /**
+     * Handles the incoming Auth Request, Interact with the Gateway and process output
+     * @return json
+     */
+    public function proccessRequest()
+    {
+        
+    }
 }
