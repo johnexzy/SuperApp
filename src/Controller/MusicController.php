@@ -23,9 +23,9 @@ namespace Src\Controller;
  *
  * @author Oba John
  */
-use Src\TableGateWays\MusicGateWay;
+use Src\TableGateways\MusicGateway;
 
-class MusicController extends MusicGateWay{
+class MusicController extends MusicGateway{
     
     private $db, $requestMethod, $input, $limit, $popular, $pageNo, $short_url, $id;
 
