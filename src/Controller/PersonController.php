@@ -2,7 +2,7 @@
 
 namespace Src\Controller;
 
-use Src\TableGateWays\PersonGateway;
+use Src\TableGateways\PersonGateway;
 
 class PersonController  
 {
