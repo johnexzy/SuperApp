@@ -23,13 +23,13 @@ namespace Src\Controller;
  *
  * @author Oba John
  */
-use Src\TableGateWays\AlbumGateWay;
+use Src\TableGateways\AlbumGateway;
 
 /**
  * Manages All Request Directed to Album.
  * Interact with the Album Gatway and processes all outputs
  */
-class AlbumController extends AlbumGateWay{
+class AlbumController extends AlbumGateway{
     
     private $requestMethod, $input, $limit, $pageNo, $short_url,  $popular;
     private $id = null;
