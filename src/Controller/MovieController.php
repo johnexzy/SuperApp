@@ -23,9 +23,9 @@ namespace Src\Controller;
  *
  * @author Oba John
  */
-use Src\TableGateWays\MovieGateway;
+use Src\TableGateways\MovieGateway;
 
-class MovieController extends MovieGateWay{
+class MovieController extends MovieGateway{
     
     private $db, $requestMethod, $input, $limit, $popular, $pageNo, $short_url, $id;
 
