@@ -24,6 +24,8 @@ namespace Src\TableGateWays;
  * @author hp
  */
 use Src\Logic\MakeFile;
+use Throwable;
+
 class ImageGateway {
     //put your code here
     private  $db = null;
@@ -50,6 +52,8 @@ class ImageGateway {
                 }
         }
         public function createImage(Array $images, string $key) {
+                if(!is_countable($images) || count($images) < 1)  return null;
+                
                 $statement = "
                         INSERT INTO images
                                 (image_url, image_key)

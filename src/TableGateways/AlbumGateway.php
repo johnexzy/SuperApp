@@ -37,6 +37,8 @@ class AlbumGateWay extends SongGateway {
                                 (:album_name, :album_details, :artist, :album_key, :short_url, :uploaded_by, :year, :popular)";
                 try {
                         $_key = md5($input['album_name'].mt_rand());
+                        if($this->imageInherited->createImage($input['images'], $_key) == null) throw new \PDOException("Error Processing Request", 1);
+                        
                         $query = $this->db->prepare($statement);
                         $query->execute(array(
                                 'album_name' => $input['album_name'],
@@ -49,7 +51,7 @@ class AlbumGateWay extends SongGateway {
                                 'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['album_name']."-".mt_rand()))
 
                         ));
-                        $this->imageInherited->createImage($input['images'], $_key);
+                        
                         $this->createAlbumSong($input['songs'], $input['album_name']."-".$input['artist'], $_key);
                         return $query->rowCount();
                 } catch (\PDOException $e) {

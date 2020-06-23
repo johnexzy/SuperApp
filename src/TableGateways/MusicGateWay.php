@@ -37,6 +37,9 @@ class MusicGateWay extends SongGateway {
                                 (:music_name, :music_details, :artist, :music_key, :short_url, :popular, :uploaded_by)";
                 try {
                         $_key = md5($input['music_name'].rand(123, 2345621));
+                        if($this->imageInherited->createImage($input['images'], $_key) == null) {
+                                throw new \PDOException("Error Processing Request", 1);
+                        }
                         $query = $this->db->prepare($statement);
                         $query->execute(array(
                                 'music_name' => $input['music_name'],
@@ -48,7 +51,6 @@ class MusicGateWay extends SongGateway {
                                 'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['music_name']."-".mt_rand()))
 
                         ));
-                        $this->imageInherited->createImage($input['images'], $_key);
                         $this->createSong($input['song'], $input['music_name']."-".$input['artist'], $_key);
                         return $query->rowCount();
                 } catch (\PDOException $e) {

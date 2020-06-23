@@ -30,6 +30,10 @@ class MovieGateway extends VideoGateway {
                                 (:video_name, :video_details, :video_key,  :category, :short_url, :uploaded_by, :popular)";
                 try {
                         $_key = md5($input['video_name'].mt_rand());
+                        if($this->imageInherited->createImage($input['images'], $_key) == null){
+                                throw new \PDOException("Error Processing Request", 1);
+                        } 
+                                
                         $query = $this->db->prepare($statement);
                         $query->execute(array(
                                 'video_name' => $input['video_name'],
@@ -41,7 +45,6 @@ class MovieGateway extends VideoGateway {
                                 'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['video_name']."-".mt_rand()))
 
                         ));
-                        $this->imageInherited->createImage($input['images'], $_key);
                         $this->createvideo($input['video'], $input['video_name']."-". mt_rand(0, 200), $_key);
                         return $query->rowCount();
                 } catch (\PDOException $e) {
