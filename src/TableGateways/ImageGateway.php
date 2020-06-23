@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Src\TableGateWays;
+namespace Src\TableGateways;
 
 /**
  * Description of ImageGateway
@@ -24,7 +24,6 @@ namespace Src\TableGateWays;
  * @author hp
  */
 use Src\Logic\MakeFile;
-use Throwable;
 
 class ImageGateway {
     //put your code here

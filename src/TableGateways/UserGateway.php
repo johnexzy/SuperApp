@@ -1,7 +1,6 @@
 <?php
 namespace Src\TableGateways;
 
-use PDO;
 
 class UserGateway{
     protected $db;

@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace Src\TableGateWays;
+namespace Src\TableGateways;
 
 /**
  * Description of MusicGateWay
@@ -14,9 +14,9 @@ namespace Src\TableGateWays;
  * @author ObaJohn
  */
 use Src\TableGateways\CommentsGateway;
-use Src\TableGateWays\SongGateway;
-use Src\TableGateWays\ImageGateway;
-class AlbumGateWay extends SongGateway {
+use Src\TableGateways\SongGateway;
+use Src\TableGateways\ImageGateway;
+class AlbumGateway extends SongGateway {
     private $db = null;
     private $imageInherited = null;
     private $comment = null;

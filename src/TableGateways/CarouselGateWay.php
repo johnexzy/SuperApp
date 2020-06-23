@@ -2,7 +2,7 @@
 namespace Src\TableGateways;
 
 use Src\Logic\MakeFile;
-use Src\TableGateWays\CommentsGateway;
+use Src\TableGateways\CommentsGateway;
 
 
 class CarouselGateway

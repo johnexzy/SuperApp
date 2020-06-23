@@ -23,13 +23,13 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 //all of the end points starts with person
 //everything else results in a 404
 
-
-if ($uri[2] == 'v1') {
+// echo json_encode($uri);
+if ($uri[2] == 'v1' && isset($uri[3])) {
     
     if ($uri[3] == 'user' && count($uri) == 6) {
         $username = strip_tags($uri[4]);
         $password = strip_tags($uri[5]);
-        
+
         $controller = new UserController($username, $password, $dbConnection);
         $controller->proccessRequest();
     }
