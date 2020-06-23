@@ -1,14 +1,14 @@
 <?php
 
-namespace Src\TableGateWays;
+namespace Src\TableGateways;
 
 /**
  * Description of MusicGateWay
  * @author ObaJohn
  */
-use Src\TableGateWays\VideoGateway;
-use Src\TableGateWays\CommentsGateway;
-use Src\TableGateWays\ImageGateway;
+use Src\TableGateways\VideoGateway;
+use Src\TableGateways\CommentsGateway;
+use Src\TableGateways\ImageGateway;
 class MovieGateway extends VideoGateway {
     private $db = null;
     private $imageInherited = null;
