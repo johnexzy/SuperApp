@@ -2,7 +2,7 @@
 
 namespace Src\Controller;
 
-use Src\TableGateWays\CommentsGateway;
+use Src\TableGateways\CommentsGateway;
 
 class CommentsController extends CommentsGateway
 {
