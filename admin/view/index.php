@@ -30,7 +30,8 @@ if(isset($uri[3])){
             echo "comments";
             break;
         default:
-            # album request handler
+            header("HTTP/1.1 404 Not Found");
+            exit();
             break;
     }
 }
