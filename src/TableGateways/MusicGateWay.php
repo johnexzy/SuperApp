@@ -107,7 +107,7 @@ class MusicGateway extends SongGateway {
                                 *
                         FROM
                                 music
-                        ORDER BY id 
+                        ORDER BY music_name 
                             DESC LIMIT $startFrom, $limit;";
                 try {   
                         $data = array();
