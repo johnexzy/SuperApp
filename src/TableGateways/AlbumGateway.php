@@ -219,6 +219,28 @@ class AlbumGateway extends SongGateway {
                         exit($e->getMessage());
                 }
         }
+
+        public function findByUrl($short_url)
+        {
+                $statement = "
+                        SELECT
+                                *
+                        FROM
+                                album
+                        WHERE short_url = ?;
+                ";
+                
+                try {   
+                        
+                        $statement = $this->db->prepare($statement);
+                        $statement->execute(array($short_url));
+                        $res = $statement->fetch(\PDO::FETCH_ASSOC);
+                        
+                        return is_countable($res) ? count($res) : 0;
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+        }
         public function update($uid, Array $input)
         {       $statement = "
                         UPDATE `News` 

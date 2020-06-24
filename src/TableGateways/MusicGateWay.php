@@ -187,7 +187,7 @@ class MusicGateway extends SongGateway {
                         $comm = $this->comment->findAllWithKey($res["music_key"]);
                         $songs = $this->getAllWithKey($res["music_key"]);
                         $images = $this->imageInherited->getPostImages($res["music_key"]);
-                        $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
+                        $res += ["audio" => $songs]; //pnly one file is needed. just incase
                         $res += ["images" => $images];
                         $res += ["comments" => $comm];
                         $result = $res;
@@ -197,7 +197,27 @@ class MusicGateway extends SongGateway {
                 }
         }
         
-        
+        public function findByUrl($short_url)
+        {
+                $statement = "
+                        SELECT
+                                *
+                        FROM
+                                music
+                        WHERE short_url = ?;
+                ";
+                
+                try {   
+                        
+                        $statement = $this->db->prepare($statement);
+                        $statement->execute(array($short_url));
+                        $res = $statement->fetch(\PDO::FETCH_ASSOC);
+                        
+                        return is_countable($res) ? count($res) : 0;
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+        }
         public function find($id)
         {
                 
