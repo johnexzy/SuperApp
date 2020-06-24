@@ -101,8 +101,8 @@ class MovieGateway extends VideoGateway {
                                 *
                         FROM
                                 movies
-                        ORDER BY id 
-                            DESC LIMIT $startFrom, $limit;";
+                        ORDER BY video_name 
+                            ASC LIMIT $startFrom, $limit;";
                 try {   
                         $data = array();
                         $statement = $this->db->query($statement);
