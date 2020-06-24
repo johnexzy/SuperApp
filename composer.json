@@ -4,7 +4,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Src\\": "src/"
+      "Src\\": "src/",
+      "ViewController\\": "admin/view/ViewController/"
     }
   }
 }
