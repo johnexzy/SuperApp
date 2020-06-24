@@ -4,9 +4,9 @@ $start = \strpos($base64img, "/") +1;
 $end = \strpos($base64img, ";");
 $ext = substr($base64img, $start, $end-$start);
 // echo $ext;
-$str = "lecceljohn";
+$str = "ebuka36779492#";
 $hash = password_hash($str, PASSWORD_DEFAULT);
-if (password_verify($str, '$2y$10$gND9LLz2Y5oVdzhjXFtnE.aVpVdK/iE0ROVOAQ/prs1KA/RSv2CYK')) {
+if (password_verify($str, '$2y$10$b7C9va5yo4Y0/lR3hNsTc.mm6JzmeiBlGZGDgJd5HOL53Aj8JrSie')) {
     echo "TRUE\n";
 }else echo "FALSE\n";
 echo(password_hash($str, PASSWORD_DEFAULT));
