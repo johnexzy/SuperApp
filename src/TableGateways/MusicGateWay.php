@@ -213,7 +213,7 @@ class MusicGateway extends SongGateway {
                         $statement->execute(array($short_url));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
                         
-                        return is_countable($res) ? count($res) : 0;
+                        return $res;
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
                 }
