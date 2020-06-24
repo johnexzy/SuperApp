@@ -104,7 +104,7 @@ class AlbumGateway extends SongGateway {
                                 *
                         FROM
                                 album
-                        ORDER BY id 
+                        ORDER BY album_name 
                             DESC LIMIT $startFrom, $limit;";
                 try {   
                         $data = array();
