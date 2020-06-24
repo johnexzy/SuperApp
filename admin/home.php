@@ -27,8 +27,8 @@
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
-          <a class="navbar-brand brand-logo" href="home.php"><img src="images/logo.svg" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="home.php"><img src="images/logo-mini.svg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo" href="home.php">Leccel</a>
+          <a class="navbar-brand brand-logo-mini" href="home.php">L</a>
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-sort-variant"></span>
           </button>
@@ -36,16 +36,7 @@
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <ul class="navbar-nav mr-lg-4 w-100">
-          <li class="nav-item nav-search d-none d-lg-block w-100">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="search">
-                  <i class="mdi mdi-magnify"></i>
-                </span>
-              </div>
-              <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
-            </div>
-          </li>
+          
         </ul>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown mr-1">
@@ -188,34 +179,11 @@
               </ul>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.php">
-              <i class="mdi mdi-view-headline menu-icon"></i>
-              <span class="menu-title">Form elements</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.php">
-              <i class="mdi mdi-chart-pie menu-icon"></i>
-              <span class="menu-title">Charts</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.php">
-              <i class="mdi mdi-grid-large menu-icon"></i>
-              <span class="menu-title">Tables</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/icons/mdi.php">
-              <i class="mdi mdi-emoticon menu-icon"></i>
-              <span class="menu-title">Icons</span>
-            </a>
-          </li>
+          
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
               <i class="mdi mdi-account menu-icon"></i>
-              <span class="menu-title">User Pages</span>
+              <span class="menu-title">Manage Nedia</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="auth">
