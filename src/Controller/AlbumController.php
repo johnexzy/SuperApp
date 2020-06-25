@@ -88,7 +88,11 @@ class AlbumController extends AlbumGateway{
         return $response;
     }
     private function getAlbumByUrl($short_url)
-    {
+    {   
+        $result = $this->findByUrl($short_url);
+        if (!$result) {
+            return $this->notFoundResponse();
+        }
         $result = $this->getByUrl($short_url);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = json_encode($result);

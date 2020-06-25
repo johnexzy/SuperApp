@@ -23,6 +23,39 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "src/TableGateways/MusicGateWay.php",
+			"settings":
+			{
+				"buffer_size": 12732,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "admin/js/audioController.js",
+			"settings":
+			{
+				"buffer_size": 5367,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "api/.htaccess",
+			"settings":
+			{
+				"buffer_size": 79,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "admin/js/albumController.js",
+			"settings":
+			{
+				"buffer_size": 5481,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -56,7 +89,10 @@
 	},
 	"expanded_folders":
 	[
-		"/C/xampp/htdocs/www/movies4u"
+		"/C/xampp/htdocs/www/movies4u",
+		"/C/xampp/htdocs/www/movies4u/api",
+		"/C/xampp/htdocs/www/movies4u/src",
+		"/C/xampp/htdocs/www/movies4u/src/TableGateways"
 	],
 	"file_history":
 	[
@@ -75,21 +111,21 @@
 		"/C/Program Files/MiKTeX 2.9/pdftex/config/pdftex.cfg",
 		"/C/xampp/htdocs/www/version/css/text.css",
 		"/C/xampp/htdocs/www/version/index.php",
-		"/C/Users/hp/Documents/docs/Alarm C.php",
-		"/C/Users/hp/Desktop/Script/demo/carousel-min-max.php",
-		"/C/Users/hp/Desktop/Script/demo/basic-slider-with-custom-direction-nav.php",
-		"/C/Users/hp/Desktop/Script/demo/index.php",
-		"/C/Users/hp/Desktop/Script/demo/dynamic-carousel-min-max.php",
-		"/C/Users/hp/Desktop/Script/demo/video-wistia.php",
-		"/C/Users/hp/Desktop/Script/demo/index-rtl.php",
-		"/C/Users/hp/Desktop/Script/demo/video.php",
-		"/C/Users/hp/Desktop/Script/demo/thumbnail-slider.php",
-		"/C/Users/hp/Desktop/Script/demo/basic-slider-with-caption.php",
-		"/C/Users/hp/Desktop/Script/demo/basic-carousel-rtl.php",
-		"/C/Users/hp/Desktop/Script/demo/asnavfor-rtl.php",
-		"/C/Users/hp/Desktop/Script/demo/basic-carousel.php",
-		"/C/Users/hp/Desktop/Script/demo/thumbnail-controlnav.php",
-		"/C/Users/hp/Documents/new.php",
+		"/C/Users/hp/Documents/docs/Alarm C.html",
+		"/C/Users/hp/Desktop/Script/demo/carousel-min-max.html",
+		"/C/Users/hp/Desktop/Script/demo/basic-slider-with-custom-direction-nav.html",
+		"/C/Users/hp/Desktop/Script/demo/index.html",
+		"/C/Users/hp/Desktop/Script/demo/dynamic-carousel-min-max.html",
+		"/C/Users/hp/Desktop/Script/demo/video-wistia.html",
+		"/C/Users/hp/Desktop/Script/demo/index-rtl.html",
+		"/C/Users/hp/Desktop/Script/demo/video.html",
+		"/C/Users/hp/Desktop/Script/demo/thumbnail-slider.html",
+		"/C/Users/hp/Desktop/Script/demo/basic-slider-with-caption.html",
+		"/C/Users/hp/Desktop/Script/demo/basic-carousel-rtl.html",
+		"/C/Users/hp/Desktop/Script/demo/asnavfor-rtl.html",
+		"/C/Users/hp/Desktop/Script/demo/basic-carousel.html",
+		"/C/Users/hp/Desktop/Script/demo/thumbnail-controlnav.html",
+		"/C/Users/hp/Documents/new.html",
 		"/C/Users/hp/AppData/Local/Microsoft/Windows/INetCache/IE/W5XBHCVW/attack[1].js"
 	],
 	"find":
@@ -125,8 +161,127 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "src/TableGateways/MusicGateWay.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12732,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 531.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "admin/js/audioController.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5367,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 567.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "api/.htaccess",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 79,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "admin/js/albumController.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5481,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 180.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
 			]
 		}
 	],
