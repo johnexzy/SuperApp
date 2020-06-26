@@ -1,7 +1,8 @@
 <?php
 
 // namespace ViewController\;
-namespace View;
+namespace Src\Controller\ViewController\ViewAlbum;
+
 
 use PDO;
 use Src\TableGateways\AlbumGateway;
@@ -9,7 +10,7 @@ use Src\TableGateways\AlbumGateway;
 /**
  * get album shortUrl and display Album
  */
-class viewAlbum extends AlbumGateway{
+class ViewAlbum extends AlbumGateway{
     protected PDO $db;
     protected $short_url;
     public function __construct(String $short_url, PDO $db) {
