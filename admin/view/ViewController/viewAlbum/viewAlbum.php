@@ -20,6 +20,9 @@ class viewAlbum extends AlbumGateway{
     public function getAlbum($short_url)
     {
         $res = $this->findByUrl($short_url);
+        if (!$res) {
+            return null;
+        }
         $res = $this->getByUrl($short_url);
         return $res;
     }
