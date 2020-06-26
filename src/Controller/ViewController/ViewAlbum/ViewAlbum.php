@@ -5,7 +5,7 @@ namespace Src\Controller\ViewController\ViewAlbum;
 
 
 use PDO;
-use Src\Layout\NavBarClass;
+use Src\Layout\LayoutClass;
 use Src\TableGateways\AlbumGateway;
 /**
  * get album shortUrl and display Album
@@ -39,7 +39,7 @@ class ViewAlbum extends AlbumGateway{
                 <h1>Page not found. 404</h1>
             HTML;
         }
-        $navBar = NavBarClass::navBar;
+        $navBar = LayoutClass::navBar;
         return<<<HTML
             
 <!DOCTYPE html>

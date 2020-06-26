@@ -1,6 +1,6 @@
 <?php
 namespace Src\Layout;
-class NavBarClass
+class LayoutClass
 {
     const navBar = <<<HTML
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
