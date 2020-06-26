@@ -143,4 +143,7 @@ class LayoutClass
             </div>
             </nav>
 HTML;
+    const sideBar = <<<HTML
+    
+HTML;
 }
