@@ -17,10 +17,16 @@ class viewAlbum extends AlbumGateway{
         $this->db = $db;
     }
 
-    public function getAlbum()
+    public function getAlbum($short_url)
     {
-        $res = $this->getByUrl($this->short_url);
+        $res = $this->findByUrl($short_url);
+        $res = $this->getByUrl($short_url);
+        return $res;
     }
 
+    public function bodyParser()
+    {
+        
+    }
 
 }

@@ -37,3 +37,6 @@ if(isset($uri[3]) && isset($uri[4])){
             break;
     }
 }
+else{
+    header("HTTP/1.1 404 Not Found");
+}
