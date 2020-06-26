@@ -158,7 +158,7 @@ class ViewAlbum extends AlbumGateway
                                 <div class="card-footer">
                                     <button type="button" class="btn btn-primary btn-icon-text" id="handleSubmit"><i
                                                 class="mdi mdi-upload btn-icon-prepend"></i>
-                                            Upload</button>
+                                            Upload Changes</button>
                                     <button class="btn btn-light">Cancel</button>
                                 </div>
                                 <div class="progress" style="height: 40px; font-weight: 800; font-size: 18px;">
