@@ -41,6 +41,14 @@ class ViewAlbum extends AlbumGateway
                 <h1>Page not found. 404</h1>
             HTML;
   }
+  $images = "";
+  foreach ($response["images"] as $image) {
+      $images .= <<<HTML
+            <li tabindex="0" class="el-upload-list__item is-ready">
+                <img src="/$image" alt="" class="el-upload-list__item-thumbnail">
+            </li>
+ HTML;
+  }
   $navBar  = LayoutClass::navBar;
   $sideBar = LayoutClass::sideBar;
   $footer  = LayoutClass::footer;
@@ -125,7 +133,7 @@ class ViewAlbum extends AlbumGateway
                                     </div>
                                     <div class="form-group">
                                         <ul class="el-upload-list el-upload-list--picture-card image-list">
-
+                                            $images
                                         </ul>
                                         <div class="del-thumbnail item-delete" style="display: none;">
                                             <i class="mdi mdi-24px mdi-delete"></i>
