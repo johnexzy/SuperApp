@@ -1,5 +1,6 @@
 <?php
   require './session.php';
+  require '../bootstrap.php';
   use Src\Layout\LayoutClass;
 ?>
 <!DOCTYPE html>
@@ -25,11 +26,11 @@
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.php -->
-    <?php LayoutClass::navBar ?>
+    <?= LayoutClass::navBar ?>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_sidebar.php -->
-      <?php LayoutClass::sideBar ?>
+      <?= LayoutClass::sideBar ?>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -239,7 +240,7 @@
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.php -->
-        <?php LayoutClass::footer ?>
+        <?= LayoutClass::footer ?>
         <!-- partial -->
       </div>
       <!-- main-panel ends -->
