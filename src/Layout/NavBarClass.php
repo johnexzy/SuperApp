@@ -2,7 +2,7 @@
 namespace Src\Layout;
 class NavBarClass
 {
-    const returnLayout = <<<HTML
+    const navBar = <<<HTML
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="navbar-brand-wrapper d-flex justify-content-center">
                 <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
@@ -60,7 +60,7 @@ class NavBarClass
                     </a>
                     <a class="dropdown-item">
                         <div class="item-thumbnail">
-                            <img src="/admin/images/faces/face3.jpg" alt="image" class="profile-pic">
+                            <img src="images/faces/face3.jpg" alt="image" class="profile-pic">
                         </div>
                         <div class="item-content flex-grow">
                         <h6 class="ellipsis font-weight-normal"> Johnson
@@ -123,7 +123,7 @@ class NavBarClass
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                     
-                    <span class="nav-profile-name">$_SESSION[user]</span>
+                    <span class="nav-profile-name">Leccel</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                     <a class="dropdown-item">

@@ -5,8 +5,8 @@ namespace Src\Controller\ViewController\ViewAlbum;
 
 
 use PDO;
-use Src\TableGateways\AlbumGateway;
 use Src\Layout\NavBarClass;
+use Src\TableGateways\AlbumGateway;
 /**
  * get album shortUrl and display Album
  */
@@ -39,7 +39,7 @@ class ViewAlbum extends AlbumGateway{
                 <h1>Page not found. 404</h1>
             HTML;
         }
-        $nav = NavBarClass::returnNavLayout();
+        $navBar = NavBarClass::navBar;
         return<<<HTML
             
 <!DOCTYPE html>
@@ -68,10 +68,80 @@ class ViewAlbum extends AlbumGateway{
 <body>
     <div class="container-scroller">
         <!-- partial:partials/_navbar.php -->
+        $navBar
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_sidebar.php -->
-            NavBarClass::returnNavLayout()
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.php">
+                    <i class="mdi mdi-home menu-icon"></i>
+                    <span class="menu-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                    <i class="mdi mdi-upload-multiple menu-icon"></i>
+                    <span class="menu-title">ADD NEW</span>
+                    <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-basic">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="newsong.php"><i class="mdi mdi-music menu-icon"></i> Music </a></li>
+                        <li class="nav-item"> <a class="nav-link" href="newalbum.php"> <i class="mdi mdi-album menu-icon"></i> Album</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="newvideo.php"> <i class="mdi mdi-video menu-icon"></i> Video</a></li>
+                    </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/forms/basic_elements.php">
+                    <i class="mdi mdi-view-headline menu-icon"></i>
+                    <span class="menu-title">Form elements</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/charts/chartjs.php">
+                    <i class="mdi mdi-chart-pie menu-icon"></i>
+                    <span class="menu-title">Charts</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/tables/basic-table.php">
+                    <i class="mdi mdi-grid-large menu-icon"></i>
+                    <span class="menu-title">Tables</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/icons/mdi.php">
+                    <i class="mdi mdi-emoticon menu-icon"></i>
+                    <span class="menu-title">Icons</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                    <i class="mdi mdi-account menu-icon"></i>
+                    <span class="menu-title">User Pages</span>
+                    <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="auth">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="pages/samples/login.php"> Login </a></li>
+                        <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.php"> Login 2 </a></li>
+                        <li class="nav-item"> <a class="nav-link" href="pages/samples/register.php"> Register </a></li>
+                        <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.php"> Register 2 </a></li>
+                        <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.php"> Lockscreen </a></li>
+                    </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="documentation/documentation.php">
+                    <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+                    <span class="menu-title">Documentation</span>
+                    </a>
+                </li>
+                </ul>
+            </nav>
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
