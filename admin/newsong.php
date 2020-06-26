@@ -1,5 +1,5 @@
 <?php
-
+require '../bootstrap.php';
 use Src\Layout\LayoutClass;
 
 require './session.php';
