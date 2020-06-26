@@ -38,6 +38,7 @@ class ViewAlbum extends AlbumGateway{
                 <h1>Page not found. 404</h1>
             HTML;
         }
+        
 
     }
 
