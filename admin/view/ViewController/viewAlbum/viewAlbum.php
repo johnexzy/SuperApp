@@ -29,6 +29,13 @@ class viewAlbum extends AlbumGateway{
 
     public function bodyParser()
     {
+        $response = $this->getAlbum($this->short_url);
+
+        if (!$response) {
+            return <<<HTML
+                <h1>Page not found. 404</h1>
+            HTML;
+        }
         
     }
 
