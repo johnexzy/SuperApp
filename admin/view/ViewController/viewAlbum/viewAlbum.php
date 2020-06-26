@@ -1,7 +1,7 @@
 <?php
 
 // namespace ViewController\;
-namespace Admin\view\ViewController\viewAlbum;
+namespace View;
 
 use PDO;
 use Src\TableGateways\AlbumGateway;

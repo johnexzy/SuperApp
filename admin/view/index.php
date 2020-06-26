@@ -6,7 +6,7 @@ require '../../bootstrap.php';
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $uri = explode('/', $uri);
-use ViewController\viewAlbum\viewAlbum;
+use View\viewAlbum;
 if(isset($uri[3]) && isset($uri[4])){
     $group = strip_tags($uri[3]);
     $short_url = strip_tags($uri[4]);
