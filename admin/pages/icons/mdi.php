@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Majestic Admin</title>
+  <title>Leccel Admin</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
@@ -629,7 +629,7 @@
                         <i class="mdi mdi-barrel"></i> mdi mdi-barrel
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3">
-                        <i class="mdi mdi-Majestic"></i> mdi mdi-Majestic
+                        <i class="mdi mdi-Leccel"></i> mdi mdi-Leccel
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <i class="mdi mdi-basket"></i> mdi mdi-basket
