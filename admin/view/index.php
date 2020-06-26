@@ -2,7 +2,7 @@
 
 use Src\Controller\ViewController\ViewAlbum\ViewAlbum;
 
-
+require '../session.php';
 require '../../bootstrap.php';
 
 
