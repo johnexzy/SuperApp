@@ -1,6 +1,7 @@
 <?php
 
-namespace ViewController\viewAlbum;
+// namespace ViewController\;
+namespace Admin\view\ViewController\viewAlbum;
 
 use PDO;
 use Src\TableGateways\AlbumGateway;
@@ -36,7 +37,7 @@ class viewAlbum extends AlbumGateway{
                 <h1>Page not found. 404</h1>
             HTML;
         }
-        
+
     }
 
 }
