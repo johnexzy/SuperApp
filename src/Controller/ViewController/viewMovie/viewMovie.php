@@ -80,18 +80,23 @@ class ViewMovie extends MovieGateway
 <body>
     <div class="container-scroller">
         <!-- partial:partials/_navbar.php -->
-        <?=LayoutClass::navBar ?>
+        $navBar
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_sidebar.php -->
-            <?=LayoutClass::sideBar ?>
+            $sideBar
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="row">
                         <div class="col-12 grid-margin stretch-card">
                             <div class="card">
-                                <div class="card-header">New Video</div>
+                                <div class="card-header">
+                                    <h3 class="text-center" style="font-family:monospace">
+                                        <i class="mdi mdi-pen"></i>
+                                        $response[video_name]
+                                    </h3>
+                                </div>
                                 <div class="card-body">
                                    <div class="alert alert-success status-msg" style="display: none;">Video Added Successfully</div>
                                    <form class="forms-sample">
@@ -99,7 +104,7 @@ class ViewMovie extends MovieGateway
                                         <label for="postTitle">Title</label>
                                         <font size="0.6" id="titleCap" style="display: block; display: none; text-align: right; float: right;">
                                             Required</font>
-                                        <input type="text" class="form-control" id="video_title" placeholder="Video Title">
+                                        <input type="text" value="$response[video_name]" class="form-control" id="video_title" placeholder="Video Title">
                                     </div>
                                     <div class="form-group">
                                         <label for="postTitle">Category</label>
@@ -133,12 +138,12 @@ class ViewMovie extends MovieGateway
                                         <label for="postBody">About Video</label>
                                         <font size="0.6" id="AboutCap" style="display: block; display: none; text-align: right; float: right;">
                                             Required</font>
-                                        <textarea class="form-control" id="about_video" rows="16"></textarea>
+                                        <textarea class="form-control" id="about_video" rows="16">$response[video_details]</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="postTitle">Uploaded by</label>
                                         
-                                        <input type="text" class="form-control" id="author" value="Leccel" disabled>
+                                        <input type="text" class="form-control" id="author" value="$response[uploaded_by]" disabled>
                                     </div>
                                     <div class="form-group">
                                         <ul class="el-upload-list el-upload-list--picture-card image-list">
@@ -184,7 +189,7 @@ class ViewMovie extends MovieGateway
                     </div>
                 </div>
                 <!-- partial:partials/_footer.php -->
-                <?=LayoutClass::footer ?>
+                $footer
                 <!-- partial -->
             </div>
         </div>
