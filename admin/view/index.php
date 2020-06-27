@@ -1,6 +1,7 @@
 <?php
 
 use Src\Controller\ViewController\ViewAlbum\ViewAlbum;
+use Src\Controller\ViewController\ViewMovie\ViewMovie;
 
 require '../session.php';
 require '../../bootstrap.php';
@@ -22,7 +23,8 @@ if(isset($uri[3]) && isset($uri[4])){
         
         case 'movie':
             # movie request handler
-            echo "movie";
+            $movie = new ViewMovie($short_url, $dbConnection);
+            echo $movie->bodyParser();
             break;
 
         case 'album':
