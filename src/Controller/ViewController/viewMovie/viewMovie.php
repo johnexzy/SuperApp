@@ -1,7 +1,7 @@
 <?php
 
 // namespace ViewController\;
-namespace Src\Controller\ViewController\ViewMoview;
+namespace Src\Controller\ViewController\ViewMovie;
 
 use PDO;
 use Src\Layout\LayoutClass;
@@ -10,7 +10,7 @@ use Src\TableGateways\MovieGateway;
 /**
  * get album shortUrl and display Album
  */
-class ViewAlbum extends MovieGateway
+class ViewMovie extends MovieGateway
 {
  protected $db;
  protected $_short_url;
@@ -34,7 +34,7 @@ class ViewAlbum extends MovieGateway
 
  public function bodyParser()
  {
-  $response = $this->getAlbum($this->short_url);
+  $response = $this->getMovie($this->short_url);
 
   if (!$response) {
    return <<<HTML
@@ -80,60 +80,69 @@ class ViewAlbum extends MovieGateway
 <body>
     <div class="container-scroller">
         <!-- partial:partials/_navbar.php -->
-        $navBar
+        <?=LayoutClass::navBar ?>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_sidebar.php -->
-            $sideBar
+            <?=LayoutClass::sideBar ?>
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="row">
                         <div class="col-12 grid-margin stretch-card">
                             <div class="card">
-                                <div class="card-header">
-                                    <h3 class="text-center" style="font-family:monospace">
-                                        <i class="mdi mdi-pencil"></i>
-                                        $response[album_name]
-                                    </h3> 
-                                </div>
+                                <div class="card-header">New Video</div>
                                 <div class="card-body">
-                                   <div class="alert alert-success status-msg" style="display: none;">Post Created Successfully</div>
+                                   <div class="alert alert-success status-msg" style="display: none;">Video Added Successfully</div>
                                    <form class="forms-sample">
                                     <div class="form-group">
                                         <label for="postTitle">Title</label>
                                         <font size="0.6" id="titleCap" style="display: block; display: none; text-align: right; float: right;">
                                             Required</font>
-                                        <input type="text" class="form-control" id="album_title" placeholder="Song Title" value="$response[album_name]">
+                                        <input type="text" class="form-control" id="video_title" placeholder="Video Title">
                                     </div>
                                     <div class="form-group">
-                                        <label for="postTitle">Artist</label>
-                                        <font size="0.6" id="artistCap" style="display: block; display: none; text-align: right; float: right;">
-                                            Required</font>
-                                        <input type="text" class="form-control" id="artist" placeholder="Artist" value="$response[artist]">
+                                        <label for="postTitle">Category</label>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="HollyWood" >
+                                                HollyWood
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="NollyWood">
+                                                NollyWood
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="BollyWood">
+                                                BollyWood
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="Others" checked>
+                                                Others?
+                                            </label>
+                                        </div>
                                     </div>
 
-
                                     <div class="form-group">
-                                        <label for="postBody">About this Song</label>
+                                        <label for="postBody">About Video</label>
                                         <font size="0.6" id="AboutCap" style="display: block; display: none; text-align: right; float: right;">
                                             Required</font>
-                                        <textarea class="form-control" id="about_album" rows="16">$response[album_details]</textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="postBody">YEAR OF RELEASE</label>
-                                        <font size="0.6" id="yearCap" style="display: block; display: none; text-align: right; float: right;">
-                                            Required</font>
-                                        <input type="number" class="form-control" id="album_year" placeholder="2020" value="$response[year]">
+                                        <textarea class="form-control" id="about_video" rows="16"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="postTitle">Uploaded by</label>
-
-                                        <input type="text" class="form-control" id="author" value="$response[uploaded_by]" disabled>
+                                        
+                                        <input type="text" class="form-control" id="author" value="Leccel" disabled>
                                     </div>
                                     <div class="form-group">
                                         <ul class="el-upload-list el-upload-list--picture-card image-list">
-                                            $images
+
                                         </ul>
                                         <div class="del-thumbnail item-delete" style="display: none;">
                                             <i class="mdi mdi-24px mdi-delete"></i>
@@ -145,28 +154,26 @@ class ViewAlbum extends MovieGateway
                                     </div>
                                     <hr>
                                     <div class="form-group">
-                                        <ul class="el-upload-list el-upload-list--picture-card audio-active">
-
+                                        <ul class="el-upload-list el-upload-list--picture-card video-active">
+                                            
                                         </ul>
-                                        <div class="del-song item-delete" style="display: none;">
-                                            <i class="mdi mdi-24px mdi-delete"></i>
-                                        </div>
-
-                                        <input type="file" name="audio[]" class="file-upload-default audio-upload" accept="audio/*" multiple>
+                                        
+                                        
+                                        <input type="file" name="video" class="file-upload-default video-upload" accept="video/*">
                                         <div class="el-upload el-upload--picture-card openfile">
-                                            <i class="mdi mdi-48px mdi-music-note-plus"></i>
+                                            <i class="mdi mdi-48px mdi-video"></i>
                                         </div>
                                     </div>
+                                    
                                     <div class="form-group">
                                         <input type="checkbox" name="popular" class="form-check-success" id="popular"> Add to popular?
                                     </div>
-
                                 </form>
                                 </div>
                                 <div class="card-footer">
                                     <button type="button" class="btn btn-primary btn-icon-text" id="handleSubmit"><i
                                                 class="mdi mdi-upload btn-icon-prepend"></i>
-                                            Upload Changes</button>
+                                            Upload</button>
                                     <button class="btn btn-light">Cancel</button>
                                 </div>
                                 <div class="progress" style="height: 40px; font-weight: 800; font-size: 18px;">
@@ -177,7 +184,7 @@ class ViewAlbum extends MovieGateway
                     </div>
                 </div>
                 <!-- partial:partials/_footer.php -->
-                $footer
+                <?=LayoutClass::footer ?>
                 <!-- partial -->
             </div>
         </div>
