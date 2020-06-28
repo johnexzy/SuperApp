@@ -49,6 +49,19 @@ class ViewMovie extends MovieGateway
             </li>
  HTML;
   }
+  $videos = "";
+  foreach ($response["videos"] as $video) {
+      $bytes = ceil($video["video_bytes"]/(1024*1024));
+      $videos .= <<<HTML
+                <li class='el-upload-list__item is-ready'>
+                    <div class='el-upload-list__item-thumbnail'>
+                        name: $response[video_name]
+                        <br>
+                        size: <b>$bytes mb</b>
+                    </div>
+                </li>
+    HTML;
+  }
   $navBar  = LayoutClass::navBar;
   $sideBar = LayoutClass::sideBar;
   $footer  = LayoutClass::footer;
@@ -147,7 +160,7 @@ class ViewMovie extends MovieGateway
                                     </div>
                                     <div class="form-group">
                                         <ul class="el-upload-list el-upload-list--picture-card image-list">
-
+                                            $images
                                         </ul>
                                         <div class="del-thumbnail item-delete" style="display: none;">
                                             <i class="mdi mdi-24px mdi-delete"></i>
@@ -160,7 +173,7 @@ class ViewMovie extends MovieGateway
                                     <hr>
                                     <div class="form-group">
                                         <ul class="el-upload-list el-upload-list--picture-card video-active">
-                                            
+                                            $videos
                                         </ul>
                                         
                                         
