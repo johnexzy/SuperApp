@@ -52,6 +52,10 @@
           <div class="row">
           <?php 
             foreach ($res as $music) {
+              $image = isset($music["images"][0]) ? $music["images"][0] : "uploads/images/20200531111530182851488.jpg";
+              // foreach ($music["images"] as $value) {
+              //   $image = $value;
+              // }
               echo <<<HTML
                     <div class="col-md-4 grid-margin stretch-card">
                       <div class="card card-outline-primary card-rounded card-inverse-info grid-margin stretch-card">
@@ -65,7 +69,7 @@
                           </div>
                           <div class="card-body">
                                 <div class="card-img-holder">
-                                    <img class="card-img" src="../$music[images][0]" alt="Love the Way You are Image Banner">
+                                    <img class="card-img" src="../$image" alt="Love the Way You are Image Banner">
                                 </div>
                           </div>
                           <div class="card-footer">
@@ -140,6 +144,7 @@
   <script src="js/off-canvas.js"></script>
   <script src="js/hoverable-collapse.js"></script>
   <script src="js/template.js"></script>
+  <script src="js/managemusic.js"></script>
   <!-- endinject -->
   <!-- End custom js for this page-->
 </body>
