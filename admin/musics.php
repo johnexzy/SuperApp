@@ -75,11 +75,11 @@
                           <div class="card-footer">
                               <div class="text-right">
                                 <a href="" class="text-decoration-none">
-                                    <button type="button" class="btn btn-info btn-rounded btn-icon">
+                                    <button type="button" class="btn btn-info btn-rounded btn-icon edit">
                                         <i class="mdi mdi-pencil"></i>
                                     </button>
                                 </a>
-                                <button type="button" class="btn btn-danger btn-rounded btn-icon">
+                                <button type="button" class="btn btn-danger btn-rounded btn-icon delete">
                                     <i class="mdi mdi-delete"></i>
                                 </button>
                                 
