@@ -282,6 +282,11 @@ class MusicGateway extends SongGateway {
                         exit($th->getMessage());
                 }
         }
+        /**
+         * Deletes a record from db. unlink all raw files
+         * @param int $id
+         * @return int
+         */
         public function delete($id)
         {
                 $res = $this->find($id);
