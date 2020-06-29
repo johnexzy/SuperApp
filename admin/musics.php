@@ -50,6 +50,9 @@
                   <div class="card-header">
                       <div class="card-header-pills">
                         <h3 style="font-family: monospace;" class="text-center">
+                            <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon">
+                                <i class="mdi mdi-music text-dark"></i>
+                            </button>    
                             Love the way you are
                         </h3>
                       </div>
@@ -59,12 +62,15 @@
                   </div>
                   <div class="card-footer">
                       <div class="text-right">
-                        <button type="button" class="btn btn-info btn-rounded btn-icon">
-                            <i class="mdi mdi-pencil"></i>
-                        </button>
+                        <a href="">
+                            <button type="button" class="btn btn-info btn-rounded btn-icon">
+                                <i class="mdi mdi-pencil"></i>
+                            </button>
+                        </a>
                         <button type="button" class="btn btn-danger btn-rounded btn-icon">
                             <i class="mdi mdi-delete"></i>
                         </button>
+                        
                       </div>
                   </div>
               </div>
