@@ -45,10 +45,19 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-7 grid-margin stretch-card">
-              
+            <div class="col-md-4 grid-margin stretch-card">
+              <div class="card stretch-card">
+                  <div class="card-header">
+                      <div class="card-header-pills">
+
+                      </div>
+                  </div>
+                  <div class="card-body">
+
+                  </div>
+              </div>
             </div>
-            <div class="col-md-5 grid-margin stretch-card">
+            <div class="col-md-4 grid-margin stretch-card">
             
             </div>
           </div>
@@ -68,8 +77,6 @@
   <!-- plugins:js -->
   <script src="vendors/base/vendor.bundle.base.js"></script>
   <!-- endinject -->
-  <!-- Plugin js for this page-->
-  <!-- End plugin js for this page-->
   <!-- inject:js -->
   <script src="js/off-canvas.js"></script>
   <script src="js/hoverable-collapse.js"></script>
