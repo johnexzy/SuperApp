@@ -284,6 +284,8 @@ class MusicGateway extends SongGateway {
         }
         public function delete($id)
         {
+                $res = $this->find($id);
+                
                 $statement = "DELETE FROM `music` WHERE `music`.`id` = :id";
 
                 try {

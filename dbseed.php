@@ -296,10 +296,12 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 EOS;
-
+$state = <<<EOS
+        SELECT * FROM `music`
+EOS;
 try {
-    $createTable = $dbConnection->exec($statement);
-    echo "\nSuccess!\n";
+    $createTable = $dbConnection->exec($state);
+    echo "\n$createTable!\n";
 } catch (\PDOException $e) {
     exit($e->getMessage());
 }
