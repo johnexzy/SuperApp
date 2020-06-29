@@ -285,8 +285,10 @@ class MusicGateway extends SongGateway {
         public function delete($id)
         {
                 $res = $this->find($id);
-                
-                $statement = "DELETE FROM `music` WHERE `music`.`id` = :id";
+                $key = $res["music_key"];
+                $statement = <<<EOS
+                        DELETE FROM `music` WHERE `music`.`id = $id
+                EOS;
 
                 try {
                         $statement=$this->db->prepare($statement);
