@@ -46,14 +46,26 @@
           </div>
           <div class="row">
             <div class="col-md-4 grid-margin stretch-card">
-              <div class="card stretch-card">
+              <div class="card grid-margin stretch-card">
                   <div class="card-header">
                       <div class="card-header-pills">
-
+                        <h3 style="font-family: monospace;" class="text-center">
+                            Love the way you are
+                        </h3>
                       </div>
                   </div>
                   <div class="card-body">
-
+                        <img class="card-img" src="../uploads/images/20200614172008989640171.jpg" alt="" srcset="">
+                  </div>
+                  <div class="card-footer">
+                      <div class="text-right">
+                        <button type="button" class="btn btn-info btn-rounded btn-icon">
+                            <i class="mdi mdi-pencil"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-rounded btn-icon">
+                            <i class="mdi mdi-delete"></i>
+                        </button>
+                      </div>
                   </div>
               </div>
             </div>
