@@ -73,13 +73,13 @@
                                 </div>
                           </div>
                           <div class="card-footer">
-                              <div class="text-right" id="$music[id]">
+                              <div class="text-right" id="$music[id]" >
                                 <a href="" class="text-decoration-none">
                                     <button type="button" class="btn btn-info btn-rounded btn-icon edit">
                                         <i class="mdi mdi-pencil"></i>
                                     </button>
                                 </a>
-                                <button type="button" class="btn btn-danger btn-rounded btn-icon delete">
+                                <button type="button" class="btn btn-danger btn-rounded btn-icon delete" name="$music[music_name]">
                                     <i class="mdi mdi-delete"></i>
                                 </button>
                                 

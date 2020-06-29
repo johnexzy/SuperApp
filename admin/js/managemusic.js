@@ -4,14 +4,23 @@
     $(function(){
         $(".delete").on("click", function(){
             let music_id = $(this).parent().prop("id")
+            let music_name = $(this).prop("name")
+            alert(music_name)
+            let ask = confirm(`Proceed to Delete "${music_name}" and all of its components ?`);
+            if (!ask) {
+                return null;
+            }
             $.ajax({
                 url:`http://127.0.0.1:8090/api/v1/music/delete/${music_id}`,
                 type: "DELETE"
             })
-            .done((data)=> console.log(data))
+            .done((data)=> {
+                data == 1 ? $(this).parent().parent().parent().parent().hide() : null;
+                console.log(data)
+            })
             .fail((err)=>console.log(err.responseText))
 
-            // $(this).parent().parent().parent().parent().hide()
+            // 
         })
     })
 })(jQuery)
