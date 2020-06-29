@@ -2,6 +2,9 @@
   require './session.php';
   require '../bootstrap.php';
   use Src\Layout\LayoutClass;
+  use Src\TableGateways\MusicGateway;
+
+  $gateway = new MusicGateway($dbConnection);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,23 +49,23 @@
           </div>
           <div class="row">
             <div class="col-md-4 grid-margin stretch-card">
-              <div class="card grid-margin stretch-card">
+              <div class="card card-outline-primary card-rounded card-inverse-info grid-margin stretch-card">
                   <div class="card-header">
-                      <div class="card-header-pills">
                         <h3 style="font-family: monospace;" class="text-center">
                             <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon">
                                 <i class="mdi mdi-music text-dark"></i>
                             </button>    
                             Love the way you are
                         </h3>
-                      </div>
                   </div>
                   <div class="card-body">
-                        <img class="card-img" src="../uploads/images/20200614172008989640171.jpg" alt="" srcset="">
+                        <div class="card-img-holder">
+                            <img class="card-img" src="../uploads/images/20200614172008989640171.jpg" alt="Love the Way You are Image Banner">
+                        </div>
                   </div>
                   <div class="card-footer">
                       <div class="text-right">
-                        <a href="">
+                        <a href="" class="text-decoration-none">
                             <button type="button" class="btn btn-info btn-rounded btn-icon">
                                 <i class="mdi mdi-pencil"></i>
                             </button>
