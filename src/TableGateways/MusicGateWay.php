@@ -159,7 +159,7 @@ class MusicGateway extends SongGateway {
                                 $comm = $this->comment->findAllWithKey($res["music_key"]);
                                 $songs = $this->getAllWithKey($res["music_key"]);
                                 $images = $this->imageInherited->getPostImages($res["music_key"]);
-                                $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
+                                $res += ["audio" => $songs]; //pnly one file is needed. just incase
                                 $res += ["images" => $images];
                                 $res += ["comments" => $comm];
                                 $result[] = $res;
@@ -236,7 +236,7 @@ class MusicGateway extends SongGateway {
                         $comm = $this->comment->findAllWithKey($res["music_key"]);
                         $songs = $this->getAllWithKey($res["music_key"]);
                         $images = $this->imageInherited->getPostImages($res["music_key"]);
-                        $res += ["audio" => $songs[0]]; //pnly one file is needed. just incase
+                        $res += ["audio" => $songs]; //pnly one file is needed. just incase
                         $res += ["images" => $images];
                         $res += ["comments" => $comm];
                         $result = $res;
@@ -302,10 +302,10 @@ class MusicGateway extends SongGateway {
                         $statement=$this->db->prepare($statement);
                         if($statement->execute()){
                                 foreach ($res["images"] as $images) {
-                                        unlink("/$images");
+                                        unlink("../$images");
                                 }
                                 foreach ($res["audio"] as $audio) {
-                                        unlink("/$audio[song_url]");
+                                        unlink("../$audio[song_url]");
                                 }
                         }
                         return $statement->rowCount();
