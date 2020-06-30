@@ -274,13 +274,33 @@ class AlbumGateway extends SongGateway {
                         exit($th->getMessage());
                 }
         }
+
+        /**
+         * Deletes a record from db. unlink all raw files
+         * @param int $id
+         * @return int
+         */
         public function delete($id)
         {
-                $statement = "DELETE FROM `album` WHERE `album`.`id` = :id";
+                $res = $this->find($id);
+                $key = $res["album_key"];
+                $statement = <<<EOS
+                        DELETE FROM `album` WHERE `album`.`id` = $id;
+                        DELETE FROM `images` WHERE `images`.`image_key` = $key;
+                        DELETE FROM `songs` WHERE `songs`.`song_key` = $key;
+                        DELETE FROM `comment` WHERE `comment`.`comment_key` = $key;
+                EOS;
 
                 try {
                         $statement=$this->db->prepare($statement);
-                        $statement->execute(array('id' => $id));
+                        if($statement->execute()){
+                                foreach ($res["images"] as $images) {
+                                        unlink("../$images");
+                                }
+                                foreach ($res["audio"] as $audio) {
+                                        unlink("../$audio[song_url]");
+                                }
+                        }
                         return $statement->rowCount();
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
