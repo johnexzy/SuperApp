@@ -100,13 +100,13 @@
         <hr>
             <nav class="nav d-flex align-items-center justify-content-center" aria-label="Album-pager">
               <ul class="pagination">
-                <li class="page-item prev">
+                <li class="page-item">
                   <a class="page-link" href="<?=$prev ?>">
                     <i class="mdi mdi-arrow-left-bold"></i>
                   </a>
                 </li>
 
-                <li class="page-item next">
+                <li class="page-item">
                   <a class="page-link" href="<?=$next ?>">
                     <i class="mdi mdi-arrow-right-bold"></i>
                   </a>
