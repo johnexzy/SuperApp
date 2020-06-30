@@ -5,7 +5,6 @@
         $(".delete").on("click", function(){
             let music_id = $(this).parent().prop("id")
             let music_name = $(this).prop("name")
-            alert(music_name)
             let ask = confirm(`Proceed to Delete "${music_name}" and all of its components ?`);
             if (!ask) {
                 return null;
