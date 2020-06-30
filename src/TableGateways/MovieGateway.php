@@ -282,13 +282,33 @@ class MovieGateway extends VideoGateway {
                         exit($th->getMessage());
                 }
         }
+        
+        /**
+         * Deletes a record from db. unlink all raw files
+         * @param int $id
+         * @return int
+         */
         public function delete($id)
         {
-                $statement = "DELETE FROM `movies` WHERE `movies`.`id` = :id";
+                $res = $this->find($id);
+                $key = $res["music_key"];
+                $statement = <<<EOS
+                        DELETE FROM `movies` WHERE `movies`.`id` = $id;
+                        DELETE FROM `images` WHERE `images`.`image_key` = $key;
+                        DELETE FROM `videos` WHERE `videos`.`video_key` = $key;
+                        DELETE FROM `comment` WHERE `comment`.`comment_key` = $key;
+                EOS;
 
                 try {
                         $statement=$this->db->prepare($statement);
-                        $statement->execute(array('id' => $id));
+                        if($statement->execute()){
+                                foreach ($res["images"] as $images) {
+                                        unlink("../$images");
+                                }
+                                foreach ($res["videos"] as $video) {
+                                        unlink("../$video[video_url]");
+                                }
+                        }
                         return $statement->rowCount();
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
