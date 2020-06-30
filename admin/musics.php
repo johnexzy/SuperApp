@@ -90,39 +90,6 @@
               HTML;
             }
           ?>
-            <div class="col-md-4 grid-margin stretch-card">
-              <div class="card card-outline-primary card-rounded card-inverse-info grid-margin stretch-card">
-                  <div class="card-header">
-                        <h3 style="font-family: monospace;" class="text-center">
-                            <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon">
-                                <i class="mdi mdi-music text-dark"></i>
-                            </button>    
-                            Love the way you are
-                        </h3>
-                  </div>
-                  <div class="card-body">
-                        <div class="card-img-holder">
-                            <img class="card-img" src="../uploads/images/20200614172008989640171.jpg" alt="Love the Way You are Image Banner">
-                        </div>
-                  </div>
-                  <div class="card-footer">
-                      <div class="text-right">
-                        <a href="" class="text-decoration-none">
-                            <button type="button" class="btn btn-info btn-rounded btn-icon">
-                                <i class="mdi mdi-pencil"></i>
-                            </button>
-                        </a>
-                        <button type="button" class="btn btn-danger btn-rounded btn-icon">
-                            <i class="mdi mdi-delete"></i>
-                        </button>
-                        
-                      </div>
-                  </div>
-              </div>
-            </div>
-            <div class="col-md-4 grid-margin stretch-card">
-            
-            </div>
           </div>
           
         </div>
