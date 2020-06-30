@@ -59,7 +59,7 @@
           <?php 
             foreach ($res["data"] as $video) {
               $image = isset($video["images"][0]) ? $video["images"][0] : "uploads/images/20200531111530182851488.jpg";
-              
+              $bytes = isset($video["videos"][0]["video_bytes"]) ? ceil($video["videos"][0]["video_bytes"]/(1024*1024)) : "200";
               echo <<<HTML
                     <div class="col-md-4 grid-margin stretch-card">
                       <div class="card card-outline-primary card-rounded card-inverse-info grid-margin stretch-card">
@@ -78,6 +78,8 @@
                           </div>
                           <div class="card-footer">
                               <div class="text-left">
+                                    <i class="mdi mdi-information"></i>
+                                    $bytes(mb)
                               </div>
                               <div class="text-right" id="$video[id]" >
                                 <a href="" class="text-decoration-none">
