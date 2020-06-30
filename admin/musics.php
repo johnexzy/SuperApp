@@ -3,9 +3,9 @@
   require '../bootstrap.php';
   use Src\Layout\LayoutClass;
   use Src\TableGateways\MusicGateway;
-
+  $pageNo = isset($_GET['pages']) ? (int) $_GET['pages'] : 1;
   $gateway = new MusicGateway($dbConnection);
-  $res = $gateway->getAll();
+  $res = $gateway->getPages($pageNo);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,22 +36,24 @@
       <div class="main-panel">
         <div class="content-wrapper">
           
-          <div class="row">
+          <div class="row-border">
             <div class="col-md-12 grid-margin">
               <div class="d-flex justify-content-between flex-wrap">
                 <div class="d-flex align-items-end flex-wrap">
                   <div class="mr-md-3 mr-xl-5">
-                    <h2>Welcome back, Leccel</h2>
-                    <p class="mb-md-0">Your admin dashboard Add and Manage Media.</p>
+                    <h2>Manage Music Uploads</h2>
+                    <p class="mb-md-0">View, Edit or Delete Media</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          
+          <hr>
+          <p class="text-center text-black-50 font-weight-bold" style="font-family: monospace; font-size:large">Page <?=$res["meta"]["current_page"] ?> out of <?=$res["meta"]["total_pages"] ?></p>
+          <hr>
           <div class="row">
           <?php 
-            foreach ($res as $music) {
+            foreach ($res["data"] as $music) {
               $image = isset($music["images"][0]) ? $music["images"][0] : "uploads/images/20200531111530182851488.jpg";
               // foreach ($music["images"] as $value) {
               //   $image = $value;
