@@ -6,6 +6,10 @@
   $pageNo = isset($_GET['pages']) ? (int) $_GET['pages'] : 1;
   $gateway = new MusicGateway($dbConnection);
   $res = $gateway->getPages($pageNo);
+  $request_url = "http://127.0.0.1:8090/admin/musics.php";
+  $prev = isset($res["links"]["prev"]) ? $request_url.str_replace("/", "=", "?".$res["links"]["prev"]) : "#";
+  $next = isset($res["links"]["next"]) ? $request_url.str_replace("/", "=", "?".$res["links"]["next"]) : "#";
+  $prev
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,14 +102,14 @@
               <ul class="pagination">
                 <li class="page-item prev">
                   <input id="pagelink" value="" type="hidden">
-                  <a class="page-link">
+                  <a class="page-link" href="<?=$prev ?>">
                     <i class="mdi mdi-arrow-left-bold"></i>
                   </a>
                 </li>
 
                 <li class="page-item next">
                   <input id="pagelink" value="" type="hidden">
-                  <a class="page-link">
+                  <a class="page-link" href="<?=$next ?>">
                     <i class="mdi mdi-arrow-right-bold"></i>
                   </a>
                 </li>
