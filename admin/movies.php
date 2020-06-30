@@ -77,8 +77,7 @@
                                 </div>
                           </div>
                           <div class="card-footer">
-                              <div class="text-leff">
-                                    
+                              <div class="text-left">
                               </div>
                               <div class="text-right" id="$video[id]" >
                                 <a href="" class="text-decoration-none">
