@@ -55,9 +55,7 @@
           <?php 
             foreach ($res["data"] as $music) {
               $image = isset($music["images"][0]) ? $music["images"][0] : "uploads/images/20200531111530182851488.jpg";
-              // foreach ($music["images"] as $value) {
-              //   $image = $value;
-              // }
+              
               echo <<<HTML
                     <div class="col-md-4 grid-margin stretch-card">
                       <div class="card card-outline-primary card-rounded card-inverse-info grid-margin stretch-card">
