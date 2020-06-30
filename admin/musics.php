@@ -94,7 +94,27 @@
           
         </div>
         <hr>
-        <div class="pagination-sm"></div>
+            <nav class="nav d-flex align-items-center justify-content-center" aria-label="Album-pager">
+              <ul class="pagination">
+                <li class="page-item prev">
+                  <input id="pagelink" value="" type="hidden">
+                  <a class="page-link">
+                    <i class="mdi mdi-arrow-left-bold"></i>
+                  </a>
+                </li>
+
+                <li class="page-item next">
+                  <input id="pagelink" value="" type="hidden">
+                  <a class="page-link">
+                    <i class="mdi mdi-arrow-right-bold"></i>
+                  </a>
+                </li>
+              </ul>
+
+            </nav>
+            <div class="d-flex align-items-center justify-content-center pad2x">
+              <p class="pager">Page <?=$res["meta"]["current_page"] ?> of <?=$res["meta"]["total_pages"] ?></p>
+            </div>
         <hr>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.php -->
