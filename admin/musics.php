@@ -93,6 +93,9 @@
           </div>
           
         </div>
+        <hr>
+        <div class="pagination-sm"></div>
+        <hr>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.php -->
         <?= LayoutClass::footer ?>
