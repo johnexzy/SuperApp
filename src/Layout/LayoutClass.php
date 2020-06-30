@@ -185,8 +185,8 @@ HTML;
                     </a>
                     <div class="collapse" id="auth">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href=""> Music </a></li>
-                        <li class="nav-item"> <a class="nav-link" href=""> Albums </a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/admin/musics.php"> Music </a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/admin/albums.php"> Albums </a></li>
                         <li class="nav-item"> <a class="nav-link" href=""> Movies </a></li>
                         <li class="nav-item"> <a class="nav-link" href=""> Series </a></li>
                         <li class="nav-item"> <a class="nav-link" href=""> Comments </a></li>
