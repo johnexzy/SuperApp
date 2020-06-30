@@ -291,7 +291,7 @@ class MovieGateway extends VideoGateway {
         public function delete($id)
         {
                 $res = $this->find($id);
-                $key = $res["music_key"];
+                $key = $res["video_key"];
                 $statement = <<<EOS
                         DELETE FROM `movies` WHERE `movies`.`id` = $id;
                         DELETE FROM `images` WHERE `images`.`image_key` = $key;
