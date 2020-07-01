@@ -82,7 +82,7 @@
                                     $bytes(mb)
                               </div>
                               <div class="text-right" id="$video[id]" >
-                                <a href="" class="text-decoration-none">
+                                <a href="/admin/view/movie/$video[short_url]" class="text-decoration-none">
                                     <button type="button" class="btn btn-info btn-rounded btn-icon edit">
                                         <i class="mdi mdi-pencil"></i>
                                     </button>
