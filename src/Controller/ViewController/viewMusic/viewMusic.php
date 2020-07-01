@@ -121,12 +121,6 @@ class ViewMusic extends MusicGateway
                                         <textarea class="form-control" id="about_music" rows="16">$response[music_details]</textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="postBody">YEAR OF RELEASE</label>
-                                        <font size="0.6" id="yearCap" style="display: block; display: none; text-align: right; float: right;">
-                                            Required</font>
-                                        <input type="number" class="form-control" id="music_year" placeholder="2020" value="$response[year]">
-                                    </div>
-                                    <div class="form-group">
                                         <label for="postTitle">Uploaded by</label>
 
                                         <input type="text" class="form-control" id="author" value="$response[uploaded_by]" disabled>

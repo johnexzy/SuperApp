@@ -2,6 +2,7 @@
 
 use Src\Controller\ViewController\ViewAlbum\ViewAlbum;
 use Src\Controller\ViewController\ViewMovie\ViewMovie;
+use Src\Controller\ViewController\ViewMusic\ViewMusic;
 
 require '../session.php';
 require '../../bootstrap.php';
@@ -18,7 +19,8 @@ if(isset($uri[3]) && isset($uri[4])){
         case 'music':
             # music request handler
 
-            echo "music";
+            $music = new ViewMusic($short_url, $dbConnection);
+            echo $music->bodyParser();
             break;
         
         case 'movie':
