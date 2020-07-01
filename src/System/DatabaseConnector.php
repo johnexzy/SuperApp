@@ -1,6 +1,8 @@
 <?php
 namespace Src\System;
 
+
+use PDO;
 class DatabaseConnector
 {
         private $dbConnection = null;
@@ -13,7 +15,7 @@ class DatabaseConnector
                 $pass = getenv('DB_PASSWORD');
 
                 try {
-                        $this->dbConnection = new \PDO(
+                        $this->dbConnection = new PDO(
                                 "mysql:host=$host;port=$port;charset=utf8mb4;dbname=$db",
                                 $user,
                                 $pass
