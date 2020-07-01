@@ -86,7 +86,6 @@
                                 <button type="button" class="btn btn-danger btn-rounded btn-icon delete" name="$album[album_name]">
                                     <i class="mdi mdi-delete"></i>
                                 </button>
-                                
                               </div>
                           </div>
                       </div>
