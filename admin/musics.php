@@ -78,7 +78,7 @@
                           </div>
                           <div class="card-footer">
                               <div class="text-right" id="$music[id]" >
-                                <a href="" class="text-decoration-none">
+                                <a href="/admin/view/music/$music[short_url]" class="text-decoration-none">
                                     <button type="button" class="btn btn-info btn-rounded btn-icon edit">
                                         <i class="mdi mdi-pencil"></i>
                                     </button>
