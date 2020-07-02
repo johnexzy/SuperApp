@@ -166,6 +166,24 @@ class MusicController extends MusicGateway{
          * @credit to : https://www.php.net/manual/en/features.file-upload.multiple.php#53240
          */
     }
+    private function validateUpdateInput($input) {
+        if (! isset($input['post_body'])) {
+            return false;
+        }
+        if (! isset($input['post_title'])) {
+            return false;
+        }
+        return true;
+    }
+
+    private function unprocessableEntityResponse()
+    {
+        $response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
+        $response['body'] = json_encode([
+            'error' => 'Invalid input'
+        ]);
+        return $response;
+    }
     private function notFoundResponse()
     {
         $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
