@@ -70,7 +70,8 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
                 }
                 break;
             case 'PUT':
-
+                header("Content-Type: multipart/form-data");
+                $input = php://input; 
                 break;
             case 'DELETE' :
                 if (isset($uri[4])) {
