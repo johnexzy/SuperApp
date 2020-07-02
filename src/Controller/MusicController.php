@@ -115,17 +115,20 @@ class MusicController extends MusicGateway{
         $response['body'] = json_encode($result);
         return $response;
     }
-    private function updateMusicFromRequest($id)
+    private function updateMusicFromRequest($id, Array $input)
     {
         $result = $this->find($id);
         if (!$result) {
             return $this->notFoundResponse();
             # code...
         }
-        if (!$this->validateUpdateInput($this->input)) {
+        if (!$this->validateUpdateInput($input)) {
             return $this->unprocessableEntityResponse();
         }
-        
+        $this->update($id, $input);
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = \json_encode($this->find($id));
+        return $response;
         
     }
     private function deleteMusic($id) {
