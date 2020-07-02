@@ -245,28 +245,28 @@ class MusicGateway extends SongGateway {
                         exit($e->getMessage());
                 }
         }
-        // public function update($uid, Array $input)
-        // {       $statement = "
-        //                 UPDATE `Music` 
-        //                 SET 
-        //                         `post_title` = :post_title, 
-        //                         `post_body` = :post_body,
-        //                         `updated_at` = CURRENT_TIMESTAMP
-        //                 WHERE `Music`.`id` = :id;
-        //         ";
+        public function update($uid, Array $input)
+        {       $statement = "
+                        UPDATE `Music` 
+                        SET 
+                                `post_title` = :post_title, 
+                                `post_body` = :post_body,
+                                `updated_at` = CURRENT_TIMESTAMP
+                        WHERE `Music`.`id` = :id;
+                ";
                 
-        //         try {
-        //                 $statement = $this->db->prepare($statement);
-        //                 $statement->execute(array(
-        //                         'id' => (int) $uid,
-        //                         'post_title' => $input['post_title'],
-        //                         'post_body' => $input['post_body']
-        //                 ));
-        //                 return $statement->rowCount();
-        //         } catch (\PDOException $e) {
-        //                 exit($e->getMessage());
-        //         }
-        // }
+                try {
+                        $statement = $this->db->prepare($statement);
+                        $statement->execute(array(
+                                'id' => (int) $uid,
+                                'post_title' => $input['post_title'],
+                                'post_body' => $input['post_body']
+                        ));
+                        return $statement->rowCount();
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+        }
         /**
          * return total records as integer
          * @return int

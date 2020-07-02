@@ -123,8 +123,9 @@ class MusicController extends MusicGateway{
             # code...
         }
         if (!$this->validateUpdateInput($this->input)) {
-            
+            return $this->unprocessableEntityResponse();
         }
+        
         
     }
     private function deleteMusic($id) {
