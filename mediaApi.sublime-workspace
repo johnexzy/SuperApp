@@ -27,7 +27,7 @@
 			"file": "src/TableGateways/MusicGateWay.php",
 			"settings":
 			{
-				"buffer_size": 12732,
+				"buffer_size": 13647,
 				"line_ending": "Windows"
 			}
 		},
@@ -170,7 +170,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 12732,
+						"buffer_size": 13647,
 						"regions":
 						{
 						},

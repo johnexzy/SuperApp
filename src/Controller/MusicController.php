@@ -179,10 +179,10 @@ class MusicController extends MusicGateway{
          */
     }
     private function validateUpdateInput(Array $input) {
-        if (! isset($input['post_body'])) {
+        if (! isset($input['music_name'])) {
             return false;
         }
-        if (! isset($input['post_title'])) {
+        if (! isset($input['music_details'])) {
             return false;
         }
         return true;

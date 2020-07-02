@@ -245,22 +245,24 @@ class MusicGateway extends SongGateway {
                         exit($e->getMessage());
                 }
         }
-        public function update($uid, Array $input)
+        public function update($id, Array $input)
         {       $statement = "
-                        UPDATE `Music` 
+                        UPDATE `music` 
                         SET 
-                                `post_title` = :post_title, 
-                                `post_body` = :post_body,
+                                `music_name` = :music_name, 
+                                `music_details` = :music_details,
+                                `artist` = :artist
                                 `updated_at` = CURRENT_TIMESTAMP
-                        WHERE `Music`.`id` = :id;
+                        WHERE `music`.`id` = :id;
                 ";
                 
                 try {
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array(
-                                'id' => (int) $uid,
-                                'post_title' => $input['post_title'],
-                                'post_body' => $input['post_body']
+                                'id' => (int) $id,
+                                'music_name' => $input['music_name'],
+                                'music_details' => $input['music_details'],
+                                'artist' => $input['artist'],
                         ));
                         return $statement->rowCount();
                 } catch (\PDOException $e) {
