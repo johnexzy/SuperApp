@@ -115,6 +115,15 @@ class MusicController extends MusicGateway{
         $response['body'] = json_encode($result);
         return $response;
     }
+    private function updateMusicFromRequest($id)
+    {
+        $result = $this->find($id);
+        if (!$result) {
+            return $this->notFoundResponse();
+            # code...
+        }
+        
+    }
     private function deleteMusic($id) {
         $result = $this->find($id);
         if(!$result){
