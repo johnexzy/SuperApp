@@ -62,6 +62,11 @@ class MusicController extends MusicGateway{
                     $response = $this->getAllSongs($this->limit);
                 };
                 break;
+            case 'PUT':
+                if ($this->id && $this->input) {
+                    $response = $this->updateMusicFromRequest($this->id, $this->input);
+                }
+                break;
             case 'DELETE':
                 if ($this->id) {
                     $response = $this->deleteMusic($this->id);
