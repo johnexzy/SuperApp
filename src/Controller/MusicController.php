@@ -122,6 +122,9 @@ class MusicController extends MusicGateway{
             return $this->notFoundResponse();
             # code...
         }
+        if (!$this->validateUpdateInput($this->input)) {
+            
+        }
         
     }
     private function deleteMusic($id) {
@@ -166,7 +169,7 @@ class MusicController extends MusicGateway{
          * @credit to : https://www.php.net/manual/en/features.file-upload.multiple.php#53240
          */
     }
-    private function validateUpdateInput($input) {
+    private function validateUpdateInput(Array $input) {
         if (! isset($input['post_body'])) {
             return false;
         }
