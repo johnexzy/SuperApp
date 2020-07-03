@@ -144,7 +144,7 @@ class ViewMusic extends MusicGateway
                                             <i class="mdi mdi-48px mdi-image-plus"></i>
                                         </div>
                                         <div class="mt-5">
-                                            <div class="progress" style="height: 10px; width:200px; font-weight: 800; font-size: 18px;">
+                                            <div class="progress" style="height: 10px; width:300px; font-weight: 800; font-size: 18px;">
                                                 <div class="progress-bar" ></div>
                                             </div>
                                         </div>
