@@ -58,14 +58,23 @@
       });
       $(".del-thumbnail").on("click", function () {
             let perm = confirm("Confirm to Erase this images");
-            if (perm) {
-                $.ajax({
-                    url: `http://127.0.0.1:8090/api/v1/images/delete/${_key}`
-                })
+            if (!perm) {
+                return false
             }
-            $(".image-list").html("");
-            musicFile.Image = [];
-            $(this).hide();
+            $.ajax({
+                url: `http://127.0.0.1:8090/api/v1/images/delete/${_key}`,
+                type: "DELETE"
+            })
+            .done((msg) => {
+                $(".image-list").html("");
+                musicFile.Image = [];
+                $(this).hide();
+                console.log(msg)
+            })
+            .fail((err) => {
+                console.log(err);
+                alert("Unexpected error occured")
+            })
       })
       $('#handleSubmit').on('click', function () {
         let music_name = $('#music_title').val();
