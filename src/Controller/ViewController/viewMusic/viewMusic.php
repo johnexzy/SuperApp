@@ -123,9 +123,8 @@ class ViewMusic extends MusicGateway
                                     </div>
                                     <div class="form-group">
                                         <button type="button" class="btn btn-primary btn-icon-text" id="handleSubmit"><i
-                                                    class="mdi mdi-upload btn-icon-prepend"></i>
-                                                Upload Changes</button>
-                                        <button class="btn btn-light">Cancel</button>
+                                                    class="mdi mdi-content-save-all btn-icon-prepend"></i>
+                                                Save All</button>
                                     </div>
                                     
                                     <hr>
@@ -144,6 +143,12 @@ class ViewMusic extends MusicGateway
                                         <div class="el-upload el-upload--picture-card openfile">
                                             <i class="mdi mdi-48px mdi-image-plus"></i>
                                         </div>
+                                        <div class="mt-5">
+                                            <div class="progress" style="height: 10px; width:200px; font-weight: 800; font-size: 18px;">
+                                                <div class="progress-bar" ></div>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
                                     <hr>
                                     <div class="form-group">
