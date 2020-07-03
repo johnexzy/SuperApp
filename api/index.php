@@ -236,7 +236,9 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
             case 'POST':
                 
                 break;
-            
+            case 'DELETE':
+                
+                break;
             default:
                 # code...
                 break;
