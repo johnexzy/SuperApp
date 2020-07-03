@@ -129,7 +129,7 @@ class ViewMusic extends MusicGateway
                                         <ul class="el-upload-list el-upload-list--picture-card image-list">
                                             $images
                                         </ul>
-                                        <div class="del-thumbnail item-delete" style="display: none;">
+                                        <div class="del-thumbnail item-delete" style="">
                                             <i class="mdi mdi-24px mdi-delete"></i>
                                         </div>
                                         <input type="file" name="img[]" class="file-upload-default image-upload" accept="image/*" multiple>
