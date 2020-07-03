@@ -238,13 +238,14 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
                 break;
             case 'DELETE':
                 if (isset($uri[4]) && $uri[4] == "delete") {
-                    
+                    $key = isset($uri[5]) ? (String) $uri[5] : null;
                 }
                 break;
             default:
                 # code...
                 break;
         }
+        // $controller = new 
     }
 
 }
