@@ -72,8 +72,13 @@ class ImageGateway {
                 ";
 
                 try {
+                        $images = $this->getPostImages($key);
                         $statement=$this->db->prepare($statement);
-                        $statement->execute(array($key));
+                        if ($statement->execute(array($key))) {
+                                foreach ($images as $image) {
+                                        unlink("../$image");
+                                }
+                        }
                         return $statement->rowCount();
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
