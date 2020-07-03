@@ -15,6 +15,7 @@ use Src\Controller\MovieController;
 // use Src\Controller\NewsController;
 // use Src\Controller\CarouselController;
 use Src\Controller\AlbumController;
+use Src\Controller\ImageController;
 use Src\Controller\UserController;
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -245,7 +246,8 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
                 # code...
                 break;
         }
-        // $controller = new 
+        $controller = new ImageController($dbConnection, $key, $requestMethod);
+        $controller->processRequest();
     }
 
 }

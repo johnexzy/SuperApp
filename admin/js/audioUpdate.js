@@ -72,7 +72,7 @@
                 console.log(msg)
             })
             .fail((err) => {
-                console.log(err);
+                console.log(err.responseText);
                 alert("Unexpected error occured")
             })
       })
