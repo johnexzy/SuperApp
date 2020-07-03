@@ -121,10 +121,17 @@ class ViewMusic extends MusicGateway
                                         <textarea class="form-control" id="about_music" rows="16">$response[music_details]</textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="postTitle">Uploaded by</label>
-
-                                        <input type="text" class="form-control" id="author" value="$response[uploaded_by]" disabled>
+                                        <button type="button" class="btn btn-primary btn-icon-text" id="handleSubmit"><i
+                                                    class="mdi mdi-upload btn-icon-prepend"></i>
+                                                Upload Changes</button>
+                                        <button class="btn btn-light">Cancel</button>
                                     </div>
+                                    
+                                    <hr>
+                                    <div class="card-header">
+                                        <h3 class="text-center" style="font-family:Sans serif">Alter Media</h3>
+                                    </div>
+                                    <hr>
                                     <div class="form-group">
                                         <ul class="el-upload-list el-upload-list--picture-card image-list">
                                             $images
@@ -158,10 +165,7 @@ class ViewMusic extends MusicGateway
                                 </form>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="button" class="btn btn-primary btn-icon-text" id="handleSubmit"><i
-                                                class="mdi mdi-upload btn-icon-prepend"></i>
-                                            Upload Changes</button>
-                                    <button class="btn btn-light">Cancel</button>
+                                    
                                 </div>
                                 <div class="progress" style="height: 40px; font-weight: 800; font-size: 18px;">
                                     <div class="progress-bar" ></div>
