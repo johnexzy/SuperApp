@@ -191,7 +191,7 @@ class ViewMusic extends MusicGateway
     <script src="/admin/js/template.js"></script>
     <!-- endinject -->
     <!-- Inject:js for this page -->
-    <script src="/admin/js/audioController.js"></script>
+    <script src="/admin/js/audioUpdate.js"></script>
     <!-- endinject:js for this page -->
 </body>
 
