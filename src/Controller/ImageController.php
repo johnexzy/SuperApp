@@ -33,7 +33,7 @@ use Src\TableGateways\ImageGateway;
                 $response = $this->updateImagesFromRequest($this->key);
                 break;
             case 'DELETE':
-                $response = $this->deleteImages($this->key);
+                $response = $this->deleteImagesFromRequest($this->key);
                 break;
             default:
                 $response = $this->notFoundResponse();
@@ -58,14 +58,14 @@ use Src\TableGateways\ImageGateway;
     private function updateImagesFromRequest($id) {
         
     }
-    private function deleteImages($key) {
+    private function deleteImagesFromRequest($key) {
         $result = $this->getPostImages($key);
         if(!$result){
             return $this->notFoundResponse();
         }
-        $this->deleteImages($key);
+        $result = $this->deleteImages($key);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = NULL;
+        $response['body'] = \json_encode($result);
         return $response;
     }
     private function validateInput($input) {
