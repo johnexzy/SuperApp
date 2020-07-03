@@ -6,6 +6,7 @@
         Image: [],
         Audio: null
       };
+      let _key = $(".key").val();
       $('.openfile').on("click", function () {
         $(this).parent().find('.file-upload-default').trigger('click')
       })
@@ -56,9 +57,15 @@
         // alert($(this).val())
       });
       $(".del-thumbnail").on("click", function () {
-        $(".image-list").html("");
-        musicFile.Image = [];
-        $(this).hide();
+            let perm = confirm("Confirm to Erase this images");
+            if (perm) {
+                $.ajax({
+                    url: `http://127.0.0.1:8090/api/v1/images/delete/${_key}`
+                })
+            }
+            $(".image-list").html("");
+            musicFile.Image = [];
+            $(this).hide();
       })
       $('#handleSubmit').on('click', function () {
         let music_name = $('#music_title').val();
