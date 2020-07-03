@@ -231,7 +231,17 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
         $controller = new CommentsController($dbConnection, $requestMethod, $key, $comId, $input);
         $controller->processRequest();
     }
-
+    elseif ($uri[3] == 'images') {
+        switch ($requestMethod) {
+            case 'value':
+                # code...
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+    }
 
 }
 else{
