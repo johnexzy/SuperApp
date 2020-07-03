@@ -72,6 +72,11 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
             case 'PUT':
                 header("Content-Type: multipart/form-data");
                 $input = json_decode(file_get_contents("php://input"), TRUE);
+                if (isset($uri[4])) {
+                    if ($uri[4] == "update" && isset($uri[5])) {
+                        $id = (int) $uri[5];
+                    }
+                }
                 break;
             case 'DELETE' :
                 if (isset($uri[4])) {
