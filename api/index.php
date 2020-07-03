@@ -233,8 +233,8 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
     }
     elseif ($uri[3] == 'images') {
         switch ($requestMethod) {
-            case 'value':
-                # code...
+            case 'POST':
+                
                 break;
             
             default:
