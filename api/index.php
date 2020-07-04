@@ -235,8 +235,15 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
     elseif ($uri[3] == 'images') {
         switch ($requestMethod) {
             case 'POST':
-                header("Content-Type: multipart/form-data");
-                $input = (array) $_POST;
+                if (isset($uri[4])) {
+                    header("Content-Type: multipart/form-data");
+                    $input = (array) $_FILES["images"];
+                
+                    $key = (String) $uri[4];
+                }
+                else{
+                    return false;
+                }
                 break;
             case 'DELETE':
                 if (isset($uri[4]) && $uri[4] == "delete") {
