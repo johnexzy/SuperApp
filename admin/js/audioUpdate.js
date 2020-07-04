@@ -10,33 +10,43 @@
       $('.openfile').on("click", function () {
         $(this).parent().find('.file-upload-default').trigger('click')
       })
+
       $('.image-upload').on('change', function (e) {
+          let imagefiles = new FormData();
+          $.each(e.target.files, (key, image)=>{
+              imagefiles.append(`images[${key}]`, image)
+          })
+          
         $.ajax({
             url: `http://127.0.0.1:8090/api/v1/images/${_key}`,
             type: 'POST',
-            data: ''
+            data: imagefiles
         })
-        .done()
-        .fail()
-        $.each(e.target.files, function(key, images){
-          const selectedImg = images;
-          
-          musicFile.Image.push(selectedImg);
-          // const selectedImg = elem
-          const reader = new FileReader();
-          reader.onload = f => {
-            
-            $(".del-thumbnail").show();
-            $(".image-list").append(
-              "<li tabindex='0' class='el-upload-list__item is-ready'>" +
-              "<img src='" + f.target.result + "' alt='' class='el-upload-list__item-thumbnail'>" +
-  
-              "</li>"
-            );
-            // alert(formData.postImages);
-          };
-          reader.readAsDataURL(selectedImg);
-        });
+        .done((msg) =>{
+            $(".image-list").html("")
+            $.each(e.target.files, function(key, images){
+                const selectedImg = images;
+                // const selectedImg = elem
+                const reader = new FileReader();
+                reader.onload = f => {
+                  
+                  $(".del-thumbnail").show();
+                  $(".image-list").append(
+                    "<li tabindex='0' class='el-upload-list__item is-ready'>" +
+                    "<img src='" + f.target.result + "' alt='' class='el-upload-list__item-thumbnail'>" +
+        
+                    "</li>"
+                  );
+                  // alert(formData.postImages);
+                };
+                reader.readAsDataURL(selectedImg);
+              });
+        })
+        .fail((err) =>{
+            console.log(err.responseText)
+            alert("unexpected error occured")
+        })
+        
         // alert($(this).val())
   
       });
