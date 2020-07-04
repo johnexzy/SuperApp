@@ -145,10 +145,9 @@ class ViewMusic extends MusicGateway
                                         </div>
                                         <div class="mt-5">
                                             <div class="progress" style="height: 10px; width:300px; font-weight: 800; font-size: 14px;">
-                                                <div class="progress-bar" ></div> 0%
+                                                <div class="progress-bar" ></div> <i class="text-muted" style="font-size:9px">0%</i>
                                             </div>
                                         </div>
-                                        
                                     </div>
                                     <hr>
                                     <div class="form-group">
