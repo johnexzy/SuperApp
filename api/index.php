@@ -235,7 +235,8 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
     elseif ($uri[3] == 'images') {
         switch ($requestMethod) {
             case 'POST':
-                
+                header("Content-Type: multipart/form-data");
+                $input = (array) $_POST;
                 break;
             case 'DELETE':
                 if (isset($uri[4]) && $uri[4] == "delete") {
@@ -246,7 +247,7 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
                 # code...
                 break;
         }
-        $controller = new ImageController($dbConnection, $key, $requestMethod);
+        $controller = new ImageController($dbConnection, $key, $input, $requestMethod);
         $controller->processRequest();
     }
 
