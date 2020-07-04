@@ -13,8 +13,11 @@
       $('.image-upload').on('change', function (e) {
         $.ajax({
             url: `http://127.0.0.1:8090/api/v1/images/${_key}`,
-            type: 'POST'
-        });
+            type: 'POST',
+            data: ''
+        })
+        .done()
+        .fail()
         $.each(e.target.files, function(key, images){
           const selectedImg = images;
           
