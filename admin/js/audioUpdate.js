@@ -34,10 +34,11 @@
                 type: 'POST',
                 data: imagefiles,
                 processData: false,
-                contentType: false
+                contentType: false,
+                responseType:'application/json'
 
             })
-                .done((msg) => {
+                .done((images) => {
                     let images = JSON.parse(msg);
                     $(".image-list").html("")
                     $.each(images, function (key, image) {
