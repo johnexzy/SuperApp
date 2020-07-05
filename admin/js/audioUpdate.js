@@ -89,17 +89,6 @@
                 return false
             }
             $.ajax({
-                xhr: function () {
-                    let xhr = new window.XMLHttpRequest();
-                    xhr.upload.addEventListener("progress", function (ext) {
-                        if (ext.lengthComputable) {
-                            let perCentComplete = ((ext.loaded / ext.total) * 100).toFixed();
-                            $(".image-bar").width(perCentComplete + '%');
-                            $(".image-percent").html(perCentComplete + '%');
-                        }
-                    }, false)
-                    return xhr;
-                },
                 url: `http://127.0.0.1:8090/api/v1/images/delete/${_key}`,
                 type: "DELETE"
             })
