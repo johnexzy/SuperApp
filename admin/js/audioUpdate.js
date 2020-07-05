@@ -42,12 +42,11 @@
                     $(".image-list").html("")
                     $.each(images, function (key, image) {
                             
-                            $(".image-list").append(
-                                "<li tabindex='0' class='el-upload-list__item is-ready'>" +
-                                "<img src='/" + image + "' alt='' class='el-upload-list__item-thumbnail'>" +
-
-                                "</li>"
-                            );
+                            $(".image-list").append(`
+                                <li tabindex='0' class='el-upload-list__item is-ready'>
+                                <img src='/${image}' alt='' class='el-upload-list__item-thumbnail'>
+                                </li>
+                            `);
                     });
                     $(".del-thumbnail").show();
                 })
