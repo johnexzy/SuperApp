@@ -38,16 +38,18 @@
 
             })
                 .done((msg) => {
+                    let images = JSON.parse(msg);
                     $(".image-list").html("")
-                    $.each(msg, function (key, images) {
-                            $(".del-thumbnail").show();
+                    $.each(images, function (key, image) {
+                            
                             $(".image-list").append(
                                 "<li tabindex='0' class='el-upload-list__item is-ready'>" +
-                                "<img src='" + f.target.result + "' alt='' class='el-upload-list__item-thumbnail'>" +
+                                "<img src='/" + image + "' alt='' class='el-upload-list__item-thumbnail'>" +
 
                                 "</li>"
                             );
                     });
+                    $(".del-thumbnail").show();
                 })
                 .fail((err) => {
                     console.log(err.responseText)
