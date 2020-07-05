@@ -24,8 +24,8 @@
                         if (ext.lengthComputable) {
                             let perCentComplete = ((ext.loaded / ext.total) * 100).toFixed();
                             $(".image-bar").width(perCentComplete + '%');
-                            $(".image-bar").html(perCentComplete + '% ('+ 
-                            (ext.loaded / (1024 * 1024)).toFixed(2) + 'mb of '+ (ext.total / (1024 * 1024)).toFixed(2)+ 'mb)');
+                            $(".image-bar").html(perCentComplete + '% (' +
+                                (ext.loaded / (1024 * 1024)).toFixed(2) + 'mb of ' + (ext.total / (1024 * 1024)).toFixed(2) + 'mb)');
                         }
                     }, false)
                     return xhr;
@@ -37,8 +37,10 @@
                 contentType: false
 
             })
-                .done((msg) => {
-                    console.log(msg)
+                .done(async (msg) => {
+                    let res = await fetch(`http://127.0.0.1:8090/api/v1/images/${_key}`)
+
+                    console.log(res)
                     $(".image-list").html("")
                     $.each(e.target.files, function (key, images) {
                         const selectedImg = images;

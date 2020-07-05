@@ -58,9 +58,9 @@
     $(".form-check label,.form-radio label").append('<i class="input-helper"></i>');
 
     // Remove pro banner on close
-    document.querySelector('#bannerClose').addEventListener('click',function() {
-      document.querySelector('#proBanner').classList.add('d-none');
-    });
+    // document.querySelector('#bannerClose').addEventListener('click',function() {
+    //   document.querySelector('#proBanner').classList.add('d-none');
+    // });
 
   });
 })(jQuery);

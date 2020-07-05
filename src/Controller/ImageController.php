@@ -57,7 +57,7 @@ use Src\TableGateways\ImageGateway;
         $images = MakeFile::reArrayFiles($input);
         $result = $this->createImage($images, $key);
         $response['status_code_header'] = 'HTTP/1.1 201 Created';
-        $response['body'] = \json_encode($result);
+        $response['body'] = \json_encode($this->getPostImages($key));
         return $response;
     }
     private function addImagesFromGet($input) {
