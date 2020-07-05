@@ -99,7 +99,7 @@
             let music_details = $('#about_music').val();
             let artist = $('#artist').val();
             let uploaded_by = $('#author').val();
-            let popular = $('#popular').prop("checked") === true ? 1 : 0
+            let popular = $('.popular').prop("checked") === true ? 1 : 0
             let fields = [music_name, music_details, artist, uploaded_by]
             //check for empty fields
             if (musicFile.Image.length < 1 || musicFile.Audio === null) {
