@@ -49,6 +49,7 @@ class ViewMusic extends MusicGateway
             </li>
  HTML;
   }
+  $popular = (int) $response["popular"] !== 0 ? "checked" : "";
   $navBar  = LayoutClass::navBar;
   $sideBar = LayoutClass::sideBar;
   $footer  = LayoutClass::footer;
@@ -168,7 +169,7 @@ class ViewMusic extends MusicGateway
                                             <div class="d-flex align-items-center">
                                                 <p class="mr-2 font-weight-medium monthly check-box-label text-active">OFF</p>
                                                 <label class="toggle-switch toggle-switch">
-                                                <input type="checkbox" id="toggle-switch" class="popular" checked="checked">
+                                                <input type="checkbox" id="toggle-switch" class="popular" $popular>
                                                 <span class="toggle-slider round"></span>
                                                 </label>
                                                 <p class="ml-2 font-weight-medium yearly check-box-label">ON</p>
