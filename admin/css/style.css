@@ -20987,6 +20987,60 @@ dl li {
   border-top: 1px solid #f3f3f3;
 }
 
+/* Toggle Switch */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 23px;
+}
+
+.toggle-switch .toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 34px;
+  border: 1px solid #f3f3f3;
+}
+
+.toggle-switch .toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #ffffff;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+.toggle-switch input {
+  visibility: hidden;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background-color: #4d83ff;
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+  -webkit-transform: translateX(21px);
+  -ms-transform: translateX(21px);
+  transform: translateX(21px);
+}
+
+.text-active {
+  color: #282f3a;
+}
+
+/* Rounded sliders */
 /*-------------------------------------------------------------------*/
 /* === Plugin overrides === */
 /* Data Tables */
