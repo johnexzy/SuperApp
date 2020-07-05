@@ -25,8 +25,7 @@ use Src\TableGateways\ImageGateway;
      {
         switch ($this->requestMethod) {
             case 'GET':
-                $response = ($this->key)? $this->getKeyedImages($this->key)
-                : $this->addImagesFromGet($this->key);
+                $response = $this->getKeyedImages($this->key);
                 break;
             case 'POST':
                 $response = $this->addImagesFromRequest($this->input, $this->key);
@@ -49,7 +48,10 @@ use Src\TableGateways\ImageGateway;
 
     private function getKeyedImages($key)
     {
-        
+        $result = $this->getPostImages($key);
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = \json_encode($result);
+        return $response;
     }
     private function addImagesFromRequest($input, $key) {
         $images = MakeFile::reArrayFiles($input);
