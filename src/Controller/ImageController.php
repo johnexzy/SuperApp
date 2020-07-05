@@ -12,7 +12,7 @@ use Src\TableGateways\ImageGateway;
  class ImageController extends ImageGateway
  {
      protected $key, $requestMethod, $input;
-     public function __construct(PDO $db, String $key, Array $input = [], $requestMethod) {
+     public function __construct(PDO $db, String $key, Array $input = null, $requestMethod) {
          parent::__construct($db);
          $this->key = $key;
          $this->input = $input;
@@ -54,7 +54,9 @@ use Src\TableGateways\ImageGateway;
     private function addImagesFromRequest($input, $key) {
         $images = MakeFile::reArrayFiles($input);
         $result = $this->createImage($images, $key);
-        return \json_encode($result);
+        $response['status_code_header'] = 'HTTP/1.1 201 Created';
+        $response['body'] = \json_encode($result);
+        return $response;
     }
     private function addImagesFromGet($input) {
         

@@ -136,16 +136,16 @@ class ViewMusic extends MusicGateway
                                         <ul class="el-upload-list el-upload-list--picture-card image-list">
                                             $images
                                         </ul>
-                                        <div class="del-thumbnail item-delete" style="">
+                                        <div class="del-thumbnail item-delete" style="" title="Delete All Images">
                                             <i class="mdi mdi-24px mdi-delete"></i>
                                         </div>
                                         <input type="file" name="img[]" class="file-upload-default image-upload" accept="image/*" multiple>
-                                        <div class="el-upload el-upload--picture-card openfile">
+                                        <div class="el-upload el-upload--picture-card openfile" title="Add Images">
                                             <i class="mdi mdi-48px mdi-image-plus"></i>
                                         </div>
                                         <div class="mt-5">
-                                            <div class="progress" style="height: 10px; width:300px; font-weight: 800; font-size: 14px;">
-                                                <div class="progress-bar" ></div> <i class="text-muted" style="font-size:9px">0%</i>
+                                            <div class="progress image-upload-progress" style="height: 10px; width:300px; font-weight: 800; font-size: 14px; display:none">
+                                                <div class="progress-bar image-bar" style="font-size:0.8em; color:rgb(251, 253, 255)"></div> <i class="image-percent" style="font-size:9px"></i>
                                             </div>
                                         </div>
                                     </div>

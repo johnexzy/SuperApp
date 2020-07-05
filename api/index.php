@@ -233,6 +233,8 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
         $controller->processRequest();
     }
     elseif ($uri[3] == 'images') {
+        $input = null;
+        $key = null;
         switch ($requestMethod) {
             case 'POST':
                 if (isset($uri[4])) {
