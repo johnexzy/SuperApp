@@ -37,17 +37,9 @@
                 contentType: false
 
             })
-                .done(async (msg) => {
-                    let res = await fetch(`http://127.0.0.1:8090/api/v1/images/${_key}`)
-
-                    console.log(res)
+                .done((msg) => {
                     $(".image-list").html("")
-                    $.each(e.target.files, function (key, images) {
-                        const selectedImg = images;
-                        // const selectedImg = elem 
-                        const reader = new FileReader();
-                        reader.onload = f => {
-
+                    $.each(msg, function (key, images) {
                             $(".del-thumbnail").show();
                             $(".image-list").append(
                                 "<li tabindex='0' class='el-upload-list__item is-ready'>" +
@@ -55,9 +47,6 @@
 
                                 "</li>"
                             );
-                            // alert(formData.postImages);
-                        };
-                        reader.readAsDataURL(selectedImg);
                     });
                 })
                 .fail((err) => {
