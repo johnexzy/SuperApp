@@ -1,11 +1,6 @@
 (function ($) {
     'use strict';
-
     $(function () {
-        let musicFile = {
-            Image: [],
-            Audio: null
-        };
         let _key = $(".key").val();
         $('.openfile').on("click", function () {
             $(this).parent().find('.file-upload-default').trigger('click')
@@ -79,9 +74,6 @@
                 // alert(formData.postImages);
             }
             reader.readAsDataURL(selectedAudio);
-
-
-            // alert($(this).val())
         });
         $(".del-thumbnail").on("click", function () {
             let perm = confirm("Confirm to Erase this images");
@@ -94,7 +86,6 @@
             })
                 .done((msg) => {
                     $(".image-list").html("");
-                    musicFile.Image = [];
                     $(this).hide();
                     console.log(msg)
                 })
