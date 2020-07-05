@@ -59,23 +59,23 @@
             // alert($(this).val())
 
         });
-
+        
         $('.audio-upload').on('change', function (e) {
             const selectedAudio = e.target.files[0];
             musicFile.Audio = selectedAudio;
             // alert(selectedAudio); [Object] [Object]
             const reader = new FileReader();
             reader.onload = f => {
-                $(".audio-active").html(
-                    "<li class='el-upload-list__item is-ready'>" +
-                    "<div class='el-upload-list__item-thumbnail'>" +
-                    "<div class='el-upload el-upload-item_song'>" +
-                    "<i class='mdi mdi-48px mdi-headphones'></i>" +
-                    "</div>" +
-                    "<audio src='" + f.target.result + "' class='el-upload-list__item-song' controls></audio>" +
-                    "</div>" +
-                    "</li>"
-                )
+                $(".audio-active").html(`
+                    <li class='el-upload-list__item is-ready'>
+                    <div class='el-upload-list__item-thumbnail'>
+                    <div class='el-upload el-upload-item_song'>
+                    <i class='mdi mdi-48px mdi-headphones'></i>
+                    </div>
+                    <audio src='${f.target.result}' class='el-upload-list__item-song' controls></audio>
+                    </div>
+                    </li>
+                `)
                 // alert(formData.postImages);
             }
             reader.readAsDataURL(selectedAudio);
