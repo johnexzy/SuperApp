@@ -247,6 +247,11 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
                     return false;
                 }
                 break;
+            case 'GET':
+                if (isset($uri[4])) {
+                    $key = (String) $uri[4];
+                }
+                break;
             case 'DELETE':
                 if (isset($uri[4]) && $uri[4] == "delete") {
                     $key = isset($uri[5]) ? (String) $uri[5] : null;
