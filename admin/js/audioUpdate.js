@@ -110,7 +110,6 @@
             }
             $(this).text("Updating...")
 
-            let formData = new FormData();
             let data = {
                 music_name: music_name,
                 music_details: music_details,
