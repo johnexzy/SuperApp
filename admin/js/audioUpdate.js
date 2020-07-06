@@ -97,11 +97,12 @@
                 })
         })
         $('#handleSubmit').on('click', function () {
+            alert("kpok")
             let music_name = $('#music_title').val();
             let music_details = $('#about_music').val();
             let artist = $('#artist').val();
             let popular = $('.popular').prop("checked") === true ? 1 : 0
-            let fields = [music_name, music_details, artist, uploaded_by]
+            let fields = [music_name, music_details, artist]
             //check for empty fields
             for (let field = 0; field < fields.length; field++) {
                 if (fields[field] == '') {
@@ -116,7 +117,7 @@
                 artist: artist,
                 popular: popular
             };
-
+            console.log(data)
             $.ajax({
                 url: `http://127.0.0.1:8090/api/v1/music/${_id}`,
                 type: 'PUT',
@@ -129,7 +130,7 @@
                     //reset All State to default
                     
                     setTimeout(function(){
-                        location.href = windows.location
+                        location.href = window.location
                     }, 1000)
                 })
                 .fail(function (err) {
