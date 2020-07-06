@@ -98,57 +98,31 @@
             let music_name = $('#music_title').val();
             let music_details = $('#about_music').val();
             let artist = $('#artist').val();
-            let uploaded_by = $('#author').val();
             let popular = $('.popular').prop("checked") === true ? 1 : 0
             let fields = [music_name, music_details, artist, uploaded_by]
             //check for empty fields
-            if (musicFile.Image.length < 1 || musicFile.Audio === null) {
-                return alert("no image or Audio selected")
-            }
-
             for (let field = 0; field < fields.length; field++) {
                 if (fields[field] == '') {
                     return alert("All fields are required")
                 }
 
             }
-            $(this).text("Posting...")
+            $(this).text("Updating...")
 
             let formData = new FormData();
-
-            formData.append('music_name', music_name)
-            formData.append('music_details', music_details)
-            formData.append('artist', artist)
-            formData.append('popular', popular)
-            $.each(musicFile.Image, function (key, image) {
-                formData.append(`music_images[${key}]`, image)
-            })
-            formData.append('music_file', musicFile.Audio)
-            formData.append('author', uploaded_by)
+            let data = {
+                music_name: music_name,
+                music_details: music_details,
+                artist: artist,
+                popular: popular
+            };
 
             $.ajax({
-                xhr: function () {
-                    let xhr = new window.XMLHttpRequest();
-                    xhr.upload.addEventListener("progress", function (ext) {
-                        if (ext.lengthComputable) {
-                            let perCentComplete = ((ext.loaded / ext.total) * 100).toFixed();
-                            $(".progress-bar").width(perCentComplete + '%');
-                            $(".progress-bar").html(perCentComplete + '%');
-                        }
-                    }, false)
-                    return xhr;
-                },
-                beforeSend: function () {
-                    $(".progress-bar").html('0%');
-
-                    $(".progress-bar").width('0%');
-                },
                 url: "http://127.0.0.1:8090/api/v1/music",
                 type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false
-
+                data: JSON.stringify(data),
+                dataType: 'json',
+                headers: { 'Content-Type': 'application/json' }
             })
                 .done(function () {
                     $(".status-msg").show()
