@@ -118,7 +118,7 @@
             };
 
             $.ajax({
-                url: `http://127.0.0.1:8090/api/v1/music/${_key}`,
+                url: `http://127.0.0.1:8090/api/v1/music/${_id}`,
                 type: 'PUT',
                 data: JSON.stringify(data),
                 dataType: 'json',

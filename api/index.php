@@ -73,7 +73,7 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
             case 'PUT':
                 $input = json_decode(file_get_contents("php://input"), TRUE);
                 if (isset($uri[4])) {
-                    $key = strip_tags($uri[4]);
+                    $id = (int) $uri[4];
                 }
                 break;
             case 'DELETE' :
