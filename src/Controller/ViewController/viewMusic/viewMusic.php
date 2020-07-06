@@ -100,7 +100,7 @@ class ViewMusic extends MusicGateway
                                     </div>
                                     <div class="card-body">
                                         <input type="hidden" value="$response[music_key]" class="key">
-                                    <div class="alert alert-success status-msg" style="display: none;">Post Created Successfully</div>
+                                    <div class="alert alert-success status-msg" style="display: none;">Updated Succesfully</div>
                                     <form class="forms-sample">
                                         <div class="form-group">
                                             <label for="postTitle">Title</label>

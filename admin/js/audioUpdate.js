@@ -105,7 +105,6 @@
                 if (fields[field] == '') {
                     return alert("All fields are required")
                 }
-
             }
             $(this).text("Updating...")
 
