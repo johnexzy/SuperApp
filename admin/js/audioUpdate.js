@@ -1,6 +1,7 @@
 (function ($) {
     'use strict';
     $(function () {
+
         let _key = $(".key").val();
         $('.openfile').on("click", function () {
             $(this).parent().find('.file-upload-default').trigger('click')
@@ -117,8 +118,8 @@
             };
 
             $.ajax({
-                url: "http://127.0.0.1:8090/api/v1/music",
-                type: 'POST',
+                url: `http://127.0.0.1:8090/api/v1/music/${_key}`,
+                type: 'PUT',
                 data: JSON.stringify(data),
                 dataType: 'json',
                 headers: { 'Content-Type': 'application/json' }
@@ -126,16 +127,10 @@
                 .done(function () {
                     $(".status-msg").show()
                     //reset All State to default
-                    $("#handleSubmit").html('<i class="mdi mdi-upload btn-icon-prepend"></i>Upload</button>')
-                    $('#music_title').val() == "";
-                    $('#music_title').val() == "";
-                    $('#music_title').val() == "";
-
-                    $(".del-thumbnail").click();
-                    $('body,html').animate({
-                        scrollTop: -1
-                    }, 1000);
-                    $(".status-msg").slideUp(4000)
+                    
+                    setTimeout(function(){
+                        location.href = windows.location
+                    }, 1000)
                 })
                 .fail(function (err) {
                     alert("Sorry, Something went wrong \nif problem persist contact developer")

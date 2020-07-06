@@ -134,9 +134,10 @@ class ViewMusic extends MusicGateway
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <button type="button" class="btn btn-primary btn-icon-text" id="handleSubmit"><i
-                                                        class="mdi mdi-content-save-all btn-icon-prepend"></i>
-                                                    Save All</button>
+                                            <button type="button" class="btn btn-primary btn-icon-text" id="handleSubmit">
+                                                <i class="mdi mdi-content-save-all btn-icon-prepend"></i>
+                                                Save All
+                                            </button>
                                         </div>
                                         
                                         <hr>
