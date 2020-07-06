@@ -3,6 +3,7 @@
     $(function () {
 
         let _key = $(".key").val();
+        let _id = $(".id").val()
         $('.openfile').on("click", function () {
             $(this).parent().find('.file-upload-default').trigger('click')
         })
