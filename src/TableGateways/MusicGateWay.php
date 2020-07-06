@@ -251,7 +251,8 @@ class MusicGateway extends SongGateway {
                         SET 
                                 `music_name` = :music_name, 
                                 `music_details` = :music_details,
-                                `artist` = :artist
+                                `artist` = :artist,
+                                `popular` = :popular,
                                 `updated_at` = CURRENT_TIMESTAMP
                         WHERE `music`.`id` = :id;
                 ";
@@ -261,6 +262,7 @@ class MusicGateway extends SongGateway {
                         $statement->execute(array(
                                 'id' => (int) $id,
                                 'music_name' => $input['music_name'],
+                                'popular' => $input['popular'],
                                 'music_details' => $input['music_details'],
                                 'artist' => $input['artist'],
                         ));
