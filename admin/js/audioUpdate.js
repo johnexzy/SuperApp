@@ -33,7 +33,7 @@
                 responseType:'application/json'
 
             })
-                .done((images) => {
+                .done((msg) => {
                     let images = JSON.parse(msg);
                     $(".image-list").html("")
                     $.each(images, function (key, image) {

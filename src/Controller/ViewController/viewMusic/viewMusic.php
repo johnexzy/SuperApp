@@ -115,12 +115,23 @@ class ViewMusic extends MusicGateway
                                             <input type="text" class="form-control" id="artist" placeholder="Artist" value="$response[artist]">
                                         </div>
 
-
+                                        
                                         <div class="form-group">
                                             <label for="postBody">About this Song</label>
                                             <font size="0.6" id="AboutCap" style="display: block; display: none; text-align: right; float: right;">
                                                 Required</font>
                                             <textarea class="form-control" id="about_music" rows="16">$response[music_details]</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            Add to Trending:
+                                            <div class="d-flex align-items-center">
+                                                <p class="mr-2 font-weight-medium monthly check-box-label text-active">OFF</p>
+                                                <label class="toggle-switch toggle-switch">
+                                                <input type="checkbox" id="toggle-switch" class="popular" $popular>
+                                                <span class="toggle-slider round"></span>
+                                                </label>
+                                                <p class="ml-2 font-weight-medium yearly check-box-label">ON</p>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <button type="button" class="btn btn-primary btn-icon-text" id="handleSubmit"><i
@@ -137,7 +148,7 @@ class ViewMusic extends MusicGateway
                                             <ul class="el-upload-list el-upload-list--picture-card image-list">
                                                 $images
                                             </ul>
-                                            <div class="del-thumbnail item-delete" style="" title="Delete All Images">
+                                            <div tabindex="0" class="del-thumbnail item-delete" style="" title="Delete All Images">
                                                 <i class="mdi mdi-24px mdi-delete"></i>
                                             </div>
                                             <input type="file" name="img[]" class="file-upload-default image-upload" accept="image/*" multiple>
@@ -164,17 +175,7 @@ class ViewMusic extends MusicGateway
                                                 <i class="mdi mdi-48px mdi-music-note-plus"></i>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            Add to Trending:
-                                            <div class="d-flex align-items-center">
-                                                <p class="mr-2 font-weight-medium monthly check-box-label text-active">OFF</p>
-                                                <label class="toggle-switch toggle-switch">
-                                                <input type="checkbox" id="toggle-switch" class="popular" $popular>
-                                                <span class="toggle-slider round"></span>
-                                                </label>
-                                                <p class="ml-2 font-weight-medium yearly check-box-label">ON</p>
-                                            </div>
-                                        </div>
+                                        
 
                                     </form>
                                     </div>
