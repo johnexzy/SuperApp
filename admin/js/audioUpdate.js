@@ -123,7 +123,9 @@
                 type: 'PUT',
                 data: JSON.stringify(data),
                 dataType: 'json',
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json' },
+                crossDomain: true
+                
             })
                 .done(function () {
                     $(".status-msg").show()
