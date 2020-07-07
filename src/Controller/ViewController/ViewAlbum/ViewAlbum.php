@@ -49,6 +49,7 @@ class ViewAlbum extends AlbumGateway
             </li>
  HTML;
   }
+  $popular = (int) $response["popular"] !== 0 ? "checked" : "";
   $navBar  = LayoutClass::navBar;
   $sideBar = LayoutClass::sideBar;
   $footer  = LayoutClass::footer;
@@ -127,10 +128,28 @@ class ViewAlbum extends AlbumGateway
                                         <input type="number" class="form-control" id="album_year" placeholder="2020" value="$response[year]">
                                     </div>
                                     <div class="form-group">
-                                        <label for="postTitle">Uploaded by</label>
-
-                                        <input type="text" class="form-control" id="author" value="$response[uploaded_by]" disabled>
+                                        Add to Trending:
+                                        <div class="d-flex align-items-center">
+                                            <p class="mr-2 font-weight-medium monthly check-box-label text-active">OFF</p>
+                                            <label class="toggle-switch toggle-switch">
+                                            <input type="checkbox" id="toggle-switch" class="popular" $popular>
+                                            <span class="toggle-slider round"></span>
+                                            </label>
+                                            <p class="ml-2 font-weight-medium yearly check-box-label">ON</p>
+                                        </div>
                                     </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary btn-icon-text" id="handleSubmit">
+                                            <i class="mdi mdi-content-save-all btn-icon-prepend"></i>
+                                            Save All
+                                        </button>
+                                    </div>
+                                    
+                                    <hr>
+                                    <div class="card-header">
+                                        <h3 class="text-center" style="font-family:Sans serif">Alter Media</h3>
+                                    </div>
+                                    <hr>
                                     <div class="form-group">
                                         <ul class="el-upload-list el-upload-list--picture-card image-list">
                                             $images
