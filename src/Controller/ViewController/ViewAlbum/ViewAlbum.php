@@ -213,7 +213,7 @@ class ViewAlbum extends AlbumGateway
     <script src="/admin/js/template.js"></script>
     <!-- endinject -->
     <!-- Inject:js for this page -->
-    <script src="/admin/js/albumController.js"></script>
+    <script src="/admin/js/albumUpdate.js"></script>
     <!-- endinject:js for this page -->
 </body>
 
