@@ -127,13 +127,13 @@
                 crossDomain: true
                 
             })
-                .done(function () {
+                .done(function (msg) {
                     $(".status-msg").show()
                     //reset All State to default
-                    
-                    setTimeout(function(){
-                        location.href = window.location
-                    }, 1000)
+                    console.log(msg)
+                    // setTimeout(function(){
+                    //     location.href = window.location
+                    // }, 1000)
                 })
                 .fail(function (err) {
                     alert("Sorry, Something went wrong \nif problem persist contact developer")

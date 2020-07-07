@@ -27,11 +27,10 @@ use Src\TableGateways\MusicGateway;
 
 class MusicController extends MusicGateway{
     
-    private $db, $requestMethod, $input, $limit, $popular, $pageNo, $short_url, $id;
+    private $requestMethod, $input, $limit, $popular, $pageNo, $short_url, $id;
 
     public function __construct($db, $requestMethod, Array $input = null, int $id = null, int $limit = null, int $popular = null, int $pageNo = null, String $short_url = null) {
         parent::__construct($db);
-        $this->db = $db;
         $this->requestMethod = $requestMethod;
         $this->input = $input;
         $this->limit = $limit;
@@ -120,8 +119,9 @@ class MusicController extends MusicGateway{
         $response['body'] = json_encode($result);
         return $response;
     }
-    private function updateMusicFromRequest($id, Array $input)
+    private function updateMusicFromRequest(int $id, Array $input)
     {
+        
         $result = $this->find($id);
         if (!$result) {
             return $this->notFoundResponse();
@@ -130,9 +130,9 @@ class MusicController extends MusicGateway{
         if (!$this->validateUpdateInput($input)) {
             return $this->unprocessableEntityResponse();
         }
-        $this->update($id, $input);
+        $res = $this->update($id, $input);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = \json_encode($this->find($id));
+        $response['body'] = json_encode($res);
         return $response;
         
     }
