@@ -65,7 +65,8 @@ class MovieController extends MovieGateway{
                 };
                 break;
             case 'PUT':
-                $response = ($this->id) ? $this->updateVideoFromRequest($this->id, $this->input)
+                $response = ($this->id && $this->input) ? 
+                $this->updateVideoFromRequest($this->id, $this->input)
                 : $this->notFoundResponse();
                 break;
             case 'DELETE':
