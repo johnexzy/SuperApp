@@ -62,15 +62,13 @@ class ViewMovie extends MovieGateway
                 </li>
     HTML;
   }
-  $HollyWood = ""; $NollyWood = ""; $BollyWood = "";  $Others = "";
+//   $HollyWood = ""; $NollyWood = ""; $BollyWood = "";  $Others = "";
   $popular = (int) $response["popular"] !== 0 ? "checked" : "";
   $category = ["HollyWood", "NollyWood", "BollyWood", "Others"];
   //to avoid repition of category variable this loop produces same results
   foreach ($category as $cat) {
       $$cat = $response["category"] == $cat ? "checked" : "";
   }
-  $hollywood = $response["category"] == "HollyWood" ? "checked" : "";
-  $nollywood = $response[""];
   $navBar  = LayoutClass::navBar;
   $sideBar = LayoutClass::sideBar;
   $footer  = LayoutClass::footer;
@@ -91,8 +89,6 @@ class ViewMovie extends MovieGateway
     <link rel="stylesheet" href="/admin/vendors/base/vendor.bundle.base.css">
 
     <!-- endinject -->
-    <!-- plugin css for this page -->
-    <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="/admin/css/style.css">
     <!-- endinject -->
@@ -134,25 +130,25 @@ class ViewMovie extends MovieGateway
                                         <label for="postTitle">Category</label>
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="HollyWood" >
+                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="HollyWood" $HollyWood>
                                                 HollyWood
                                             </label>
                                         </div>
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="NollyWood">
+                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="NollyWood" $NollyWood>
                                                 NollyWood
                                             </label>
                                         </div>
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="BollyWood">
+                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="BollyWood" $BollyWood>
                                                 BollyWood
                                             </label>
                                         </div>
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="Others" checked>
+                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="Others" $Others>
                                                 Others?
                                             </label>
                                         </div>
