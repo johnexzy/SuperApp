@@ -92,6 +92,8 @@ class ViewAlbum extends AlbumGateway
                     <div class="row">
                         <div class="col-12 grid-margin stretch-card">
                             <div class="card">
+                                <input type="hidden" value="$response[music_key]" class="key">
+                                <input type="hidden" value="$response[id]" class="id">
                                 <div class="card-header">
                                     <h3 class="text-center" style="font-family:monospace">
                                         <i class="mdi mdi-pencil"></i>
