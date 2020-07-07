@@ -119,7 +119,7 @@ class MusicController extends MusicGateway{
         $response['body'] = json_encode($result);
         return $response;
     }
-    private function updateMusicFromRequest(int $id, Array $input)
+    private function updateMusicFromRequest($id, Array $input)
     {
         
         $result = $this->find($id);
@@ -132,7 +132,7 @@ class MusicController extends MusicGateway{
         }
         $res = $this->update($id, $input);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = json_encode($res);
+        $response['body'] = \json_encode($this->find($id));
         return $response;
         
     }

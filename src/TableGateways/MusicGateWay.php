@@ -261,10 +261,10 @@ class MusicGateway extends SongGateway {
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array(
                                 'id' => (int) $id,
-                                'music_name' =>"dbytrdubtv",
-                                'music_details' => "aceytrdbu etudtvdtrvudtr",
-                                'artist' => "atrscrt",
-                                'popular' => 1
+                                'music_name' => $input['music_name'],
+                                'music_details' => $input['music_details'],
+                                'artist' => $input['artist'],
+                                'popular' => $input['popular'],
                         ));
                         return $statement->rowCount();
                 } catch (\PDOException $e) {
