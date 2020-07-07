@@ -70,9 +70,7 @@ class MovieController extends MovieGateway{
                 : $this->notFoundResponse();
                 break;
             case 'DELETE':
-                if ($this->id) {
-                    $response = $this->deleteVideo($this->id);
-                }
+                    $response = ($this->id) ? $this->deleteVideo($this->id) : $this->notFoundResponse();
                 break;
             default:
                 $response = $this->notFoundResponse();
