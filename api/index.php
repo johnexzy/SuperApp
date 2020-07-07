@@ -189,7 +189,11 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
                 }
                 break;
             case 'PUT':
+                $input = json_decode(file_get_contents("php://input"), TRUE);
 
+                if (isset($uri[4])) {
+                    $id = (int) $uri[4];
+                }
                 break;
             case 'DELETE' :
                 if (isset($uri[4])) {
