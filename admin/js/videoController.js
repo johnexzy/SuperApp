@@ -54,7 +54,6 @@
         
         let video_name = $('#video_title').val();
         let video_details = $('#about_video').val();
-        let artist = $('#artist').val();
         let uploaded_by = $('#author').val();
         let category= $('input[name=Category]:checked').val();
         let popular = $('#popular').prop("checked") === true ? 1 : 0

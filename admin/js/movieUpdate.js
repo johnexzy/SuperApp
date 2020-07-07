@@ -100,7 +100,9 @@
             let video_name = $('#video_title').val();
             let video_details = $('#about_video').val();
             let artist = $('#artist').val();
-            let popular = $('.popular').prop("checked") === true ? 1 : 0
+            let uploaded_by = $('#author').val();
+            let category= $('input[name=Category]:checked').val();
+            let popular = $('#popular').prop("checked") === true ? 1 : 0
             let fields = [video_name, video_details, artist]
             //check for empty fields
             for (let field = 0; field < fields.length; field++) {

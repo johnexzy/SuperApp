@@ -185,7 +185,7 @@ class ViewMovie extends MovieGateway
                                         <ul class="el-upload-list el-upload-list--picture-card image-list">
                                             $images
                                         </ul>
-                                        <div class="del-thumbnail item-delete" style="display: none;">
+                                        <div class="del-thumbnail item-delete">
                                             <i class="mdi mdi-24px mdi-delete"></i>
                                         </div>
                                         <input type="file" name="img[]" class="file-upload-default image-upload" accept="image/*" multiple>
@@ -209,10 +209,6 @@ class ViewMovie extends MovieGateway
                                         <div class="el-upload el-upload--picture-card openfile">
                                             <i class="mdi mdi-48px mdi-video"></i>
                                         </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <input type="checkbox" name="popular" class="form-check-success" id="popular"> Add to popular?
                                     </div>
                                 </form>
                                 </div>
