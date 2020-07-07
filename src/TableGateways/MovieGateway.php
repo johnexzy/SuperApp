@@ -255,6 +255,14 @@ class MovieGateway extends VideoGateway {
                                 `popular` = :popular,
                                 `updated_at` = CURRENT_TIMESTAMP
                         WHERE `movies`.`id` = :id;
+                        UPDATE `movies` 
+                        SET     
+                                `video_name` = :video_name,
+                                `video_details` = :video_details',
+                                `category` = :category,
+                                `popular` = :popular,
+                                `updated_at` = CURRENT_TIMESTAMP
+                        WHERE `movies`.`id` = :id;
                 ";
                 
                 try {
