@@ -241,22 +241,34 @@ class AlbumGateway extends SongGateway {
                         exit($e->getMessage());
                 }
         }
-        public function update($uid, Array $input)
+        /**
+         * updates album
+         * @param int $id
+         * @param Array $input
+         * @return Array
+         */
+        public function update($id, Array $input)
         {       $statement = "
-                        UPDATE `News` 
+                        UPDATE `album` 
                         SET 
-                                `post_title` = :post_title, 
-                                `post_body` = :post_body,
+                                `album_name` = :album_name, 
+                                `album_details` = :album_details,
+                                `artist` = :artist,
+                                `popular` = :popular,
+                                `year` = :year,
                                 `updated_at` = CURRENT_TIMESTAMP
-                        WHERE `News`.`id` = :id;
+                        WHERE `album`.`id` = :id;
                 ";
                 
                 try {
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array(
-                                'id' => (int) $uid,
-                                'post_title' => $input['post_title'],
-                                'post_body' => $input['post_body']
+                                'id' => (int) $id,
+                                'album_name' => $input['album_name'],
+                                'album_details' => $input['album_details'],
+                                'artist' => $input['artist'],
+                                'year' => $input['year'],
+                                'popular' => $input['popular'],
                         ));
                         return $statement->rowCount();
                 } catch (\PDOException $e) {

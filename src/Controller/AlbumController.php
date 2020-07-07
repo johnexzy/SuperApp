@@ -126,7 +126,18 @@ class AlbumController extends AlbumGateway{
     }
     private function updateAlbumFromRequest(int $id, Array $input)
     {
-        
+        $result = $this->find($id);
+        if (!$result) {
+            return $this->notFoundResponse();
+            # code...
+        }
+        if (!$this->validateUpdateInput($input)) {
+            return $this->unprocessableEntityResponse();
+        }
+        $this->update($id, $input);
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = \json_encode($this->find($id));
+        return $response;
     }
     private function deleteAlbum($id) {
         $result = $this->find($id);
@@ -138,7 +149,24 @@ class AlbumController extends AlbumGateway{
         $response['body'] = json_encode($result);
         return $response;
     }
+    private function validateUpdateInput(Array $input) {
+        if (! isset($input['album_name'])) {
+            return false;
+        }
+        if (! isset($input['album_details'])) {
+            return false;
+        }
+        return true;
+    }
 
+    private function unprocessableEntityResponse()
+    {
+        $response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
+        $response['body'] = json_encode([
+            'error' => 'Invalid input'
+        ]);
+        return $response;
+    }
     private function notFoundResponse()
     {
         $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
