@@ -65,6 +65,11 @@ class AlbumController extends AlbumGateway{
                     $response = $this->getAllAlbums($this->limit);
                 };
                 break;
+            case 'PUT':
+                if ($this->id && $this->input) {
+                    $response = $this->updateAlbumFromRequest($this->id, $this->input);
+                }
+                break;
             case 'DELETE':
                 if ($this->id) {
                     $response = $this->deleteAlbum($this->id);
@@ -118,6 +123,10 @@ class AlbumController extends AlbumGateway{
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = json_encode($result);
         return $response;
+    }
+    private function updateAlbumFromRequest(int $id, Array $input)
+    {
+        
     }
     private function deleteAlbum($id) {
         $result = $this->find($id);
