@@ -101,7 +101,7 @@
             let video_details = $('#about_video').val();
             let category= $('input[name=Category]:checked').val();
             let popular = $('.popular').prop("checked") === true ? 1 : 0
-            let fields = [video_name, video_details, artist]
+            let fields = [video_name, video_details, category]
             //check for empty fields
             for (let field = 0; field < fields.length; field++) {
                 if (fields[field] == '') {
