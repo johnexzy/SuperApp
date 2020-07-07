@@ -69,6 +69,7 @@ class ViewMovie extends MovieGateway
   foreach ($category as $cat) {
       $$cat = $response["category"] == $cat ? "checked" : "";
   }
+  //Generates HTML Components
   $navBar  = LayoutClass::navBar;
   $sideBar = LayoutClass::sideBar;
   $footer  = LayoutClass::footer;
@@ -83,11 +84,8 @@ class ViewMovie extends MovieGateway
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Leccel Admin</title>
     <!-- plugins:css -->
-
     <link rel="stylesheet" href="/admin/vendors/mdi/css/materialdesignicons.min.css">
-
     <link rel="stylesheet" href="/admin/vendors/base/vendor.bundle.base.css">
-
     <!-- endinject -->
     <!-- inject:css -->
     <link rel="stylesheet" href="/admin/css/style.css">
