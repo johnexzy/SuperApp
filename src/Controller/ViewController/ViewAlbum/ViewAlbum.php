@@ -101,7 +101,7 @@ class ViewAlbum extends AlbumGateway
                                     </h3> 
                                 </div>
                                 <div class="card-body">
-                                   <div class="alert alert-success status-msg" style="display: none;">Post Created Successfully</div>
+                                   <div class="alert alert-success status-msg" style="display: none;">Updated Successfully</div>
                                    <form class="forms-sample">
                                     <div class="form-group">
                                         <label for="postTitle">Title</label>
@@ -183,18 +183,10 @@ class ViewAlbum extends AlbumGateway
                                             <i class="mdi mdi-48px mdi-music-note-plus"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="checkbox" name="popular" class="form-check-success" id="popular"> Add to popular?
-                                    </div>
-
+                                    <hr>
                                 </form>
                                 </div>
-                                <div class="card-footer">
-                                    <button type="button" class="btn btn-primary btn-icon-text" id="handleSubmit"><i
-                                                class="mdi mdi-upload btn-icon-prepend"></i>
-                                            Upload Changes</button>
-                                    <button class="btn btn-light">Cancel</button>
-                                </div>
+                                
                                 <div class="progress" style="height: 40px; font-weight: 800; font-size: 18px;">
                                     <div class="progress-bar" ></div>
                                 </div>
