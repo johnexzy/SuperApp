@@ -97,7 +97,6 @@
                 })
         })
         $('#handleSubmit').on('click', function () {
-            alert("kpok")
             let music_name = $('#music_title').val();
             let music_details = $('#about_music').val();
             let artist = $('#artist').val();
@@ -131,9 +130,13 @@
                     $(".status-msg").show()
                     //reset All State to default
                     console.log(msg)
-                    // setTimeout(function(){
-                    //     location.href = window.location
-                    // }, 1000)
+                    $('#handleSubmit').html(`<i class="mdi mdi-content-save-all btn-icon-prepend"></i>
+                    Save All`)
+                    $('body,html').animate({
+                        scrollTop: -1,
+                        // opacity: 0
+                      }, 1000);
+                    $(".status-msg").slideUp(3000)
                 })
                 .fail(function (err) {
                     alert("Sorry, Something went wrong \nif problem persist contact developer")
