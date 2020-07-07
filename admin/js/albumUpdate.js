@@ -59,7 +59,7 @@
         
         $('.audio-upload').on('change', function (e) {
             const selectedAudio = e.target.files[0];
-            musicFile.Audio = selectedAudio;
+            albumFile.Audio = selectedAudio;
             // alert(selectedAudio); [Object] [Object]
             const reader = new FileReader();
             reader.onload = f => {
@@ -97,11 +97,12 @@
                 })
         })
         $('#handleSubmit').on('click', function () {
-            let music_name = $('#music_title').val();
-            let music_details = $('#about_music').val();
+            let album_name = $('#album_title').val();
+            let album_details = $('#about_album').val();
+            let year = $('#album_year').val();
             let artist = $('#artist').val();
             let popular = $('.popular').prop("checked") === true ? 1 : 0
-            let fields = [music_name, music_details, artist]
+            let fields = [album_name, album_details, artist]
             //check for empty fields
             for (let field = 0; field < fields.length; field++) {
                 if (fields[field] == '') {
@@ -111,14 +112,15 @@
             $(this).text("Updating...")
 
             let data = {
-                music_name: music_name,
-                music_details: music_details,
+                album_name: album_name,
+                album_details: album_details,
                 artist: artist,
+                year: year,
                 popular: popular
             };
             console.log(data)
             $.ajax({
-                url: `http://127.0.0.1:8090/api/v1/music/${_id}`,
+                url: `http://127.0.0.1:8090/api/v1/album/${_id}`,
                 type: 'PUT',
                 data: JSON.stringify(data),
                 dataType: 'json',

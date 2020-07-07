@@ -92,7 +92,7 @@ class ViewAlbum extends AlbumGateway
                     <div class="row">
                         <div class="col-12 grid-margin stretch-card">
                             <div class="card">
-                                <input type="hidden" value="$response[music_key]" class="key">
+                                <input type="hidden" value="$response[album_key]" class="key">
                                 <input type="hidden" value="$response[id]" class="id">
                                 <div class="card-header">
                                     <h3 class="text-center" style="font-family:monospace">
@@ -156,12 +156,17 @@ class ViewAlbum extends AlbumGateway
                                         <ul class="el-upload-list el-upload-list--picture-card image-list">
                                             $images
                                         </ul>
-                                        <div class="del-thumbnail item-delete" style="display: none;">
+                                        <div class="del-thumbnail item-delete">
                                             <i class="mdi mdi-24px mdi-delete"></i>
                                         </div>
                                         <input type="file" name="img[]" class="file-upload-default image-upload" accept="image/*" multiple>
                                         <div class="el-upload el-upload--picture-card openfile">
                                             <i class="mdi mdi-48px mdi-image-plus"></i>
+                                        </div>
+                                        <div class="mt-5">
+                                            <div class="progress image-upload-progress" style="height: 10px; width:300px; font-weight: 800; font-size: 14px; display:none">
+                                                <div class="progress-bar image-bar" style="font-size:0.8em; color:rgb(251, 253, 255)"></div> <i class="image-percent" style="font-size:9px"></i>
+                                            </div>
                                         </div>
                                     </div>
                                     <hr>
