@@ -245,12 +245,12 @@ class MovieGateway extends VideoGateway {
                         exit($e->getMessage());
                 }
         }
-        public function update($uid, Array $input)
+        public function update($id, Array $input)
         {       $statement = "
                         UPDATE `movies` 
-                        SET     
-                                `video_name` = :video_name,
-                                `video_details` = :video_details',
+                        SET 
+                                `video_name` = :video_name, 
+                                `video_details` = :video_details,
                                 `category` = :category,
                                 `popular` = :popular,
                                 `updated_at` = CURRENT_TIMESTAMP
@@ -260,11 +260,11 @@ class MovieGateway extends VideoGateway {
                 try {
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array(
-                                'id' => (int) $uid,
+                                'id' => (int) $id,
                                 'video_name' => $input['video_name'],
                                 'video_details' => $input['video_details'],
                                 'category' => $input['category'],
-                                'popular' => $input['popular']
+                                'popular' => $input['popular'],
                         ));
                         return $statement->rowCount();
                 } catch (\PDOException $e) {
