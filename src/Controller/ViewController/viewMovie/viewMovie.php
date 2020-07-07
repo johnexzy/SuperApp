@@ -199,7 +199,7 @@ class ViewMovie extends MovieGateway
                                         </div>
                                     </div>
                                     <hr>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <ul class="el-upload-list el-upload-list--picture-card video-active">
                                             $videos
                                         </ul>
@@ -209,7 +209,7 @@ class ViewMovie extends MovieGateway
                                         <div class="el-upload el-upload--picture-card openfile">
                                             <i class="mdi mdi-48px mdi-video"></i>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </form>
                                 </div>
                                 

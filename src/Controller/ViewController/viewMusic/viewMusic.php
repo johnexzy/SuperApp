@@ -164,7 +164,7 @@ class ViewMusic extends MusicGateway
                                             </div>
                                         </div>
                                         <hr>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <ul class="el-upload-list el-upload-list--picture-card audio-active">
 
                                             </ul>
@@ -176,7 +176,7 @@ class ViewMusic extends MusicGateway
                                             <div class="el-upload el-upload--picture-card openfile">
                                                 <i class="mdi mdi-48px mdi-music-note-plus"></i>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         
 
                                     </form>

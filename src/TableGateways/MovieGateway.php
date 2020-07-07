@@ -246,16 +246,16 @@ class MovieGateway extends VideoGateway {
                 }
         }
         public function update($id, Array $input)
-        {       $statement = "
-                        UPDATE `movies` 
-                        SET 
-                                `video_name` = :video_name, 
-                                `video_details` = :video_details,
-                                `category` = :category,
-                                `popular` = :popular,
-                                `updated_at` = CURRENT_TIMESTAMP
-                        WHERE `movies`.`id` = :id;
-                ";
+        {       
+                $statement = "UPDATE `movies` 
+                                SET 
+                                        `video_name` = :video_name, 
+                                        `video_details` = :video_details,
+                                        `category` = :category,
+                                        `popular` = :popular,
+                                        `updated_at` = CURRENT_TIMESTAMP
+                                WHERE `movies`.`id` = :id;
+                        ";
                 
                 try {
                         $statement = $this->db->prepare($statement);
@@ -264,7 +264,7 @@ class MovieGateway extends VideoGateway {
                                 'video_name' => $input['video_name'],
                                 'video_details' => $input['video_details'],
                                 'category' => $input['category'],
-                                'popular' => $input['popular'],
+                                'popular' => $input['popular']
                         ));
                         return $statement->rowCount();
                 } catch (\PDOException $e) {

@@ -170,7 +170,7 @@ class ViewAlbum extends AlbumGateway
                                         </div>
                                     </div>
                                     <hr>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <ul class="el-upload-list el-upload-list--picture-card audio-active">
 
                                         </ul>
@@ -183,7 +183,7 @@ class ViewAlbum extends AlbumGateway
                                             <i class="mdi mdi-48px mdi-music-note-plus"></i>
                                         </div>
                                     </div>
-                                    <hr>
+                                    <hr> -->
                                 </form>
                                 </div>
                                 

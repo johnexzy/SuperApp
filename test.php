@@ -17,9 +17,9 @@ use Src\TableGateways\MovieGateway;
 
 $array = [
     "video_name"=> "johnwrt wrtwertwert wretwetwe",
-    "video_details"=> "iohectosuicbrhosuc wetwerter twertwertwertwr twetertwetwetw",
+    "video_details"=> "ihectosuicbrhosuc wetwerter twertwertwertwr twetertwetwetw",
     "category"=> "HollyWood",
-    "popular" => 1
+    "popular" => 0
 ];
 
 
