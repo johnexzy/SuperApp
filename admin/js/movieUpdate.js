@@ -99,10 +99,8 @@
         $('#handleSubmit').on('click', function () {
             let video_name = $('#video_title').val();
             let video_details = $('#about_video').val();
-            let artist = $('#artist').val();
-            let uploaded_by = $('#author').val();
             let category= $('input[name=Category]:checked').val();
-            let popular = $('#popular').prop("checked") === true ? 1 : 0
+            let popular = $('.popular').prop("checked") === true ? 1 : 0
             let fields = [video_name, video_details, artist]
             //check for empty fields
             for (let field = 0; field < fields.length; field++) {
@@ -115,7 +113,7 @@
             let data = {
                 video_name: video_name,
                 video_details: video_details,
-                artist: artist,
+                category: category,
                 popular: popular
             };
             console.log(data)
