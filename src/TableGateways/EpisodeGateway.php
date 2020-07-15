@@ -7,7 +7,7 @@ namespace Src\TableGateways;
  * @author ObaJohn
  */
 
-use RuntimeException;
+use PDOException;
 use Src\TableGateways\VideoGateway;
 use Src\TableGateways\CommentsGateway;
 use Src\TableGateways\ImageGateway;
@@ -33,7 +33,7 @@ class EpisodeGateway extends VideoGateway {
                 try {
                         $_key = $input["season_key"].md5($input['ep_name'].mt_rand(1, 10));
                         if($this->imageInherited->createImage($input['images'], $_key) == null){
-                                throw new RuntimeException("Error Processing Request", 1);
+                                throw new PDOException("Error Processing Request", 1);
                         } 
                                 
                         $query = $this->db->prepare($statement);
@@ -46,7 +46,7 @@ class EpisodeGateway extends VideoGateway {
                         ));
                         $this->createvideo($input['video'], $input['video_name']."-". mt_rand(0, 200), $_key);
                         return $query->rowCount();
-                } catch (\PDOException $e) {
+                } catch (PDOException $e) {
                         exit($e->getMessage());
                 }
         }
@@ -72,9 +72,9 @@ class EpisodeGateway extends VideoGateway {
                         $result = array();
                         $statement = $this->db->query($statement);
                         while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
-                                $comm = $this->comment->findAllWithKey($res["video_key"]);
-                                $videos = $this->getAllWithKey($res["video_key"]);
-                                $images = $this->imageInherited->getPostImages($res["video_key"]);
+                                $comm = $this->comment->findAllWithKey($res["ep_key"]);
+                                $videos = $this->getAllWithKey($res["ep_key"]);
+                                $images = $this->imageInherited->getPostImages($res["ep_key"]);
                                 $res += ["videos" => $videos]; //pnly one file is needed. just incase
                                 $res += ["images" => $images];
                                 $res += ["comments" => $comm];
@@ -152,6 +152,33 @@ class EpisodeGateway extends VideoGateway {
                                 $comm = $this->comment->findAllWithKey($res["video_key"]);
                                 $videos = $this->getAllWithKey($res["video_key"]);
                                 $images = $this->imageInherited->getPostImages($res["video_key"]);
+                                $res += ["videos" => $videos]; //pnly one file is needed. just incase
+                                $res += ["images" => $images];
+                                $res += ["comments" => $comm];
+                                $result[] = $res;
+                        }
+                        return $result;
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+        }
+        public function findAllWithKey($key)
+        {
+                $statement = "
+                        SELECT
+                                *
+                        FROM
+                                episodes
+                        WHERE season_key = ?;
+                ";
+                try {
+                        $result = [];
+                        $statement = $this->db->prepare($statement);
+                        $statement->execute(array($key));
+                        while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
+                                $comm = $this->comment->findAllWithKey($res["ep_key"]);
+                                $videos = $this->getAllWithKey($res["ep_key"]);
+                                $images = $this->imageInherited->getPostImages($res["ep_key"]);
                                 $res += ["videos" => $videos]; //pnly one file is needed. just incase
                                 $res += ["images" => $images];
                                 $res += ["comments" => $comm];

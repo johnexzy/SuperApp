@@ -1,15 +1,17 @@
 <?php
 namespace Src\TableGateways;
 
+use Src\TableGateways\EpisodeGateway;
 use Src\TableGateways\CommentsGateway;
 
 class SeasonGateway
 {
-        private $db = null, $comment;
+        private $db = null, $comment, $episode;
         public function __construct($db)
         {
                 $this->db = $db;
                 $this->comment = new CommentsGateway($db);
+                $this->episode = new EpisodeGateway($db);
         }
         
         
@@ -74,8 +76,9 @@ class SeasonGateway
                         $statement->execute(array($short_url));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
                         $comm = $this->comment->findAllWithKey($res["season_key"]);
-                        
+                        $episodes = $this->episode->findAllWithKey($res["season_key"]);
                         $res += ["comments" => $comm];
+                        $res += ["episodes" => $episodes];
                         $result = $res;
                         return $result;
                 } catch (\PDOException $e) {
