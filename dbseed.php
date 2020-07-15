@@ -182,6 +182,7 @@ CREATE TABLE IF NOT EXIST `episodes` (
   `ep_name` TEXT NOT NULL , 
   `ep_key` TEXT NOT NULL , 
   `season_key` TEXT NOT NULL , 
+  `ep_details` TEXT NOT NULL , 
   `short_url` TEXT NOT NULL , 
   `created_at` TIMESTAMP(0) NOT NULL , 
   PRIMARY KEY (`id`)
