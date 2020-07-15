@@ -26,7 +26,7 @@ class EpisodeGateway extends VideoGateway {
         
         public function insert(Array $input)
         {
-                $statement = "INSERT INTO movies
+                $statement = "INSERT INTO episodes
                                 (ep_name, ep_details, ep_key,  short_url, season_key)
                         VALUES
                                 (:ep_name, :ep_details, :ep_key,  :short_url, :season_key)";
@@ -43,7 +43,6 @@ class EpisodeGateway extends VideoGateway {
                                 'ep_key' => $_key,
                                 'season_key' => $input['season_key'],
                                 'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['ep_name']."-".mt_rand()))
-
                         ));
                         $this->createvideo($input['video'], $input['video_name']."-". mt_rand(0, 200), $_key);
                         return $query->rowCount();
@@ -57,14 +56,14 @@ class EpisodeGateway extends VideoGateway {
                         SELECT
                                 *
                         FROM
-                                movies
+                                episodes
                         ORDER 
                             BY id DESC;
                 " : "
                         SELECT
                                 *
                         FROM
-                                movies
+                                episodes
                         ORDER 
                             BY id DESC LIMIT $lim
                         ;
@@ -100,7 +99,7 @@ class EpisodeGateway extends VideoGateway {
                         SELECT
                                 *
                         FROM
-                                movies
+                                episodes
                         ORDER BY video_name 
                             ASC LIMIT $startFrom, $limit;";
                 try {   
@@ -141,7 +140,7 @@ class EpisodeGateway extends VideoGateway {
                         SELECT
                                 *
                         FROM
-                                movies
+                                episodes
                         WHERE popular > 0
                         ORDER 
                             BY id DESC LIMIT $popularInt;
@@ -169,7 +168,7 @@ class EpisodeGateway extends VideoGateway {
                         SELECT
                                 *
                         FROM
-                                movies
+                                episodes
                         WHERE short_url = ?;
                 ";
                 
@@ -201,7 +200,7 @@ class EpisodeGateway extends VideoGateway {
                         SELECT
                                 *
                         FROM
-                                movies
+                                episodes
                         WHERE id = ?;
                 ";
                 try {   
@@ -232,8 +231,8 @@ class EpisodeGateway extends VideoGateway {
                         SELECT
                                 *
                         FROM
-                                movies
-                        WHERE movies.short_url = ?;
+                                episodes
+                        WHERE episodes.short_url = ?;
                 ";
                 try {   
                         $statement = $this->db->prepare($statement);
@@ -247,14 +246,14 @@ class EpisodeGateway extends VideoGateway {
         }
         public function update($id, Array $input)
         {       
-                $statement = "UPDATE `movies` 
+                $statement = "UPDATE `episodes` 
                                 SET 
                                         `video_name` = :video_name, 
                                         `video_details` = :video_details,
                                         `category` = :category,
                                         `popular` = :popular,
                                         `updated_at` = CURRENT_TIMESTAMP
-                                WHERE `movies`.`id` = :id;
+                                WHERE `episodes`.`id` = :id;
                         ";
                 
                 try {
@@ -277,7 +276,7 @@ class EpisodeGateway extends VideoGateway {
          */
         private static function getTotalRecord($db)
         {
-                $statement = "SELECT movies.id FROM movies";
+                $statement = "SELECT episodes.id FROM episodes";
                 try {
                         $statement = $db->query($statement);
                         $result = $statement->fetchAll(\PDO::FETCH_COLUMN);
@@ -297,7 +296,7 @@ class EpisodeGateway extends VideoGateway {
                 $res = $this->find($id);
                 $key = $res["video_key"];
                 $statement = <<<EOS
-                        DELETE FROM `movies` WHERE `movies`.`id` = $id;
+                        DELETE FROM `episodes` WHERE `episodes`.`id` = $id;
                         DELETE FROM `images` WHERE `images`.`image_key` = $key;
                         DELETE FROM `videos` WHERE `videos`.`video_key` = $key;
                         DELETE FROM `comment` WHERE `comment`.`comment_key` = $key;
