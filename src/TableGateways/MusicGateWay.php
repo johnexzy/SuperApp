@@ -36,7 +36,7 @@ class MusicGateway extends SongGateway {
                         VALUES
                                 (:music_name, :music_details, :artist, :music_key, :short_url, :popular, :uploaded_by)";
                 try {
-                        $_key = md5($input['music_name'].rand(123, 2345621));
+                        $_key = md5($input['music_name'].mt_rand());
                         if($this->imageInherited->createImage($input['images'], $_key) == null) {
                                 throw new \PDOException("Error Processing Request", 1);
                         }
@@ -57,6 +57,9 @@ class MusicGateway extends SongGateway {
                         exit($e->getMessage());
                 }
         }
+        /**
+         * get all records
+         */
         public function getAll($lim = null)
         {
                 $statement = ($lim == null) ? "
@@ -169,6 +172,9 @@ class MusicGateway extends SongGateway {
                         exit($e->getMessage());
                 }
         }
+        /**
+         * get Song by short url
+         */
         public function getByUrl($short_url)
         {
                 $statement = "

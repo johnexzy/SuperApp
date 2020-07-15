@@ -173,6 +173,8 @@ HTML;
                         <li class="nav-item"> <a class="nav-link" href="/admin/newsong.php"><i class="mdi mdi-music menu-icon"></i> Music </a></li>
                         <li class="nav-item"> <a class="nav-link" href="/admin/newalbum.php"> <i class="mdi mdi-album menu-icon"></i> Album</a></li>
                         <li class="nav-item"> <a class="nav-link" href="/admin/newvideo.php"> <i class="mdi mdi-video menu-icon"></i> Video</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/admin/newseries.php"> <i class="mdi mdi-movie menu-icon"></i> Series</a></li>
+
                     </ul>
                     </div>
                 </li>

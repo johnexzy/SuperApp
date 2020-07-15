@@ -8,3 +8,4 @@ composer.lock
 uploads/audios/**
 uploads/images/**
 uploads/videos/**
+/build

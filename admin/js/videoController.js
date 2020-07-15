@@ -18,7 +18,6 @@
           // const selectedImg = elem
           const reader = new FileReader();
           reader.onload = f => {
-            
             $(".del-thumbnail").show();
             $(".image-list").append(
               `<li tabindex='0' class='el-upload-list__item is-ready'>

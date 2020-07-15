@@ -167,6 +167,14 @@ CREATE TABLE `videos` (
   `video_bytes` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE `seasons` ( 
+  `id` INT NOT NULL AUTO_INCREMENT , 
+  `season_key` TEXT NOT NULL , 
+  `series_key` TEXT NOT NULL , 
+  `short_url` TEXT NOT NULL , 
+  `season_name` TEXT NOT NULL , 
+  `created_at` TIMESTAMP(0) NOT NULL , 
+  PRIMARY KEY (`id`)) ENGINE = InnoDB;
 --
 -- Indexes for dumped tables
 --

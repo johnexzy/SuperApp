@@ -12,19 +12,27 @@ use Src\Controller\MusicController;
 use Src\Controller\CommentsController;
 use Src\Logic\MakeFile;
 use Src\Controller\MovieController;
-// use Src\Controller\NewsController;
-// use Src\Controller\CarouselController;
 use Src\Controller\AlbumController;
 use Src\Controller\ImageController;
+use Src\Controller\SeasonController;
+use Src\Controller\SeriesController;
 use Src\Controller\UserController;
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = explode('/', $uri);
 $requestMethod = $_SERVER['REQUEST_METHOD'];
-//all of the end points starts with person
-//everything else results in a 404
 
-// echo json_encode($uri);
+/**
+ * required variables
+ */
+$input = null;
+$limit = null;
+$short_url = null;
+$id = null;
+$popular = null;
+$key = null;
+$pn = null;
+
 if ($uri[2] == 'v1' && isset($uri[3])) {
     
     if ($uri[3] == 'user' && count($uri) == 6) {
@@ -34,14 +42,10 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
         $controller = new UserController($username, $password, $dbConnection);
         $controller->proccessRequest();
     }
+
     elseif($uri[3] == 'music'){
         
-        $input = null;
-        $limit = null;
-        $short_url = null;
-        $id = null;
-        $popular = null;
-        $pn = null;
+
         switch ($requestMethod) {
             case 'POST':
                 header("Content-Type: multipart/form-data;");
@@ -93,13 +97,6 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
     }
 
     elseif($uri[3] == 'album'){
-        
-        $input = null;
-        $limit = null;
-        $short_url = null;
-        $id = null;
-        $popular = null;
-        $pn = null;
         switch ($requestMethod) {
             case 'POST':
                 header("Content-Type: multipart/form-data;");
@@ -153,13 +150,6 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
     }
 
     elseif($uri[3] == 'videos'){
-        
-        $input = null;
-        $limit = null;
-        $short_url = null;
-        $id = null;
-        $popular = null;
-        $pn = null;
         switch ($requestMethod) {
             case 'POST':
                 header("Content-Type: multipart/form-data;");
@@ -210,6 +200,74 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
         $controller->processRequest();
     }
 
+    elseif ($uri[3] == 'series') {
+        
+        switch ($requestMethod) {
+            case 'GET':
+                if (isset($uri[4]) && isset($uri[5])) {
+                    /**
+                     * assign value to short_url
+                     * @var String
+                     */
+                    $short_url = ($uri[4] == "url") ? strip_tags($uri[5]) : null;
+
+                    /**
+                     * assign value to page number
+                     * @var int
+                     */
+                    $pn = ($uri[4] == "pages") ? (int) $uri[5] : null;
+
+                    /**
+                     * assign value to limit
+                     * @var int
+                     */
+                    $limit = ($uri[4] == "limit") ? (int) $uri[5] : null;
+                }
+                break;
+            case 'POST':
+                $input = (array) $_POST;
+                $input += ["images" => MakeFile::reArrayFiles($_FILES['series_images'])];
+                break;
+            case 'DELETE' :
+                $id = (isset($uri[4], $uri[5]) && $uri[4] =="delete") ? (int) $uri[5] : null;
+            default:
+                # code...
+                break;
+        }
+        // pass the request method and user ID to the PersonController and process the HTTP request:
+        $controller = new SeriesController($dbConnection, $requestMethod, $input, $id, $limit, $pn, $short_url);
+        $controller->processRequest();
+        //pass the request Method and user ID to PersonController and process the HTTP request
+    
+    }
+
+    elseif ($uri[3] == 'season') {
+        
+        switch ($requestMethod) {
+            case 'GET':
+                if (isset($uri[4]) && isset($uri[5])) {
+                    /**
+                     * assign value to short_url
+                     * @var String
+                     */
+                    $short_url = ($uri[4] == "url") ? strip_tags($uri[5]) : null;
+                }
+                break;
+            case 'POST':
+                $input = (array) $_POST;
+                break;
+            case 'DELETE' :
+                $id = (isset($uri[4], $uri[5]) && $uri[4] =="delete") ? (int) $uri[5] : null;
+            default:
+                # code...
+                break;
+        }
+        // pass the request method and user ID to the PersonController and process the HTTP request:
+        $controller = new SeasonController($dbConnection, $requestMethod, $input, $id, $short_url);
+        $controller->processRequest();
+        //pass the request Method and user ID to PersonController and process the HTTP request
+    
+    }
     elseif ($uri[3] == 'comment') {
         $comId = null;
         $key = null;
@@ -238,9 +296,8 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
         $controller = new CommentsController($dbConnection, $requestMethod, $key, $comId, $input);
         $controller->processRequest();
     }
+
     elseif ($uri[3] == 'images') {
-        $input = null;
-        $key = null;
         switch ($requestMethod) {
             case 'POST':
                 if (isset($uri[4])) {
@@ -270,7 +327,11 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
         $controller = new ImageController($dbConnection, $key, $input, $requestMethod);
         $controller->processRequest();
     }
-
+    
+    else{
+        header("HTTP/1.1 404 Not Found");
+        exit();
+    }
 }
 else{
     header("HTTP/1.1 404 Not Found");
