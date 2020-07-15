@@ -177,7 +177,7 @@ CREATE TABLE `seasons` (
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 
-CREATE TABLE `movies`.`episodes` ( 
+CREATE TABLE IF NOT EXIST `episodes` ( 
   `id` INT(255) NOT NULL AUTO_INCREMENT , 
   `ep_name` TEXT NOT NULL , 
   `ep_key` TEXT NOT NULL , 
