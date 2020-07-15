@@ -174,7 +174,18 @@ CREATE TABLE `seasons` (
   `short_url` TEXT NOT NULL , 
   `season_name` TEXT NOT NULL , 
   `created_at` TIMESTAMP(0) NOT NULL , 
-  PRIMARY KEY (`id`)) ENGINE = InnoDB;
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
+
+CREATE TABLE `movies`.`episodes` ( 
+  `id` INT(255) NOT NULL AUTO_INCREMENT , 
+  `ep_name` TEXT NOT NULL , 
+  `ep_key` TEXT NOT NULL , 
+  `season_key` TEXT NOT NULL , 
+  `short_url` TEXT NOT NULL , 
+  `created_at` TIMESTAMP(0) NOT NULL , 
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
 --
 -- Indexes for dumped tables
 --
