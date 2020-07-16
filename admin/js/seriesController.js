@@ -94,7 +94,7 @@
         .done(function () {
           $(".status-msg").show();
           //reset All State to default
-          $("#handleSubmit").html('<i class="mdi mdi-upload btn-icon-prepend"></i>Upload</button>');
+          $("#handleSubmit").html('<i class="mdi mdi-creation btn-icon-prepend"></i>Create</button>');
           $('#series_title').val("");
           $('#about_series').val("");
           $('#artist').val("");
