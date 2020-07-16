@@ -47,9 +47,15 @@ class SeasonGateway
                         WHERE series_key = ?;
                 ";
                 try {
+                        $result = [];
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array($key));
-                        $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+                        while($res = $statement->fetch(\PDO::FETCH_ASSOC)){
+                                $episodes = $this->episode->findAllWithKey($res["season_key"]);
+                                $res += ["episodes" => $episodes];
+                                $result[] = $res;
+                        }
+                        // 
                         return $result;
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
