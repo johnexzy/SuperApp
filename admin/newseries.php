@@ -91,10 +91,10 @@ require './session.php';
                                 </div>
                                 <div class="card-footer">
                                     <button type="button" class="btn btn-primary btn-icon-text" id="handleSubmit"><i
-                                                class="mdi mdi-upload btn-icon-prepend"></i>
-                                            Upload</button>
+                                                class="mdi mdi-creation btn-icon-prepend"></i>
+                                            Create</button>
                                 </div>
-                                <div class="progress" style="height: 40px; font-weight: 800; font-size: 18px;">
+                                <div class="progress" style="height: 20px; font-weight: 800; font-size: 18px;">
                                     <div class="progress-bar" ></div>
                                 </div>
                             </div>
