@@ -55,7 +55,6 @@ class SeasonGateway
                                 $res += ["episodes" => $episodes];
                                 $result[] = $res;
                         }
-                        // 
                         return $result;
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
