@@ -23,24 +23,24 @@ class SeriesGateway extends SeasonGateway
         {
                 $statement = "
                         INSERT INTO series
-                                (series_name, series_key, short_url)
+                                (series_name, series_key, series_details, short_url)
                         VALUES
-                                (:series_name, :series_key, :short_url)
+                                (:series_name, :series_key, :series_details, :short_url)
                 ";
                 try {
                         $_key = md5($input['series_name'].mt_rand());
                         if($this->imageInherited->createImage($input['images'], $_key) == null){
-                                // throw new \PDOException("Error Processing Request", 1);
-                                throw new PDOException("Error Processing Request", 1);
+                                throw new \PDOException("Error Processing Request", 1);
                         } 
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array(
                                 'series_name' => $input['series_name'],
                                 'series_key' => $_key,
+                                'series_details' => $input["series_details"],
                                 'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['series_name']."-".mt_rand()))
                         ));
                         return $statement->rowCount();
-                } catch (PDOException $e) {
+                } catch (\PDOException $e) {
                         exit($e->getMessage());
                 }
         }
