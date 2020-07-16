@@ -1,6 +1,7 @@
 <?php
 namespace Src\TableGateways;
 
+use PDOException;
 use RuntimeException;
 use Src\TableGateways\ImageGateway;
 use Src\TableGateways\CommentsGateway;
@@ -30,7 +31,7 @@ class SeriesGateway extends SeasonGateway
                         $_key = md5($input['series_name'].mt_rand());
                         if($this->imageInherited->createImage($input['images'], $_key) == null){
                                 // throw new \PDOException("Error Processing Request", 1);
-                                throw new RuntimeException("Error Processing Request", 1);
+                                throw new PDOException("Error Processing Request", 1);
                         } 
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array(
@@ -39,7 +40,7 @@ class SeriesGateway extends SeasonGateway
                                 'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['series_name']."-".mt_rand()))
                         ));
                         return $statement->rowCount();
-                } catch (\PDOException $e) {
+                } catch (PDOException $e) {
                         exit($e->getMessage());
                 }
         }
