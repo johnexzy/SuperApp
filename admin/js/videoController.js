@@ -56,7 +56,7 @@
         let uploaded_by = $('#author').val();
         let category= $('input[name=Category]:checked').val();
         let popular = $('#popular').prop("checked") === true ? 1 : 0
-        let fields = [video_name, video_details, artist, uploaded_by]
+        let fields = [video_name, video_details, uploaded_by]
         //check for empty fields
         if (videoFile.Image.length < 1 || videoFile.Video === null) {
           return alert("no image or Audio selected")
