@@ -250,7 +250,8 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
                      * assign value to short_url
                      * @var String
                      */
-                    $short_url = ($uri[4] == "url") ? strip_tags($uri[5]) : null;
+                    $key = strip_tags($uri[4]);
+                    $short_url =strip_tags($uri[5]);
                 }
                 break;
             case 'POST':
@@ -263,7 +264,7 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
                 break;
         }
         // pass the request method and user ID to the PersonController and process the HTTP request:
-        $controller = new SeasonController($dbConnection, $requestMethod, $input, $id, $short_url);
+        $controller = new SeasonController($dbConnection, $requestMethod, $input, $id, $key, $short_url);
         $controller->processRequest();
         //pass the request Method and user ID to PersonController and process the HTTP request
     

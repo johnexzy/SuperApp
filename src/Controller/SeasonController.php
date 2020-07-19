@@ -5,13 +5,14 @@ use Src\TableGateways\SeasonGateway;
 
 class SeasonController extends SeasonGateway  
 {
-    private $requestMethod, $input, $short_url, $series_key;
+    private $requestMethod, $input, $short_url, $series_key, $id;
 
-    public function __construct($db, $requestMethod,  $input = null, $series_key = null, $short_url =null) {
+    public function __construct($db, $requestMethod,  $input = null, $id, $series_key = null, $short_url =null) {
         parent::__construct($db);
         $this->requestMethod = $requestMethod;
         $this->input = $input;
         $this->short_url = $short_url;
+        $this->id = $id;
         $this->series_key = $series_key;
     }
 
@@ -47,7 +48,7 @@ class SeasonController extends SeasonGateway
     }
 
     private function getSeason(String $short_url, String $series_key) {
-        $result = $this->findByUrl($short_url);
+        $result = $this->findByUrl($short_url, $series_key);
         if(!$result){
             return $this->notFoundResponse();
         }
