@@ -66,7 +66,7 @@ class SeasonGateway
         /**
          * get Season by short url
          */
-        public function getByUrl($short_url, $series_key)
+        public function getByUrl($short_url, $series_name)
         {
                 $statement = "
                         SELECT
@@ -74,7 +74,7 @@ class SeasonGateway
                         FROM
                                 `seasons`
                         WHERE `seasons`.`short_url` = :short_url 
-                        AND `seasons`.`series_key` = :series_key;
+                        AND `seasons`.`series_name` = :series_name;
                 ";
                 
                 try {   
@@ -82,7 +82,7 @@ class SeasonGateway
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array(
                                 'short_url' => $short_url,
-                                'series_key' => $series_key
+                                'series_name' => $series_name
                         ));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
                         $comm = $this->comment->findAllWithKey($res["season_key"]);
@@ -96,7 +96,7 @@ class SeasonGateway
                 }
         }
         
-        public function findByUrl($short_url, $series_key)
+        public function findByUrl($short_url, $series_name)
         {
                 $statement = "
                         SELECT
@@ -104,7 +104,7 @@ class SeasonGateway
                         FROM
                                 `seasons`
                         WHERE `seasons`.`short_url` = :short_url 
-                        AND `seasons`.`series_key` = :series_key;
+                        AND `seasons`.`series_name` = :series_name;
                 ";
                 
                 try {   
@@ -112,7 +112,7 @@ class SeasonGateway
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array(
                                 'short_url' => $short_url,
-                                'series_key' => $series_key
+                                'series_name' => $series_name
                         ));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
                         
