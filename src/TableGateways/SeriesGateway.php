@@ -233,7 +233,6 @@ class SeriesGateway extends SeasonGateway
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array($short_url));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
-                        
                         return $res;
                 } catch (\PDOException $e) {
                         exit($e->getMessage());

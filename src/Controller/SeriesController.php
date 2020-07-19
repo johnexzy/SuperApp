@@ -58,12 +58,12 @@ class SeriesController extends SeriesGateway
         return $response;
     }
     private function getSeries(String $short_url) {
-        $result = $this->getByUrl($short_url);
+        $result = $this->findByUrl($short_url);
         if(!$result){
             return $this->notFoundResponse();
         }
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = json_encode($result);
+        $response['body'] = json_encode($this->getByUrl($short_url));
         return $response;
     }
     private function getSeriesByPage($pageNo)
