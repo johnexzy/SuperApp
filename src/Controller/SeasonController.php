@@ -5,14 +5,14 @@ use Src\TableGateways\SeasonGateway;
 
 class SeasonController extends SeasonGateway  
 {
-    private $requestMethod, $input, $short_url, $id;
+    private $requestMethod, $input, $short_url, $series_key;
 
-    public function __construct($db, $requestMethod,  $input = null, $id = null, $short_url =null) {
+    public function __construct($db, $requestMethod,  $input = null, $series_key = null, $short_url =null) {
         parent::__construct($db);
         $this->requestMethod = $requestMethod;
         $this->input = $input;
         $this->short_url = $short_url;
-        $this->id = $id;
+        $this->series_key = $series_key;
     }
 
     public function processRequest()
