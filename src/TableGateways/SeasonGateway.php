@@ -19,14 +19,15 @@ class SeasonGateway
         {
                 $statement = "
                         INSERT INTO seasons
-                                (season_key, series_key, short_url, season_name)
+                                (series_name, season_key, series_key, short_url, season_name)
                         VALUES
-                                (:season_key, :series_key, :short_url, :season_name)
+                                (:series_name, :season_key, :series_key, :short_url, :season_name)
                 ";
                 try {
                         $_key = $input['series_key'].md5($input['season_name'].mt_rand(0, 10));
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array(
+                                'series_name' => $input['series_name'],
                                 'season_key' => $_key,
                                 'series_key' => $input['series_key'],
                                 'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['season_name']."-".mt_rand())),
