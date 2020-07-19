@@ -5,15 +5,15 @@ use Src\TableGateways\SeasonGateway;
 
 class SeasonController extends SeasonGateway  
 {
-    private $requestMethod, $input, $short_url, $series_key, $id;
+    private $requestMethod, $input, $short_url, $series_name, $id;
 
-    public function __construct($db, $requestMethod,  $input = null, $id, $series_key = null, $short_url =null) {
+    public function __construct($db, $requestMethod,  $input = null, $id, $series_name = null, $short_url =null) {
         parent::__construct($db);
         $this->requestMethod = $requestMethod;
         $this->input = $input;
         $this->short_url = $short_url;
         $this->id = $id;
-        $this->series_key = $series_key;
+        $this->series_name = $series_name;
     }
 
     public function processRequest()
@@ -21,7 +21,7 @@ class SeasonController extends SeasonGateway
         switch ($this->requestMethod) {
             case 'GET':
                 if (isset($this->short_url)) {
-                    $response = $this->getSeason($this->short_url, $this->series_key);
+                    $response = $this->getSeason($this->short_url, $this->series_name);
                 }
                 else {
                     $response = $this->notFoundResponse();
@@ -47,13 +47,13 @@ class SeasonController extends SeasonGateway
         }
     }
 
-    private function getSeason(String $short_url, String $series_key) {
-        $result = $this->findByUrl($short_url, $series_key);
+    private function getSeason(String $short_url, String $series_name) {
+        $result = $this->findByUrl($short_url, $series_name);
         if(!$result){
             return $this->notFoundResponse();
         }
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = json_encode($this->getByUrl($short_url, $series_key));
+        $response['body'] = json_encode($this->getByUrl($short_url, $series_name));
         return $response;
     }
     private function createSeasonFromRequest($input) {
