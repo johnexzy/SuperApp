@@ -20,7 +20,7 @@ class SeasonController extends SeasonGateway
         switch ($this->requestMethod) {
             case 'GET':
                 if (isset($this->short_url)) {
-                    $response = $this->getSeason($this->short_url);
+                    $response = $this->getSeason($this->short_url, $this->series_key);
                 }
                 else {
                     $response = $this->notFoundResponse();
@@ -46,13 +46,13 @@ class SeasonController extends SeasonGateway
         }
     }
 
-    private function getSeason(String $short_url) {
+    private function getSeason(String $short_url, String $series_key) {
         $result = $this->findByUrl($short_url);
         if(!$result){
             return $this->notFoundResponse();
         }
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = json_encode($this->getByUrl($short_url));
+        $response['body'] = json_encode($this->getByUrl($short_url, $series_key));
         return $response;
     }
     private function createSeasonFromRequest($input) {

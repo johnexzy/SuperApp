@@ -65,20 +65,24 @@ class SeasonGateway
         /**
          * get Season by short url
          */
-        public function getByUrl($short_url)
+        public function getByUrl($short_url, $series_key)
         {
                 $statement = "
                         SELECT
                                 *
                         FROM
-                                seasons
-                        WHERE short_url = ?;
+                                `seasons`
+                        WHERE `seasons`.`short_url` = :short_url 
+                        AND `seasons`.`series_key` = :series_key;
                 ";
                 
                 try {   
                         $result = null;
                         $statement = $this->db->prepare($statement);
-                        $statement->execute(array($short_url));
+                        $statement->execute(array(
+                                'short_url' => $short_url,
+                                'series_key' => $series_key
+                        ));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
                         $comm = $this->comment->findAllWithKey($res["season_key"]);
                         $episodes = $this->episode->findAllWithKey($res["season_key"]);
