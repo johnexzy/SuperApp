@@ -32,6 +32,7 @@ $id = null;
 $popular = null;
 $key = null;
 $pn = null;
+$series_name = null;
 
 if ($uri[2] == 'v1' && isset($uri[3])) {
     
@@ -247,10 +248,10 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
             case 'GET':
                 if (isset($uri[4]) && isset($uri[5])) {
                     /**
-                     * assign value to short_url
+                     * assign value to short_url and series_name
                      * @var String
                      */
-                    $key = strip_tags($uri[4]);
+                    $series_name = strip_tags($uri[4]);
                     $short_url =strip_tags($uri[5]);
                 }
                 break;
@@ -264,7 +265,7 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
                 break;
         }
         // pass the request method and user ID to the PersonController and process the HTTP request:
-        $controller = new SeasonController($dbConnection, $requestMethod, $input, $id, $key, $short_url);
+        $controller = new SeasonController($dbConnection, $requestMethod, $input, $id, $series_name, $short_url);
         $controller->processRequest();
         //pass the request Method and user ID to PersonController and process the HTTP request
     
