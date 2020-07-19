@@ -1,18 +1,17 @@
 <?php
 namespace Src\TableGateways;
 
-use PDOException;
-use RuntimeException;
 use Src\TableGateways\ImageGateway;
+use Src\TableGateways\SeasonGateway;
 use Src\TableGateways\CommentsGateway;
 
-class SeriesGateway extends SeasonGateway
+class SeriesGateway
 {
-        private $db = null, $comment, $imageInherited;
+        private $db = null, $comment, $imageInherited, $seasonGateway;
         const LIMIT_PER_PAGE = 5;
         public function __construct($db)
         {
-                parent::__construct($db);
+                $this->seasonGateway = new SeasonGateway($db);
                 $this->db = $db;
                 $this->imageInherited = new ImageGateway($db);
                 $this->comment = new CommentsGateway($db);
@@ -97,7 +96,7 @@ class SeriesGateway extends SeasonGateway
                         while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
                                 $comm = $this->comment->findAllWithKey($res["series_key"]);
                                 $images = $this->imageInherited->getPostImages($res["series_key"]);
-                                $series = $this->findAllWithKey($res["series_key"]);
+                                $series = $this->seasonGateway->findAllWithKey($res["series_key"]);
                                 $res += ["series" => $series];
                                 $res += ["images" => $images];
                                 $res += ["comments" => $comm];
@@ -132,7 +131,7 @@ class SeriesGateway extends SeasonGateway
                                 $comm = $this->comment->findAllWithKey($res["series_key"]);
                                 
                                 $images = $this->imageInherited->getPostImages($res["series_key"]);
-                                $series = $this->findAllWithKey($res["series_key"]);
+                                $series = $this->seasonGateway->findAllWithKey($res["series_key"]);
                                 $res += ["series" => $series];
                                 $res += ["images" => $images];
                                 $res += ["comments" => $comm];
@@ -207,7 +206,7 @@ class SeriesGateway extends SeasonGateway
                         $comm = $this->comment->findAllWithKey($res["series_key"]);
                         
                         $images = $this->imageInherited->getPostImages($res["series_key"]);
-                        $series = $this->findAllWithKey($res["series_key"]);
+                        $series = $this->seasonGateway->findAllWithKey($res["series_key"]);
                         $res += ["series" => $series];
                         $res += ["images" => $images];
                         $res += ["comments" => $comm];
