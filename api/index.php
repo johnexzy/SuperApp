@@ -13,6 +13,7 @@ use Src\Controller\CommentsController;
 use Src\Logic\MakeFile;
 use Src\Controller\MovieController;
 use Src\Controller\AlbumController;
+use Src\Controller\EpisodeController;
 use Src\Controller\ImageController;
 use Src\Controller\SeasonController;
 use Src\Controller\SeriesController;
@@ -272,9 +273,31 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
     }
 
     elseif ($uri[3] == 'episode') {
-        
+        switch ($requestMethod) {
+            case 'GET':
+                if (isset($uri[4]) && isset($uri[5])) {
+                    /**
+                     * assign value to short_url and series_name
+                     * @var String
+                     */
+                    $series_name = strip_tags($uri[4]);
+                    $short_url =strip_tags($uri[5]);
+                }
+                break;
+            case 'POST':
+                $input = (array) $_POST;
+                break;
+            case 'DELETE' :
+                $id = (isset($uri[4], $uri[5]) && $uri[4] =="delete") ? (int) $uri[5] : null;
+            default:
+                # code...
+                break;
+        }
+        // pass the request method and user ID to the PersonController and process the HTTP request:
+        $controller = new EpisodeController($dbConnection, $requestMethod, $input, $id, $series_name, $short_url);
+        $controller->processRequest();
     }
-    
+
     elseif ($uri[3] == 'comment') {
         $comId = null;
         $key = null;

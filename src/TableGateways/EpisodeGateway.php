@@ -210,9 +210,9 @@ class EpisodeGateway extends VideoGateway {
                         if (!$res) {
                                 return $res;
                         }
-                        $comm = $this->comment->findAllWithKey($res["video_key"]);
-                        $videos = $this->getAllWithKey($res["video_key"]);
-                        $images = $this->imageInherited->getPostImages($res["video_key"]);
+                        $comm = $this->comment->findAllWithKey($res["ep_key"]);
+                        $videos = $this->getAllWithKey($res["ep_key"]);
+                        $images = $this->imageInherited->getPostImages($res["ep_key"]);
                         $res += ["videos" => $videos]; //pnly one file is needed. just incase
                         $res += ["images" => $images];
                         $res += ["comments" => $comm];
