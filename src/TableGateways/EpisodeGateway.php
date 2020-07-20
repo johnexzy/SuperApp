@@ -202,7 +202,10 @@ class EpisodeGateway extends VideoGateway {
                 try {   
                         $result = null;
                         $statement = $this->db->prepare($statement);
-                        $statement->execute(array($short_url));
+                        $statement->execute(array(
+                                'short_url' => $short_url,
+                                'series_name' => $series_name
+                        ));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
                         if (!$res) {
                                 return $res;
