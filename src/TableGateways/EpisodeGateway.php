@@ -189,14 +189,14 @@ class EpisodeGateway extends VideoGateway {
                         exit($e->getMessage());
                 }
         }
-        public function getByUrl($short_url)
+        public function getByUrl($short_url, $series_name)
         {
-                $statement = "
-                        SELECT
+                $statement = "  SELECT
                                 *
-                        FROM
-                                episodes
-                        WHERE short_url = ?;
+                                FROM
+                                        `episodes`
+                                WHERE `episodes`.`short_url` = :short_url 
+                                AND `episodes`.`series_name` = :series_name;
                 ";
                 
                 try {   
@@ -204,6 +204,9 @@ class EpisodeGateway extends VideoGateway {
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array($short_url));
                         $res = $statement->fetch(\PDO::FETCH_ASSOC);
+                        if (!$res) {
+                                return $res;
+                        }
                         $comm = $this->comment->findAllWithKey($res["video_key"]);
                         $videos = $this->getAllWithKey($res["video_key"]);
                         $images = $this->imageInherited->getPostImages($res["video_key"]);
@@ -251,15 +254,16 @@ class EpisodeGateway extends VideoGateway {
         /**
          * this method checks availability of data by short_url
          */
-        public function findByUrl($short_url)
+        public function findByUrl($short_url, $series_name)
         {
                 
                 $statement = "
                         SELECT
-                                *
+                        *
                         FROM
-                                episodes
-                        WHERE episodes.short_url = ?;
+                                `episodes`
+                        WHERE `episodes`.`short_url` = :short_url 
+                        AND `episodes`.`series_name` = :series_name;
                 ";
                 try {   
                         $statement = $this->db->prepare($statement);
