@@ -270,6 +270,10 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
         //pass the request Method and user ID to PersonController and process the HTTP request
     
     }
+
+    elseif ($uri[3] == 'episode') {
+        
+    }
     
     elseif ($uri[3] == 'comment') {
         $comId = null;
