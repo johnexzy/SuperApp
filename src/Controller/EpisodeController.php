@@ -48,12 +48,12 @@ class EpisodeController extends EpisodeGateway
     }
 
     private function getEpisode(String $short_url, String $series_name) {
-        $result = $this->findByUrl($short_url, $series_name);
+        $result = $this->getByUrl($short_url, $series_name);
         if(!$result){
             return $this->notFoundResponse();
         }
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = json_encode($this->getByUrl($short_url, $series_name));
+        $response['body'] = json_encode($result);
         return $response;
     }
     private function createEpisodeFromRequest($input) {
