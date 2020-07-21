@@ -49,26 +49,26 @@ class ViewSeries extends SeriesGateway
             </li>
  HTML;
   }
-  $videos = "";
-  foreach ($response["videos"] as $video) {
-      $bytes = ceil($video["video_bytes"]/(1024*1024));
-      $videos .= <<<HTML
-                <li class='el-upload-list__item is-ready'>
-                    <div class='el-upload-list__item-thumbnail'>
-                        name: $response[video_name]
-                        <br>
-                        size: <b>$bytes mb</b>
-                    </div>
-                </li>
-    HTML;
-  }
+//   $videos = "";
+//   foreach ($response["videos"] as $video) {
+//       $bytes = ceil($video["video_bytes"]/(1024*1024));
+//       $videos .= <<<HTML
+//                 <li class='el-upload-list__item is-ready'>
+//                     <div class='el-upload-list__item-thumbnail'>
+//                         name: $response[video_name]
+//                         <br>
+//                         size: <b>$bytes mb</b>
+//                     </div>
+//                 </li>
+//     HTML;
+//   }
 //   $HollyWood = ""; $NollyWood = ""; $BollyWood = "";  $Others = "";
   $popular = (int) $response["popular"] !== 0 ? "checked" : "";
-  $category = ["HollyWood", "NollyWood", "BollyWood", "Others"];
-  //to avoid repition of category variable this loop produces same results
-  foreach ($category as $cat) {
-      $$cat = $response["category"] == $cat ? "checked" : "";
-  }
+//   $category = ["HollyWood", "NollyWood", "BollyWood", "Others"];
+//   //to avoid repition of category variable this loop produces same results
+//   foreach ($category as $cat) {
+//       $$cat = $response["category"] == $cat ? "checked" : "";
+//   }
   //Generates HTML Components
   $navBar  = LayoutClass::navBar;
   $sideBar = LayoutClass::sideBar;
@@ -107,56 +107,29 @@ class ViewSeries extends SeriesGateway
                     <div class="row">
                         <div class="col-12 grid-margin stretch-card">
                             <div class="card">
-                                    <input type="hidden" value="$response[video_key]" class="key">
+                                    <input type="hidden" value="$response[series_key]" class="key">
                                     <input type="hidden" value="$response[id]" class="id">
                                 <div class="card-header">
                                     <h3 class="text-center" style="font-family:monospace">
                                         <i class="mdi mdi-pen"></i>
-                                        $response[video_name]
+                                        $response[series_name]
                                     </h3>
                                 </div>
                                 <div class="card-body">
-                                   <div class="alert alert-success status-msg" style="display: none;">Video Added Successfully</div>
+                                   <div class="alert alert-success status-msg" style="display: none;">series Added Successfully</div>
                                    <form class="forms-sample">
                                     <div class="form-group">
                                         <label for="postTitle">Title</label>
                                         <font size="0.6" id="titleCap" style="display: block; display: none; text-align: right; float: right;">
                                             Required</font>
-                                        <input type="text" value="$response[video_name]" class="form-control" id="video_title" placeholder="Video Title">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="postTitle">Category</label>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="HollyWood" $HollyWood>
-                                                HollyWood
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="NollyWood" $NollyWood>
-                                                NollyWood
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="BollyWood" $BollyWood>
-                                                BollyWood
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="Category" id="optionsRadios1" value="Others" $Others>
-                                                Others?
-                                            </label>
-                                        </div>
+                                        <input type="text" value="$response[series_name]" class="form-control" id="series_title" placeholder="series Title">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="postBody">About Video</label>
+                                        <label for="postBody">About series</label>
                                         <font size="0.6" id="AboutCap" style="display: block; display: none; text-align: right; float: right;">
                                             Required</font>
-                                        <textarea class="form-control" id="about_video" rows="16">$response[video_details]</textarea>
+                                        <textarea class="form-control" id="about_series" rows="16">$response[series_details]</textarea>
                                     </div>
                                     <div class="form-group">
                                         Add to Trending:
@@ -200,8 +173,8 @@ class ViewSeries extends SeriesGateway
                                     </div>
                                     <hr>
                                     <!-- <div class="form-group">
-                                        <ul class="el-upload-list el-upload-list--picture-card video-active">
-                                            $videos
+                                        <ul class="el-upload-list el-upload-list--picture-card series-active">
+                                            series
                                         </ul>
                                         
                                         
