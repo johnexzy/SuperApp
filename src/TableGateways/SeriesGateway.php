@@ -22,9 +22,9 @@ class SeriesGateway
         {
                 $statement = "
                         INSERT INTO series
-                                (series_name, series_key, series_details, short_url)
+                                (series_name, series_key, series_details, popular, short_url)
                         VALUES
-                                (:series_name, :series_key, :series_details, :short_url)
+                                (:series_name, :series_key, :series_details, :popular, :short_url)
                 ";
                 try {
                         $_key = md5($input['series_name'].mt_rand());
@@ -36,6 +36,7 @@ class SeriesGateway
                                 'series_name' => $input['series_name'],
                                 'series_key' => $_key,
                                 'series_details' => $input["series_details"],
+                                'popular' => $input["popular"],
                                 'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['series_name']."-".mt_rand()))
                         ));
                         return $statement->rowCount();
