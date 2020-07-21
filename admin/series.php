@@ -57,18 +57,19 @@
           <hr>
           <div class="row">
           <?php 
-            foreach ($res["data"] as $album) {
-              $image = isset($album["images"][0]) ? $album["images"][0] : "uploads/images/20200531111530182851488.jpg";
-              
+            foreach ($res["data"] as $series) {
+              $image = isset($series["images"][0]) ? $series["images"][0] : "uploads/images/20200531111530182851488.jpg";
+              $numberOfSeason = count($series["series"]);
+              $popular = ($series["popular"] == "0") ? '<i class="mdi mdi-window-close"></i>':'<i class="mdi mdi-check-circle"></i>';
               echo <<<HTML
                     <div class="col-md-4 grid-margin stretch-card">
                       <div class="card card-outline-primary card-rounded card-inverse-info grid-margin stretch-card">
                           <div class="card-header">
                                 <h3 style="font-family: monospace;" class="text-center">
                                     <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon">
-                                        <i class="mdi mdi-album text-dark"></i>
+                                        <i class="mdi mdi-movie text-dark"></i>
                                     </button>    
-                                    $album[album_name]
+                                    $series[series_name]
                                 </h3>
                           </div>
                           <div class="card-body">
@@ -77,13 +78,21 @@
                                 </div>
                           </div>
                           <div class="card-footer">
-                              <div class="text-right" id="$album[id]" >
-                                <a href="/admin/view/album/$album[short_url]" class="text-decoration-none">
+                             <div class="text-left" style="display:inline">
+                                <p style="display:inline">
+                                    No. of Seasons: $numberOfSeason
+                                    <p>
+                                    Popular: $popular
+                                    </p>
+                                </p>
+                              </div>
+                              <div class="text-right" id="$series[id]" style="display:inline; float:right">
+                                <a href="/admin/view/series/$series[short_url]" class="text-decoration-none">
                                     <button type="button" class="btn btn-info btn-rounded btn-icon edit">
                                         <i class="mdi mdi-pencil"></i>
                                     </button>
                                 </a>
-                                <button type="button" class="btn btn-danger btn-rounded btn-icon delete" name="$album[album_name]">
+                                <button type="button" class="btn btn-danger btn-rounded btn-icon delete" name="$series[series_name]">
                                     <i class="mdi mdi-delete"></i>
                                 </button>
                               </div>
