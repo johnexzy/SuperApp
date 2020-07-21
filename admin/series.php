@@ -60,10 +60,11 @@
             foreach ($res["data"] as $series) {
               $image = isset($series["images"][0]) ? $series["images"][0] : "uploads/images/20200531111530182851488.jpg";
               $numberOfSeason = count($series["series"]);
-              $popular = ($series["popular"] == "0") ? '<i class="mdi mdi-window-close"></i>':'<i class="mdi mdi-check-circle"></i>';
+              $popular = ($series["popular"] == "0") ? '<i class="mdi mdi-eye-off"></i>':
+              '<i class="mdi mdi-eye"></i>';
               echo <<<HTML
                     <div class="col-md-4 grid-margin stretch-card">
-                      <div class="card card-outline-primary card-rounded card-inverse-info grid-margin stretch-card">
+                      <div class="card card-outline-primary card-rounded grid-margin stretch-card">
                           <div class="card-header">
                                 <h3 style="font-family: monospace;" class="text-center">
                                     <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon">
@@ -80,9 +81,9 @@
                           <div class="card-footer">
                              <div class="text-left" style="display:inline">
                                 <p style="display:inline">
-                                    No. of Seasons: $numberOfSeason
+                                    <b>No. of Seasons:</b>  $numberOfSeason
                                     <p>
-                                    Popular: $popular
+                                    <b>Popular:</b> $popular
                                     </p>
                                 </p>
                               </div>
