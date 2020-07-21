@@ -157,34 +157,34 @@ class SeriesGateway
         /**
          * get popular Seriess
          */
-        // public function getPopular($popularInt)
-        // {
-        //         $statement = "
-        //                 SELECT
-        //                         *
-        //                 FROM
-        //                         series
-        //                 WHERE popular > 0
-        //                 ORDER 
-        //                     BY id DESC LIMIT $popularInt;
-        //         ";
-        //         try {   
-        //                 $result = array();
-        //                 $statement = $this->db->query($statement);
-        //                 while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
-        //                         $comm = $this->comment->findAllWithKey($res["series_key"]);
+        public function getPopular($popularInt)
+        {
+                $statement = "
+                        SELECT
+                                *
+                        FROM
+                                series
+                        WHERE popular > 0
+                        ORDER 
+                            BY id DESC LIMIT $popularInt;
+                ";
+                try {   
+                        $result = array();
+                        $statement = $this->db->query($statement);
+                        while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
+                                $comm = $this->comment->findAllWithKey($res["series_key"]);
                                 
-        //                         $images = $this->imageInherited->getPostImages($res["series_key"]);
+                                $images = $this->imageInherited->getPostImages($res["series_key"]);
                                 
-        //                         $res += ["images" => $images];
-        //                         $res += ["comments" => $comm];
-        //                         $result[] = $res;
-        //                 }
-        //                 return $result;
-        //         } catch (\PDOException $e) {
-        //                 exit($e->getMessage());
-        //         }
-        // }
+                                $res += ["images" => $images];
+                                $res += ["comments" => $comm];
+                                $result[] = $res;
+                        }
+                        return $result;
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+        }
         /**
          * get Series by short url
          */
