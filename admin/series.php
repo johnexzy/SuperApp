@@ -2,11 +2,11 @@
   require './session.php';
   require '../bootstrap.php';
   use Src\Layout\LayoutClass;
-  use Src\TableGateways\AlbumGateway;
+  use Src\TableGateways\SeriesGateway;
   $pageNo = isset($_GET['pages']) ? (int) $_GET['pages'] : 1;
-  $gateway = new AlbumGateway($dbConnection);
+  $gateway = new SeriesGateway($dbConnection);
   $res = $gateway->getPages($pageNo);
-  $request_url = "http://127.0.0.1:8090/admin/albums.php";
+  $request_url = "http://127.0.0.1:8090/admin/series.php";
   $prev = isset($res["links"]["prev"]) ? $request_url.str_replace("/", "=", "?".$res["links"]["prev"]) : "#";
   $next = isset($res["links"]["next"]) ? $request_url.str_replace("/", "=", "?".$res["links"]["next"]) : "#";
   $prev
@@ -45,7 +45,7 @@
               <div class="d-flex justify-content-between flex-wrap">
                 <div class="d-flex align-items-end flex-wrap">
                   <div class="mr-md-3 mr-xl-5">
-                    <h2>Manage album Uploads</h2>
+                    <h2>Manage Series Uploads, Add Seasons, Episodes</h2>
                     <p class="mb-md-0">View, Edit or Delete Media</p>
                   </div>
                 </div>
