@@ -190,7 +190,7 @@ HTML;
                         <li class="nav-item"> <a class="nav-link" href="/admin/musics.php"> Music </a></li>
                         <li class="nav-item"> <a class="nav-link" href="/admin/albums.php"> Albums </a></li>
                         <li class="nav-item"> <a class="nav-link" href="/admin/movies.php"> Movies </a></li>
-                        <li class="nav-item"> <a class="nav-link" href=""> Series </a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/admin/series.php"> Series </a></li>
                         <li class="nav-item"> <a class="nav-link" href=""> Comments </a></li>
                     </ul>
                     </div>
