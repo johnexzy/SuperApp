@@ -32,15 +32,15 @@
                 data: imagefiles,
                 processData: false,
                 contentType: false,
-                responseType:'application/json'
+                responseType: 'application/json'
 
             })
                 .done((msg) => {
                     let images = JSON.parse(msg);
                     $(".image-list").html("")
                     $.each(images, function (key, image) {
-                            
-                            $(".image-list").append(`
+
+                        $(".image-list").append(`
                                 <li tabindex='0' class='el-upload-list__item is-ready'>
                                 <img src='/${image}' alt='' class='el-upload-list__item-thumbnail'>
                                 </li>
@@ -56,27 +56,12 @@
             // alert($(this).val())
 
         });
+
+        $(".add-season").on("click", function(){
+            let season_name = "Season "+ eval($(".no-of-seasons").val() + "+ 1")
+            let series_name = $(".series-name").val();
+        })
         
-        $('.audio-upload').on('change', function (e) {
-            const selectedAudio = e.target.files[0];
-            videoFile.Audio = selectedAudio;
-            // alert(selectedAudio); [Object] [Object]
-            const reader = new FileReader();
-            reader.onload = f => {
-                $(".audio-active").html(`
-                    <li class='el-upload-list__item is-ready'>
-                    <div class='el-upload-list__item-thumbnail'>
-                    <div class='el-upload el-upload-item_song'>
-                    <i class='mdi mdi-48px mdi-headphones'></i>
-                    </div>
-                    <audio src='${f.target.result}' class='el-upload-list__item-song' controls></audio>
-                    </div>
-                    </li>
-                `)
-                // alert(formData.postImages);
-            }
-            reader.readAsDataURL(selectedAudio);
-        });
         $(".del-thumbnail").on("click", function () {
             let perm = confirm("Confirm to Erase this images");
             if (!perm) {
@@ -99,7 +84,7 @@
         $('#handleSubmit').on('click', function () {
             let video_name = $('#video_title').val();
             let video_details = $('#about_video').val();
-            let category= $('input[name=Category]:checked').val();
+            let category = $('input[name=Category]:checked').val();
             let popular = $('.popular').prop("checked") === true ? 1 : 0
             let fields = [video_name, video_details, category]
             //check for empty fields
@@ -124,7 +109,7 @@
                 dataType: 'json',
                 headers: { 'Content-Type': 'application/json' },
                 crossDomain: true
-                
+
             })
                 .done(function (msg) {
                     $(".status-msg").show()
@@ -135,7 +120,7 @@
                     $('body,html').animate({
                         scrollTop: -1,
                         // opacity: 0
-                      }, 1000);
+                    }, 1000);
                     $(".status-msg").slideUp(3000)
                 })
                 .fail(function (err) {

@@ -50,6 +50,7 @@ class ViewSeries extends SeriesGateway
  HTML;
   }
   $seasons = "";
+  $no_of_seasons = count($response["series"]);
   foreach ($response["series"] as $key=>$season) {
       $episodes = count($season["episodes"]);
       $episodes = $episodes > 1 ? "$episodes Episodes" : "$episodes Episode";
@@ -116,6 +117,8 @@ class ViewSeries extends SeriesGateway
                             <div class="card">
                                     <input type="hidden" value="$response[series_key]" class="key">
                                     <input type="hidden" value="$response[id]" class="id">
+                                    <input type="hidden" value="$response[series_name]" class="series-name">
+                                    <input type="hidden" value="$no_of_seasons" class="no-of-seasons">
                                 <div class="card-header">
                                     <h3 class="text-center" style="font-family:monospace">
                                         <i class="mdi mdi-pen"></i>
