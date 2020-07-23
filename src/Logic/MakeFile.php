@@ -22,7 +22,7 @@ class MakeFile {
      * @return String
      */
     public static function makeimg(Array $image){
-            $fileExt = pathinfo($image['name'], PATHINFO_EXTENSION);
+            $fileExt = strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
             $extensions = array('png', 'jpg', 'jpeg', 'webm', 'ico', 'gif');
             if (in_array($fileExt, $extensions)) {
                 
@@ -43,7 +43,7 @@ class MakeFile {
     public static function makesong(Array $audio, $name) {
         
             // $fileInfo = new \finfo(FILEINFO_MIME_TYPE);
-            $fileExt = pathinfo($audio['name'], PATHINFO_EXTENSION);
+            $fileExt = strtolower(pathinfo($audio['name'], PATHINFO_EXTENSION));
             $extensions = array('mp3', 'wav', 'ogg', 'opus', 'flac', 'm4a', 'm4b');
             if (in_array($fileExt, $extensions)) {
                 $path = str_replace(" ", "-", $name).mt_rand(0, 400).".$fileExt";
@@ -59,7 +59,7 @@ class MakeFile {
      */
     public static function makevideo(Array $video, $name)
     {
-        $fileExt = \pathinfo($video['name'], PATHINFO_EXTENSION);
+        $fileExt = strtolower(pathinfo($video['name'], PATHINFO_EXTENSION));
         $ext = array('mp4', 'webm', 'mkv', 'mov');
         if (\in_array($fileExt, $ext)) {
             $path = str_replace(" ", "-", $name).mt_rand(0, 400).".$fileExt";
