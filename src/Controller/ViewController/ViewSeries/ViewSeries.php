@@ -151,7 +151,7 @@ class ViewSeries extends SeriesGateway
                                     
                                     <hr>
                                     <div class="card-header">
-                                        <h3 class="text-center" style="font-family:Sans serif">Alter Media</h3>
+                                        <h3 class="text-center" style="font-family:Sans serif">Alter Images</h3>
                                     </div>
                                     <hr>
                                     <div class="form-group">
@@ -172,6 +172,11 @@ class ViewSeries extends SeriesGateway
                                         </div>
                                     </div>
                                     <hr>
+                                    <div class="card-header">
+                                        <h3 class="text-center" style="font-family:Sans serif">Seasons</h3>
+                                    </div>
+                                    <hr>
+                                    
                                     <!-- <div class="form-group">
                                         <ul class="el-upload-list el-upload-list--picture-card series-active">
                                             series
