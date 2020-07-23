@@ -1,5 +1,9 @@
 <?php
 namespace Src\Logic;
+
+use Error;
+use Exception;
+
 class MakeFile {
 
     /**
@@ -22,16 +26,20 @@ class MakeFile {
      * @return String
      */
     public static function makeimg(Array $image){
-            $fileExt = strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
+            $fileExt = pathinfo($image['name'], PATHINFO_EXTENSION);
             $extensions = array('png', 'jpg', 'jpeg', 'webm', 'ico', 'gif');
             if (in_array($fileExt, $extensions)) {
-                
-                $path = date('YmdHis',time()).mt_rand().".$fileExt";
-                if (!move_uploaded_file($image['tmp_name'], "../uploads/images/$path")) {
-                    exit;
+                    
+                    $path = date('YmdHis',time()).mt_rand().".$fileExt";
+                    if (!move_uploaded_file($image['tmp_name'], "../uploads/images/$path")) {
+                        exit;
+                    }
+                    return "uploads/images/$path";
                 }
-                return "uploads/images/$path";
-            }
+            throw new Error("Error Processing Image", 1);
+            
+            
+            
     
     
     }

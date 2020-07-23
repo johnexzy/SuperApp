@@ -52,12 +52,13 @@ class ViewSeries extends SeriesGateway
   $seasons = "";
   foreach ($response["series"] as $key=>$season) {
       $episodes = count($season["episodes"]);
+      $episodes = $episodes > 1 ? "$episodes Episodes" : "$episodes Episode";
       $seasons .= <<<HTML
-                <li class='el-upload-list__item is-ready'>
-                    <div class='el-upload-list__item-thumbnail'>
-                        name: $key
+                <li class='el-upload-list__item is-ready' style="padding:4px">
+                    <div>
+                        <p class="text-center text-danger">$season[season_name]</p>
                         <br>
-                        <b>$episodes Episodes</b>
+                        <b>$episodes</b>
                     </div>
                 </li>
     HTML;

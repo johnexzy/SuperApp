@@ -61,6 +61,9 @@ class ImageGateway {
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
                 }
+                catch(\Error $e){
+                        exit($e->getMessage());
+                }
                 
         }
         public function deleteImages($key)
