@@ -55,11 +55,21 @@ class ViewSeries extends SeriesGateway
       $episodes = $episodes > 1 ? "$episodes Episodes" : "$episodes Episode";
       $seasons .= <<<HTML
                 <li class='el-upload-list__item is-ready' style="padding:4px">
-                    <div>
                         <p class="text-center text-danger">$season[season_name]</p>
-                        <br>
-                        <b>$episodes</b>
-                    </div>
+                        <b style="display:block">$episodes</b>
+                        <hr>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-sm btn-primary btn-rounded btn-icon edit">
+                                <i class="mdi mdi-plus"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-info btn-rounded btn-icon edit">
+                                <i class="mdi mdi-eye"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon edit">
+                                <i class="mdi mdi-delete"></i>
+                            </button>
+                        </div>
+                        
                 </li>
     HTML;
   }
@@ -178,7 +188,7 @@ class ViewSeries extends SeriesGateway
                                         <ul class="el-upload-list el-upload-list--picture-card series-active">
                                             $seasons
                                         </ul>
-                                        <div class="el-upload el-upload--picture-card">
+                                        <div class="el-upload el-upload--picture-card add-season">
                                             <i class="mdi mdi-48px mdi-plus"></i>
                                         </div>
                                     </div>
