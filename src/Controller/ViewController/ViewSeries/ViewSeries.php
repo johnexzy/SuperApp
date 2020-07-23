@@ -49,26 +49,22 @@ class ViewSeries extends SeriesGateway
             </li>
  HTML;
   }
-//   $videos = "";
-//   foreach ($response["videos"] as $video) {
-//       $bytes = ceil($video["video_bytes"]/(1024*1024));
-//       $videos .= <<<HTML
-//                 <li class='el-upload-list__item is-ready'>
-//                     <div class='el-upload-list__item-thumbnail'>
-//                         name: $response[video_name]
-//                         <br>
-//                         size: <b>$bytes mb</b>
-//                     </div>
-//                 </li>
-//     HTML;
-//   }
+  $seasons = "";
+  foreach ($response["series"] as $season) {
+      $bytes = ceil($season["video_bytes"]/(1024*1024));
+      $season .= <<<HTML
+                <li class='el-upload-list__item is-ready'>
+                    <div class='el-upload-list__item-thumbnail'>
+                        name: $response[video_name]
+                        <br>
+                        size: <b>$bytes mb</b>
+                    </div>
+                </li>
+    HTML;
+  }
 //   $HollyWood = ""; $NollyWood = ""; $BollyWood = "";  $Others = "";
   $popular = (int) $response["popular"] !== 0 ? "checked" : "";
-//   $category = ["HollyWood", "NollyWood", "BollyWood", "Others"];
-//   //to avoid repition of category variable this loop produces same results
-//   foreach ($category as $cat) {
-//       $$cat = $response["category"] == $cat ? "checked" : "";
-//   }
+
   //Generates HTML Components
   $navBar  = LayoutClass::navBar;
   $sideBar = LayoutClass::sideBar;
