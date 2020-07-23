@@ -60,6 +60,16 @@
         $(".add-season").on("click", function(){
             let season_name = "Season "+ eval($(".no-of-seasons").val() + "+ 1")
             let series_name = $(".series-name").val();
+            let series_key = $(".key").val()
+            let season = new FormData();
+            season.append("season_name", season_name);
+            season.append("series_key", series_key);
+            season.append("series_name", series_name);
+            $.ajax({
+                url: "http://127.0.0.1:8090/api/v1/season/",
+                type: "POST",
+                data: new FormData()
+            })
         })
         
         $(".del-thumbnail").on("click", function () {
