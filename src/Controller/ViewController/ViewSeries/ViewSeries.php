@@ -50,14 +50,14 @@ class ViewSeries extends SeriesGateway
  HTML;
   }
   $seasons = "";
-  foreach ($response["series"] as $season) {
-      $bytes = ceil($season["video_bytes"]/(1024*1024));
-      $season .= <<<HTML
+  foreach ($response["series"] as $key=>$season) {
+      $episodes = count($season["episodes"]);
+      $seasons .= <<<HTML
                 <li class='el-upload-list__item is-ready'>
                     <div class='el-upload-list__item-thumbnail'>
-                        name: $response[video_name]
+                        name: $key
                         <br>
-                        size: <b>$bytes mb</b>
+                        <b>$episodes Episodes</b>
                     </div>
                 </li>
     HTML;
@@ -173,17 +173,14 @@ class ViewSeries extends SeriesGateway
                                     </div>
                                     <hr>
                                     
-                                    <!-- <div class="form-group">
+                                    <div class="form-group">
                                         <ul class="el-upload-list el-upload-list--picture-card series-active">
-                                            series
+                                            $seasons
                                         </ul>
-                                        
-                                        
-                                        <input type="file" name="video" class="file-upload-default video-upload" accept="video/*">
-                                        <div class="el-upload el-upload--picture-card openfile">
-                                            <i class="mdi mdi-48px mdi-video"></i>
+                                        <div class="el-upload el-upload--picture-card">
+                                            <i class="mdi mdi-48px mdi-plus"></i>
                                         </div>
-                                    </div> -->
+                                    </div>
                                 </form>
                                 </div>
                                 
