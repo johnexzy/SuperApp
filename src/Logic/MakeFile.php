@@ -26,18 +26,22 @@ class MakeFile {
      * @return String
      */
     public static function makeimg(Array $image){
-            $fileExt = pathinfo($image['name'], PATHINFO_EXTENSION);
-            $extensions = array('png', 'jpg', 'jpeg', 'webm', 'ico', 'gif');
-            if (in_array($fileExt, $extensions)) {
-                    
+            $fileExt = strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
+            $extensions = array('png', 'jpg', 'jpeg', 'webm', 'ico', 'gif', 'bmp', 'tiff');
+            try {
+                if (in_array($fileExt, $extensions)) {
+                
                     $path = date('YmdHis',time()).mt_rand().".$fileExt";
                     if (!move_uploaded_file($image['tmp_name'], "../uploads/images/$path")) {
                         exit;
                     }
                     return "uploads/images/$path";
                 }
-            throw new Error("Error Processing Image", 1);
-            
+                throw new Exception("Error Processing Image", 1);
+                
+            } catch (\Throwable $th) {
+                exit($th->getMessage());
+            }
             
             
     
