@@ -34,12 +34,6 @@ if(count($uri) == 5){
             $movie = new ViewSeries($short_url, $dbConnection);
             echo $movie->bodyParser();
             break;
-        case 'season':
-            # Season's request handler
-            
-            $season = new ViewSeries($short_url, $dbConnection);
-            echo $movie->bodyParser();
-            break;
         case 'album':
             # album request handler
             $album = new ViewAlbum($short_url, $dbConnection);
@@ -60,6 +54,17 @@ elseif(count($uri) == 6){
     $group = $uri[3];
     $series_name = $uri[4];
     $short_url = $uri[5];
+
+    switch ($group) {
+        case 'season':
+            
+            break;
+        
+        default:
+            header("HTTP/1.1 404 Not Found");
+            exit();
+            break;
+    }
 }
 else{
     header("HTTP/1.1 404 Not Found");
