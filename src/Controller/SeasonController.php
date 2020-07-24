@@ -84,7 +84,7 @@ class SeasonController extends SeasonGateway
         if(!$result){
             return $this->notFoundResponse();
         }
-        ;
+        
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = \json_encode($this->delete($id));
         return $response;

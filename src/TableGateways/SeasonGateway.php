@@ -189,7 +189,7 @@ class SeasonGateway
                         }
                         
                         $statement = <<<EOS
-                                DELETE FROM `season` WHERE `season`.`id` = $id;
+                                DELETE FROM `seasons` WHERE `seasons`.`id` = $id;
                                 DELETE FROM `comment` WHERE `comment`.`comment_key` = $key;
                         EOS;
 
