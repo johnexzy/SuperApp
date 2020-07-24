@@ -104,6 +104,16 @@
          */
         $(".delete-season").on("click", function(){
             let id = $(this).parent().parent().find("input").val()
+            $.ajax({
+                url: `http://127.0.0.1:8090/api/v1/season/delete/${id}`,
+                type: "DELETE"
+            })
+            .done((msg)=>{
+                alert(msg);
+            })
+            .fail((err)=>{
+                alert(err.responseText)
+            })
         })
         $(".del-thumbnail").on("click", function () {
             let perm = confirm("Confirm to Erase this images");
