@@ -35,7 +35,7 @@ class SeasonController extends SeasonGateway
                 // $response = $this->updateSeasonFromRequest($this->id);
                 break;
             case 'DELETE':
-                // $response = $this->deleteSeason($this->id);
+                $response = $this->deleteSeason($this->id);
                 break;
             default:
                 $response = $this->notFoundResponse();
@@ -79,16 +79,16 @@ class SeasonController extends SeasonGateway
     //     $response['body'] = null;
     //     return $response;
     // }
-    // private function deleteSeason($id) {
-    //     $result = $this->find($id);
-    //     if(!$result){
-    //         return $this->notFoundResponse();
-    //     }
-    //     $this->delete($id);
-    //     $response['status_code_header'] = 'HTTP/1.1 200 OK';
-    //     $response['body'] = NULL;
-    //     return $response;
-    // }
+    private function deleteSeason($id) {
+        $result = $this->find($id);
+        if(!$result){
+            return $this->notFoundResponse();
+        }
+        ;
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = \json_encode($this->delete($id));
+        return $response;
+    }
     private function validateInput($input) {
         if (!isset($input['season_name']) || !isset($input['series_key'])) {
             return false;
