@@ -147,6 +147,49 @@ class SeasonGateway
                         exit($e->getMessage());
                 }
         }
-       
+        
+        public function find($id)
+        {
+                
+                $statement = "
+                        SELECT
+                                *
+                        FROM
+                                `seasons`
+                        WHERE id = ?;
+                ";
+                try {   
+                        $statement = $this->db->prepare($statement);
+                        $statement->execute(array($id));
+                        $res = $statement->fetch(\PDO::FETCH_ASSOC);
+                        $comm = $this->comment->findAllWithKey($res["season_key"]);
+                        $episodes = $this->episode->findAllWithKey($res["season_key"]);
+                        $res += ["comments" => $comm];
+                        $res += ["episodes" => $episodes];
+                        $result = $res;
+                        return $result;
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+        }
 
+
+        public function delete($id)
+        {
+                $res = $this->find($id);
+                $key = $res["season_key"];
+                $this->episode->delete($id);
+                $statement = <<<EOS
+                        DELETE FROM `season` WHERE `season`.`id` = $id;
+                        DELETE FROM `comment` WHERE `comment`.`comment_key` = $key;
+                EOS;
+
+                try {
+                        $statement=$this->db->prepare($statement);
+                        $statement->execute();
+                        return $statement->rowCount();
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+        }
 }
