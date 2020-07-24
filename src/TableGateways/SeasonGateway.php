@@ -1,6 +1,7 @@
 <?php
 namespace Src\TableGateways;
 
+use PDOException;
 use Src\TableGateways\EpisodeGateway;
 use Src\TableGateways\CommentsGateway;
 
@@ -176,15 +177,19 @@ class SeasonGateway
 
         public function delete($id)
         {
-                $res = $this->find($id);
-                $key = $res["season_key"];
-                $this->episode->delete($id);
-                $statement = <<<EOS
-                        DELETE FROM `season` WHERE `season`.`id` = $id;
-                        DELETE FROM `comment` WHERE `comment`.`comment_key` = $key;
-                EOS;
-
+                
                 try {
+                        $res = $this->find($id);
+                        if (!$res) {
+                                throw new PDOException("No data found with $id");
+                        }
+                        $key = $res["season_key"];
+                        $this->episode->delete($id);
+                        $statement = <<<EOS
+                                DELETE FROM `season` WHERE `season`.`id` = $id;
+                                DELETE FROM `comment` WHERE `comment`.`comment_key` = $key;
+                        EOS;
+
                         $statement=$this->db->prepare($statement);
                         $statement->execute();
                         return $statement->rowCount();
