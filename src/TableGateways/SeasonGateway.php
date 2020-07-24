@@ -184,6 +184,7 @@ class SeasonGateway
                                 throw new PDOException("No data found with $id");
                         }
                         $key = $res["season_key"];
+                        $serkey = $res["series_key"];
                         foreach ($res["episodes"] as $episodeId) {
                                $this->episode->delete($episodeId["id"]); 
                         }
@@ -195,26 +196,8 @@ class SeasonGateway
 
                         $statement=$this->db->prepare($statement);
                         if($statement->execute()){
-                                $statement = "
-                                        SELECT
-                                                *
-                                        FROM
-                                                seasons
-                                        WHERE series_key = ?;
-                                ";
-                                try {
-                                        $result = [];
-                                        $statement = $this->db->prepare($statement);
-                                        $statement->execute(array($res["series_key"]));
-                                        while($res = $statement->fetch(\PDO::FETCH_ASSOC)){
-                                                $episodes = $this->episode->findAllWithKey($res["season_key"]);
-                                                $res += ["episodes" => $episodes];
-                                                $result[] = $res;
-                                        }
-                                        return $result;
-                                } catch (\PDOException $e) {
-                                        exit($e->getMessage());
-                                }  
+                                unset($statement);
+                                return $this->findAllWithKey($serkey);
                         }
 
 
