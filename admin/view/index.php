@@ -13,7 +13,7 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $uri = explode('/', $uri);
 
-if(isset($uri[3]) && isset($uri[4])){
+if(count($uri) == 5){
     $group = strip_tags($uri[3]);
     $short_url = strip_tags($uri[4]);
     switch ($group) {
@@ -30,8 +30,14 @@ if(isset($uri[3]) && isset($uri[4])){
             echo $movie->bodyParser();
             break;
         case 'series':
-            # movie request handler
+            # series request handler
             $movie = new ViewSeries($short_url, $dbConnection);
+            echo $movie->bodyParser();
+            break;
+        case 'season':
+            # Season's request handler
+            
+            $season = new ViewSeries($short_url, $dbConnection);
             echo $movie->bodyParser();
             break;
         case 'album':
@@ -49,6 +55,11 @@ if(isset($uri[3]) && isset($uri[4])){
             exit();
             break;
     }
+}
+elseif(count($uri) == 6){
+    $group = $uri[3];
+    $series_name = $uri[4];
+    $short_url = $uri[5];
 }
 else{
     header("HTTP/1.1 404 Not Found");
