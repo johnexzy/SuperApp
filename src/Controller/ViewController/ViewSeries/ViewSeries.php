@@ -60,10 +60,10 @@ class ViewSeries extends SeriesGateway
                         <b style="display:block">$episodes</b>
                         <hr>
                         <div class="text-center">
-                            <button type="button" class="btn btn-sm btn-primary btn-rounded btn-icon edit">
+                            <button type="button" class="btn btn-sm btn-primary btn-rounded btn-icon add-ep">
                                 <i class="mdi mdi-plus"></i>
                             </button>
-                            <button type="button" class="btn btn-sm btn-info btn-rounded btn-icon edit">
+                            <button type="button" class="btn btn-sm btn-info btn-rounded btn-icon view-season">
                                 <i class="mdi mdi-eye"></i>
                             </button>
                             <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon delete-season">
