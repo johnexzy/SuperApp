@@ -99,6 +99,12 @@
                 })
         })
 
+        /**
+         * Delete Season from click
+         */
+        $(".delete-season").on("click", function(){
+            let id = $(this).parent().parent().find("input").val()
+        })
         $(".del-thumbnail").on("click", function () {
             let perm = confirm("Confirm to Erase this images");
             if (!perm) {

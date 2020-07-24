@@ -56,6 +56,7 @@ class ViewSeries extends SeriesGateway
       $episodes = $episodes > 1 ? "$episodes Episodes" : "$episodes Episode";
       $seasons .= <<<HTML
                 <li class='el-upload-list__item is-ready' style="padding:4px">
+                        <input type="hidden" value="$season[id]" >
                         <p class="text-center text-danger">$season[season_name]</p>
                         <b style="display:block">$episodes</b>
                         <hr>
