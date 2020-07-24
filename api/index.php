@@ -26,6 +26,11 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 /**
  * required variables
  */
+// escape all special characters
+foreach ($uri as $key => $link) {
+    $uri[$key] = str_replace("%20", " ", $link);
+}
+
 $input = null;
 $limit = null;
 $short_url = null;
