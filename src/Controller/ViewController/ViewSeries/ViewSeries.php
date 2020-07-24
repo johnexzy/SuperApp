@@ -66,7 +66,7 @@ class ViewSeries extends SeriesGateway
                             <button type="button" class="btn btn-sm btn-info btn-rounded btn-icon edit">
                                 <i class="mdi mdi-eye"></i>
                             </button>
-                            <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon edit">
+                            <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon delete-season">
                                 <i class="mdi mdi-delete"></i>
                             </button>
                         </div>

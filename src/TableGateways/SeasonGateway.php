@@ -184,7 +184,10 @@ class SeasonGateway
                                 throw new PDOException("No data found with $id");
                         }
                         $key = $res["season_key"];
-                        $this->episode->delete($id);
+                        foreach ($res["episodes"] as $episodeId) {
+                               $this->episode->delete($episodeId["id"]); 
+                        }
+                        
                         $statement = <<<EOS
                                 DELETE FROM `season` WHERE `season`.`id` = $id;
                                 DELETE FROM `comment` WHERE `comment`.`comment_key` = $key;
