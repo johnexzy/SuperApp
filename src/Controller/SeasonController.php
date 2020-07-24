@@ -62,7 +62,7 @@ class SeasonController extends SeasonGateway
         }
         $res = $this->insert($input);
         $response['status_code_header'] = 'HTTP/1.1 201 Created';
-        $response['body'] = $res;
+        $response['body'] = \json_encode($res);
         return $response;
     }
     // private function updateSeasonFromRequest($id) {

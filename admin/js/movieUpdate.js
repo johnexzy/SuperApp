@@ -73,26 +73,32 @@
                 contentType: false
             })
                 .done((msg)=>{
-                    $(".series-active").append(`
-                        <li class='el-upload-list__item is-ready' style="padding:4px">
-                            <p class="text-center text-danger">${season_name}</p>
-                            <b style="display:block">0 Episode</b>
-                            <hr>
-                            <div class="text-center">
-                                <button type="button" class="btn btn-sm btn-primary btn-rounded btn-icon edit">
-                                    <i class="mdi mdi-plus"></i>
-                                </button>
-                                <button type="button" class="btn btn-sm btn-info btn-rounded btn-icon edit">
-                                    <i class="mdi mdi-eye"></i>
-                                </button>
-                                <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon edit">
-                                    <i class="mdi mdi-delete"></i>
-                                </button>
-                            </div>
-                    
-                        </li>
-                    `)
-                    console.log()
+                    console.log(msg)
+                    $(".series-active").html("")
+                    $.each(msg, (key, seasonData)=>{
+                        $(".series-active").append(`
+                            <li class='el-upload-list__item is-ready' style="padding:4px">
+                                    <input type="hidden" value="${seasonData.id}" >
+                                    <p class="text-center text-danger">${seasonData.season_name}</p>
+                                    <b style="display:block">${seasonData.episodes.length > 1 ?
+                                         seasonData.episodes.length+" Episodes": seasonData.episodes.length+" Episode"}</b>
+                                    <hr>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-sm btn-primary btn-rounded btn-icon add-ep">
+                                            <i class="mdi mdi-plus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-info btn-rounded btn-icon view-season">
+                                            <i class="mdi mdi-eye"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon delete-season">
+                                            <i class="mdi mdi-delete"></i>
+                                        </button>
+                                    </div>
+                                    
+                            </li>
+                        `)
+                    })
+                    delSeason()
                 })
                 .fail((err)=>{
                     alert(err.responseText)
@@ -102,19 +108,22 @@
         /**
          * Delete Season from click
          */
-        $(".delete-season").on("click", function(){
-            let id = $(this).parent().parent().find("input").val()
-            $.ajax({
-                url: `http://127.0.0.1:8090/api/v1/season/delete/${id}`,
-                type: "DELETE"
+        function delSeason(){
+            $(".delete-season").on("click", function(){
+                let id = $(this).parent().parent().find("input").val()
+                $.ajax({
+                    url: `http://127.0.0.1:8090/api/v1/season/delete/${id}`,
+                    type: "DELETE"
+                })
+                .done((msg)=>{
+                    alert(msg);
+                })
+                .fail((err)=>{
+                    alert(err.responseText)
+                })
             })
-            .done((msg)=>{
-                alert(msg);
-            })
-            .fail((err)=>{
-                alert(err.responseText)
-            })
-        })
+        } 
+        delSeason()
         $(".del-thumbnail").on("click", function () {
             let perm = confirm("Confirm to Erase this images");
             if (!perm) {

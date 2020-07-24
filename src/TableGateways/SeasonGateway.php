@@ -34,7 +34,7 @@ class SeasonGateway
                                 'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['season_name']."-".mt_rand())),
                                 'season_name' => $input['season_name']
                         ));
-                        return $statement->rowCount();
+                        return $this->findAllWithKey($input["series_key"]);
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
                 }
@@ -195,7 +195,7 @@ class SeasonGateway
 
                         $statement=$this->db->prepare($statement);
                         $statement->execute();
-                        return $statement->rowCount();
+                        return $this->findAllWithKey($res["series_key"]);
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
                 }
