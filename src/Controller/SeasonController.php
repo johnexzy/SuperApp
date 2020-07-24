@@ -86,7 +86,7 @@ class SeasonController extends SeasonGateway
         }
         
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = \json_encode($this->delete($id));
+        $response['body'] = \json_encode($this->delete($id, $result));
         return $response;
     }
     private function validateInput($input) {

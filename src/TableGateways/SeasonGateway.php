@@ -175,11 +175,11 @@ class SeasonGateway
         }
 
 
-        public function delete($id)
+        public function delete($id, Array $res)
         {
                 
                 try {
-                        $res = $this->find($id);
+                        
                         if (!$res) {
                                 throw new PDOException("No data found with $id");
                         }
@@ -194,8 +194,32 @@ class SeasonGateway
                         EOS;
 
                         $statement=$this->db->prepare($statement);
-                        $statement->execute();
-                        return $this->findAllWithKey($res["series_key"]);
+                        if($statement->execute()){
+                                $statement = "
+                                        SELECT
+                                                *
+                                        FROM
+                                                seasons
+                                        WHERE series_key = ?;
+                                ";
+                                try {
+                                        $result = [];
+                                        $statement = $this->db->prepare($statement);
+                                        $statement->execute(array($res["series_key"]));
+                                        while($res = $statement->fetch(\PDO::FETCH_ASSOC)){
+                                                $episodes = $this->episode->findAllWithKey($res["season_key"]);
+                                                $res += ["episodes" => $episodes];
+                                                $result[] = $res;
+                                        }
+                                        return $result;
+                                } catch (\PDOException $e) {
+                                        exit($e->getMessage());
+                                }  
+                        }
+
+
+
+                        
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
                 }

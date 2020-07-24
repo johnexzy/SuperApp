@@ -107,6 +107,7 @@
 
         /**
          * Delete Season from click
+         * @return void
          */
         function delSeason(){
             $(".delete-season").on("click", function(){
@@ -116,7 +117,32 @@
                     type: "DELETE"
                 })
                 .done((msg)=>{
-                    alert(msg);
+                    console.log(msg)
+                    $(".series-active").html("")
+                    $.each(msg, (key, seasonData)=>{
+                        $(".series-active").append(`
+                            <li class='el-upload-list__item is-ready' style="padding:4px">
+                                    <input type="hidden" value="${seasonData.id}" >
+                                    <p class="text-center text-danger">${seasonData.season_name}</p>
+                                    <b style="display:block">${seasonData.episodes.length > 1 ?
+                                         seasonData.episodes.length+" Episodes": seasonData.episodes.length+" Episode"}</b>
+                                    <hr>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-sm btn-primary btn-rounded btn-icon add-ep">
+                                            <i class="mdi mdi-plus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-info btn-rounded btn-icon view-season">
+                                            <i class="mdi mdi-eye"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon delete-season">
+                                            <i class="mdi mdi-delete"></i>
+                                        </button>
+                                    </div>
+                                    
+                            </li>
+                        `)
+                    })
+                    delSeason()
                 })
                 .fail((err)=>{
                     alert(err.responseText)
