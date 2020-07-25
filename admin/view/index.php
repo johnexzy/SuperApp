@@ -3,6 +3,7 @@
 use Src\Controller\ViewController\ViewAlbum\ViewAlbum;
 use Src\Controller\ViewController\ViewMovie\ViewMovie;
 use Src\Controller\ViewController\ViewMusic\ViewMusic;
+use Src\Controller\ViewController\ViewSeries\ViewSeason;
 use Src\Controller\ViewController\ViewSeries\ViewSeries;
 
 require '../session.php';
@@ -12,6 +13,10 @@ require '../../bootstrap.php';
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $uri = explode('/', $uri);
+foreach ($uri as $key => $link) {
+    $uri[$key] = str_replace("%20", " ", $link);
+}
+
 
 if(count($uri) == 5){
     $group = strip_tags($uri[3]);
@@ -58,6 +63,8 @@ elseif(count($uri) == 6){
     switch ($group) {
         case 'season':
             
+            $season = new ViewSeason($short_url, $series_name, $dbConnection);
+            echo $season->bodyParser();
             break;
         
         default:

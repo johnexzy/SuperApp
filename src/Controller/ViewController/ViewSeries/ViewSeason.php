@@ -61,7 +61,7 @@ class ViewSeason extends SeasonGateway
                 </div>
                 <div class="card-body">
                       <div class="card-img-holder">
-                          <img class="card-img" src="../$image" alt="Love the Way You are Image Banner">
+                          <img class="card-img" src="/$image" alt="Love the Way You are Image Banner">
                       </div>
                 </div>
                 <div class="card-footer">
