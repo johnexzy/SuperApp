@@ -1,6 +1,5 @@
 (function($){
     'use strict';
-
     $(function(){
         $(".delete").on("click", function(){
             let video_id = $(this).parent().prop("id")
@@ -18,7 +17,6 @@
                 console.log(data)
             })
             .fail((err)=>console.log(err.responseText))
-
             // 
         })
     })
