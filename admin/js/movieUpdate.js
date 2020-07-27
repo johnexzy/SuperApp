@@ -57,99 +57,6 @@
 
         });
 
-        $(".add-season").on("click", function () {
-            let season_name = "Season " + ($(".series-active").find("li").length + 1)
-            let series_name = $(".series-name").val();
-            let series_key = $(".key").val()
-            let season = new FormData();
-            season.append("season_name", season_name);
-            season.append("series_key", series_key);
-            season.append("series_name", series_name);
-            $.ajax({
-                url: "http://127.0.0.1:8090/api/v1/season/",
-                type: "POST",
-                data: season,
-                processData: false,
-                contentType: false
-            })
-                .done((msg)=>{
-                    console.log(msg)
-                    $(".series-active").html("")
-                    $.each(msg, (key, seasonData)=>{
-                        $(".series-active").append(`
-                            <li class='el-upload-list__item is-ready' style="padding:4px">
-                                    <input type="hidden" value="${seasonData.id}" >
-                                    <p class="text-center text-danger">${seasonData.season_name}</p>
-                                    <b style="display:block">${seasonData.episodes.length > 1 ?
-                                         seasonData.episodes.length+" Episodes": seasonData.episodes.length+" Episode"}</b>
-                                    <hr>
-                                    <div class="text-center">
-                                        <button type="button" class="btn btn-sm btn-primary btn-rounded btn-icon add-ep">
-                                            <i class="mdi mdi-plus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-info btn-rounded btn-icon view-season">
-                                            <i class="mdi mdi-eye"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon delete-season">
-                                            <i class="mdi mdi-delete"></i>
-                                        </button>
-                                    </div>
-                                    
-                            </li>
-                        `)
-                    })
-                    delSeason()
-                })
-                .fail((err)=>{
-                    alert(err.responseText)
-                })
-        })
-
-        /**
-         * Delete Season from click
-         * @return void
-         */
-        function delSeason(){
-            $(".delete-season").on("click", function(){
-                let id = $(this).parent().parent().find("input").val()
-                $.ajax({
-                    url: `http://127.0.0.1:8090/api/v1/season/delete/${id}`,
-                    type: "DELETE"
-                })
-                .done((msg)=>{
-                    console.log(msg)
-                    $(".series-active").html("")
-                    $.each(msg, (key, seasonData)=>{
-                        $(".series-active").append(`
-                            <li class='el-upload-list__item is-ready' style="padding:4px">
-                                    <input type="hidden" value="${seasonData.id}" >
-                                    <p class="text-center text-danger">${seasonData.season_name}</p>
-                                    <b style="display:block">${seasonData.episodes.length > 1 ?
-                                         seasonData.episodes.length+" Episodes": seasonData.episodes.length+" Episode"}</b>
-                                    <hr>
-                                    <div class="text-center">
-                                        <button type="button" class="btn btn-sm btn-primary btn-rounded btn-icon add-ep">
-                                            <i class="mdi mdi-plus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-info btn-rounded btn-icon view-season">
-                                            <i class="mdi mdi-eye"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon delete-season">
-                                            <i class="mdi mdi-delete"></i>
-                                        </button>
-                                    </div>
-                                    
-                            </li>
-                        `)
-                    })
-                    delSeason()
-                })
-                .fail((err)=>{
-                    alert(err.responseText)
-                })
-            })
-        } 
-        delSeason()
         $(".del-thumbnail").on("click", function () {
             let perm = confirm("Confirm to Erase this images");
             if (!perm) {
@@ -200,6 +107,7 @@
 
             })
                 .done(function (msg) {
+                    $(".status-msg").text("Updated Successfully")
                     $(".status-msg").show()
                     //reset All State to default
                     console.log(msg)
