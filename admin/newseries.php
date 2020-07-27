@@ -117,7 +117,7 @@ require './session.php';
     <script src="js/template.js"></script>
     <!-- endinject -->
     <!-- Inject:js for this page -->
-    <script src="js/seriesController.js"></script>
+    <script src="js/series/controller/seriesController.js"></script>
     <!-- endinject:js for this page -->
 </body>
 
