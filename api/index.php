@@ -247,7 +247,6 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
                 break;
             case 'PUT':
                 $id = (count($uri) == 6 && $uri[4] =="update") ? (int) $uri[5] : null;
-                
                 break;
             case 'DELETE' :
                 $id = (count($uri) == 6 && $uri[4] =="delete") ? (int) $uri[5] : null;
