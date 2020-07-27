@@ -81,6 +81,29 @@ class MakeFile {
             return "uploads/videos/$path";
         }
     }
+
+    /**
+     * Saves Uploaded Video File and return url | filename
+     * @return String
+     */
+    public static function makeEpisodeVideo(Array $video, $name)
+    {
+        $fileExt = strtolower(pathinfo($video['name'], PATHINFO_EXTENSION));
+        $ext = array('mp4', 'webm', 'mkv', 'mov');
+        if (\in_array($fileExt, $ext)) {
+            $dirname = explode("--", $name);
+            $seriesDirname = str_replace(" ", "-", $dirname[0]);
+            $seasonDirname = str_replace(" ", "-", $dirname[1]);
+            if (!is_dir("../uploads/videos/$seriesDirname/$seasonDirname")) {
+                mkdir("../uploads/videos/$seriesDirname/$seasonDirname", 0777, true);
+            }
+            $path = "uploads/videos/$seriesDirname/$seasonDirname/".str_replace(" ", "-", $name).".$fileExt";
+            if (!move_uploaded_file($video['tmp_name'], "../$path")) {
+                exit;
+            }
+            return "$path";
+        }
+    }
     /**
      * Rearranges the file Array to ease working.
      * @return Array
