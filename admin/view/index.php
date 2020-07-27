@@ -3,6 +3,7 @@
 use Src\Controller\ViewController\ViewAlbum\ViewAlbum;
 use Src\Controller\ViewController\ViewMovie\ViewMovie;
 use Src\Controller\ViewController\ViewMusic\ViewMusic;
+use Src\Controller\ViewController\ViewSeries\AddEpisode;
 use Src\Controller\ViewController\ViewSeries\ViewSeason;
 use Src\Controller\ViewController\ViewSeries\ViewSeries;
 
@@ -67,7 +68,8 @@ elseif(count($uri) == 6){
             echo $season->bodyParser();
             break;
         case 'episode':
-            
+            $episode = new AddEpisode($series_name, $short_url);
+            echo $episode->bodyParser();
             break;
         default:
             header("HTTP/1.1 404 Not Found");
