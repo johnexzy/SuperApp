@@ -127,9 +127,9 @@ class ViewSeason extends SeasonGateway
 
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <div class="border-danger">
+                    <div class="border border-info p-4 mb-4">
                         <div class="col-md-12 grid-margin">
-                            <h3 class="text-center">$response[series_name] - $response[season_name]</h3>
+                            <h3 class="text-center text-capitalize">$response[series_name] - $response[season_name]</h3>
                             <p class="text-center mt-3">Add, Edit or Delete Episodes</p>
                         </div>
                     </div>
