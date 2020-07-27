@@ -136,7 +136,7 @@
     <script src="js/template.js"></script>
     <!-- endinject -->
     <!-- Inject:js for this page -->
-    <script src="js/albumController.js"></script>
+    <script src="js/album/controller/albumController.js"></script>
     <!-- endinject:js for this page -->
 </body>
 
