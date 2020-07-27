@@ -44,7 +44,7 @@ if(count($uri) == 5){
             $album = new ViewAlbum($short_url, $dbConnection);
             echo $album->bodyParser();
             break;
-
+        
         case 'comments':
             # comment request handler
             echo "comments";
@@ -66,7 +66,9 @@ elseif(count($uri) == 6){
             $season = new ViewSeason($short_url, $series_name, $dbConnection);
             echo $season->bodyParser();
             break;
-        
+        case 'episode':
+            
+            break;
         default:
             header("HTTP/1.1 404 Not Found");
             exit();
