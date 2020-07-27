@@ -226,7 +226,7 @@ class ViewSeries extends SeriesGateway
     <script src="/admin/js/template.js"></script>
     <!-- endinject -->
     <!-- Inject:js for this page -->
-    <script src="/admin/js/seriesUpdate.js"></script>
+    <script src="/admin/js/series/updater/seriesUpdate.js"></script>
     <!-- endinject:js for this page -->
 </body>
 
