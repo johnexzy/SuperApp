@@ -135,7 +135,7 @@
   <script src="js/off-canvas.js"></script>
   <script src="js/hoverable-collapse.js"></script>
   <script src="js/template.js"></script>
-  <script src="js/managealbum.js"></script>
+  <script src="js/album/manager/albumManager.js"></script>
   <!-- endinject -->
   <!-- End custom js for this page-->
 </body>
