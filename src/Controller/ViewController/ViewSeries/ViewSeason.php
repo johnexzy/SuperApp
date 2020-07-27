@@ -138,10 +138,13 @@ class ViewSeason extends SeasonGateway
                     </div>
                     <hr>
                     <div class="col-md-12 grid-margin text-center">
-                        <button type="button" class="btn btn-primary btn-lg btn-block">
-                            <i class="mdi mdi-plus"></i>                      
-                            New Episode
-                        </button>
+                        <a href="/admin/view/episode/$response[series_name]/$response[season_key]">
+                            <button type="button" class="btn btn-primary btn-lg btn-block">
+                                <i class="mdi mdi-plus"></i>                      
+                                New Episode
+                            </button>
+                        </a>
+                        
                     </div>
                         
                 </div>
