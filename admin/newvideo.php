@@ -149,7 +149,7 @@ require './session.php';
     <script src="js/template.js"></script>
     <!-- endinject -->
     <!-- Inject:js for this page -->
-    <script src="js/videoController.js"></script>
+    <script src="js/movie/controller/movieController.js"></script>
     <!-- endinject:js for this page -->
 </body>
 
