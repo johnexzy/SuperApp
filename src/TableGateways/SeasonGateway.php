@@ -122,6 +122,26 @@ class SeasonGateway
                         exit($e->getMessage());
                 }
         }
+        
+        /**
+         * find season by season_key
+         * @param String $season_key
+         * @return String
+         */
+        public function findNameByKey($season_key)
+        {
+                $statement = "SELECT season_name FROM `seasons` WHERE `seasons`.`season_key` = ?";
+                
+                try {   
+                        $statement = $this->db->prepare($statement);
+                        $statement->execute(array($season_key));
+                        $res = $statement->fetch(\PDO::FETCH_COLUMN);
+                        return $res[0];
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+        }
+
         public function update($id, Array $input)
         {       $statement = "
                         UPDATE `series` 
