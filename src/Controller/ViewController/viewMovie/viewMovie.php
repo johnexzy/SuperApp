@@ -233,7 +233,7 @@ class ViewMovie extends MovieGateway
     <script src="/admin/js/template.js"></script>
     <!-- endinject -->
     <!-- Inject:js for this page -->
-    <script src="/admin/js/movieUpdate.js"></script>
+    <script src="/admin/js/movie/updater/movieUpdate.js"></script>
     <!-- endinject:js for this page -->
 </body>
 
