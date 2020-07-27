@@ -127,7 +127,7 @@ class ViewSeason extends SeasonGateway
 
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <div class="border border-info p-4 mb-4">
+                    <div class="border border-info pt-3 mb-4">
                         <div class="col-md-12 grid-margin">
                             <h3 class="text-center text-capitalize">$response[series_name] - $response[season_name]</h3>
                             <p class="text-center mt-3">Add, Edit or Delete Episodes</p>
@@ -136,6 +136,14 @@ class ViewSeason extends SeasonGateway
                     <div class="row">
                         $cardBody
                     </div>
+                    <hr>
+                    <div class="col-md-12 grid-margin text-center">
+                        <button type="button" class="btn btn-primary btn-lg btn-block">
+                            <i class="mdi mdi-plus"></i>                      
+                            New Episode
+                        </button>
+                    </div>
+                        
                 </div>
                 <!-- partial:partials/_footer.php -->
                 $footer
