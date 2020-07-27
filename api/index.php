@@ -303,7 +303,10 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
                 }
                 break;
             case 'POST':
+                header("Content-Type: multipart/form-data;");
                 $input = (array) $_POST;
+                $input += ["images" => MakeFile::reArrayFiles($_FILES['video_images'])];
+                $input += ["video" => MakeFile::reArrayFiles($_FILES['video_file'])];
                 break;
             case 'DELETE' :
                 $id = (isset($uri[4], $uri[5]) && $uri[4] =="delete") ? (int) $uri[5] : null;
