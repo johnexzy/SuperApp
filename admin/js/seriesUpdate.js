@@ -77,25 +77,32 @@
                     $(".series-active").html("")
                     $.each(msg, (key, seasonData)=>{
                         $(".series-active").append(`
-                            <li class='el-upload-list__item is-ready' style="padding:4px">
-                                    <input type="hidden" value="${seasonData.id}" >
-                                    <p class="text-center text-danger">${seasonData.season_name}</p>
-                                    <b style="display:block">${seasonData.episodes.length > 1 ?
-                                         seasonData.episodes.length+" Episodes": seasonData.episodes.length+" Episode"}</b>
-                                    <hr>
-                                    <div class="text-center">
-                                        <button type="button" class="btn btn-sm btn-primary btn-rounded btn-icon add-ep">
-                                            <i class="mdi mdi-plus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-info btn-rounded btn-icon view-season">
-                                            <i class="mdi mdi-eye"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon delete-season">
-                                            <i class="mdi mdi-delete"></i>
-                                        </button>
-                                    </div>
-                                    
-                            </li>
+                        <li class='el-upload-list__item is-ready'>
+                            <input type="hidden" value="${seasonData.id}" >
+                            <div style="padding:4px">
+                                <p class="text-center text-danger">${seasonData.season_name}</p>
+                                <b style="display:block">${seasonData.episodes.length > 1 ?
+                                    seasonData.episodes.length+" Episodes": seasonData.episodes.length+" Episodes"}</b>
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                                <a href="/admin/view/season/${seasonData.series_name}/${seasonData.short_url}" class="text-decoration-none m-1">
+                                    <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon" title="Add Episode to $season[season_name]">
+                                        <i class="mdi mdi-plus"></i>
+                                    </button>     
+                                </a>
+                                <a href="http://localhost:3003/view/series/${seasonData.series_name}/${seasonData.short_url}" class="text-decoration-none" target="_blank">
+                                    <button type="button" class="btn btn-sm btn-info btn-rounded btn-icon view-season" title="View this Season in Website">
+                                        <i class="mdi mdi-open-in-new"></i>
+                                    </button>
+                                </a>
+                                <a href="#delete$season[season_name]" class="text-decoration-none m-1 delete-season">
+                                    <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon" title="Delete Season">
+                                        <i class="mdi mdi-delete"></i>
+                                    </button>     
+                                </a>
+                            </div>
+                        </li>
                         `)
                     })
                     delSeason()
@@ -121,25 +128,6 @@
                     $(".series-active").html("")
                     $.each(msg, (key, seasonData)=>{
                         $(".series-active").append(`
-                            <li class='el-upload-list__item is-ready' style="padding:4px">
-                                    <input type="hidden" value="${seasonData.id}" >
-                                    <p class="text-center text-danger">${seasonData.season_name}</p>
-                                    <b style="display:block">${seasonData.episodes.length > 1 ?
-                                         seasonData.episodes.length+" Episodes": seasonData.episodes.length+" Episode"}</b>
-                                    <hr>
-                                    <div class="text-center">
-                                        <button type="button" class="btn btn-sm btn-primary btn-rounded btn-icon add-ep">
-                                            <i class="mdi mdi-plus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-info btn-rounded btn-icon view-season">
-                                            <i class="mdi mdi-eye"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon delete-season">
-                                            <i class="mdi mdi-delete"></i>
-                                        </button>
-                                    </div>
-                                    
-                            </li>
                             <li class='el-upload-list__item is-ready'>
                                 
                                 <input type="hidden" value="${seasonData.id}" >
@@ -150,12 +138,12 @@
                                 </div>
                                 <hr>
                                 <div class="text-center">
-                                    <a href="/admin/view/season/$response[series_name]/$season[short_url]" class="text-decoration-none m-1">
+                                    <a href="/admin/view/season/${seasonData.series_name}/${seasonData.short_url}" class="text-decoration-none m-1">
                                         <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon" title="Add Episode to $season[season_name]">
                                             <i class="mdi mdi-plus"></i>
                                         </button>     
                                     </a>
-                                    <a href="http://localhost:3003/view/series/$response[series_name]/$season[short_url]" class="text-decoration-none" target="_blank">
+                                    <a href="http://localhost:3003/view/series/${seasonData.series_name}/${seasonData.short_url}" class="text-decoration-none" target="_blank">
                                         <button type="button" class="btn btn-sm btn-info btn-rounded btn-icon view-season" title="View this Season in Website">
                                             <i class="mdi mdi-open-in-new"></i>
                                         </button>
