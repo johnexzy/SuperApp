@@ -90,6 +90,38 @@ class VideoGateway {
                 }
             
         }
+
+        /**
+         * Performs Create Operation for video
+         * @param Array $video
+         * @param String $name
+         * @param String $key
+         * 
+         * @return String
+         * 
+         */
+        public function createEpisodeVideo(Array $video, $name, string $key) {
+                $statement = "
+                        INSERT INTO videos
+                                (video_key,	video_url,	video_bytes)
+                        VALUES
+                                (:video_key,	:video_url,	:video_bytes)
+                ";
+                try {
+                        
+                        $query = $this->db->prepare($statement);
+                        $query->execute(array(
+                                'video_key' => $key,
+                                'video_url' => MakeFile::makeEpisodeVideo($video, $name),
+                                'video_bytes' => $video['size']
+                        ));
+                        
+                        return $query->rowCount();
+                } catch (\PDOException $e) {
+                        exit($e->getMessage());
+                }
+            
+        }
         public function createMultiVideo(Array $songs, $name, string $_key) {
                 $statement = "
                         INSERT INTO songs
