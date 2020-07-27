@@ -15,6 +15,7 @@ class EpisodeGateway extends VideoGateway {
     private $db = null;
     private $imageInherited = null;
     private $comment = null;
+    private $seasongateway = null;
     const LIMIT_PER_PAGE = 8;
     public function __construct($db)
         {       
@@ -22,25 +23,30 @@ class EpisodeGateway extends VideoGateway {
                 $this->db = $db;
                 $this->imageInherited = new ImageGateway($db);
                 $this->comment = new CommentsGateway($db);
+                $this->seasongateway = new SeasonGateway($db);
         }
         
         public function insert(Array $input)
         {
                 $statement = "INSERT INTO episodes
-                                (ep_name, ep_details, ep_key,  short_url, season_key)
+                                (series_name, ep_name, ep_details, ep_key,  short_url, season_key)
                         VALUES
-                                (:ep_name, :ep_details, :ep_key,  :short_url, :season_key)";
+                                (:series_name, :ep_name, :ep_details, :ep_key,  :short_url, :season_key)";
                 try {
                         $_key = $input["season_key"].md5($input['ep_name'].mt_rand(1, 10));
+                        $series_name = $input["series_name"];
+                        $season_no = $this->seasongateway->findNameByKey($input["season_key"]);
+                        $generateFileName = $series_name."--".$season_no."--".$$input['ep_name']."--". mt_rand(0, 20);
                         if($this->imageInherited->createImage($input['images'], $_key) == null ){
                                 throw new PDOException("Error Creating Image");
                         } 
-                        if ($this->createvideo($input['video'], $input['video_name']."-". mt_rand(0, 200), $_key)) {
+                        if ($this->createEpisodeVideo($input['video'], $generateFileName, $_key)) {
                                 throw new PDOException("Error Creating Video");
                                 
                         }
                         $query = $this->db->prepare($statement);
                         $query->execute(array(
+                                'series_name' => $input['series_name'],
                                 'ep_name' => $input['ep_name'],
                                 'ep_details' => $input['ep_details'],
                                 'ep_key' => $_key,
