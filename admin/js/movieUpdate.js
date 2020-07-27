@@ -205,6 +205,7 @@
                     console.log(msg)
                     $('#handleSubmit').html(`<i class="mdi mdi-content-save-all btn-icon-prepend"></i>
                     Save All`)
+                    $('#handleSubmit').addClass("btn-primary")
                     $('body,html').animate({
                         scrollTop: -1,
                         // opacity: 0
@@ -213,6 +214,9 @@
                 })
                 .fail(function (err) {
                     alert("Sorry, Something went wrong \nif problem persist contact developer")
+                    $('#handleSubmit').html(`<i class="mdi mdi-reload btn-icon-prepend"></i>                                                    
+                    Retry`)
+                    $('#handleSubmit').addClass("btn-danger")
                     console.log(err)
 
                 })

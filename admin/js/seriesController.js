@@ -100,7 +100,7 @@
           $('#artist').val("");
 
 
-  
+          $('#handleSubmit').addClass("btn-primary")
           $(".del-thumbnail").click();
 
           $('body,html').animate({
@@ -111,6 +111,9 @@
         .fail(function(err){
             console.log(err);
             alert("Sorry, something went wrong");
+            $('#handleSubmit').html(`<i class="mdi mdi-reload btn-icon-prepend"></i>                                                    
+                    Retry`)
+            $('#handleSubmit').addClass("btn-danger")
             
         });
       });
