@@ -268,10 +268,7 @@ class SeriesGateway
         public function update($id, Array $input)
         {       $statement = "
                         UPDATE `series` 
-                        SET 
-                                `series_name` = :series_name, 
                                 `series_details` = :series_details,
-                                `artist` = :artist,
                                 `popular` = :popular,
                                 `updated_at` = CURRENT_TIMESTAMP
                         WHERE `series`.`id` = :id;
@@ -281,9 +278,7 @@ class SeriesGateway
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array(
                                 'id' => (int) $id,
-                                'series_name' => $input['series_name'],
                                 'series_details' => $input['series_details'],
-                                'artist' => $input['artist'],
                                 'popular' => $input['popular'],
                         ));
                         return $statement->rowCount();

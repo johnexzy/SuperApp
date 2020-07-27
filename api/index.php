@@ -19,18 +19,24 @@ use Src\Controller\SeasonController;
 use Src\Controller\SeriesController;
 use Src\Controller\UserController;
 
+/**
+ * $uri[1] => "api"
+ * $uri[2] => "v{id}"
+ * $uri[3] => group["music", "series", "season", ...]
+ */
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = explode('/', $uri);
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
-/**
- * required variables
- */
+
 // escape all special characters
 foreach ($uri as $key => $link) {
     $uri[$key] = str_replace("%20", " ", $link);
 }
 
+/**
+ * required variables
+ */
 $input = null;
 $limit = null;
 $short_url = null;
@@ -50,6 +56,7 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
         $controller->proccessRequest();
     }
 
+    //api/v1/music
     elseif($uri[3] == 'music'){
         
 
@@ -103,6 +110,7 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
         $controller->processRequest();
     }
 
+    //api/v1/album/
     elseif($uri[3] == 'album'){
         switch ($requestMethod) {
             case 'POST':
@@ -156,6 +164,7 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
         $controller->processRequest();
     }
 
+    //api/v1/videos/
     elseif($uri[3] == 'videos'){
         switch ($requestMethod) {
             case 'POST':
@@ -207,6 +216,7 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
         $controller->processRequest();
     }
 
+    //api/v1/series/
     elseif ($uri[3] == 'series') {
         
         switch ($requestMethod) {
@@ -234,6 +244,9 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
             case 'POST':
                 $input = (array) $_POST;
                 $input += ["images" => MakeFile::reArrayFiles($_FILES['series_images'])];
+                break;
+            case 'PUT':
+
                 break;
             case 'DELETE' :
                 $id = (isset($uri[4], $uri[5]) && $uri[4] =="delete") ? (int) $uri[5] : null;
