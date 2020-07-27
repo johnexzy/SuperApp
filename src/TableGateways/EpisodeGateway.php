@@ -32,10 +32,13 @@ class EpisodeGateway extends VideoGateway {
                                 (:ep_name, :ep_details, :ep_key,  :short_url, :season_key)";
                 try {
                         $_key = $input["season_key"].md5($input['ep_name'].mt_rand(1, 10));
-                        if($this->imageInherited->createImage($input['images'], $_key) == null){
-                                throw new PDOException("Error Processing Request", 1);
+                        if($this->imageInherited->createImage($input['images'], $_key) == null ){
+                                throw new PDOException("Error Creating Image");
                         } 
+                        if ($this->createvideo($input['video'], $input['video_name']."-". mt_rand(0, 200), $_key)) {
+                                throw new PDOException("Error Creating Video");
                                 
+                        }
                         $query = $this->db->prepare($statement);
                         $query->execute(array(
                                 'ep_name' => $input['ep_name'],
@@ -44,7 +47,7 @@ class EpisodeGateway extends VideoGateway {
                                 'season_key' => $input['season_key'],
                                 'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['ep_name']."-".mt_rand()))
                         ));
-                        $this->createvideo($input['video'], $input['video_name']."-". mt_rand(0, 200), $_key);
+                        
                         return $query->rowCount();
                 } catch (PDOException $e) {
                         exit($e->getMessage());

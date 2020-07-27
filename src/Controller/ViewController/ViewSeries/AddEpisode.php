@@ -72,7 +72,7 @@ class AddEpisode
                                    <form class="forms-sample">
                                     <div class="form-group">
                                         <label for="postTitle">Episode Number</label>
-                                        <input type="number" class="form-control" id="video_title" placeholder="2">
+                                        <input type="number" class="form-control" id="ep_number" placeholder="2">
                                     </div>
 
                                     <div class="form-group">
