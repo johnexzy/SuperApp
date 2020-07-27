@@ -188,11 +188,10 @@
                 })
         })
         $('#handleSubmit').on('click', function () {
-            let video_name = $('#video_title').val();
-            let video_details = $('#about_video').val();
-            let category = $('input[name=Category]:checked').val();
+            let series_name = $('#series_title').val();
+            let series_details = $('#about_series').val();
             let popular = $('.popular').prop("checked") === true ? 1 : 0
-            let fields = [video_name, video_details, category]
+            let fields = [series_name, series_details]
             //check for empty fields
             for (let field = 0; field < fields.length; field++) {
                 if (fields[field] == '') {
@@ -202,14 +201,11 @@
             $(this).text("Updating...")
 
             let data = {
-                video_name: video_name,
-                video_details: video_details,
-                category: category,
+                series_details: series_details,
                 popular: popular
             };
-            console.log(data)
             $.ajax({
-                url: `http://127.0.0.1:8090/api/v1/videos/${_id}`,
+                url: `http://127.0.0.1:8090/api/v1/series/update/${_id}`,
                 type: 'PUT',
                 data: JSON.stringify(data),
                 dataType: 'json',

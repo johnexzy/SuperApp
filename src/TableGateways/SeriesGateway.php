@@ -266,13 +266,14 @@ class SeriesGateway
                 }
         }
         public function update($id, Array $input)
-        {       $statement = "
-                        UPDATE `series` 
-                                `series_details` = :series_details,
-                                `popular` = :popular,
-                                `updated_at` = CURRENT_TIMESTAMP
-                        WHERE `series`.`id` = :id;
-                ";
+        {      
+                $statement = "UPDATE `series` 
+                SET 
+                        `series_details` = :series_details, 
+                        `popular` = :popular,
+                        `updated_at` = CURRENT_TIMESTAMP
+                WHERE `series`.`id` = :id;
+        ";
                 
                 try {
                         $statement = $this->db->prepare($statement);

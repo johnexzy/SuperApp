@@ -138,19 +138,15 @@ class ViewSeries extends SeriesGateway
                                     </h3>
                                 </div>
                                 <div class="card-body">
-                                   <div class="alert alert-success status-msg" style="display: none;">series Added Successfully</div>
+                                   <div class="alert alert-success status-msg" style="display: none;">Series Updated Successfully</div>
                                    <form class="forms-sample">
                                     <div class="form-group">
                                         <label for="postTitle">Title</label>
-                                        <font size="0.6" id="titleCap" style="display: block; display: none; text-align: right; float: right;">
-                                            Required</font>
-                                        <input type="text" value="$response[series_name]" class="form-control" id="series_title" placeholder="series Title">
+                                        <input type="text" value="$response[series_name]" class="form-control" id="series_title" disabled>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="postBody">About series</label>
-                                        <font size="0.6" id="AboutCap" style="display: block; display: none; text-align: right; float: right;">
-                                            Required</font>
                                         <textarea class="form-control" id="about_series" rows="16">$response[series_details]</textarea>
                                     </div>
                                     <div class="form-group">

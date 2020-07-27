@@ -91,9 +91,9 @@ class SeriesController extends SeriesGateway
         if(!$this->validateInput($input)){
             return $this->unprocessableEntityResponse();
         }
-        $this->update($id, $input);
+        ;
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = null;
+        $response['body'] = json_encode($this->update($id, $input));
         return $response;
     }
     private function deleteSeries($id) {
@@ -107,7 +107,7 @@ class SeriesController extends SeriesGateway
         return $response;
     }
     private function validateInput($input) {
-        if (! isset($input['series_name'])) {
+        if (! isset($input['popular'])) {
             return false;
         }
         return true;
