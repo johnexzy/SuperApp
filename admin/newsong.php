@@ -129,7 +129,7 @@ require './session.php';
     <script src="js/template.js"></script>
     <!-- endinject -->
     <!-- Inject:js for this page -->
-    <script src="js/audioController.js"></script>
+    <script src="js/music/controller/musicController.js"></script>
     <!-- endinject:js for this page -->
 </body>
 
