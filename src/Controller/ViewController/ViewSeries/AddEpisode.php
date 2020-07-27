@@ -103,10 +103,6 @@ class AddEpisode
                                             <i class="mdi mdi-48px mdi-video"></i>
                                         </div>
                                     </div>
-                                    
-                                    <div class="form-group">
-                                        <input type="checkbox" name="popular" class="form-check-success" id="popular"> Add to popular?
-                                    </div>
                                 </form>
                                 </div>
                                 <div class="card-footer">
