@@ -246,10 +246,11 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
                 $input += ["images" => MakeFile::reArrayFiles($_FILES['series_images'])];
                 break;
             case 'PUT':
-
+                $id = (count($uri) == 6 && $uri[4] =="update") ? (int) $uri[5] : null;
+                
                 break;
             case 'DELETE' :
-                $id = (isset($uri[4], $uri[5]) && $uri[4] =="delete") ? (int) $uri[5] : null;
+                $id = (count($uri) == 6 && $uri[4] =="delete") ? (int) $uri[5] : null;
             default:
                 # code...
                 break;
