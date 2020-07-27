@@ -74,7 +74,7 @@ class ViewSeries extends SeriesGateway
                                 <i class="mdi mdi-open-in-new"></i>
                             </button>
                         </a>
-                        <a href="/admin/view/season/$response[series_name]/$season[short_url]" class="text-decoration-none m-1">
+                        <a href="#delete$season[season_name]" class="text-decoration-none m-1 delete-season">
                             <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon" title="Delete Season">
                                 <i class="mdi mdi-delete"></i>
                             </button>     
@@ -188,7 +188,7 @@ class ViewSeries extends SeriesGateway
                                             <i class="mdi mdi-48px mdi-image-plus"></i>
                                         </div>
                                         <div class="mt-5">
-                                            <div class="progress image-upload-progress" style="height: 10px; width:300px; font-weight: 800; font-size: 14px; display:none">
+                                            <div class="progress image-upload-progress" style="height: 10px; width:100% font-weight: 800; font-size: 14px; display:none">
                                                 <div class="progress-bar image-bar" style="font-size:0.8em; color:rgb(251, 253, 255)"></div> <i class="image-percent" style="font-size:9px"></i>
                                             </div>
                                         </div>

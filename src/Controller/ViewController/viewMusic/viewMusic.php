@@ -158,7 +158,7 @@ class ViewMusic extends MusicGateway
                                                 <i class="mdi mdi-48px mdi-image-plus"></i>
                                             </div>
                                             <div class="mt-5">
-                                                <div class="progress image-upload-progress" style="height: 10px; width:300px; font-weight: 800; font-size: 14px; display:none">
+                                                <div class="progress image-upload-progress" style="height: 10px; width:100% font-weight: 800; font-size: 14px; display:none">
                                                     <div class="progress-bar image-bar" style="font-size:0.8em; color:rgb(251, 253, 255)"></div> <i class="image-percent" style="font-size:9px"></i>
                                                 </div>
                                             </div>
