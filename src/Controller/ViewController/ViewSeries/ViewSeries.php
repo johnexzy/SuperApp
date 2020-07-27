@@ -55,25 +55,33 @@ class ViewSeries extends SeriesGateway
       $episodes = count($season["episodes"]);
       $episodes = $episodes > 1 ? "$episodes Episodes" : "$episodes Episode";
       $seasons .= <<<HTML
-                <li class='el-upload-list__item is-ready' style="padding:4px">
-                        <input type="hidden" value="$season[id]" >
+                <li class='el-upload-list__item is-ready'>
+                    <div style="padding:4px">
                         <p class="text-center text-danger">$season[season_name]</p>
                         <b style="display:block">$episodes</b>
-                        <hr>
-                        <div class="text-center">
-                            <a href="/admin/view/season/$response[series_name]/$season[short_url]" class="text-decoration-none">
-                                <button  class="btn btn-sm btn-primary btn-rounded btn-icon add-ep" title="Add Episode">
-                                    <i class="mdi mdi-plus"></i>
-                                </button>
-                                
-                            </a>
-                            <button type="button" class="btn btn-sm btn-info btn-rounded btn-icon view-season" title="View this Season">
+                    </div>
+                    <input type="hidden" value="$season[id]" >
+                    
+                    <hr>
+                    <div class="text-center">
+                        <a href="/admin/view/season/$response[series_name]/$season[short_url]" class="text-decoration-none m-1">
+                            <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon" title="Add Episode to $season[season_name]">
+                                <i class="mdi mdi-plus"></i>
+                            </button>     
+                        </a>
+                        <a href="http://localhost:3003/view/series/$response[series_name]/$season[short_url]" class="text-decoration-none" target="_blank">
+                            <button type="button" class="btn btn-sm btn-info btn-rounded btn-icon view-season" title="View this Season in Website">
                                 <i class="mdi mdi-open-in-new"></i>
                             </button>
-                            <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon delete-season" title="Delete Season">
+                        </a>
+                        <a href="/admin/view/season/$response[series_name]/$season[short_url]" class="text-decoration-none m-1">
+                            <button type="button" class="btn btn-sm btn-danger btn-rounded btn-icon" title="Delete Season">
                                 <i class="mdi mdi-delete"></i>
-                            </button>
-                        </div>
+                            </button>     
+                        </a>
+                        
+                        
+                    </div>
                         
                 </li>
     HTML;

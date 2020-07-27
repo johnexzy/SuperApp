@@ -127,19 +127,12 @@ class ViewSeason extends SeasonGateway
 
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <div class="row-border">
+                    <div class="border-danger">
                         <div class="col-md-12 grid-margin">
-                        <div class="d-flex justify-content-between flex-wrap">
-                            <div class="d-flex align-items-end flex-wrap">
-                            <div class="mr-md-3 mr-xl-5">
-                                <h3 class="text-center">$response[series_name] - $response[season_name]</h3>
-                                <p class="mb-md-0">Add, Edit or Delete Episodes</p>
-                            </div>
-                            </div>
-                        </div>
+                            <h3 class="text-center">$response[series_name] - $response[season_name]</h3>
+                            <p class="text-center mt-3">Add, Edit or Delete Episodes</p>
                         </div>
                     </div>
-                    <hr>
                     <div class="row">
                         $cardBody
                     </div>
