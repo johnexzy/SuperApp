@@ -1,55 +1,55 @@
 <?php
-
 namespace Src\TableGateways;
-
 /**
  * Description of MusicGateWay
  * @author ObaJohn
  */
 
 use PDOException;
-use Src\TableGateways\VideoGateway;
-use Src\TableGateways\CommentsGateway;
 use Src\TableGateways\ImageGateway;
+use Src\TableGateways\VideoGateway;
+use Src\TableGateways\SeasonGateway;
+use Src\TableGateways\CommentsGateway;
+
 class EpisodeGateway extends VideoGateway {
-    private $db = null;
-    private $imageInherited = null;
-    private $comment = null;
-    private $seasongateway = null;
+    protected $db = null;
+    protected $imageInherited = null;
+    protected $comment = null;
+//     protected $seasongateway = null;
     const LIMIT_PER_PAGE = 8;
     public function __construct($db)
         {       
-                parent::__construct($db);
                 $this->db = $db;
+                parent::__construct($this->db);
                 $this->imageInherited = new ImageGateway($db);
                 $this->comment = new CommentsGateway($db);
-                $this->seasongateway = new SeasonGateway($db);
+                // $this->seasongateway = new SeasonGateway($db);
         }
         
         public function insert(Array $input)
         {
-                $statement = "INSERT INTO episodes
-                                (series_name, ep_name, ep_details, ep_key,  short_url, season_key)
-                        VALUES
-                                (:series_name, :ep_name, :ep_details, :ep_key,  :short_url, :season_key)";
+                $statement = "
+                        INSERT INTO `episodes` (`series_name`, `ep_name`, `ep_key`, `ep_details`, `season_key`, `short_url`) 
+                        VALUES (:series_name, :ep_name, :ep_key, :ep_details, :season_key, :short_url);
+                ";
                 try {
+                        $seasongateway = new SeasonGateway($this->db);
                         $_key = $input["season_key"].md5($input['ep_name'].mt_rand(1, 10));
                         $series_name = $input["series_name"];
-                        $season_no = $this->seasongateway->findNameByKey($input["season_key"]);
-                        $generateFileName = $series_name."--".$season_no."--".$$input['ep_name']."--". mt_rand(0, 20);
-                        if($this->imageInherited->createImage($input['images'], $_key) == null ){
+                        $season_no = $seasongateway->findNameByKey($input["season_key"]);
+                        $generateFileName = $series_name."--".$season_no."--".$input['ep_name']."--". mt_rand(0, 20);
+                        if(!$this->imageInherited->createImage($input['images'], $_key)){
                                 throw new PDOException("Error Creating Image");
                         } 
-                        if ($this->createEpisodeVideo($input['video'], $generateFileName, $_key)) {
+                        if (!$this->createEpisodeVideo($input['video'], $generateFileName, $_key)) {
                                 throw new PDOException("Error Creating Video");
-                                
                         }
                         $query = $this->db->prepare($statement);
                         $query->execute(array(
                                 'series_name' => $input['series_name'],
                                 'ep_name' => $input['ep_name'],
-                                'ep_details' => $input['ep_details'],
                                 'ep_key' => $_key,
+                                'ep_details' => $input["ep_details"],
                                 'season_key' => $input['season_key'],
                                 'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['ep_name']."-".mt_rand()))
                         ));
