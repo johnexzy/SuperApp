@@ -90,7 +90,7 @@ class EpisodeController extends EpisodeGateway
     //     return $response;
     // }
     private function validateInput($input) {
-        if (!isset($input['season_key']) || !isset($input['ep_key'])) {
+        if (!isset($input['season_key'])) {
             return false;
         }
         return true;
