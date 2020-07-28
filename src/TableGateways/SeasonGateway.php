@@ -130,16 +130,37 @@ class SeasonGateway
          */
         public function findNameByKey($season_key)
         {
-                $statement = "SELECT season_name FROM `seasons` WHERE `seasons`.`season_key` = ?";
-                
+                $statement = "
+                        SELECT
+                                season_name
+                        FROM
+                                `seasons`
+                        WHERE season_key = ?;
+                ";
                 try {   
                         $statement = $this->db->prepare($statement);
                         $statement->execute(array($season_key));
-                        $res = $statement->fetch(\PDO::FETCH_COLUMN);
-                        return $res[0];
+                        $res = $statement->fetchAll(\PDO::FETCH_COLUMN);
+                        
+                                return $res[0];
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
                 }
+                // $statement = "
+                //         SELECT
+                //                 image_url
+                //         FROM
+                //                 images
+                //         WHERE image_key = ?;
+                // ";
+                // try {
+                //         $statement = $this->db->prepare($statement);
+                //         $statement->execute(array($season_key));
+                //         $result = $statement->fetchAll(\PDO::FETCH_COLUMN);
+                //         return $result;
+                // } catch (\PDOException $e) {
+                //         exit($e->getMessage());
+                // }
         }
 
         public function update($id, Array $input)
