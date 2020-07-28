@@ -50,10 +50,10 @@
       })
       $('#handleSubmit').on('click', function () {
         
-        let series_name = $('.series_name').val();
+        let series_name = $('.series-name').val();
         let ep_name = $('#ep_number').val();
         let ep_details = $('#about_video').val();
-        let season_key = $('.key')
+        let season_key = $('.key').val()
         let fields = [ep_details, ep_name]
         //check for empty fields
         if (videoFile.Image.length < 1 || videoFile.Video === null) {
@@ -70,8 +70,8 @@
         let formData = new FormData();
   
         formData.append('series_name', series_name)
-        formData.append('ep_details', episode_details)
-        formData.append('ep_name', ep_name)
+        formData.append('ep_details', ep_details)
+        formData.append('ep_name', "EP_"+ep_name)
         formData.append('season_key', season_key)
         $.each(videoFile.Image, function (key, image) {
           formData.append(`video_images[${key}]`, image)
@@ -102,7 +102,6 @@
           data: formData,
           processData: false,
           contentType: false
-  
         })
         .done(function () {
           $(".status-msg").show()
