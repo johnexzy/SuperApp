@@ -12,7 +12,7 @@ class AddEpisode
 {
  protected $season_key;
  protected $series_name;
- public function __construct($season_key, $series_name)
+ public function __construct($series_name, $season_key)
  {
     $this->season_key = $season_key;
     $this->series_name = $series_name;
