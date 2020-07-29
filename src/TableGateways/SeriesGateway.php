@@ -8,7 +8,7 @@ use Src\TableGateways\CommentsGateway;
 class SeriesGateway
 {
         private $db = null, $comment, $imageInherited, $seasonGateway;
-        const LIMIT_PER_PAGE = 5;
+        const LIMIT_PER_PAGE = 10;
         public function __construct($db)
         {
                 $this->seasonGateway = new SeasonGateway($db);
