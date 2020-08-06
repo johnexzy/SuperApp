@@ -39,6 +39,7 @@ require './session.php';
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="row">
+                        
                         <div class="col-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-header">New Video</div>
@@ -108,11 +109,12 @@ require './session.php';
                                             
                                         </ul>
                                         
+                                        <a href="javascript:;" class="text-decoration-none" id="pickfiles">
+                                            <div class="el-upload el-upload--picture-card">
+                                                <i class="mdi mdi-48px mdi-video"></i>
+                                            </div>
+                                        </a>
                                         
-                                        <input type="file" name="video" class="file-upload-default video-upload" accept="video/*">
-                                        <div class="el-upload el-upload--picture-card openfile">
-                                            <i class="mdi mdi-48px mdi-video"></i>
-                                        </div>
                                     </div>
                                     
                                     <div class="form-group">
@@ -142,6 +144,7 @@ require './session.php';
     <!-- plugins:js -->
     <script src="vendors/base/vendor.bundle.base.js"></script>
     <!-- endinject -->
+    
 
     <!-- inject:js -->
     <script src="js/off-canvas.js"></script>
@@ -149,7 +152,15 @@ require './session.php';
     <script src="js/template.js"></script>
     <!-- endinject -->
     <!-- Inject:js for this page -->
+    <script type="text/javascript" src="js/js/plupload.full.min.js"></script>
     <script src="js/movie/controller/movieController.js"></script>
+    
+    <script type="text/javascript">
+    // Custom example logic
+
+
+
+    </script>
     <!-- endinject:js for this page -->
 </body>
 
