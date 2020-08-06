@@ -13,9 +13,11 @@ namespace Src\TableGateways;
  *
  * @author ObaJohn
  */
-use Src\TableGateways\CommentsGateway;
+
+use Src\Logic\MakeFile;
 use Src\TableGateways\SongGateway;
 use Src\TableGateways\ImageGateway;
+use Src\TableGateways\CommentsGateway;
 class AlbumGateway extends SongGateway {
     private $db = null;
     private $imageInherited = null;
@@ -48,7 +50,7 @@ class AlbumGateway extends SongGateway {
                                 'uploaded_by' => $input['author'],
                                 'year' => $input['year'],
                                 'popular' => $input['popular'],
-                                'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['album_name']."-".mt_rand()))
+                                'short_url' => MakeFile::normalizeString($input['album_name']."-").mt_rand()
 
                         ));
                         
