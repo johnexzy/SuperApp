@@ -6,9 +6,11 @@ namespace Src\TableGateways;
  * Description of MusicGateWay
  * @author ObaJohn
  */
+
+use Src\Logic\MakeFile;
+use Src\TableGateways\ImageGateway;
 use Src\TableGateways\VideoGateway;
 use Src\TableGateways\CommentsGateway;
-use Src\TableGateways\ImageGateway;
 class MovieGateway extends VideoGateway {
     private $db = null;
     private $imageInherited = null;
@@ -42,10 +44,16 @@ class MovieGateway extends VideoGateway {
                                 'video_key' => $_key,
                                 'uploaded_by' => $input['author'],
                                 'popular' => $input['popular'],
-                                'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['video_name']."-".mt_rand()))
+                                'short_url' => MakeFile::normalizeString($input['video_name']."-").mt_rand()
 
                         ));
-                        $this->createvideo($input['video'], $input['video_name']."-". mt_rand(0, 200), $_key);
+                        $this->createvideo(
+                                array(
+                                        'name' => $input['video_file'], 
+                                        'byte' => $input['video_file_byte']
+                                ),
+                                $input['video_name']."-". mt_rand(0, 200), 
+                                $_key);
                         return $query->rowCount();
                 } catch (\PDOException $e) {
                         exit($e->getMessage());
