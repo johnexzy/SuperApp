@@ -1,7 +1,7 @@
 <?php
 namespace Src\Logic;
 
-use Error;
+// use Error;
 use Exception;
 
 class MakeFile {
@@ -58,7 +58,7 @@ class MakeFile {
             $fileExt = strtolower(pathinfo($audio['name'], PATHINFO_EXTENSION));
             $extensions = array('mp3', 'wav', 'ogg', 'opus', 'flac', 'm4a', 'm4b');
             if (in_array($fileExt, $extensions)) {
-                $path = str_replace(" ", "-", $name).mt_rand(0, 400).".$fileExt";
+                $path = self::normalizeString($name).mt_rand(0, 400).".$fileExt";
                 if (!move_uploaded_file($audio['tmp_name'], "../uploads/audios/$path")) {
                     exit;
                 }
@@ -74,7 +74,7 @@ class MakeFile {
         $fileExt = strtolower(pathinfo($video['name'], PATHINFO_EXTENSION));
         $ext = array('mp4', 'webm', 'mkv', 'mov');
         if (\in_array($fileExt, $ext)) {
-            $path = str_replace(" ", "-", $name).mt_rand(0, 400).".$fileExt";
+            $path = self::normalizeString($name).mt_rand(0, 400).".$fileExt";
             if (!move_uploaded_file($video['tmp_name'], "../uploads/videos/$path")) {
                 exit;
             }
@@ -92,12 +92,12 @@ class MakeFile {
         $ext = array('mp4', 'webm', 'mkv', 'mov');
         if (\in_array($fileExt, $ext)) {
             $dirname = explode("--", $name);
-            $seriesDirname = str_replace(" ", "-", $dirname[0]);
-            $seasonDirname = str_replace(" ", "-", $dirname[1]);
+            $seriesDirname = urlencode(str_replace(" ", "_", $dirname[0]));
+            $seasonDirname = urlencode(str_replace(" ", "_", $dirname[1]));
             if (!is_dir("../uploads/videos/$seriesDirname/$seasonDirname")) {
                 mkdir("../uploads/videos/$seriesDirname/$seasonDirname", 0777, true);
             }
-            $path = "uploads/videos/$seriesDirname/$seasonDirname/".str_replace(" ", "-", $name).".$fileExt";
+            $path = "uploads/videos/$seriesDirname/$seasonDirname/".self::normalizeString($name).".$fileExt";
             if (!move_uploaded_file($video['tmp_name'], "../$path")) {
                 exit;
             }
@@ -134,5 +134,19 @@ class MakeFile {
         /**
          * @credit to : https://www.php.net/manual/en/features.file-upload.multiple.php#53240
          */
+    }
+    public static function normalizeString ($str = '')
+    {
+        $str = strip_tags($str); 
+        $str = preg_replace('/[\r\n\t ]+/', ' ', $str);
+        $str = preg_replace('/[\"\*\/\:\<\>\?\'\|]+/', ' ', $str);
+        $str = strtolower($str);
+        $str = html_entity_decode( $str, ENT_QUOTES, "utf-8" );
+        $str = htmlentities($str, ENT_QUOTES, "utf-8");
+        $str = preg_replace("/(&)([a-z])([a-z]+;)/i", '$2', $str);
+        $str = str_replace(' ', '_', $str);
+        $str = rawurlencode($str);
+        $str = str_replace('%', '-', $str);
+        return $str;
     }
 }
