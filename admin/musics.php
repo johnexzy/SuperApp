@@ -59,6 +59,7 @@
           <?php 
             foreach ($res["data"] as $music) {
               $image = isset($music["images"][0]) ? $music["images"][0] : "uploads/images/20200531111530182851488.jpg";
+              $bytes = isset($music["audio"][0]["song_bytes"]) ? ceil($music["audio"][0]["song_bytes"]/(1024*1024)) : "No File";
               
               echo <<<HTML
                     <div class="col-md-4 grid-margin stretch-card">
@@ -77,6 +78,9 @@
                                 </div>
                           </div>
                           <div class="card-footer">
+                              <div class="text-left">
+                                $bytes
+                              </div>
                               <div class="text-right" id="$music[id]" >
                                 <a href="/admin/view/music/$music[short_url]" class="text-decoration-none">
                                     <button type="button" class="btn btn-info btn-rounded btn-icon edit">
