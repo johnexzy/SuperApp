@@ -1,8 +1,8 @@
 <?php
 require '../bootstrap.php';
 use Src\TableGateways\UserGateway;
-
 session_start();
+
 
   // unset($_SESSION['user']);
   if (isset($_SESSION['user'])) {
@@ -40,10 +40,8 @@ session_start();
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -60,7 +58,6 @@ session_start();
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
 </head>
-
 <body>
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -85,7 +82,6 @@ session_start();
                 <div class="mt-3">
                   <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" name="login">SIGN IN</button>
                 </div>
-                
               </form>
             </div>
           </div>
@@ -95,7 +91,5 @@ session_start();
     </div>
     <!-- page-body-wrapper ends -->
   </div>
- 
 </body>
-
 </html>
