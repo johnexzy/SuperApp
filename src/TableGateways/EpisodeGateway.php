@@ -6,6 +6,7 @@ namespace Src\TableGateways;
  */
 
 use PDOException;
+use Src\Logic\MakeFile;
 use Src\TableGateways\ImageGateway;
 use Src\TableGateways\VideoGateway;
 use Src\TableGateways\SeasonGateway;
@@ -51,7 +52,7 @@ class EpisodeGateway extends VideoGateway {
                                 'ep_key' => $_key,
                                 'ep_details' => $input["ep_details"],
                                 'season_key' => $input['season_key'],
-                                'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['ep_name']."-".mt_rand()))
+                                'short_url' => MakeFile::normalizeString($input['ep_name']."-").mt_rand()
                         ));
                         
                         return $query->rowCount();
