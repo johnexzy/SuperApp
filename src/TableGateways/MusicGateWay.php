@@ -13,6 +13,8 @@ namespace Src\TableGateways;
  *
  * @author ObaJohn
  */
+
+use Src\Logic\MakeFile;
 use Src\TableGateways\SongGateway;
 use Src\TableGateways\CommentsGateway;
 use Src\TableGateways\ImageGateway;
@@ -48,7 +50,7 @@ class MusicGateway extends SongGateway {
                                 'music_key' => $_key,
                                 'uploaded_by' => $input['author'],
                                 'popular' => $input['popular'],
-                                'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['music_name']."-".mt_rand()))
+                                'short_url' => MakeFile::normalizeString($input['music_name']."-").mt_rand()
 
                         ));
                         $this->createSong($input['song'], $input['music_name']."-".$input['artist'], $_key);
