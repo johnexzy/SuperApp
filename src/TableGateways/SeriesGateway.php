@@ -1,6 +1,7 @@
 <?php
 namespace Src\TableGateways;
 
+use Src\Logic\MakeFile;
 use Src\TableGateways\ImageGateway;
 use Src\TableGateways\SeasonGateway;
 use Src\TableGateways\CommentsGateway;
@@ -37,7 +38,7 @@ class SeriesGateway
                                 'series_key' => $_key,
                                 'series_details' => $input["series_details"],
                                 'popular' => $input["popular"],
-                                'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['series_name']."-".mt_rand()))
+                                'short_url' => MakeFile::normalizeString($input['series_name']."-").mt_rand()
                         ));
                         return $statement->rowCount();
                 } catch (\PDOException $e) {
