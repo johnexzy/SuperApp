@@ -2,6 +2,7 @@
 namespace Src\TableGateways;
 
 use PDOException;
+use Src\Logic\MakeFile;
 use Src\TableGateways\EpisodeGateway;
 use Src\TableGateways\CommentsGateway;
 
@@ -31,7 +32,7 @@ class SeasonGateway
                                 'series_name' => $input['series_name'],
                                 'season_key' => $_key,
                                 'series_key' => $input['series_key'],
-                                'short_url' => str_replace(".", "-", str_replace(" ", "-", $input['season_name']."-".mt_rand())),
+                                'short_url' => MakeFile::normalizeString($input['season_name']."-").mt_rand(),
                                 'season_name' => $input['season_name']
                         ));
                         return $this->findAllWithKey($input["series_key"]);
