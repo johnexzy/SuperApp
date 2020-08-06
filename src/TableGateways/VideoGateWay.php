@@ -61,14 +61,14 @@ class VideoGateway {
         }
         /**
          * Performs Create Operation for video
-         * @param Array $video
+         * @param String $video
          * @param String $name
          * @param String $key
          * 
          * @return String
          * 
          */
-        public function createvideo(Array $video, $name, string $key) {
+        public function createvideo(Array $video, $name, $key) {
                 $statement = "
                         INSERT INTO videos
                                 (video_key,	video_url,	video_bytes)
@@ -80,8 +80,8 @@ class VideoGateway {
                         $query = $this->db->prepare($statement);
                         $query->execute(array(
                                 'video_key' => $key,
-                                'video_url' => MakeFile::makevideo($video, $name),
-                                'video_bytes' => $video['size']
+                                'video_url' => $video['name'],
+                                'video_bytes' => $video['byte']
                         ));
                         
                         return $query->rowCount();
