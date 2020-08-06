@@ -8,16 +8,19 @@ header("Access-Control-Allow-Headers: Origin, Access-Control-Allow-Origin, Conte
 
 require '../bootstrap.php';
 
-use Src\Controller\MusicController;
-use Src\Controller\CommentsController;
+// use Http\Router;
 use Src\Logic\MakeFile;
-use Src\Controller\MovieController;
+use Src\Logic\PluploadHandler;
+use Src\Controller\UserController;
 use Src\Controller\AlbumController;
-use Src\Controller\EpisodeController;
 use Src\Controller\ImageController;
+use Src\Controller\MovieController;
+use Src\Controller\MusicController;
 use Src\Controller\SeasonController;
 use Src\Controller\SeriesController;
-use Src\Controller\UserController;
+use Src\Controller\EpisodeController;
+use Src\Controller\CommentsController;
+
 
 /**
  * $uri[1] => "api"
@@ -34,6 +37,10 @@ foreach ($uri as $key => $link) {
     $uri[$key] = str_replace("%20", " ", $link);
 }
 
+// $api = new Router($uri);
+// $api::get("/series/:sdsdf", function(){
+
+// });
 /**
  * required variables
  */
@@ -171,7 +178,6 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
                 header("Content-Type: multipart/form-data;");
                 $input = (array) $_POST;
                 $input += ["images" => MakeFile::reArrayFiles($_FILES['video_images'])];
-                $input += ["video" => MakeFile::reArrayFiles($_FILES['video_file'])];
 
                 break;
             case 'GET':
@@ -379,6 +385,31 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
         $controller->processRequest();
     }
     
+    elseif($uri[3] == 'file'){
+        $ph = new PluploadHandler(array(
+            'target_dir' => '../uploads/videos/',
+            'allow_extensions' => 'jpg,jpeg,png,mp4'
+        ));
+
+        $ph->sendNoCacheHeaders();
+        $ph->sendCORSHeaders();
+
+        if ($result = $ph->handleUpload()) {
+            echo(json_encode(array(
+                'OK' => 1,
+                'info' => $result,
+                'msg' => $_POST
+            )));
+        } else {
+            echo(json_encode(array(
+                'OK' => 0,
+                'error' => array(
+                    'code' => $ph->getErrorCode(),
+                    'message' => $ph->getErrorMessage()
+                )
+            )));
+        }
+    }
     else{
         header("HTTP/1.1 404 Not Found");
         exit();
