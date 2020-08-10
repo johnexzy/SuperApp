@@ -61,8 +61,8 @@ class SearchGateway
         return $res;
     }
     private static function getTotalRecord(PDO $db, $query, $group)
-    {
-        $statement = "SELECT movies.id FROM movies";
+    {   
+        $statement = "";
         switch ($group) {
             case 'music':
                 $statement = "SELECT * FROM `music` 
