@@ -44,6 +44,7 @@ class SearchGateway
                         WHERE (`music_name` LIKE '%$query%') 
                         OR (`artist` LIKE '%$query%') 
                         ORDER BY `music_name`
+                        DESC LIMIT $startFrom, $limit;
                     ";
         try {   
             $data = array();
@@ -82,6 +83,7 @@ class SearchGateway
         $statement = "SELECT * FROM `movies` 
                         WHERE (`video_name` LIKE '%$query%') 
                         ORDER BY `video_name`
+                        DESC LIMIT $startFrom, $limit;
                     ";
         try {   
             $data = array();
@@ -119,6 +121,7 @@ class SearchGateway
         $statement = "SELECT * FROM `series` 
                         WHERE (`series_name` LIKE '%$query%') 
                         ORDER BY `series_name`
+                        DESC LIMIT $startFrom, $limit;
                     ";
         try {   
             $data = array();
