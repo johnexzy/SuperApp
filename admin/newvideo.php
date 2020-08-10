@@ -128,7 +128,7 @@ require './session.php';
                                             Upload</button>
                                     <button class="btn btn-light">Cancel</button>
                                 </div>
-                                <div class="progress" style="height: 40px; font-weight: 800; font-size: 18px;">
+                                <div class="progress" style="height: 20px; font-weight: 800; font-size: 10px;">
                                     <div class="progress-bar" ></div>
                                 </div>
                             </div>
@@ -154,13 +154,6 @@ require './session.php';
     <!-- Inject:js for this page -->
     <script type="text/javascript" src="js/js/plupload.full.min.js"></script>
     <script src="js/movie/controller/movieController.js"></script>
-    
-    <script type="text/javascript">
-    // Custom example logic
-
-
-
-    </script>
     <!-- endinject:js for this page -->
 </body>
 
