@@ -312,7 +312,6 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
                 header("Content-Type: multipart/form-data;");
                 $input = (array) $_POST;
                 $input += ["images" => MakeFile::reArrayFiles($_FILES['video_images'])];
-                $input += ["video" => MakeFile::reArrayFiles($_FILES['video_file'])];
                 break;
             case 'DELETE' :
                 $id = (isset($uri[4], $uri[5]) && $uri[4] =="delete") ? (int) $uri[5] : null;
@@ -388,7 +387,7 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
     elseif($uri[3] == 'file'){
         $ph = new PluploadHandler(array(
             'target_dir' => '../uploads/videos/',
-            'allow_extensions' => 'jpg,jpeg,png,mp4'
+            'allow_extensions' => 'mp4, avi, mkv, webm'
         ));
 
         $ph->sendNoCacheHeaders();
