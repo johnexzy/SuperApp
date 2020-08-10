@@ -2,12 +2,18 @@
 namespace Src\TableGateways;
 
 use PDO;
+use PDOException;
 
+define('LIMIT_PER_PAGE', 10);
 class SearchGateway
 {
     private $db;
+    private $imageInherited, $seasonGateway, $comment;
     public function __construct(PDO $db) {
         $this->db = $db;
+        $this->imageInherited = new ImageGateway($db);
+        $this->seasonGateway = new SeasonGateway($db);
+        $this->comment = new CommentsGateway($db);
     }
     
     /**
@@ -22,7 +28,10 @@ class SearchGateway
             $this->QuerySeries($query)
         );
         shuffle($res);
-        return $res;
+        return array(
+            "errors" => 0,
+            "data"=>array($this->QuerySeries($query))
+        );
             
     }
 
@@ -40,8 +49,12 @@ class SearchGateway
         
     }
 
-    private function QueryMovie($query)
+    private function QueryMovie($query, $pageNo = 1)
     {
+        $limit = LIMIT_PER_PAGE;
+        $startFrom = ($pageNo - 1) * $limit;
+        $totalRecord = self::getTotalRecord($this->db, $query, "movies");
+        $totalPages = \ceil($totalRecord / $limit);
         $statement = "SELECT * FROM `movies` 
                         WHERE (`video_name` LIKE '%$query%') 
                         ORDER BY `video_name`
@@ -51,14 +64,44 @@ class SearchGateway
         return $res;
     }
 
-    private function QuerySeries($query){
+    private function QuerySeries($query, $pageNo = 1){
+        
+        $limit = LIMIT_PER_PAGE;
+        $startFrom = ($pageNo - 1) * $limit;
+        $totalRecord = self::getTotalRecord($this->db, $query, "series");
+        $totalPages = \ceil($totalRecord / $limit);
         $statement = "SELECT * FROM `series` 
                         WHERE (`series_name` LIKE '%$query%') 
                         ORDER BY `series_name`
                     ";
-        $statement = $this->db->query($statement);
-        $res = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $res;
+        try {   
+            $data = array();
+            $statement = $this->db->query($statement);
+            while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
+                    $comm = $this->comment->findAllWithKey($res["series_key"]);
+                    
+                    $images = $this->imageInherited->getPostImages($res["series_key"]);
+                    $series = $this->seasonGateway->findAllWithKey($res["series_key"]);
+                    $res += ["series" => $series];
+                    $res += ["images" => $images];
+                    $res += ["comments" => $comm];
+                    $data[] = $res;
+            }
+            $result = ["series" => $data];
+            $result += ["links" => [
+                    "first" => "pages/1",
+                    "last" => "pages/$totalPages",
+                    "prev" =>(($pageNo - 1) > 0) ? "pages/".($pageNo - 1) : null,
+                    "next" => ($pageNo == $totalPages) ? null : "pages/".($pageNo + 1)
+            ]];
+            $result += ["meta" => [
+                    "current_page" => (int) $pageNo,
+                    "total_pages" => $totalPages
+            ]];
+            return $result;
+        } catch(PDOException $e){
+            exit($e->getMessage()());
+        }
     }
     private static function getTotalRecord(PDO $db, $query, $group)
     {   
