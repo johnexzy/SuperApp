@@ -8,11 +8,10 @@ define('LIMIT_PER_PAGE', 10);
 class SearchGateway
 {
     private $db;
-    private $imageInherited, $seasonGateway, $comment;
+    private $imageInherited, $comment;
     public function __construct(PDO $db) {
         $this->db = $db;
         $this->imageInherited = new ImageGateway($db);
-        $this->seasonGateway = new SeasonGateway($db);
         $this->comment = new CommentsGateway($db);
     }
     
@@ -35,8 +34,12 @@ class SearchGateway
             
     }
 
-    private function QueryMusic($query)
+    private function QueryMusic($query, $pageNo = 1)
     {
+        $limit = LIMIT_PER_PAGE;
+        $startFrom = ($pageNo - 1) * $limit;
+        $totalRecord = self::getTotalRecord($this->db, $query, "music");
+        $totalPages = \ceil($totalRecord / $limit);
         $statement = "SELECT * FROM `music` 
                         WHERE (`music_name` LIKE '%$query%') 
                         OR (`artist` LIKE '%$query%') 
@@ -59,9 +62,31 @@ class SearchGateway
                         WHERE (`video_name` LIKE '%$query%') 
                         ORDER BY `video_name`
                     ";
-        $statement = $this->db->query($statement);
-        $res = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $res;
+        try {   
+            $data = array();
+            $statement = $this->db->query($statement);
+            while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
+                    $comm = $this->comment->findAllWithKey($res["video_key"]);
+                    $images = $this->imageInherited->getPostImages($res["video_key"]);
+                    $res += ["images" => $images];
+                    $res += ["comments" => $comm];
+                    $data[] = $res;
+            }
+            $result = ["movies" => $data];
+            $result += ["links" => [
+                    "first" => "pages/1",
+                    "last" => "pages/$totalPages",
+                    "prev" =>(($pageNo - 1) > 0) ? "pages/".($pageNo - 1) : null,
+                    "next" => ($pageNo == $totalPages) ? null : "pages/".($pageNo + 1)
+            ]];
+            $result += ["meta" => [
+                    "current_page" => (int) $pageNo,
+                    "total_pages" => $totalPages
+            ]];
+            return $result;
+        } catch (\PDOException $e) {
+                exit($e->getMessage());
+        }
     }
 
     private function QuerySeries($query, $pageNo = 1){
@@ -81,8 +106,6 @@ class SearchGateway
                     $comm = $this->comment->findAllWithKey($res["series_key"]);
                     
                     $images = $this->imageInherited->getPostImages($res["series_key"]);
-                    $series = $this->seasonGateway->findAllWithKey($res["series_key"]);
-                    $res += ["series" => $series];
                     $res += ["images" => $images];
                     $res += ["comments" => $comm];
                     $data[] = $res;
