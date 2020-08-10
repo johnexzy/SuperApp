@@ -68,7 +68,7 @@ class VideoGateway {
          * @return String
          * 
          */
-        public function createvideo(Array $video, $name, $key) {
+        public function createvideo(Array $video, $key) {
                 $statement = "
                         INSERT INTO videos
                                 (video_key,	video_url,	video_bytes)
