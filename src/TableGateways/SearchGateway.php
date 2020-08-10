@@ -45,10 +45,31 @@ class SearchGateway
                         OR (`artist` LIKE '%$query%') 
                         ORDER BY `music_name`
                     ";
-        $statement = $this->db->query($statement);
-        $res = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $res;
-        
+        try {   
+            $data = array();
+            $statement = $this->db->query($statement);
+            while ($res = $statement->fetch(\PDO::FETCH_ASSOC)) {
+                    $comm = $this->comment->findAllWithKey($res["music_key"]);
+                    $images = $this->imageInherited->getPostImages($res["music_key"]);
+                    $res += ["images" => $images];
+                    $res += ["comments" => $comm];
+                    $data[] = $res;
+            }
+            $result = ["data" => $data];
+            $result += ["links" => [
+                    "first" => "pages/1",
+                    "last" => "pages/$totalPages",
+                    "prev" =>(($pageNo - 1) > 0) ? "pages/".($pageNo - 1) : null,
+                    "next" => ($pageNo == $totalPages) ? null : "pages/".($pageNo + 1)
+            ]];
+            $result += ["meta" => [
+                    "current_page" => (int) $pageNo,
+                    "total_pages" => $totalPages
+            ]];
+            return $result;
+        } catch (\PDOException $e) {
+                exit($e->getMessage());
+        }
         
     }
 
