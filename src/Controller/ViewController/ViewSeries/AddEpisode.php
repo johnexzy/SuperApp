@@ -96,10 +96,7 @@ class AddEpisode
                                         <ul class="el-upload-list el-upload-list--picture-card video-active">
                                             
                                         </ul>
-                                        
-                                        
-                                        <input type="file" name="video" class="file-upload-default video-upload" accept="video/*">
-                                        <div class="el-upload el-upload--picture-card openfile">
+                                        <div class="el-upload el-upload--picture-card" id="pickfiles">
                                             <i class="mdi mdi-48px mdi-video"></i>
                                         </div>
                                     </div>
@@ -134,6 +131,7 @@ class AddEpisode
     <script src="/admin/js/template.js"></script>
     <!-- endinject -->
     <!-- Inject:js for this page -->
+    <script type="text/javascript" src="/admin/js/js/plupload.full.min.js"></script>
     <script src="/admin/js/episode/controller/episodeController.js"></script>
     <!-- endinject:js for this page -->
 </body>
