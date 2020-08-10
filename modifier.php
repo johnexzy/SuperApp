@@ -9,11 +9,11 @@ $DBpass = "";
 $DBname = "movies";
 
 $DBcon = new MySQLi($DBhost,$DBuser,$DBpass,$DBname);
-
+$st = "John";
 if ($DBcon->connect_errno) {
     die("ERROR : -> ".$DBcon->connect_error);
 }
-$query = $DBcon->query("SELECT * FROM music WHERE (`music_name` LIKE '%God%')");
+$query = $DBcon->query("SELECT * FROM music WHERE (`music_name` LIKE '%$st')");
     while ($row=$query->fetch_assoc()) {
             // $id = $row["id"];
             // $name = str_replace(".", "-", str_replace(" ", "-", $row['music_name']."-".mt_rand()));
@@ -25,5 +25,12 @@ $query = $DBcon->query("SELECT * FROM music WHERE (`music_name` LIKE '%God%')");
             // else {
             //     echo "wrong \n";
             // }
-            echo "$row[id]  $row[music_name] $row[music_details]\n\n\r";
+             "$row[id]  $row[music_name] $row[music_details]\n\n\r";
     }
+
+require 'bootstrap.php';
+
+use Src\TableGateways\SearchGateway;
+
+$search = new SearchGateway($dbConnection);
+echo json_encode($search->handleSearchQuery("John"));
