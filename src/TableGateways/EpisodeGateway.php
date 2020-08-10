@@ -34,15 +34,17 @@ class EpisodeGateway extends VideoGateway {
                         VALUES (:series_name, :ep_name, :ep_key, :ep_details, :season_key, :short_url);
                 ";
                 try {
-                        $seasongateway = new SeasonGateway($this->db);
                         $_key = $input["season_key"].md5($input['ep_name'].mt_rand(1, 10));
-                        $series_name = $input["series_name"];
-                        $season_no = $seasongateway->findNameByKey($input["season_key"]);
-                        $generateFileName = $series_name."--".$season_no."--".$input['ep_name']."--". mt_rand(0, 20);
+                        
                         if(!$this->imageInherited->createImage($input['images'], $_key)){
                                 throw new PDOException("Error Creating Image");
                         } 
-                        if (!$this->createEpisodeVideo($input['video'], $generateFileName, $_key)) {
+                        if (!$this->createvideo(
+                                array(
+                                        'name' => $input['video_file'], 
+                                        'byte' => $input['video_file_byte']
+                                ),
+                                $_key)) {
                                 throw new PDOException("Error Creating Video");
                         }
                         $query = $this->db->prepare($statement);
