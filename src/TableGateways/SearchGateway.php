@@ -60,6 +60,42 @@ class SearchGateway
         $res = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $res;
     }
+    private static function getTotalRecord(PDO $db, $query, $group)
+    {
+        $statement = "SELECT movies.id FROM movies";
+        switch ($group) {
+            case 'music':
+                $statement = "SELECT * FROM `music` 
+                                WHERE (`music_name` LIKE '%$query%') 
+                                OR (`artist` LIKE '%$query%')
+                                ORDER BY `music_name`
+                        ";
+                break;
+            case 'movies':
+                $statement = "SELECT * FROM `movies` 
+                        WHERE (`video_name` LIKE '%$query%') 
+                        ORDER BY `video_name`
+                    ";
+                break;
+            case 'series':
+                $statement = "SELECT * FROM `series` 
+                        WHERE (`series_name` LIKE '%$query%') 
+                        ORDER BY `series_name`
+                    ";
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+        try {
+            $statement = $db->query($statement);
+            $result = $statement->fetchAll(\PDO::FETCH_COLUMN);
+            return $result = count($result);
+        } catch (\PDOException $th) {
+            exit($th->getMessage());
+        }
+    }
 
 
 }

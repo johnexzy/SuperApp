@@ -20,7 +20,7 @@ use Src\Controller\SeasonController;
 use Src\Controller\SeriesController;
 use Src\Controller\EpisodeController;
 use Src\Controller\CommentsController;
-
+use Src\Controller\SearchController;
 
 /**
  * $uri[1] => "api"
@@ -382,6 +382,14 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
         }
         $controller = new ImageController($dbConnection, $key, $input, $requestMethod);
         $controller->processRequest();
+    }
+
+    elseif ($uri[3] == "search") {
+        if (isset($uri[4])) {
+            $query = (String) strip_tags($uri[4]);
+        }
+        $controller = new SearchController($dbConnection, $query);
+        $controller->proccesRequest();
     }
     
     elseif($uri[3] == 'file'){
