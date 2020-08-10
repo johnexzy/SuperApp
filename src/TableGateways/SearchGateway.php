@@ -29,7 +29,9 @@ class SearchGateway
         shuffle($res);
         return array(
             "errors" => 0,
-            "data"=>array($this->QuerySeries($query))
+            "data"=>array($this->QueryMusic($query), 
+            $this->QueryMovie($query),
+            $this->QuerySeries($query))
         );
             
     }
@@ -56,7 +58,7 @@ class SearchGateway
                     $res += ["comments" => $comm];
                     $data[] = $res;
             }
-            $result = ["data" => $data];
+            $result = ["music" => $data];
             $result += ["links" => [
                     "first" => "pages/1",
                     "last" => "pages/$totalPages",
