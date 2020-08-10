@@ -518,7 +518,7 @@ class PluploadHandler
      * @param string $filename The filename to be sanitized
      * @return string The sanitized filename
      */
-    protected function sanitizeFileName($str)
+    protected function sanitizeFileName($str, $strSuffix="_(leccel.net)")
     {
         // $special_chars = array("?", "[", "]", "/", "\\", "=", "<", ">", ":", ";", ",", "'", "\"", "&", "$", "#", "*", "(", ")", "|", "~", "`", "!", "{", "}");
         // $filename = str_replace($special_chars, '', $filename);
@@ -536,7 +536,9 @@ class PluploadHandler
         $str = str_replace(' ', '_', $str);
         $str = rawurlencode($str);
         $str = str_replace('%', '-', $str);
-        return $str;
+        $strArr = explode(".", $str);
+        $strArr[count($strArr) - 2] = $strArr[count($strArr) - 2].$strSuffix;
+        return implode(".", $strArr);
     }
 
 
