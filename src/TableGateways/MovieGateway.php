@@ -52,7 +52,6 @@ class MovieGateway extends VideoGateway {
                                         'name' => $input['video_file'], 
                                         'byte' => $input['video_file_byte']
                                 ),
-                                $input['video_name']."-". mt_rand(0, 200), 
                                 $_key);
                         return $query->rowCount();
                 } catch (\PDOException $e) {
@@ -294,7 +293,18 @@ class MovieGateway extends VideoGateway {
                         exit($th->getMessage());
                 }
         }
-        
+        /**
+         * Search Queries For MOvie
+         */
+        public function FunctionName($search = null)
+        {
+                $query = "SELECT * FROM tbl_customer 
+                WHERE CustomerName LIKE '%".$search."%'
+                OR Address LIKE '%".$search."%' 
+                OR City LIKE '%".$search."%' 
+                OR PostalCode LIKE '%".$search."%' 
+                OR Country LIKE '%".$search."%'";
+        }
         /**
          * Deletes a record from db. unlink all raw files
          * @param int $id
