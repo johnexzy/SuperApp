@@ -34,7 +34,7 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 
 // escape all special characters
 foreach ($uri as $key => $link) {
-    $uri[$key] = str_replace("%20", " ", $link);
+    $uri[$key] = urldecode($link);
 }
 
 // $api = new Router($uri);

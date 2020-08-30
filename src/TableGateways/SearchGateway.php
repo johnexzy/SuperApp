@@ -21,17 +21,15 @@ class SearchGateway
      */
     public function handleSearchQuery($query)
     {
-        $res = array_merge(
-            $this->QueryMusic($query), 
-            $this->QueryMovie($query),
-            $this->QuerySeries($query)
-        );
-        shuffle($res);
+        // $query = mysqli_real_escape_string(mysqli_init(), $query);
+        $query = str_replace("'", "", $query);
         return array(
             "errors" => 0,
-            "data"=>array($this->QueryMusic($query), 
-            $this->QueryMovie($query),
-            $this->QuerySeries($query))
+            "data"=>array(
+                        $this->QueryMusic($query), 
+                        $this->QueryMovie($query),
+                        $this->QuerySeries($query)
+                    )
         );
             
     }
@@ -58,7 +56,8 @@ class SearchGateway
                     $res += ["comments" => $comm];
                     $data[] = $res;
             }
-            $result = ["music" => $data];
+            $result = ["group" => "music"];
+            $result += ["data" => $data];
             $result += ["links" => [
                     "first" => "pages/1",
                     "last" => "pages/$totalPages",
@@ -97,7 +96,8 @@ class SearchGateway
                     $res += ["comments" => $comm];
                     $data[] = $res;
             }
-            $result = ["movies" => $data];
+            $result = ["group" => "movies"];
+            $result += ["data" => $data];
             $result += ["links" => [
                     "first" => "pages/1",
                     "last" => "pages/$totalPages",
@@ -136,7 +136,8 @@ class SearchGateway
                     $res += ["comments" => $comm];
                     $data[] = $res;
             }
-            $result = ["series" => $data];
+            $result = ["group" => "series"];
+            $result += ["data" => $data];
             $result += ["links" => [
                     "first" => "pages/1",
                     "last" => "pages/$totalPages",
@@ -182,6 +183,7 @@ class SearchGateway
         }
         try {
             $statement = $db->query($statement);
+            
             $result = $statement->fetchAll(\PDO::FETCH_COLUMN);
             return $result = count($result);
         } catch (\PDOException $th) {
