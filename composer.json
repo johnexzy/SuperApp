@@ -1,6 +1,8 @@
 {
   "require": {
-    "vlucas/phpdotenv": "^2.4"
+    "vlucas/phpdotenv": "^2.4",
+    "diversen/http-send-file": "^2.0",
+    "symfony/http-foundation": "^5.1"
   },
   "autoload": {
     "psr-4": {

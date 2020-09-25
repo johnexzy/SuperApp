@@ -4,7 +4,7 @@ namespace Src\TableGateways;
 use PDO;
 use PDOException;
 
-define('LIMIT_PER_PAGE', 10);
+define('LIMIT_PER_PAGE', 100);
 class SearchGateway
 {
     private $db;
@@ -36,13 +36,13 @@ class SearchGateway
 
     private function QueryMusic($query, $pageNo = 1)
     {
+        $sql = self::createQuery($query, "music");
         $limit = LIMIT_PER_PAGE;
         $startFrom = ($pageNo - 1) * $limit;
         $totalRecord = self::getTotalRecord($this->db, $query, "music");
         $totalPages = \ceil($totalRecord / $limit);
-        $statement = "SELECT * FROM `music` 
-                        WHERE (`music_name` LIKE '%$query%') 
-                        OR (`artist` LIKE '%$query%') 
+        $statement = "SELECT * FROM `music`
+                        $sql 
                         ORDER BY `music_name`
                         DESC LIMIT $startFrom, $limit;
                     ";
@@ -77,12 +77,13 @@ class SearchGateway
 
     private function QueryMovie($query, $pageNo = 1)
     {
+        $sql = self::createQuery($query, "video");
         $limit = LIMIT_PER_PAGE;
         $startFrom = ($pageNo - 1) * $limit;
         $totalRecord = self::getTotalRecord($this->db, $query, "movies");
         $totalPages = \ceil($totalRecord / $limit);
         $statement = "SELECT * FROM `movies` 
-                        WHERE (`video_name` LIKE '%$query%') 
+                        $sql 
                         ORDER BY `video_name`
                         DESC LIMIT $startFrom, $limit;
                     ";
@@ -115,13 +116,13 @@ class SearchGateway
     }
 
     private function QuerySeries($query, $pageNo = 1){
-        
+        $sql = self::createQuery($query, "series");
         $limit = LIMIT_PER_PAGE;
         $startFrom = ($pageNo - 1) * $limit;
         $totalRecord = self::getTotalRecord($this->db, $query, "series");
         $totalPages = \ceil($totalRecord / $limit);
         $statement = "SELECT * FROM `series` 
-                        WHERE (`series_name` LIKE '%$query%') 
+                        $sql 
                         ORDER BY `series_name`
                         DESC LIMIT $startFrom, $limit;
                     ";
@@ -190,6 +191,61 @@ class SearchGateway
             exit($th->getMessage());
         }
     }
+    /**
+     * @param String $query Users search input
+     * @param String $group Field to search for (video, music, series)
+     * @return String $querySql
+     */
+    private static function createQuery(String $query, $group)
+    {
+        $listOddWord = [
+            "a",
+            "the",
+            "be",
+            "and",
+            "in",
+            "is",
+            "of",
+            "me",
+            "they",
+            "she",
+            "he",
+            "it",
+            "I",
+            "us",
+            "or"
+        ];
 
+        $queryChar = [];
+        $lim = 0;
+        foreach (explode(" ", $query) as $val) {
+            if (in_array($val, $listOddWord)) {
+                continue;
+            }
+            array_push($queryChar, $val);
+            if($lim == 30) break;
+            $lim ++;
+        }
+        $querySql = "WHERE (`".$group."_name` LIKE '%$query%')";
+        foreach ($queryChar as $val) {
+                switch ($group) {
+                    case 'music':
+                        $querySql .= "OR (`music_name` LIKE '%$val%')";
+                        $querySql .= "OR (`artist` LIKE '%$val%')";
+                        break;
+                    
+                    case 'series':
+                        $querySql .= "OR (`series_name` LIKE '%$val%')";
+                        break;
+                    case 'video':
+                        $querySql .= "OR (`video_name` LIKE '%$val%')";
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+        }
+        return $querySql;
+    }
 
 }

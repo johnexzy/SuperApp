@@ -1,0 +1,43 @@
+<?php
+header("Content-Type: text/xml");
+echo<<<HTML
+    <?xml version="1.0" encoding="UTF-8"?>
+    HTML;
+?>
+    
+        <urlset
+            xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+            <url>
+                <loc>https://leccel.net/</loc>
+                <changefreq>hourly</changefreq>
+                <priority>1.00</priority>
+            </url>
+            <url>
+                <loc>https://leccel.net/pages/contactus.html</loc>
+                <changefreq>yearly</changefreq>
+                <priority>0.50</priority>
+            </url>
+            <url>
+                <loc>https://leccel.net/pages/music.html</loc>
+                <changefreq>hourly</changefreq>
+                <priority>0.80</priority>
+            </url>
+            <url>
+                <loc>https://leccel.net/pages/movies.html</loc>
+                <changefreq>hourly</changefreq>
+                <priority>0.80</priority>
+            </url>
+            <url>
+                <loc>https://leccel.net/pages/series.html</loc>
+                <changefreq>daily</changefreq>
+                <priority>0.60</priority>
+            </url>
+            <url>
+                <loc>https://leccel.net/pages/albums.html</loc>
+                <changefreq>weekly</changefreq>
+                <priority>0.50</priority>
+            </url>
+        </urlset>
