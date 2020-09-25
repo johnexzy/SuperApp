@@ -4,7 +4,7 @@ namespace Src\TableGateways;
 use PDO;
 use PDOException;
 
-define('LIMIT_PER_PAGE', 100);
+define('LIMIT_PER_PAGE', 300);
 class SearchGateway
 {
     private $db;
@@ -39,8 +39,6 @@ class SearchGateway
         $sql = self::createQuery($query, "music");
         $limit = LIMIT_PER_PAGE;
         $startFrom = ($pageNo - 1) * $limit;
-        $totalRecord = self::getTotalRecord($this->db, $query, "music");
-        $totalPages = \ceil($totalRecord / $limit);
         $statement = "SELECT * FROM `music`
                         $sql 
                         ORDER BY `music_name`
@@ -58,16 +56,6 @@ class SearchGateway
             }
             $result = ["group" => "music"];
             $result += ["data" => $data];
-            $result += ["links" => [
-                    "first" => "pages/1",
-                    "last" => "pages/$totalPages",
-                    "prev" =>(($pageNo - 1) > 0) ? "pages/".($pageNo - 1) : null,
-                    "next" => ($pageNo == $totalPages) ? null : "pages/".($pageNo + 1)
-            ]];
-            $result += ["meta" => [
-                    "current_page" => (int) $pageNo,
-                    "total_pages" => $totalPages
-            ]];
             return $result;
         } catch (\PDOException $e) {
                 exit($e->getMessage());
@@ -80,8 +68,6 @@ class SearchGateway
         $sql = self::createQuery($query, "video");
         $limit = LIMIT_PER_PAGE;
         $startFrom = ($pageNo - 1) * $limit;
-        $totalRecord = self::getTotalRecord($this->db, $query, "movies");
-        $totalPages = \ceil($totalRecord / $limit);
         $statement = "SELECT * FROM `movies` 
                         $sql 
                         ORDER BY `video_name`
@@ -99,16 +85,6 @@ class SearchGateway
             }
             $result = ["group" => "movies"];
             $result += ["data" => $data];
-            $result += ["links" => [
-                    "first" => "pages/1",
-                    "last" => "pages/$totalPages",
-                    "prev" =>(($pageNo - 1) > 0) ? "pages/".($pageNo - 1) : null,
-                    "next" => ($pageNo == $totalPages) ? null : "pages/".($pageNo + 1)
-            ]];
-            $result += ["meta" => [
-                    "current_page" => (int) $pageNo,
-                    "total_pages" => $totalPages
-            ]];
             return $result;
         } catch (\PDOException $e) {
                 exit($e->getMessage());
@@ -119,8 +95,6 @@ class SearchGateway
         $sql = self::createQuery($query, "series");
         $limit = LIMIT_PER_PAGE;
         $startFrom = ($pageNo - 1) * $limit;
-        $totalRecord = self::getTotalRecord($this->db, $query, "series");
-        $totalPages = \ceil($totalRecord / $limit);
         $statement = "SELECT * FROM `series` 
                         $sql 
                         ORDER BY `series_name`
@@ -139,56 +113,10 @@ class SearchGateway
             }
             $result = ["group" => "series"];
             $result += ["data" => $data];
-            $result += ["links" => [
-                    "first" => "pages/1",
-                    "last" => "pages/$totalPages",
-                    "prev" =>(($pageNo - 1) > 0) ? "pages/".($pageNo - 1) : null,
-                    "next" => ($pageNo == $totalPages) ? null : "pages/".($pageNo + 1)
-            ]];
-            $result += ["meta" => [
-                    "current_page" => (int) $pageNo,
-                    "total_pages" => $totalPages
-            ]];
+            
             return $result;
         } catch(PDOException $e){
             exit($e->getMessage()());
-        }
-    }
-    private static function getTotalRecord(PDO $db, $query, $group)
-    {   
-        $statement = "";
-        switch ($group) {
-            case 'music':
-                $statement = "SELECT * FROM `music` 
-                                WHERE (`music_name` LIKE '%$query%') 
-                                OR (`artist` LIKE '%$query%')
-                                ORDER BY `music_name`
-                        ";
-                break;
-            case 'movies':
-                $statement = "SELECT * FROM `movies` 
-                        WHERE (`video_name` LIKE '%$query%') 
-                        ORDER BY `video_name`
-                    ";
-                break;
-            case 'series':
-                $statement = "SELECT * FROM `series` 
-                        WHERE (`series_name` LIKE '%$query%') 
-                        ORDER BY `series_name`
-                    ";
-                break;
-            
-            default:
-                # code...
-                break;
-        }
-        try {
-            $statement = $db->query($statement);
-            
-            $result = $statement->fetchAll(\PDO::FETCH_COLUMN);
-            return $result = count($result);
-        } catch (\PDOException $th) {
-            exit($th->getMessage());
         }
     }
     /**
