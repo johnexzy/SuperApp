@@ -69,7 +69,7 @@ class ViewSeries extends SeriesGateway
                                 <i class="mdi mdi-plus"></i>
                             </button>     
                         </a>
-                        <a href="http://localhost:3003/view/series/$response[series_name]/$season[short_url]" class="text-decoration-none" target="_blank">
+                        <a href="https://leccel.net/view/series/$response[series_name]/$season[short_url]" class="text-decoration-none" target="_blank">
                             <button type="button" class="btn btn-sm btn-info btn-rounded btn-icon view-season" title="View this Season in Website">
                                 <i class="mdi mdi-open-in-new"></i>
                             </button>
