@@ -22,7 +22,7 @@ class SearchGateway
     public function handleSearchQuery($query)
     {
         // $query = mysqli_real_escape_string(mysqli_init(), $query);
-        $query = str_replace("'", "", $query);
+        $query = trim(str_replace("'", "", $query));
         return array(
             "errors" => 0,
             "data"=>array(
@@ -154,7 +154,11 @@ class SearchGateway
             if($lim == 30) break;
             $lim ++;
         }
-        $querySql = "WHERE (`".$group."_name` LIKE '%$query%')";
+        $querySql = "WHERE (`".$group."_name` LIKE '%$query%' )";
+        if($group == "music") {
+            $querySql .= "OR (`artist` LIKE '%$query%')";
+            
+        }
         foreach ($queryChar as $val) {
                 switch ($group) {
                     case 'music':
