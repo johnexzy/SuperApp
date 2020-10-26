@@ -137,9 +137,7 @@
   <script src="vendors/base/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- inject:js -->
-  <script src="js/off-canvas.js"></script>
-  <script src="js/hoverable-collapse.js"></script>
-  <script src="js/template.js"></script>
+  
   <script src="js/movie/manager/movieManager.js"></script>
   <!-- endinject -->
   <!-- End custom js for this page-->

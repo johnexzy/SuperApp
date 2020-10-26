@@ -147,9 +147,7 @@ require './session.php';
     
 
     <!-- inject:js -->
-    <script src="js/off-canvas.js"></script>
-    <script src="js/hoverable-collapse.js"></script>
-    <script src="js/template.js"></script>
+
     <!-- endinject -->
     <!-- Inject:js for this page -->
     <script type="text/javascript" src="js/js/plupload.full.min.js"></script>

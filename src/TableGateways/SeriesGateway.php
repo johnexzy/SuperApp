@@ -292,9 +292,20 @@ class SeriesGateway
          * return total records as integer
          * @return int
          */
-        private static function getTotalRecord($db)
+        public static function getTotalRecord($db, $param = [])
         {
                 $statement = "SELECT series.id FROM series";
+                foreach ($param as $key=> $clause) {
+                        if ($key == 'popular') {
+                                $statement .= " WHERE popular > 0";
+                        }
+                        // if ($key == "created_at") {
+                        //         if (substr_count($statement, "WHERE") > 0) {
+                        //                 $statement .= " AND created_at >"
+                        //         }
+                        // }
+
+                }
                 try {
                         $statement = $db->query($statement);
                         $result = $statement->fetchAll(\PDO::FETCH_COLUMN);

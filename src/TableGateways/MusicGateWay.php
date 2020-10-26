@@ -9,7 +9,7 @@
 namespace Src\TableGateways;
 
 /**
- * Description of MusicGateWay
+ * Description of MusicGateway
  *
  * @author ObaJohn
  */
@@ -283,9 +283,21 @@ class MusicGateway extends SongGateway {
          * return total records as integer
          * @return int
          */
-        private static function getTotalRecord($db)
+        public static function getTotalRecord($db, $param = [])
         {
                 $statement = "SELECT music.id FROM music";
+                foreach ($param as $key=> $clause) {
+                        if ($key == 'popular') {
+                                $statement .= " WHERE popular > 0";
+                        }
+                        // if ($key == "created_at") {
+                        //         if (substr_count($statement, "WHERE") > 0) {
+                        //                 $statement .= " AND created_at >"
+                        //         }
+                        // }
+
+                }
+                
                 try {
                         $statement = $db->query($statement);
                         $result = $statement->fetchAll(\PDO::FETCH_COLUMN);

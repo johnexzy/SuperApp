@@ -25,6 +25,7 @@ class SearchGateway
         $query = trim(str_replace("'", "", $query));
         return array(
             "errors" => 0,
+            "msg" => "Search result for $query",
             "data"=>array(
                         $this->QueryMusic($query), 
                         $this->QueryMovie($query),

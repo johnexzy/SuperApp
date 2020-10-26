@@ -126,9 +126,7 @@ class AddEpisode
     <!-- endinject -->
 
     <!-- inject:js -->
-    <script src="/admin/js/off-canvas.js"></script>
-    <script src="/admin/js/hoverable-collapse.js"></script>
-    <script src="/admin/js/template.js"></script>
+
     <!-- endinject -->
     <!-- Inject:js for this page -->
     <script type="text/javascript" src="/admin/js/js/plupload.full.min.js"></script>

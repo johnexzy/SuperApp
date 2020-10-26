@@ -1,7 +1,31 @@
 <?php
-  require './session.php';
-  require '../bootstrap.php';
-  use Src\Layout\LayoutClass;
+require './session.php';
+require '../bootstrap.php';
+
+use Src\Layout\LayoutClass;
+use Src\TableGateways\MovieGateway;
+use Src\TableGateways\MusicGateway;
+use Src\TableGateways\SeriesGateway;
+
+//music
+$musicCount = MusicGateway::getTotalRecord($dbConnection);
+$musicPopularCount = MusicGateway::getTotalRecord($dbConnection, ["popular"=>0]);
+$music =  new MusicGateway($dbConnection);
+$musicLatest = $music->getAll(1);
+
+//movie
+$moviesCount = MovieGateway::getTotalRecord($dbConnection);
+$moviePopularCount = MovieGateWay::getTotalRecord($dbConnection, ["popular"=>0]);
+$movie = new MovieGateway($dbConnection);
+$movieLatest = $movie->getAll(1);
+
+//series
+$seriesCount = SeriesGateway::getTotalRecord($dbConnection);
+$seriesPopularCount = SeriesGateway::getTotalRecord($dbConnection, ["popular"=>0]);
+$series = new SeriesGateway($dbConnection);
+$seriesLatest = $series->getAll(1);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,23 +57,159 @@
       <?= LayoutClass::sideBar ?>
       <!-- partial -->
       <div class="main-panel">
-        <div class="content-wrapper">
-          
-          <div class="row">
-            <div class="col-md-12 grid-margin">
-              <div class="d-flex justify-content-between flex-wrap">
-                <div class="d-flex align-items-end flex-wrap">
-                  <div class="mr-md-3 mr-xl-5">
-                    <h2>Welcome back, Leccel</h2>
-                    <p class="mb-md-0">Your admin dashboard Add and Manage Media.</p>
+        <div class="content-wrapper p-3">
+          <div class="col-lg-12 m-0 p-0 dashboard">
+            <div class="row">
+              <div class="col-md-12 grid-margin ">
+                <div class="d-flex justify-content-between flex-wrap border-dark border-bottom">
+                  <div class="d-flex align-items-end flex-wrap">
+                    <div class="mr-md-3 mr-xl-5 ">
+                      <h2>Welcome back, Leccel</h2>
+                      <p class="mb-md-0">Your admin dashboard. Add, Delete and Manage Media.</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-md-4 grid-margin stretch-card">
+                    <div class="card">
+                      <div class="card-header">
+                        <p class="text-center text-dark font-weight-bold">
+                          MUSIC
+                        </p>
+                      </div>
+                      <div class="card-body">
+                        <div class="d-flex justify-content-between mt-1">
+                          <span class="text-monospace">Total Records: </span>
+                          <span class="text-danger text-monospace" style="font-size: 19px;">
+                            <?=$musicCount ?>
+                          </span>
+                        </div>
+                        <div class="d-flex justify-content-between mt-1">
+                          <span class="text-monospace">Trending: </span>
+                          <span class="text-danger text-monospace" style="font-size: 19px;">
+                            <?=$musicPopularCount ?>
+                          </span>
+                        </div>
+                        <div class="d-flex justify-content-between mt-1">
+                          <span class="text-monospace">Last Uploaded: </span>
+                          <span class="text-danger text-monospace">
+                            <?=$musicLatest[0]["music_name"] ?>
+                          </span>
+                        </div>
+                        <div class="d-flex justify-content-between mt-1">
+                          <span class="text-monospace">Date: </span>
+                          <span class="text-danger text-monospace">
+                            <?=date("D, d\\t\h M Y", strtotime($musicLatest[0]["created_at"])) ?>
+                          </span>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 grid-margin stretch-card">
+                    <div class="card">
+                      <div class="card-header">
+                        <p class="text-center text-dark font-weight-bold">
+                          MOVIES
+                        </p>
+                      </div>
+                      <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                          <span class="text-monospace">Total Records: </span>
+                          <span class="text-danger text-monospace" style="font-size: 19px;">
+                            <?=$moviesCount ?>
+                          </span>
+                        </div>
+                        <div class="d-flex justify-content-between mt-1">
+                          <span class="text-monospace">Trending: </span>
+                          <span class="text-danger text-monospace" style="font-size: 19px;">
+                            <?=$moviePopularCount ?>
+                          </span>
+                        </div>
+                        <div class="d-flex justify-content-between mt-1">
+                          <span class="text-monospace">Last Uploaded: </span>
+                          <span class="text-danger text-monospace">
+                            <?=$movieLatest[0]["video_name"] ?>
+                          </span>
+                        </div>
+                        <div class="d-flex justify-content-between mt-1">
+                          <span class="text-monospace">Date: </span>
+                          <span class="text-danger text-monospace">
+                            <?=date("D, d\\t\h M Y", strtotime($movieLatest[0]["created_at"])) ?>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 grid-margin stretch-card">
+                    <div class="card">
+                      <div class="card-header">
+                        <p class="text-center text-uppercase text-dark font-weight-bold">
+                          Series
+                        </p>
+                      </div>
+                      <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                          <span class="text-monospace">Total Records: </span>
+                          <span class="text-danger text-monospace" style="font-size: 19px;">
+                            <?=$seriesCount ?>
+                          </span>
+                        </div>
+                        <div class="d-flex justify-content-between mt-1">
+                          <span class="text-monospace">Trending: </span>
+                          <span class="text-danger text-monospace" style="font-size: 19px;">
+                            <?=$seriesPopularCount ?>
+                          </span>
+                        </div>
+                        <div class="d-flex justify-content-between mt-1">
+                          <span class="text-monospace">Last Uploaded: </span>
+                          <span class="text-danger text-monospace">
+                            <?=$seriesLatest[0]["series_name"] ?>
+                          </span>
+                        </div>
+                        <div class="d-flex justify-content-between mt-1">
+                          <span class="text-monospace">Date: </span>
+                          <span class="text-danger text-monospace">
+                            <?=date("D, d\\t\h M Y", strtotime($seriesLatest[0]["created_at"])) ?>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title">Upload chart in Bar</h4>
+                        <canvas id="barChart"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title">Upload chart in Pie</h4>
+                        <canvas id="pieChart"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           
         </div>
-        
+        <div class="data:hidden">
+          <input type="hidden" id="musicCount" value="<?=$musicCount?>">
+          <input type="hidden" id="seriesCount" value="<?=$seriesCount?>">
+          <input type="hidden" id="moviesCount" value="<?=$moviesCount?>">
+        </div>
+        <?=LayoutClass::footer ?>
       </div>
       <!-- main-panel ends -->
     </div>
@@ -61,10 +221,12 @@
   <script src="vendors/base/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- inject:js -->
-  <script src="js/off-canvas.js"></script>
-  <script src="js/hoverable-collapse.js"></script>
-  <script src="js/template.js"></script>
+  <script src="js/Chart.min.js"></script>
+  
   <!-- endinject -->
+  <!-- Custom js for this page -->
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
 </body>
 
 </html>

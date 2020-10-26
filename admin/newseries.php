@@ -112,9 +112,7 @@ require './session.php';
     <!-- endinject -->
 
     <!-- inject:js -->
-    <script src="js/off-canvas.js"></script>
-    <script src="js/hoverable-collapse.js"></script>
-    <script src="js/template.js"></script>
+
     <!-- endinject -->
     <!-- Inject:js for this page -->
     <script src="js/series/controller/seriesController.js"></script>

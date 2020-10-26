@@ -8,7 +8,7 @@ class SearchController extends SearchGateway
     private $query;
     public function __construct(PDO $db, String $query) {
         parent::__construct($db);
-        $this->query = $query;
+        $this->query = self::processQuery($query);
     }
 
     public function proccesRequest()
@@ -19,7 +19,11 @@ class SearchController extends SearchGateway
             echo $response['body'];
         }
     }
-    
+    public static function processQuery(String $query)
+    {
+        
+        return join('', explode('.', $query));
+    }
     private function getSearch($query)
     {
         $result = $this->handleSearchQuery($query);

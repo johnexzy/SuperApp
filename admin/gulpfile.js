@@ -138,7 +138,10 @@ gulp.task('buildBaseVendorScripts', function() {
         './node_modules/jquery/dist/jquery.min.js', 
         './node_modules/popper.js/dist/umd/popper.min.js', 
         './node_modules/bootstrap/dist/js/bootstrap.min.js', 
-        './node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js'
+        './node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js',
+        './js/off-canvas.js',
+        './js/hoverable-collapse.js',
+        './js/template.js'
     ])
       .pipe(concat('vendor.bundle.base.js'))
       .pipe(gulp.dest('./vendors/base'));

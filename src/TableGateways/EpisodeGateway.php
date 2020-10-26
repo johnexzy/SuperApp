@@ -1,7 +1,7 @@
 <?php
 namespace Src\TableGateways;
 /**
- * Description of MusicGateWay
+ * Description of MusicGateway
  * @author ObaJohn
  */
 

@@ -27,12 +27,12 @@ class LayoutClass
                         <i class="mdi mdi-magnify"></i>
                         </span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+                    <input type="text" class="form-control searchInput" placeholder="Search now" aria-label="search" aria-describedby="search">
                     </div>
                 </li>
                 </ul>
                 <ul class="navbar-nav navbar-nav-right">
-                <li class="nav-item dropdown mr-1">
+                <!-- <li class="nav-item dropdown mr-1">
                     <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
                     <i class="mdi mdi-message-text mx-0"></i>
                     <span class="count"></span>
@@ -124,7 +124,7 @@ class LayoutClass
                         </div>
                     </a>
                     </div>
-                </li>
+                </li> -->
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
 

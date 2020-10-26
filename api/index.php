@@ -16,11 +16,12 @@ use Src\Controller\AlbumController;
 use Src\Controller\ImageController;
 use Src\Controller\MovieController;
 use Src\Controller\MusicController;
+use Src\TableGateways\MusicGateway;
+use Src\Controller\SearchController;
 use Src\Controller\SeasonController;
 use Src\Controller\SeriesController;
 use Src\Controller\EpisodeController;
 use Src\Controller\CommentsController;
-use Src\Controller\SearchController;
 
 /**
  * $uri[1] => "api"
@@ -79,6 +80,10 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
                 if (isset($uri[4])) {
                     if ($uri[4] == "limit" && isset($uri[5])) {
                         $limit = (int) $uri[5];
+                    }
+                    elseif ($uri[4] == "count") {
+                        echo json_encode(MusicGateway::getTotalRecord($dbConnection));
+                        return;
                     }
                     elseif($uri[4] == "popular" && isset($uri[5])){
                         $popular = (int) $uri[5];
@@ -185,6 +190,7 @@ if ($uri[2] == 'v1' && isset($uri[3])) {
                     if ($uri[4] == "limit" && isset($uri[5])) {
                         $limit = (int) $uri[5];
                     }
+                    
                     elseif($uri[4] == "popular" && isset($uri[5])){
                         $popular = (int) $uri[5];
                     }
