@@ -20,7 +20,7 @@ class LayoutClass
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <ul class="navbar-nav mr-lg-4 w-100">
-                <li class="nav-item nav-search d-none d-lg-block w-100">
+                <li class="nav-item nav-search d-lg-block w-100">
                     <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="search">
