@@ -1,9 +1,23 @@
 // const jquery = require('jquery');
 
-$(function () {
     /**
- * Submits the search query
- */
+     * Deletes Music on request
+     * @param music Object
+     */
+    function delMusic(music_name, id) {
+        const ask = confirm(`Proceed to Delete "${music_name}" and all of its components ?`);
+        if (!ask) {
+            return null;
+        }
+        fetch(`/api/v1/music/delete/${id}`, { method: "DELETE" })
+            .then((res) => res.json())
+                .then((data) => {
+                    data == 1 ? submitSearch() : alert("operation failed")
+                })
+    }
+    /**
+     * Submits the search query
+     */
     function submitSearch() {
         if ($(".searchInput").val().trim().length > 3) {
             let query = $(".searchInput").val();
@@ -39,11 +53,17 @@ $(function () {
                             $("#musicbody").append(`
                                 <div class="d-flex justify-content-between card-footer my-2 align-items-center" style="line-height:1;">
                                     <p>${val.music_name} </p>
-                                    <a href="/admin/view/music/${val.short_url}" class="text-decoration-none">
-                                        <button type="button" class="btn btn-info btn-rounded btn-icon edit">
-                                            <i class="mdi mdi-pencil"></i>
+                                    <div>
+                                        <a href="/admin/view/music/${val.short_url}" class="text-decoration-none">
+                                            <button type="button" class="btn btn-info btn-rounded btn-icon edit">
+                                                <i class="mdi mdi-pencil"></i>
+                                            </button>
+                                        </a>
+                                        <button type="button" class="btn btn-danger btn-rounded btn-icon delete" onclick="delMusic('${val.music_name}', '${val.id}')">
+                                            <i class="mdi mdi-delete"></i>
                                         </button>
-                                    </a>
+                                    </div>
+                                    
                                 </div>
                             `)
                         })
@@ -96,14 +116,14 @@ $(function () {
             submitSearch()
             return;
         }
-        
+
         else {
             $(".dashboard").show()
             $(".search").hide()
             return;
         }
-        
-        
+
+
     })
 
     $(".searchInput").on("keydown", function (event) {
@@ -114,9 +134,7 @@ $(function () {
                 $(".search").show()
                 submitSearch()
             }
-            
+
         }
 
     })
-    // $(".searchButton").on("click", submitSearch)
-})

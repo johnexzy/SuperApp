@@ -58,6 +58,53 @@ $seriesLatest = $series->getAll(1);
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper p-3">
+          <div class="col-lg-12 m-0 p-0 search display-none">
+            <div class="row">
+              <div class="col-md-12 grid-margin stretch-card">
+                <div class="card card-square">
+                  <div class="card-body dashboard-tabs p-0">
+                    <ul class="nav nav-tabs" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active musicLabel" id="overview-tab" data-toggle="tab" href="#music" role="tab" aria-controls="music" aria-selected="true"><span style="font-size: 16px;">🎧</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link movieLabel" id="sales-tab" data-toggle="tab" href="#movies" role="tab" aria-controls="movies" aria-selected="false"><span style="font-size: 16px;">🎬</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link seriesLabel" id="purchases-tab" data-toggle="tab" href="#series" role="tab" aria-controls="series" aria-selected="false"><span style="font-size: 16px;">📺</span></a>
+                      </li>
+                    </ul>
+                    <div class="tab-content py-3 px-1">
+                      <div class="tab-pane fade show active" id="music" role="tabpanel" aria-labelledby="music-tab">
+                        <div class="loader">
+                          <div class="d-flex justify-content-center">
+                            <img src="/admin/images/loader.gif" alt="">
+                          </div>
+                        </div>
+                        <div id="musicbody"></div>
+                      </div>
+                      <div class="tab-pane fade" id="movies" role="tabpanel" aria-labelledby="movies-tab">
+                        <div class="loader">
+                          <div class="d-flex justify-content-center">
+                            <img src="/admin/images/loader.gif" alt="">
+                          </div>
+                        </div>
+                        <div id="moviesbody"></div>
+                      </div>
+                      <div class="tab-pane fade" id="series" role="tabpanel" aria-labelledby="series-tab">
+                        <div class="loader">
+                          <div class="d-flex justify-content-center">
+                            <img src="/admin/images/loader.gif" alt="">
+                          </div>
+                        </div>
+                        <div id="seriesbody"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="col-lg-12 m-0 p-0 dashboard">
             <div class="row">
               <div class="col-md-12 grid-margin ">
