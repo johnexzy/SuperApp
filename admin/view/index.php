@@ -5,6 +5,7 @@ use Src\Controller\ViewController\ViewMovie\ViewMovie;
 use Src\Controller\ViewController\ViewMusic\ViewMusic;
 use Src\Controller\ViewController\ViewSeries\AddEpisode;
 use Src\Controller\ViewController\ViewSeries\ViewSeason;
+use Src\Controller\ViewController\ViewSeries\ViewEpisode;
 use Src\Controller\ViewController\ViewSeries\ViewSeries;
 
 require '../session.php';
@@ -57,6 +58,27 @@ if(count($uri) == 5){
     }
 }
 elseif(count($uri) == 6){
+    $group = $uri[3];
+    $series_name = $uri[4];
+    $short_url = $uri[5];
+
+    switch ($group) {
+        case 'season':
+            
+            $season = new ViewSeason($short_url, $series_name, $dbConnection);
+            echo $season->bodyParser();
+            break;
+        case 'episode':
+            $episode = new ViewEpisode($series_name, $short_url, $dbConnection);
+            echo $episode->bodyParser();
+            break;
+        default:
+            header("HTTP/1.1 404 Not Found");
+            exit();
+            break;
+    }
+}
+elseif(count($uri) == 7){
     $group = $uri[3];
     $series_name = $uri[4];
     $short_url = $uri[5];

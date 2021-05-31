@@ -27,13 +27,22 @@
     "gulp-sass": "^4.0.2",
     "merge-stream": "^1.0.1",
     "minimatch": "^3.0.4",
-    "node-sass": "^4.12.0"
+    "node-sass": "^4.12.0",
+    "commitizen": "^4.2.1",
+    "coveralls": "^3.1.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-emoji": "^1.2.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "make:commit": "cz"
   },
-  "author": "urbanui",
-  "url": "http://www.urbanui.com/",
+  "author": "Oba John",
+  "url": "https://github.com/johnexzy",
   "copyright": "",
-  "license": ""
+  "license": "",
+  "config": {
+    "commitizen": {
+      "path": "C:\\Users\\hp\\AppData\\Roaming\\npm\\node_modules\\cz-conventional-changelog"
+    }
+  }
 }

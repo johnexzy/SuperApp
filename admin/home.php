@@ -246,6 +246,18 @@ $seriesLatest = $series->getAll(1);
                     </div>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <!-- <div class="d-flex justify-content-center align-content-center"> -->
+                      <div class="d-flex justify-content-center align-content-center align-items-center">
+                        <canvas id="canvas">
+
+                        </canvas>
+                      </div>
+                      
+                    <!-- </div> -->
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -274,6 +286,8 @@ $seriesLatest = $series->getAll(1);
   <!-- Custom js for this page -->
   <script src="js/data.js"></script>
   <script src="js/utils.js"></script>
+  <script src="js/clockscript.js"></script>
+  
 </body>
 
 </html>

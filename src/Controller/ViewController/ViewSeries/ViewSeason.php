@@ -32,7 +32,7 @@ class ViewSeason extends SeasonGateway
     }
     $res = $this->getByUrl($short_url, $series_name);
         return $res;
-    }
+ }
 
  public function bodyParser()
  {
@@ -70,7 +70,7 @@ class ViewSeason extends SeasonGateway
                           $bytes(mb)
                     </div>
                     <div class="text-right" id="$eps[id]" >
-                      <a href="/admin/view/movie/$eps[short_url]" class="text-decoration-none">
+                      <a href="/admin/view/episode/$response[series_name]/$eps[short_url]" class="text-decoration-none">
                           <button type="button" class="btn btn-info btn-rounded btn-icon edit">
                               <i class="mdi mdi-pencil"></i>
                           </button>
