@@ -12,7 +12,7 @@ use Src\TableGateways\MovieGateway;
  */
 class ViewMovie extends MovieGateway
 {
- protected $db;
+ protected $_db;
  protected $_short_url;
  public function __construct(String $short_url, PDO $db)
  {
@@ -43,7 +43,7 @@ class ViewMovie extends MovieGateway
   }
   $images = "";
   foreach ($response["images"] as $image) {
-      $images .= <<<HTML
+   $images .= <<<HTML
             <li tabindex="0" class="el-upload-list__item is-ready">
                 <img src="/$image" alt="" class="el-upload-list__item-thumbnail">
             </li>
@@ -51,8 +51,8 @@ class ViewMovie extends MovieGateway
   }
   $videos = "";
   foreach ($response["videos"] as $video) {
-      $bytes = ceil($video["video_bytes"]/(1024*1024));
-      $videos .= <<<HTML
+   $bytes = ceil($video["video_bytes"] / (1024 * 1024));
+   $videos .= <<<HTML
                 <li class='el-upload-list__item is-ready'>
                     <div class='el-upload-list__item-thumbnail'>
                         name: $response[video_name]
@@ -63,11 +63,11 @@ class ViewMovie extends MovieGateway
     HTML;
   }
 //   $HollyWood = ""; $NollyWood = ""; $BollyWood = "";  $Others = "";
-  $popular = (int) $response["popular"] !== 0 ? "checked" : "";
+  $popular  = (int)$response["popular"] !== 0 ? "checked" : "";
   $category = ["HollyWood", "NollyWood", "BollyWood", "Others"];
   //to avoid repition of category variable this loop produces same results
   foreach ($category as $cat) {
-      $$cat = $response["category"] == $cat ? "checked" : "";
+   $$cat = $response["category"] == $cat ? "checked" : "";
   }
   //Generates HTML Components
   $navBar  = LayoutClass::navBar;
@@ -175,7 +175,7 @@ class ViewMovie extends MovieGateway
                                             Save All
                                         </button>
                                     </div>
-                                    
+
                                     <hr>
                                     <div class="card-header">
                                         <h3 class="text-center" style="font-family:Sans serif">Alter Media</h3>
@@ -203,8 +203,8 @@ class ViewMovie extends MovieGateway
                                         <ul class="el-upload-list el-upload-list--picture-card video-active">
                                             $videos
                                         </ul>
-                                        
-                                        
+
+
                                         <input type="file" name="video" class="file-upload-default video-upload" accept="video/*">
                                         <div class="el-upload el-upload--picture-card openfile">
                                             <i class="mdi mdi-48px mdi-video"></i>
@@ -212,7 +212,7 @@ class ViewMovie extends MovieGateway
                                     </div> -->
                                 </form>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>

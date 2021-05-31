@@ -5,8 +5,8 @@ use Src\Controller\ViewController\ViewMovie\ViewMovie;
 use Src\Controller\ViewController\ViewMusic\ViewMusic;
 use Src\Controller\ViewController\ViewSeries\AddEpisode;
 use Src\Controller\ViewController\ViewSeries\ViewSeason;
-use Src\Controller\ViewController\ViewSeries\ViewEpisode;
 use Src\Controller\ViewController\ViewSeries\ViewSeries;
+use Src\Controller\ViewController\ViewSeries\ViewEpisode;
 
 require '../session.php';
 require '../../bootstrap.php';
@@ -69,7 +69,7 @@ elseif(count($uri) == 6){
             echo $season->bodyParser();
             break;
         case 'episode':
-            $episode = new ViewEpisode($series_name, $short_url, $dbConnection);
+            $episode = new ViewEpisode($short_url, $series_name, $dbConnection);
             echo $episode->bodyParser();
             break;
         default:
